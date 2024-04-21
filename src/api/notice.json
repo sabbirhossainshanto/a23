@@ -1,0 +1,17 @@
+{
+  "status": {
+    "statusCode": "0",
+    "statusDesc": "Success"
+  },
+  "result": {
+    "settings": {
+      "siteTitle": "a23money",
+      "siteUrl": "a23money.com"
+    },
+    "endpoint": {
+      "groupSportsBook":"https://cache.api7.live/api/exchange/diamond/group/sportsbook",
+      "":""
+    }
+  },
+  "success": true
+}
