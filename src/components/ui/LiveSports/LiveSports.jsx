@@ -4,6 +4,7 @@ import useLiveSports from "../../../hooks/home/useLiveSports";
 import Card from "./Card";
 const LiveSports = () => {
   const { liveSports } = useLiveSports();
+  const slidesPerView = window.innerWidth < 768 ? 1 : 2;
   return (
     <div className="s1710wl3">
       <div className="sports-head">
@@ -29,16 +30,16 @@ const LiveSports = () => {
       <div className="banner-scroll-wrap">
         <div className="live-list-wrap">
           <Swiper
-            spaceBetween={40}
-            slidesPerView={2.5}
+            spaceBetween={10}
+            slidesPerView='auto'
             pagination={{
               clickable: true,
             }}
+      
             cssMode={false}
             // navigation={true}
             modules={[Pagination, Navigation]}
             // className="mySwiper"
-          
           >
             {liveSports && Object.values(liveSports).length > 0
               ? Object.keys(liveSports)
@@ -48,7 +49,7 @@ const LiveSports = () => {
                   )
                   .map((key, index) => {
                     return (
-                      <SwiperSlide   style={{borderRadius:"10px"}} key={index}>
+                      <SwiperSlide style={{ borderRadius: "10px",width:"21.875rem" }} key={index}>
                         <Card keys={key} liveSports={liveSports} />
                       </SwiperSlide>
                     );
