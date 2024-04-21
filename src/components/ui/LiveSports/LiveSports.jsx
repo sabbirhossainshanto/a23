@@ -1,7 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import useLiveSports from "../../../hooks/home/useLiveSports";
 import Card from "./Card";
@@ -32,14 +29,16 @@ const LiveSports = () => {
       <div className="banner-scroll-wrap">
         <div className="live-list-wrap">
           <Swiper
-            spaceBetween={10}
-            slidesPerView={2}
+            spaceBetween={40}
+            slidesPerView={2.5}
             pagination={{
               clickable: true,
             }}
+            cssMode={false}
             // navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper"
+            // className="mySwiper"
+          
           >
             {liveSports && Object.values(liveSports).length > 0
               ? Object.keys(liveSports)
@@ -49,7 +48,7 @@ const LiveSports = () => {
                   )
                   .map((key, index) => {
                     return (
-                      <SwiperSlide key={index}>
+                      <SwiperSlide   style={{borderRadius:"10px"}} key={index}>
                         <Card keys={key} liveSports={liveSports} />
                       </SwiperSlide>
                     );

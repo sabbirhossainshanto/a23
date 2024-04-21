@@ -1,11 +1,12 @@
 import football from "../../../assets/img/football.svg";
 import tennis from "../../../assets/img/tennis.svg";
+import cricket from "../../../assets/img/cricket.svg";
 
 const Card = ({ liveSports, keys }) => {
-  console.log(liveSports);
   const eventTypeImg = {
     1: football,
     2: tennis,
+    4: cricket,
   };
 
   return (
@@ -55,7 +56,7 @@ const Card = ({ liveSports, keys }) => {
         </div>
         {liveSports?.[keys]?.[2] && (
           <div className="market-item">
-            <span>draw{" "}</span>
+            <span>draw </span>
             <span>
               {" "}
               {liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]?.price}

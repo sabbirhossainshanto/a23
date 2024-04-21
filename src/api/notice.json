@@ -9,8 +9,8 @@
       "siteUrl": "a23money.com"
     },
     "endpoint": {
-      "groupSportsBook":"https://cache.api7.live/api/exchange/diamond/group/sportsbook",
-      "":""
+      "groupSportsBook": "https://cache.api7.live/api/exchange/diamond/group/sportsbook",
+      "banner": "https://api7.live/api/exchange/diamond/banner"
     }
   },
   "success": true
