@@ -4,12 +4,14 @@ export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
   /* Global state this states we are using in full project */
-  const [navTabs, setNavTabs] = useState('live')
+  const [navTabs, setNavTabs] = useState("live");
   const [token, setToken] = useState("");
   const [getToken, setGetToken] = useState(true);
   const [tokenLoading, setTokenLoading] = useState(true);
   const [logo, setLogo] = useState("");
 
+  /*  */
+  const [sportsType, setSportsType] = useState(0);
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -42,7 +44,9 @@ const StateProvider = ({ children }) => {
     setLogo,
     getToken,
     setGetToken,
-    navTabs, setNavTabs
+    navTabs,
+    setNavTabs,
+    sportsType, setSportsType
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

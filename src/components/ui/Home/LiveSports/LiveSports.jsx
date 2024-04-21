@@ -1,10 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-import useLiveSports from "../../../hooks/home/useLiveSports";
 import Card from "./Card";
-const LiveSports = () => {
-  const { liveSports } = useLiveSports();
-  const slidesPerView = window.innerWidth < 768 ? 1 : 2;
+const LiveSports = ({ liveSports }) => {
   return (
     <div className="s1710wl3">
       <div className="sports-head">
@@ -31,25 +28,29 @@ const LiveSports = () => {
         <div className="live-list-wrap">
           <Swiper
             spaceBetween={10}
-            slidesPerView='auto'
+            slidesPerView="auto"
             pagination={{
               clickable: true,
             }}
-      
             cssMode={false}
-            // navigation={true}
             modules={[Pagination, Navigation]}
-            // className="mySwiper"
+            className="mySwiper"
           >
             {liveSports && Object.values(liveSports).length > 0
               ? Object.keys(liveSports)
+                  ?.filter((key) => {
+                    return liveSports?.[key]?.visible === true;
+                  })
                   .sort(
                     (keyA, keyB) =>
                       liveSports[keyA].sort - liveSports[keyB].sort
                   )
                   .map((key, index) => {
                     return (
-                      <SwiperSlide style={{ borderRadius: "10px",width:"21.875rem" }} key={index}>
+                      <SwiperSlide
+                        style={{ borderRadius: "10px", width: "21.875rem" }}
+                        key={index}
+                      >
                         <Card keys={key} liveSports={liveSports} />
                       </SwiperSlide>
                     );

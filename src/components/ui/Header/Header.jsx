@@ -1,13 +1,14 @@
-import logo from '../../../assets/img/logo_small_w.webp'
+import { Link } from "react-router-dom";
+import logo from "../../../assets/img/logo_small_w.webp";
+import useContextState from "../../../hooks/useContextState";
 const Header = () => {
+  const { setSportsType, sportsType } = useContextState();
   return (
     <div className="mia0b51 mobile-header show">
       <div className="nologin-header-wrap">
-        <img
-          alt="logo"
-          className="header-logo"
-          src={logo}
-        />
+        <Link   onClick={() => setSportsType(0)} to="/">
+          <img alt="logo" className="header-logo" src={logo} />
+        </Link>
         <div className="mobile-nologin-header-wrap">
           <div className="mobile-nologin-enter">
             <button className="ui-button button-normal signin">
@@ -39,7 +40,10 @@ const Header = () => {
         style={{ transform: "translateY(0%) translateZ(0px)" }}
       >
         <div className="mobile-top-navigate-list">
-          <button className="mb-top-navigate-item">
+          <button
+            onClick={() => setSportsType(0)}
+            className="mb-top-navigate-item"
+          >
             <svg
               width="18"
               height="18"
@@ -64,7 +68,12 @@ const Header = () => {
             <span>Home</span>
           </button>
 
-          <button className="mb-top-navigate-item active">
+          <button
+            onClick={() => setSportsType(4)}
+            className={`mb-top-navigate-item ${
+              sportsType === 4 ? "active" : ""
+            } `}
+          >
             <svg
               width="18"
               height="19"
@@ -102,7 +111,12 @@ const Header = () => {
             <span>Cricket</span>
           </button>
 
-          <button className="mb-top-navigate-item">
+          <button
+            onClick={() => setSportsType(1)}
+            className={`mb-top-navigate-item ${
+              sportsType === 1 ? "active" : ""
+            } `}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -125,7 +139,12 @@ const Header = () => {
             <span>Football</span>
           </button>
 
-          <button className="mb-top-navigate-item">
+          <button
+            onClick={() => setSportsType(2)}
+            className={`mb-top-navigate-item ${
+              sportsType === 2 ? "active" : ""
+            } `}
+          >
             <svg
               width="18"
               height="18"

@@ -14,8 +14,8 @@ const Slider = ({ card }) => {
     <div style={{ padding: "10px" }}>
       <div className="swiper swiper-initialized swiper-horizontal swiper-ios mySwiper swiper-backface-hidden">
         <Swiper
-          spaceBetween={20}
-          slidesPerView={3}
+          spaceBetween={10}
+          slidesPerView="auto"
           pagination={{
             clickable: true,
           }}
@@ -30,20 +30,23 @@ const Slider = ({ card }) => {
               transitionDelay: "0ms",
             }}
           >
-            {card?.map((item, i) => {
-              return (
-                <SwiperSlide
-                  onClick={() => handleNavigate(item)}
-                  key={i}
-                  style={{ borderRadius: "10px", overflow: "hidden" }}
-                >
-                  <div
-                    className="swiper-slide swiper-slide-active"
+            <div
+              className="swiper-slide swiper-slide-active"
+              style={{
+                borderRadius: "10px",
+                overflow: "hidden",
+                marginRight: "10px",
+              }}
+            >
+              {card?.map((item, i) => {
+                return (
+                  <SwiperSlide
                     style={{
+                      width: "270px",
                       borderRadius: "10px",
-                      overflow: "hidden",
-                      marginRight: "10px",
                     }}
+                    onClick={() => handleNavigate(item)}
+                    key={i}
                   >
                     <div>
                       <img
@@ -52,10 +55,10 @@ const Slider = ({ card }) => {
                         src={item?.image}
                       />
                     </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+                  </SwiperSlide>
+                );
+              })}
+            </div>
           </div>
         </Swiper>
       </div>
