@@ -1,6 +1,7 @@
 import football from "../../../../assets/img/football.svg";
 import tennis from "../../../../assets/img/tennis.svg";
 import cricket from "../../../../assets/img/cricket.svg";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ liveSports, keys }) => {
   const eventTypeImg = {
@@ -8,10 +9,18 @@ const Card = ({ liveSports, keys }) => {
     2: tennis,
     4: cricket,
   };
+  const navigate = useNavigate();
+  const handleNavigateEventPage = (data, key) => {
+    navigate(`/game-details/${data?.[key]?.eventTypeId}/${key}`);
+  };
+
   return (
     <>
       {liveSports?.[keys]?.visible && (
-        <div className="live-banner-item">
+        <div
+          onClick={() => handleNavigateEventPage(liveSports, keys)}
+          className="live-banner-item"
+        >
           <div className="b-top">
             <div className="b-top-icon">
               <div className="sports-icon-wrap">
