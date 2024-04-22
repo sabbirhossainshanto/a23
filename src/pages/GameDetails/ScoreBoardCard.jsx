@@ -67,7 +67,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                 )}
               </span>
               <span className="bt6526 bt12586">
-                {score?.timeStatus}
+                {score?.time}
                 {/* <svg
                   className="bt6527"
                   data-cy="ic-rounded-arrow"
@@ -145,7 +145,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                 </div>
               </div>
               <div className="bt12603">{score?.player1}</div>
-              <div className="bt12604">
+              {/* <div className="bt12604">
                 <div className="bt12605">
                   <span className="bt12606">
                     <svg
@@ -220,7 +220,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                     <span className="bt12609">6</span>
                   </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="bt12593">
@@ -250,7 +250,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                 className="bt6541 bt12616"
                 data-editor-id="eventCardStatusLabel"
               >
-                40′ 1st half
+              {score?.timeStatus}
               </div>
             </div>
             <div className="bt12617 bt12594">
@@ -281,7 +281,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                 </div>
               </div>
               <div className="bt12603">{score?.player2}</div>
-              <div className="bt12604">
+              {/* <div className="bt12604">
                 <div className="bt12605">
                   <span className="bt12606">
                     <svg
@@ -356,7 +356,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                     <span className="bt12609">1</span>
                   </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
