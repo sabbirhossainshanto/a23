@@ -29,7 +29,7 @@ const Home = () => {
           <Casino />
         </>
       )}
-      {sportsType && <Sports sports={sports} />}
+      {sportsType ? <Sports sports={sports} /> : null}
     </>
   );
 };

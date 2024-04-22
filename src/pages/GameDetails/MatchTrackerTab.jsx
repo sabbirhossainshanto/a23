@@ -64,9 +64,10 @@ const MatchTrackerTab = () => {
               // scrolling="no"
               className="bt12648"
               // referrerpolicy="noreferrer"
-              src="https://start9.sptpub.com/tracker.html?eventId=41763557&sportId=1&lang=en&liveEvent=true&providers=Betradar,Statscore"
+              src=""
               title="tracker"
-              style={{ height: "392.75px" }}
+              // style={{ height: "392.75px" }}
+              style={{ height: "0px" }}
             ></iframe>
           </div>
         </div>

@@ -1,52 +1,113 @@
-const Odds = () => {
-  return (
-    <div className="bt12498">
-      <div className="bt12671">
-        {/* <!-- <div className="bt12673">
-                    <div className="bt6452" style="height: 48px;">
-                        <div className="bt6454">
-                            <div className="bt6453" style="height: 48px;">
-                                <div className="bt12674">
-                                    <div className="bt12675 bt12677" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">Main</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">29</span></div>
-                                    </div>
-                                  
-                                    <div className="bt12675" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">1st Half</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">30</span></div>
-                                    </div>
-                                    <div className="bt12675" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">Totals</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">14</span></div>
-                                    </div>
-                                    <div className="bt12675" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">Team Stats</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">17</span></div>
-                                    </div>
-                                    <div className="bt12675" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">Handicaps</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">3</span></div>
-                                    </div>
-                              
-                                    <div className="bt12675" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">2nd Half</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">6</span></div>
-                                    </div>
-                                    <div className="bt12675" data-editor-id="eventMarketTab">
-                                        <div className="bt12678"><span className="bt12676">Combo Markets</span><span
-                                                data-editor-id="eventMarketTabPin" className="bt12679">12</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style="z-index: 3; pointer-events: none; position: absolute; inset: 0px 0px auto auto; width: 40px; height: 100%; background: linear-gradient(to left, rgb(235, 237, 244), rgba(235, 237, 244, 0));">
-                        </div>
-                    </div>
-                </div> --> */}
 
-        <div className="bt12687">
+
+const fake = () => {
+    return (
+        <>
+        {/* <div className="bt12673">
+          <div className="bt6452" style={{ height: "48px" }}>
+            <div className="bt6454">
+              <div className="bt6453" style={{ height: "48px" }}>
+                <div className="bt12674">
+                  <div
+                    className="bt12675 bt12677"
+                    data-editor-id="eventMarketTab"
+                  >
+                    <div className="bt12678">
+                      <span className="bt12676">Main</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        29
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="bt12675" data-editor-id="eventMarketTab">
+                    <div className="bt12678">
+                      <span className="bt12676">1st Half</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        30
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bt12675" data-editor-id="eventMarketTab">
+                    <div className="bt12678">
+                      <span className="bt12676">Totals</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        14
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bt12675" data-editor-id="eventMarketTab">
+                    <div className="bt12678">
+                      <span className="bt12676">Team Stats</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        17
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bt12675" data-editor-id="eventMarketTab">
+                    <div className="bt12678">
+                      <span className="bt12676">Handicaps</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        3
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="bt12675" data-editor-id="eventMarketTab">
+                    <div className="bt12678">
+                      <span className="bt12676">2nd Half</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        6
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bt12675" data-editor-id="eventMarketTab">
+                    <div className="bt12678">
+                      <span className="bt12676">Combo Markets</span>
+                      <span
+                        data-editor-id="eventMarketTabPin"
+                        className="bt12679"
+                      >
+                        12
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                zIndex: "3",
+                pointerEvents: "none",
+                position: "absolute",
+                inset: "0px 0px auto auto",
+                width: "40px",
+                height: "100%",
+                background:
+                  "linear-gradient(to left, rgb(235, 237, 244), rgba(235, 237, 244, 0))",
+              }}
+            ></div>
+          </div>
+        </div> */}
+          <div className="bt12687">
           <div className="bt12695">
             <div className="bt12689" data-editor-id="marketTitle">
               1x2
@@ -6614,10 +6675,9 @@ const Odds = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
+        </div>  
+        </>
+    );
 };
 
-export default Odds;
+export default fake;

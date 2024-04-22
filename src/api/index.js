@@ -5,6 +5,7 @@ const settings = config?.result?.settings;
 export const API = {
   groupSportsBook: endPoints?.groupSportsBook,
   banner: endPoints?.banner,
+  eventDetails:endPoints?.eventDetails
 };
 
 export const Settings = {

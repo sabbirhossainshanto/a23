@@ -10,7 +10,8 @@
     },
     "endpoint": {
       "groupSportsBook": "https://cache.api7.live/api/exchange/diamond/group/sportsbook",
-      "banner": "https://api7.live/api/exchange/diamond/banner"
+      "banner": "https://api7.live/api/exchange/diamond/banner",
+      "eventDetails": "https://cache7.live/api/exchange/diamond/odds/event"
     }
   },
   "success": true
