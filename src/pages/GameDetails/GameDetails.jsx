@@ -15,12 +15,19 @@ const GameDetails = () => {
   useEffect(() => {
     refetchEventsData();
   }, [refetchEventsData, eventTypeId]);
+
+  // console.log(eventsData);
   return (
     <>
       <ScoreCardSlider />
-      <ScoreBoardCard />
+      {eventsData?.score && <ScoreBoardCard  eventTypeId={eventTypeId} score={eventsData?.score} />}
       <MatchTrackerTab />
-      <Odds eventTypeId={eventTypeId} sportsBook={eventsData?.sportsbook?.Result} />
+      {eventsData?.sportsbook?.Result && (
+        <Odds
+          eventTypeId={eventTypeId}
+          sportsBook={eventsData?.sportsbook?.Result}
+        />
+      )}
     </>
   );
 };

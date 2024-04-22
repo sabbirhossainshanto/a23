@@ -10,7 +10,7 @@ const Odds = ({ sportsBook,eventTypeId }) => {
       group?.Name !== "Fast Markets" &&
       group?.Name !== "Player Specials"
   );
-  console.log(sportsBook);
+
   const itemsLengthArray = sports?.map((group) => group?.Items?.length) || [];
   const [openItems, setOpenItems] = useState(
     new Array(itemsLengthArray[0] || 0).fill(false).map((_, index) => index < 5)
@@ -29,6 +29,8 @@ const Odds = ({ sportsBook,eventTypeId }) => {
         .map((_, index) => index < 5)
     );
   }, [eventTypeId]);
+
+
   return (
     <div className="bt12498">
       <div className="bt12671">
@@ -36,7 +38,6 @@ const Odds = ({ sportsBook,eventTypeId }) => {
         {sports?.map((group) =>
           group?.Items?.map((item, iIdx) => {
             const isOpen = openItems[iIdx];
-            console.log(isOpen);
             return (
               <div key={iIdx} className="bt12687">
                 <div onClick={() => toggleItem(iIdx)} className="bt12695">
