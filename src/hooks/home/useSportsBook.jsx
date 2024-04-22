@@ -10,6 +10,7 @@ const useSportsBook = (sportsType) => {
       const data = res.data;
       return data;
     },
+    refetchInterval:2000
   });
 
   return { sports, refetchSports };

@@ -21,7 +21,7 @@ const Card = ({ liveSports, keys }) => {
             </div>
             <div className="t-right">
               <p className="status">{liveSports?.[keys]?.timeStatus}</p>
-              <div className="live ttu">Live</div>
+              {/* <div className="live ttu">Live</div> */}
             </div>
           </div>
           <div className="b-match">
