@@ -6,7 +6,7 @@ import { Settings } from "../../../api";
 const Header = () => {
   const { setSportsType, sportsType, token } = useContextState();
   const navigate = useNavigate();
-  const {balanceData} = useBalance()
+  const { balanceData } = useBalance();
   return (
     <div className="mia0b51 mobile-header show">
       <div className="nologin-header-wrap">
@@ -31,7 +31,12 @@ const Header = () => {
                 Exp : {balanceData?.deductedExposure}
               </div>
 
-              <button className="ui-button button-normal s-conic">
+              <button
+                onClick={() => {
+                  navigate("/deposit");
+                }}
+                className="ui-button button-normal s-conic"
+              >
                 <div className="button-inner">Deposit</div>
               </button>
             </div>
@@ -45,11 +50,14 @@ const Header = () => {
               >
                 <div className="button-inner">Login</div>
               </button>
-           {Settings.register && (
-               <button onClick={()=> navigate('/register')} className="ui-button button-normal s-conic">
-               <div className="button-inner">Register</div>
-             </button>
-           )}
+              {Settings.register && (
+                <button
+                  onClick={() => navigate("/register")}
+                  className="ui-button button-normal s-conic"
+                >
+                  <div className="button-inner">Register</div>
+                </button>
+              )}
             </div>
           )}
           <div className="l1eoxxw5">

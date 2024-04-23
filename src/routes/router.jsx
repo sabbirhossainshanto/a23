@@ -4,6 +4,10 @@ import Home from "../pages/Home/Home";
 import GameDetails from "../pages/GameDetails/GameDetails";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Deposit from "../pages/Deposit/Deposit";
+import Account from "../pages/Account/Account";
+import ChangePassword from "../pages/ChangePassword/ChangePassword";
+import EditStake from "../pages/EditStake/EditStake";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +29,22 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/deposit",
+        element: <Deposit />,
+      },
+      {
+        path: "/account",
+        element: <Account />,
+      },
+      {
+        path: "/change-password",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/edit-stake",
+        element: <EditStake />,
       },
     ],
   },

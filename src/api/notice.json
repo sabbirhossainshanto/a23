@@ -21,7 +21,8 @@
       "bankAccount": "https://api7.live/api/exchange/diamond/bankAccount",
       "otp": "https://api7.live/api/exchange/diamond/otp",
       "whatsapp": "https://api7.live/api/account/diamond/whatsapp",
-      "register": "https://api7.live/api/account/diamond/register"
+      "register": "https://api7.live/api/account/diamond/register",
+      "uploadScreenshot": "https://b2c.bet/deposit/up.php"
     }
   },
   "success": true

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../../../src/assets/img//logo_small_w.webp";
+// import logo from "../../../src/assets/img//logo_small_w.webp";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import handleRandomToken from "../../utils/handleRandomToken";
@@ -133,7 +133,7 @@ const Login = () => {
             <div className="login-card">
               <div className="login-card-header">
                 <span>Log in</span>
-                <div className="login-text">
+                {/* <div className="login-text">
                   <p>Welcome</p>
                   <img
                     loading="lazy"
@@ -141,7 +141,7 @@ const Login = () => {
                     alt="waving-hand"
                     style={{ height: "24px", width: "24px" }}
                   />
-                </div>
+                </div> */}
               </div>
 
               <form
@@ -217,13 +217,14 @@ const Login = () => {
                 </div>
                 <div className="login-box1">
                   <div
+                  style={{border:'none'}}
                     onClick={loginWithDemo}
                     id="buttonDiv"
                     className="google-login"
                   >
                     <span>Demo Login</span>
                   </div>
-                  <div className="google-login" style={{ cursor: "pointer" }}>
+                  <div  className="google-login" style={{ cursor: "pointer",border:'none' }}>
                     <span>Register</span>
                   </div>
                 </div>

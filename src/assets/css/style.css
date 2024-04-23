@@ -5486,7 +5486,7 @@ img,
 
 .login-page-abc {
     height: max-content;
- 
+
     margin: 0 10px;
 }
 
@@ -5506,7 +5506,7 @@ img,
 }
 
 .login-page .login-box {
-  
+
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -5779,10 +5779,11 @@ img,
     right: .75rem;
     top: 2.25rem;
 }
+
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #f2f2f7 inset !important;
 }
 
@@ -5867,7 +5868,7 @@ input:-webkit-autofill:active{
     align-items: center;
     gap: .5625rem;
     flex: 1 0 0;
-    color:#000;
+    color: #000;
     border-radius: .5rem;
 
     background: #ebedf4;
@@ -12357,7 +12358,7 @@ img,
     transition: background .5s ease;
     width: 100%;
     padding: .75rem .5rem;
-  
+
 }
 
 .inputBox input {
@@ -12601,8 +12602,9 @@ img,
 }
 
 .makepayment {
-    width: 100%;
-    margin-top: 1rem;
+
+   
+    margin: 0 10px;
     display: flex;
     height: 2.5rem;
     padding: .5rem;
@@ -12635,7 +12637,7 @@ img,
     align-items: stretch;
     gap: 1rem;
     border-radius: 1.5rem 1.5rem 0rem 0rem;
-    background: #454545;
+    background: #ebedf4;
     animation: slide-up .3s cubic-bezier(.25, .46, .45, .94) both;
     width: 100%;
 }
@@ -12648,7 +12650,7 @@ img,
 }
 
 .depositbreak>p {
-    color: var(--white, #FFF);
+    color: #040404;
     font-family: 'Inter';
     font-size: 1rem;
     font-style: normal;
@@ -12683,7 +12685,7 @@ img,
     align-self: stretch;
     border-radius: .75rem;
     padding: 1rem;
-    background: rgba(255, 255, 255, .1);
+    background: #fff;
 }
 
 .damount {
@@ -12694,7 +12696,7 @@ img,
 }
 
 .balancetxt {
-    color: #d5d9de;
+    color: #040404;
     font-family: 'Inter';
     font-size: .875rem;
     font-style: normal;
@@ -12709,7 +12711,7 @@ img,
 }
 
 .amt>p {
-    color: var(--white, #FFF);
+    color: #040404;
     text-align: center;
     font-family: 'Inter';
     font-size: .875rem;
@@ -12738,7 +12740,7 @@ img,
 }
 
 .money {
-    color: #d5d9de;
+    color: #040404;
     font-family: 'Inter';
     font-size: .875rem;
     font-style: normal;
@@ -12747,7 +12749,7 @@ img,
 }
 
 .doll {
-    color: var(--white, #FFF);
+    color: #040404;
     text-align: center;
     font-family: 'Inter';
     font-size: .875rem;
@@ -13916,16 +13918,16 @@ input {
 
 
 /*! CSS Used from: Embedded */
-.dep-w-info-bc[_ngcontent-cci-c159] .u-i-p-control-item-holder-bc[_ngcontent-cci-c159] {
+.dep-w-info-bc .u-i-p-control-item-holder-bc {
     background: none !important;
     padding: 0 !important;
 }
 
-.mb-3[_ngcontent-cci-c159] {
+.mb-3 {
     margin-bottom: 0 !important;
 }
 
-.form-control-message-bc[_ngcontent-cci-c159] {
+.form-control-message-bc {
     background: none !important;
     display: flex;
     color: #f75555;
@@ -13934,7 +13936,7 @@ input {
     justify-content: flex-start;
 }
 
-.form-control-message-holder-bc[_ngcontent-cci-c159] {
+.form-control-message-holder-bc {
     margin-top: .38rem;
     animation: form-control-message .24s ease;
     margin-bottom: 3px;
@@ -13945,7 +13947,7 @@ input {
     line-height: normal;
 }
 
-.utrbox[_ngcontent-cci-c159] {
+.utrbox {
     font-family: 'Inter';
     margin: 10px;
     display: flex;
@@ -13958,7 +13960,7 @@ input {
     margin-top: 1rem;
 }
 
-.utrtxt[_ngcontent-cci-c159] {
+.utrtxt {
     color: #fff;
     font-size: 12px;
     font-style: normal;
@@ -13967,10 +13969,10 @@ input {
     align-self: stretch;
 }
 
-.utrinput[_ngcontent-cci-c159] {
+.utrinput {
     margin-top: 1rem;
     align-items: center;
-    background-color: #303a3e;
+    background-color: #ebedf4;
     display: flex;
     gap: 24px;
     height: 46px;
@@ -13979,11 +13981,11 @@ input {
     border-radius: .5rem;
 }
 
-.utrinput[_ngcontent-cci-c159]>input[_ngcontent-cci-c159] {
-    color: #d5d9de;
+.utrinput>input {
+    color: #000;
 }
 
-.utrbox[_ngcontent-cci-c159] {
+.utrbox {
     animation: slide-in .3s cubic-bezier(.25, .46, .45, .94) forwards;
 }
 
@@ -14095,7 +14097,7 @@ input {
 }
 
 /*! CSS Used from: Embedded */
-.upload[_ngcontent-cci-c159] {
+.upload {
     display: flex;
     padding: 1rem;
     flex-direction: column;
@@ -14104,11 +14106,11 @@ input {
     gap: 1rem;
     border-radius: .75rem;
     border: 1px dashed rgba(255, 255, 255, .23);
-    background: #1A2529;
+    background: #ebedf4;
     margin-top: 1rem;
 }
 
-.uploadimg[_ngcontent-cci-c159] {
+.uploadimg {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14117,7 +14119,7 @@ input {
     align-self: stretch;
 }
 
-.uploadsvg[_ngcontent-cci-c159] {
+.uploadsvg {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14125,7 +14127,7 @@ input {
     gap: .75rem;
 }
 
-.frame[_ngcontent-cci-c159] {
+.frame {
     align-items: center;
     display: flex;
     gap: 24px;
@@ -14134,7 +14136,7 @@ input {
     position: relative;
 }
 
-.uploadbtn[_ngcontent-cci-c159] {
+.uploadbtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14150,12 +14152,12 @@ input {
     text-transform: capitalize;
 }
 
-.file-input[_ngcontent-cci-c159] {
+.file-input {
     display: none;
 }
 
-.uploadtxt[_ngcontent-cci-c159] {
-    color: #c1cad5;
+.uploadtxt {
+    color: #040404;
     text-align: center;
     font-size: .875rem;
     font-style: normal;
@@ -14163,7 +14165,7 @@ input {
     line-height: normal;
 }
 
-.upload[_ngcontent-cci-c159] {
+.upload {
     animation: slide-in .3s cubic-bezier(.25, .46, .45, .94) forwards;
 }
 
@@ -18446,17 +18448,84 @@ form {
 
 
 
+.payment_container {
+    display: flex;
+   flex-wrap: wrap;
 
-.score_card {
-    color: #31373D;
-    margin:0 10px;
-    border: 1px solid transparent;
-    opacity: 1;
-    padding: 8px 8px 0;
-    background: #fff;
+  }
+  .payment_box {
+    width: 100px;
+    margin: 2%;
+    text-align: center;
+    border :1px solid #f2f2f2;
+    cursor: pointer;
     box-sizing: border-box;
-    min-height: 100%;
-    border-color: #fff;
-    border-radius: 8px;
+    padding:10px;
+  }
+  .payment_box img {
+    width: 75px;
+    height: auto;
+  }
+  .payment_box h2 {
+  
+    font-size: 12px;
+  }
+
+  .upload {
+    display: flex;
+    padding: 1rem;
+    margin:10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: .75rem;
+    border: 1px dashed rgba(255,255,255,.23);
+    background: #fff;
+    margin-top: 1rem;
 }
 
+.uploadimg   .close-button {
+    position: relative;
+    width: 100%;
+}
+
+
+
+  .edit-stake-head{
+    z-index: 100;
+    color: #040404;
+    font-family: 'Inter';
+    font-size: .875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+
+.edit-stakes-input-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: .69rem;
+    z-index: 100;
+    gap: .31rem;
+}
+
+   .edit-stakes-input-section   .edit-stakes-input {
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    padding: .5rem .625rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: .375rem;
+
+    background: #ebedf4;
+    color: #040404;
+    font-family: 'Inter';
+    font-size: .875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}

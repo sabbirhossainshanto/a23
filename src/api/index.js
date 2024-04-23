@@ -7,11 +7,12 @@ export const API = {
   banner: endPoints?.banner,
   eventDetails: endPoints?.eventDetails,
   login: endPoints?.login,
-  bankAccount:endPoints?.bankAccount,
-  balance:endPoints?.balance,
-  otp:endPoints?.otp,
-  whatsApp:endPoints?.whatsapp,
-  register:endPoints?.register
+  bankAccount: endPoints?.bankAccount,
+  balance: endPoints?.balance,
+  otp: endPoints?.otp,
+  whatsApp: endPoints?.whatsapp,
+  register: endPoints?.register,
+  uploadScreenshot: endPoints?.uploadScreenshot,
 };
 
 export const Settings = {
@@ -19,7 +20,7 @@ export const Settings = {
   interval: settings?.interval,
   siteTitle: settings?.siteTitle,
   referral: settings.referral,
-  balanceApiLoop:settings?.balanceApiLoop,
+  balanceApiLoop: settings?.balanceApiLoop,
   register: settings?.registration,
-  otp:settings?.otp
+  otp: settings?.otp,
 };
