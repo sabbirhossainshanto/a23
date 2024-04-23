@@ -18,6 +18,7 @@ const Card = ({ liveSports, keys }) => {
         <div
           onClick={() => handleNavigateEventPage(liveSports, keys, navigate)}
           className="live-banner-item"
+          style={{fontSize:"12px"}}
         >
           <div className="b-top">
             <div className="b-top-icon">

@@ -1,24 +1,54 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/logo_small_w.webp";
 import useContextState from "../../../hooks/useContextState";
+import useBalance from "../../../hooks/useBalance";
 const Header = () => {
-  const { setSportsType, sportsType } = useContextState();
+  const { setSportsType, sportsType, token } = useContextState();
   const navigate = useNavigate();
+  const {balanceData} = useBalance()
   return (
     <div className="mia0b51 mobile-header show">
       <div className="nologin-header-wrap">
         <Link onClick={() => setSportsType(0)} to="/">
           <img alt="logo" className="header-logo" src={logo} />
         </Link>
+
         <div className="mobile-nologin-header-wrap">
-          <div className="mobile-nologin-enter">
-            <button className="ui-button button-normal signin">
-              <div className="button-inner">Login</div>
-            </button>
-            <button className="ui-button button-normal s-conic">
-              <div className="button-inner">Register</div>
-            </button>
-          </div>
+          {token ? (
+            <div className="mobile-nologin-enter">
+              <div
+                style={{
+                  marginRight: "20px",
+                  fontSize: "11px",
+                  color: "#000",
+                  textAlign: "right",
+                  fontWeight: "500",
+                }}
+              >
+                Bal: {balanceData?.availBalance}
+                <br />
+                Exp : {balanceData?.deductedExposure}
+              </div>
+
+              <button className="ui-button button-normal s-conic">
+                <div className="button-inner">Deposit</div>
+              </button>
+            </div>
+          ) : (
+            <div className="mobile-nologin-enter">
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
+                className="ui-button button-normal signin"
+              >
+                <div className="button-inner">Login</div>
+              </button>
+              <button className="ui-button button-normal s-conic">
+                <div className="button-inner">Register</div>
+              </button>
+            </div>
+          )}
           <div className="l1eoxxw5">
             <div className="lan-header-inner">
               <svg
@@ -45,7 +75,7 @@ const Header = () => {
           <button
             onClick={() => {
               setSportsType(0);
-              navigate('/')
+              navigate("/");
             }}
             className="mb-top-navigate-item"
           >
@@ -75,8 +105,8 @@ const Header = () => {
 
           <button
             onClick={() => {
-              setSportsType(4)
-              navigate('/')
+              setSportsType(4);
+              navigate("/");
             }}
             className={`mb-top-navigate-item ${
               sportsType === 4 ? "active" : ""
@@ -120,9 +150,9 @@ const Header = () => {
           </button>
 
           <button
-              onClick={() => {
-              setSportsType(1)
-              navigate('/')
+            onClick={() => {
+              setSportsType(1);
+              navigate("/");
             }}
             className={`mb-top-navigate-item ${
               sportsType === 1 ? "active" : ""
@@ -151,10 +181,10 @@ const Header = () => {
           </button>
 
           <button
-               onClick={() => {
-                setSportsType(2)
-                navigate('/')
-              }}
+            onClick={() => {
+              setSportsType(2);
+              navigate("/");
+            }}
             className={`mb-top-navigate-item ${
               sportsType === 2 ? "active" : ""
             } `}

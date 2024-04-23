@@ -1,4 +1,18 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import useContextState from "../../../hooks/useContextState";
+
 const Footer = () => {
+  const { setSportsType, token } = useContextState();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigate = (link) => {
+    if (token) {
+      navigate(link);
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="t1b5irhq">
       <div className="tabbar-item">
@@ -23,7 +37,14 @@ const Footer = () => {
         </svg>
         <span>More</span>
       </div>
-      <div className="tabbar-item active">
+      <div
+        onClick={() => {
+          navigate("/");
+          setSportsType(0);
+        }}
+        className={`tabbar-item ${location.pathname === "/" ? "active" : ""}`}
+        style={{ cursor: "pointer" }}
+      >
         <svg viewBox="0 0 25 24" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
@@ -59,7 +80,11 @@ const Footer = () => {
         </div>
         <span>Promotions</span>
       </div>
-      <div className="tabbar-item">
+      <div
+        onClick={() => handleNavigate("/account")}
+        className="tabbar-item"
+        style={{ cursor: "pointer" }}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g>
             <path d="M5.61287 12.7928C7.64364 12.8944 8.89156 13.1502 10.3367 13.1502C10.7105 13.1502 11.0524 13.1338 11.3874 13.1071C10.3694 14.3318 9.75882 15.9027 9.75882 17.6157C9.75882 19.7472 10.7044 21.6591 12.2021 22.9587C9.65289 23.0707 6.80911 22.9648 4.81193 22.6409C1.79849 22.1518 -0.379556 20.0116 0.0553641 17.0481L0.0855072 16.8647C0.555738 14.2698 2.83196 12.6533 5.61287 12.7928ZM10.2006 0.609863C13.2235 0.609863 15.6746 3.04197 15.6746 6.04335C15.6746 9.04473 13.2235 11.4768 10.2006 11.4768C7.17686 11.4768 4.7258 9.04387 4.7258 6.04335C4.7258 3.04283 7.17686 0.609863 10.2006 0.609863Z"></path>

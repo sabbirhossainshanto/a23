@@ -4,23 +4,36 @@ export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
   /* Global state this states we are using in full project */
+  const [logo, setLogo] = useState("");
   const [navTabs, setNavTabs] = useState("live");
   const [token, setToken] = useState("");
-  const [getToken, setGetToken] = useState(true);
+  const [getToken, setGetToken] = useState(false);
   const [tokenLoading, setTokenLoading] = useState(true);
-  const [logo, setLogo] = useState("");
-
-  /*  */
+  const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
   const [sportsType, setSportsType] = useState(0);
-
   /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
-    if (getToken) {
+    const getBonusToken = localStorage.getItem("bonusToken");
+    const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
+    /* If check box true of bonus token and bonus token available then using bonus token in authorization headers */
+    if (getCheckedBonusToken && getBonusToken) {
+      /* Set bonus token */
+      setToken(getBonusToken);
+      /* Check box true of bonus */
+      setIsCheckedBonusToken(true);
+    } else {
+      /* Set default token */
       setToken(getToken);
+      /* Checkbox box false */
+      setIsCheckedBonusToken(false);
+    }
+
+    if (token && (getToken === token || getBonusToken === token)) {
+      /* handle loading for save crash website` */
       setTokenLoading(false);
     }
-  }, []);
+  }, [token,getToken]);
 
   useEffect(() => {
     const logo = `${API.assets}/${Settings.siteUrl}/logo.webp`;
@@ -42,11 +55,13 @@ const StateProvider = ({ children }) => {
     setTokenLoading,
     logo,
     setLogo,
-    getToken,
-    setGetToken,
     navTabs,
     setNavTabs,
-    sportsType, setSportsType
+    sportsType,
+    setSportsType,
+    isCheckedBonusToken,
+    setIsCheckedBonusToken,
+    getToken, setGetToken
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>
