@@ -8,7 +8,10 @@ export const API = {
   eventDetails: endPoints?.eventDetails,
   login: endPoints?.login,
   bankAccount:endPoints?.bankAccount,
-  balance:endPoints?.balance
+  balance:endPoints?.balance,
+  otp:endPoints?.otp,
+  whatsApp:endPoints?.whatsapp,
+  register:endPoints?.register
 };
 
 export const Settings = {
@@ -16,5 +19,7 @@ export const Settings = {
   interval: settings?.interval,
   siteTitle: settings?.siteTitle,
   referral: settings.referral,
-  balanceApiLoop:settings?.balanceApiLoop
+  balanceApiLoop:settings?.balanceApiLoop,
+  register: settings?.registration,
+  otp:settings?.otp
 };

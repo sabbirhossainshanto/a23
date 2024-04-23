@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/logo_small_w.webp";
 import useContextState from "../../../hooks/useContextState";
 import useBalance from "../../../hooks/useBalance";
+import { Settings } from "../../../api";
 const Header = () => {
   const { setSportsType, sportsType, token } = useContextState();
   const navigate = useNavigate();
@@ -44,9 +45,11 @@ const Header = () => {
               >
                 <div className="button-inner">Login</div>
               </button>
-              <button className="ui-button button-normal s-conic">
-                <div className="button-inner">Register</div>
-              </button>
+           {Settings.register && (
+               <button onClick={()=> navigate('/register')} className="ui-button button-normal s-conic">
+               <div className="button-inner">Register</div>
+             </button>
+           )}
             </div>
           )}
           <div className="l1eoxxw5">
