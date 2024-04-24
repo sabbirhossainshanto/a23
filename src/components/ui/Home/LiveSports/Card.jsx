@@ -86,6 +86,8 @@ const Card = ({ liveSports, keys }) => {
         //     )}
         //   </div>
         // </div>
+
+        /* Another card design */
         <div
           onClick={() => handleNavigateEventPage(liveSports, keys, navigate)}
           className="bt228"
@@ -285,7 +287,7 @@ const Card = ({ liveSports, keys }) => {
                         </div>
                         <div
                           className="bt287"
-                          style={{ height: "24px", lineHeight: "24px" }}
+                          style={{ height: "24px", lineHeight: "24px",textAlign:'start' }}
                         >
                           {liveSports[keys]?.player1}
                         </div>
@@ -307,7 +309,7 @@ const Card = ({ liveSports, keys }) => {
                         </div>
                         <div
                           className="bt287"
-                          style={{ height: "24px", lineHeight: "24px" }}
+                          style={{ height: "24px", lineHeight: "24px",textAlign:'start' }}
                         >
                           {liveSports[keys]?.player2}
                         </div>

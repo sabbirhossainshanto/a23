@@ -109,7 +109,9 @@ const DepositModal = ({ setShowModal, setPaymentMethods }) => {
               className="star4 ng-tns-c159-13"
             />
           </div>
-          <div  onClick={() => {
+          <div 
+          style={{width:'100%'}}
+          onClick={() => {
                   setPaymentMethods(true);
                   setShowModal(false);
                 }} className="makepayment ng-tns-c159-13">

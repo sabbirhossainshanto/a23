@@ -5,6 +5,12 @@ import useBalance from "../../hooks/useBalance";
 import depositProfileIcon from "../../../src/assets/img/depositProfileIcon.svg";
 import withdrawIcon from "../../../src/assets/img/withdrawIcon.svg";
 import profileCardWallet from "../../../src/assets/img/profile-card-wallet.webp";
+import profileWallet from '../../../src/assets/img/profile-wallet.svg'
+import profileLiveBets from '../../../src/assets/img/profile-live-bets.svg'
+import profileCurrency from '../../../src/assets/img/profile-currency.svg'
+import profileBettingProfitLoss from '../../../src/assets/img/profile-betting-profit-loss.webp'
+import profileAccountStatement from '../../../src/assets/img/profile-account-statement.png'
+import profileSettings from '../../../src/assets/img/profile-settings.svg'
 
 const Account = () => {
   const { setGetToken } = useContextState();
@@ -181,7 +187,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-wallet.svg"
+                    src={profileWallet}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
@@ -215,7 +221,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-live-bets.svg"
+                    src={profileLiveBets}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
@@ -247,7 +253,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-currency.svg"
+                    src={profileCurrency}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
@@ -279,7 +285,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-betting-profit-loss.webp"
+                    src={profileBettingProfitLoss}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
@@ -313,7 +319,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-account-statement.png"
+                    src={profileAccountStatement}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
@@ -352,7 +358,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-settings.svg"
+                    src={profileSettings}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
@@ -390,7 +396,7 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src="assets/img/profile-settings.svg"
+                    src={profileSettings}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>

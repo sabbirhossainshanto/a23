@@ -13,6 +13,8 @@ export const API = {
   whatsApp: endPoints?.whatsapp,
   register: endPoints?.register,
   uploadScreenshot: endPoints?.uploadScreenshot,
+  buttonValue: endPoints?.buttonValue,
+  changePassword: endPoints.changePassword,
 };
 
 export const Settings = {

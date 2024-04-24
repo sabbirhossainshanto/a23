@@ -22,7 +22,9 @@
       "otp": "https://api7.live/api/exchange/diamond/otp",
       "whatsapp": "https://api7.live/api/account/diamond/whatsapp",
       "register": "https://api7.live/api/account/diamond/register",
-      "uploadScreenshot": "https://b2c.bet/deposit/up.php"
+      "uploadScreenshot": "https://b2c.bet/deposit/up.php",
+      "buttonValue": "https://api7.live/api/exchange/diamond/buttonValue.php",
+      "changePassword": "https://api7.live/api/exchange/diamond/changePassword"
     }
   },
   "success": true

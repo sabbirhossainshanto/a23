@@ -5,6 +5,11 @@ import { API } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
 import { useState } from "react";
 import useContextState from "../../hooks/useContextState";
+import contactOne from '../../../src/assets/img/contact_one.svg'
+import clipboardIcon from '../../../src/assets/img/clipboard_icon.svg'
+import contactTwo from '../../../src/assets/img/contact_two.svg'
+import codeBlock from '../../../src/assets/img/code_block.svg'
+import institution from '../../../src/assets/img/institution.svg'
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({ setUploadTransaction,
@@ -44,13 +49,13 @@ console.log(depositData);
             className="make ng-tns-c159-13"
             style={{ marginBottom: "0.75rem", color: "black" }}
           >
-            Payment Methonds
+            Payment Methods
           </p>
           <div
             _ngcontent-kdb-c159=""
             className="accountdetailss ng-tns-c159-13 ng-star-inserted"
           >
-            <div className="payment_container">
+            <div className="payment_container" style={{width:'100%'}}>
               {Array.isArray(depositMethods) &&
                 depositMethods?.map((method) => {
                   return (
@@ -60,7 +65,7 @@ console.log(depositData);
                       className="payment_box"
                     >
                       <img
-                        src={`/src/assets/img/${method?.type}.${
+                        src={`/img/${method?.type}.${
                           method?.type === "qr" ? "svg" : "png"
                         }`}
                       />
@@ -97,7 +102,7 @@ console.log(depositData);
                   <img
                     _ngcontent-kdb-c159=""
                     loading="lazy"
-                    src="assets/img/contact_one.svg"
+                    src={contactOne}
                     alt=""
                     className="ng-tns-c159-13"
                   />
@@ -117,7 +122,7 @@ console.log(depositData);
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
-                        src="assets/img/clipboard_icon.svg"
+                        src={clipboardIcon}
                         alt=""
                         className="ng-tns-c159-13"
                       />
@@ -133,7 +138,7 @@ console.log(depositData);
                   <img
                     _ngcontent-kdb-c159=""
                     loading="lazy"
-                    src="assets/img/contact_two.svg"
+                    src={contactTwo}
                     alt=""
                     className="ng-tns-c159-13"
                   />
@@ -152,7 +157,7 @@ console.log(depositData);
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
-                        src="assets/img/clipboard_icon.svg"
+                        src={clipboardIcon}
                         alt=""
                         className="ng-tns-c159-13"
                       />
@@ -168,7 +173,7 @@ console.log(depositData);
                   <img
                     _ngcontent-kdb-c159=""
                     loading="lazy"
-                    src="assets/img/code_block.svg"
+                    src={codeBlock}
                     alt=""
                     className="ng-tns-c159-13"
                   />
@@ -188,7 +193,7 @@ console.log(depositData);
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
-                        src="assets/img/clipboard_icon.svg"
+                        src={clipboardIcon}
                         alt=""
                         className="ng-tns-c159-13"
                       />
@@ -204,7 +209,7 @@ console.log(depositData);
                   <img
                     _ngcontent-kdb-c159=""
                     loading="lazy"
-                    src="assets/img/institution.svg"
+                    src={institution}
                     alt=""
                     className="ng-tns-c159-13"
                   />
@@ -224,7 +229,7 @@ console.log(depositData);
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
-                        src="assets/img/clipboard_icon.svg"
+                        src={clipboardIcon}
                         alt=""
                         className="ng-tns-c159-13"
                       />
@@ -236,7 +241,7 @@ console.log(depositData);
             <div onClick={()=> {
                   setPaymentMethods(false)
                   setUploadTransaction(true)
-                }} _ngcontent-kdb-c159="" className="makepayment ng-tns-c159-13">
+                }} _ngcontent-kdb-c159="" className="makepayment ng-tns-c159-13" style={{marginTop:'10px'}}>
               <div _ngcontent-kdb-c159="" className="madepay ng-tns-c159-13">
                 <button  _ngcontent-kdb-c159="" className="ng-tns-c159-13">
                   I have Made The Payment
