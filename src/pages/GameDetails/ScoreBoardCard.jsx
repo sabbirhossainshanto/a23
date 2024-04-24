@@ -1,12 +1,13 @@
-const ScoreBoardCard = ({ score}) => {
-  console.log(score);
+const ScoreBoardCard = ({ score }) => {
+
   return (
     <div className="bt12577 bt12497" data-editor-id="scoreBoardCard">
       <div className="bt12580 bt12579">
         <div className="bt12581">
           <div className="bt6522" data-editor-id="scoreBoardCategory">
-            <div className="bt6523 bt12585 bt12583">
-              {/* <span className="bt6524">
+            {score?.time && (
+              <div className="bt6523 bt12585 bt12583">
+                {/* <span className="bt6524">
                 {eventTypeId == 2 && (
                   <svg
                     className="bt1336"
@@ -66,9 +67,9 @@ const ScoreBoardCard = ({ score}) => {
                   </svg>
                 )}
               </span> */}
-              <span className="bt6526 bt12586">
-                {score?.time}
-                {/* <svg
+                <span className="bt6526 bt12586">
+                  {score?.time}
+                  {/* <svg
                   className="bt6527"
                   data-cy="ic-rounded-arrow"
                   width="16"
@@ -85,8 +86,9 @@ const ScoreBoardCard = ({ score}) => {
                   <path d="M8.7542 11.1529C8.35634 11.6157 7.64366 11.6157 7.2458 11.1529L4.24545 7.66298C3.68586 7.01207 4.14485 6 4.99964 6L11.0004 6C11.8551 6 12.3141 7.01207 11.7546 7.66298L8.7542 11.1529Z"></path>
                 </svg>
                 Premier League */}
-              </span>
-            </div>
+                </span>
+              </div>
+            )}
           </div>
         </div>
         <div className="bt12582">
@@ -250,7 +252,7 @@ const ScoreBoardCard = ({ score}) => {
                 className="bt6541 bt12616"
                 data-editor-id="eventCardStatusLabel"
               >
-              {score?.timeStatus}
+                {score?.timeStatus}
               </div>
             </div>
             <div className="bt12617 bt12594">

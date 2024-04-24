@@ -28,8 +28,6 @@ const Register = () => {
   });
   const [otpValues, setOtpValues] = useState(["", "", "", ""]);
 
-
-
   useEffect(() => {
     if (showRegister) {
       if (countDown > 0) {
@@ -40,8 +38,6 @@ const Register = () => {
     }
   }, [countDown, showRegister]);
 
-
-
   useEffect(() => {
     if (showRegister) {
       if (inputs.current.length > 0) {
@@ -50,19 +46,24 @@ const Register = () => {
     }
   }, [showRegister]);
 
-
-
-  const handleInput = async (index, e) => {
+  const handleInput = (index, e) => {
+    const newValue = e.target.value.slice(0, 1);
     const newOtpValues = [...otpValues];
-    newOtpValues[index] = e.target.value;
+    newOtpValues[index] = newValue;
     setOtpValues(newOtpValues);
-    if (e.target.value && index < inputs.current.length - 1) {
+    if (newValue && index < inputs.current.length - 1) {
       inputs.current[index + 1].focus();
     }
   };
 
   const { handleSubmit } = useForm();
   const onSubmit = async () => {
+    if (user.password.length < 8 || user.confirmPassword.length < 8) {
+      return toast.error("Password should be at least 8 character");
+    }
+    if (user.password !== user?.confirmPassword) {
+      return toast.error("Password did not matched");
+    }
     const generatedToken = handleRandomToken();
     const registerData = {
       username: user?.userName,
@@ -86,7 +87,6 @@ const Register = () => {
     });
 
     const data = await res.json();
-
 
     if (data?.success) {
       if (Settings.deposit) {
@@ -125,7 +125,6 @@ const Register = () => {
       toast.error(data?.error?.description);
     }
   };
-
 
   return (
     <>
@@ -216,7 +215,8 @@ const Register = () => {
                               onChange={(e) => handleInput(index, e)}
                               placeholder="_"
                               id="first"
-                              type="text"
+                              type="number"
+                              value={otpValues[index]}
                               className="ng-untouched ng-pristine ng-invalid"
                             />
                           ))}

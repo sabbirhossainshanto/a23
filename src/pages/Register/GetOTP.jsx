@@ -22,7 +22,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
       const res = await axios.post(API.otp, encryptedData);
       const data = res.data;
       if (data?.success) {
-        toast.success(data?.result?.message)
+        toast.success(data?.result?.message);
         setShowRegister(true);
       } else {
         toast.error(data?.error?.errorMessage);
@@ -32,9 +32,14 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
     }
   };
 
-
   const getWhatsAppId = (links) => {
     window.open(links?.link, "_blank");
+  };
+
+  const handleMobileNo = (e) => {
+    if (e.target.value.length <= 10) {
+      setMobileNo(e.target.value);
+    }
   };
 
   return (
@@ -76,8 +81,9 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
                       />
                     </div>
                     <input
-                      onChange={(e) => setMobileNo(e.target.value)}
-                      type="tel"
+                      onChange={(e) => handleMobileNo(e)}
+                      type="number"
+                      value={mobileNo}
                       className="mobile-input ng-untouched ng-pristine ng-invalid"
                       placeholder="Enter your Phone Number"
                     />
@@ -96,7 +102,11 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
                     terms and conditions.
                   </span>
                 </div>
-                <button className="otp-btn">
+                <button
+                  disabled={Settings.otp && mobileNo?.length < 10}
+                  type="submit"
+                  className="otp-btn"
+                >
                   <span> {Settings.otp ? " Get OTP" : "Proceed"}</span>
                 </button>
               </form>

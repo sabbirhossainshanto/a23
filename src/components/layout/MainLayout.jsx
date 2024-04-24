@@ -4,7 +4,7 @@ import Header from "../ui/Header/Header";
 
 const MainLayout = () => {
   return (
-    <div className="centered-div">
+    <div className="centered-div" style={{minHeight:'100vh'}}>
       <Header />
       <Outlet />
       <Footer />

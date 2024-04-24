@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useSportsBook from "../../hooks/home/useSportsBook";
 import { handleNavigateEventPage } from "../../utils/handleNavigateEventPage";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import {  Navigation } from "swiper/modules";
 const ScoreCardSlider = () => {
   const { eventTypeId, eventId } = useParams();
   const { sports } = useSportsBook(eventTypeId);
@@ -35,7 +35,7 @@ const ScoreCardSlider = () => {
             pagination={{
               clickable: true,
             }}
-            modules={[Pagination, Navigation]}
+            modules={[Navigation]}
             className="mySwiper"
           >
         <div className="bt6452" style={{ height: "58px" }}>
@@ -53,8 +53,11 @@ const ScoreCardSlider = () => {
                         .map((key, index) => {
                           return (
                             <SwiperSlide
+                            onClick={() =>
+                              handleNavigateEventPage(sports, key, navigate)
+                            }
                               key={index}
-                            style={{ width: "auto",borderRadius:"8px" }}
+                            style={{ width: "auto",borderRadius:"8px",cursor:'pointer' }}
                             className={`${
                               eventId === key
                                 ? "bt12513 bt12529 bt12514 bt12512 bt12515 bt12530"
@@ -62,9 +65,7 @@ const ScoreCardSlider = () => {
                             } `}
                             >
                               <div
-                                onClick={() =>
-                                  handleNavigateEventPage(sports, key, navigate)
-                                }
+                              
                                 // className={`${
                                 //   eventId === key
                                 //     ? "bt12513 bt12529 bt12514 bt12512 bt12515 bt12530"
