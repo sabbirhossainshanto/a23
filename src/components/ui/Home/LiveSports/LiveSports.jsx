@@ -24,8 +24,13 @@ const LiveSports = ({ liveSports }) => {
         </div>
         <a className="">View all</a>
       </div>
-      <div className="banner-scroll-wrap" style={{height:'auto'}}>
-        <div className="live-list-wrap" style={{height:'auto'}}>
+      <div
+        className="banner-scroll-wrap"
+        style={{
+          height: "14.5rem",
+        }}
+      >
+        <div className="live-list-wrap" style={{ height: "100%" }}>
           <Swiper
             spaceBetween={10}
             slidesPerView="auto"

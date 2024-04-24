@@ -1,4 +1,42 @@
+import { useEffect } from "react";
+import useContextState from "../../../hooks/useContextState";
+
 const ColumnOne = ({ item, isOpen, sportsBook }) => {
+  const { priceClasses, setPriceClasses, prevPrices, setPrevPrices } =
+    useContextState();
+
+  useEffect(() => {
+    if (item?.Items) {
+      const newPrevPrices = {};
+      const newPriceClasses = {};
+      item.Items.forEach((column, i) => {
+        newPrevPrices[i] = column.Price;
+        newPriceClasses[i] = "";
+      });
+      setPrevPrices(newPrevPrices);
+      const timer = setTimeout(() => {
+        setPriceClasses({});
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [item?.Items]);
+
+  useEffect(() => {
+    item?.Items?.forEach((column, i) => {
+      handlePriceChange(column.Price, i);
+    });
+  }, [item?.Items]);
+
+  const handlePriceChange = (newPrice, columnIndex) => {
+    if (prevPrices[columnIndex] !== undefined) {
+      if (newPrice > prevPrices[columnIndex]) {
+        setPriceClasses((prev) => ({ ...prev, [columnIndex]: "green_blink" }));
+      } else if (newPrice < prevPrices[columnIndex]) {
+        setPriceClasses((prev) => ({ ...prev, [columnIndex]: "red_blink" }));
+      }
+    }
+  };
+
   return (
     <>
       {isOpen && (
@@ -20,7 +58,9 @@ const ColumnOne = ({ item, isOpen, sportsBook }) => {
                     className="bt6588 bt12698 bt6589"
                   >
                     <div className="bt6592 bt12699">
-                      <div className="bt6607"></div>
+                      <div className="bt1570">
+                        <span className={priceClasses[i]}></span>
+                      </div>
                       <div
                         className="bt6596 bt12703"
                         data-editor-id="tableOutcomePlateName"

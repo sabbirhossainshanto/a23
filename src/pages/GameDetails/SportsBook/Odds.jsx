@@ -26,7 +26,7 @@ const Odds = ({ sportsBook,eventTypeId }) => {
     setOpenItems(
       new Array(itemsLengthArray[0] || 0)
         .fill(false)
-        .map((_, index) => index < 5)
+        .map((_, index) => index < 15)
     );
   }, [eventTypeId]);
 

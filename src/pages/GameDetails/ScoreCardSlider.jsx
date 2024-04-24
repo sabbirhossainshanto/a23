@@ -2,10 +2,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import useSportsBook from "../../hooks/home/useSportsBook";
 import { handleNavigateEventPage } from "../../utils/handleNavigateEventPage";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
+import useContextState from "../../hooks/useContextState";
 const ScoreCardSlider = () => {
   const { eventTypeId, eventId } = useParams();
   const { sports } = useSportsBook(eventTypeId);
+  const { setPrevPrices, setPriceClasses } = useContextState();
+
   const navigate = useNavigate();
   return (
     <div className="bt12496">
@@ -29,16 +32,16 @@ const ScoreCardSlider = () => {
           </div>
         </div>
 
-          <Swiper
-            spaceBetween={10}
-            slidesPerView="auto"
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Navigation]}
-            className="mySwiper"
-          >
-        <div className="bt6452" style={{ height: "58px" }}>
+        <Swiper
+          spaceBetween={10}
+          slidesPerView="auto"
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Navigation]}
+          className="mySwiper"
+        >
+          <div className="bt6452" style={{ height: "58px" }}>
             <div className="bt6454">
               <div className="bt6453" style={{ height: "58px" }}>
                 <div className="bt12511">
@@ -53,19 +56,24 @@ const ScoreCardSlider = () => {
                         .map((key, index) => {
                           return (
                             <SwiperSlide
-                            onClick={() =>
-                              handleNavigateEventPage(sports, key, navigate)
-                            }
+                              onClick={() => {
+                                setPrevPrices({})
+                                setPriceClasses({});
+                                handleNavigateEventPage(sports, key, navigate);
+                              }}
                               key={index}
-                            style={{ width: "auto",borderRadius:"8px",cursor:'pointer' }}
-                            className={`${
-                              eventId === key
-                                ? "bt12513 bt12529 bt12514 bt12512 bt12515 bt12530"
-                                : "bt12513 bt12524 bt12514 bt12512"
-                            } `}
+                              style={{
+                                width: "auto",
+                                borderRadius: "8px",
+                                cursor: "pointer",
+                              }}
+                              className={`${
+                                eventId === key
+                                  ? "bt12513 bt12529 bt12514 bt12512 bt12515 bt12530"
+                                  : "bt12513 bt12524 bt12514 bt12512"
+                              } `}
                             >
                               <div
-                              
                                 // className={`${
                                 //   eventId === key
                                 //     ? "bt12513 bt12529 bt12514 bt12512 bt12515 bt12530"
@@ -84,8 +92,16 @@ const ScoreCardSlider = () => {
                                     xmlns="http://www.w3.org/2000/svg"
                                     style={{
                                       display: "block",
-                                      fill: `${eventId === key ? 'rgb(255, 78, 78)':"rgba(49, 55, 61, 0.5)"}`,
-                                      color: `${eventId === key ? 'rgb(255, 78, 78)':"rgba(49, 55, 61, 0.5)"}`,
+                                      fill: `${
+                                        eventId === key
+                                          ? "rgb(255, 78, 78)"
+                                          : "rgba(49, 55, 61, 0.5)"
+                                      }`,
+                                      color: `${
+                                        eventId === key
+                                          ? "rgb(255, 78, 78)"
+                                          : "rgba(49, 55, 61, 0.5)"
+                                      }`,
                                       width: "auto",
                                       height: "16px",
                                     }}
@@ -112,7 +128,10 @@ const ScoreCardSlider = () => {
                                       {sports?.[key]?.score?.total_2}
                                     </div>
                                   </div>
-                                  <div style={{alignItems:"flex-start"}}  className="bt12523">
+                                  <div
+                                    style={{ alignItems: "flex-start" }}
+                                    className="bt12523"
+                                  >
                                     <div> {sports?.[key]?.player1}</div>
                                     <div>{sports?.[key]?.player2}</div>
                                   </div>
@@ -125,20 +144,20 @@ const ScoreCardSlider = () => {
                 </div>
               </div>
             </div>
-         
-          <div
-            style={{
-              zIndex: "3",
-              pointerEvents: "none",
-              position: "absolute",
-              inset: "0px 0px auto auto",
-              width: "40px",
-              height: "100%",
-              background: `linear-gradient(to left,rgb(235, 237, 244),rgb(235,237, 244, 0)
+
+            <div
+              style={{
+                zIndex: "3",
+                pointerEvents: "none",
+                position: "absolute",
+                inset: "0px 0px auto auto",
+                width: "40px",
+                height: "100%",
+                background: `linear-gradient(to left,rgb(235, 237, 244),rgb(235,237, 244, 0)
               )`,
-            }}
-          ></div>
-        </div>
+              }}
+            ></div>
+          </div>
         </Swiper>
       </div>
     </div>

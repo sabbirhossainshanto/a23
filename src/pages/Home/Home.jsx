@@ -25,7 +25,7 @@ const Home = () => {
             <Banner bannerImage={bannerImage?.banner} />
           )}
           {bannerImage?.card?.length > 0 && <Slider card={bannerImage?.card} />}
-          <LiveSports liveSports={sports} />
+          <LiveSports  liveSports={sports} />
           <Casino />
         </>
       )}
