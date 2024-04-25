@@ -1,23 +1,19 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-const ColumnThree = ({ item, isOpen, sportsBook }) => {
-  const { eventId, eventTypeId } = useParams();
-  const [priceClasses, setPriceClasses] = useState({});
-  const [prevPrices, setPrevPrices] = useState({});
-
-  useEffect(() => {
-    setPrevPrices({});
-    setPriceClasses({});
-  }, [eventId, eventTypeId]);
-
+const ColumnThree = ({
+  item,
+  isOpen,
+  sportsBook,
+  priceClasses,
+  setPriceClasses,
+  prevPrices,
+  setPrevPrices,
+}) => {
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
-      // const newPriceClasses = {};
       item.Items.forEach((column, i) => {
         newPrevPrices[i] = column.Price;
-        // newPriceClasses[i] = "";
       });
       setPrevPrices(newPrevPrices);
       const timer = setTimeout(() => {

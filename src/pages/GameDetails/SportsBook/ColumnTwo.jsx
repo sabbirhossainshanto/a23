@@ -1,24 +1,21 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-const ColumnTwo = ({ item, isOpen, sportsBook }) => {
-  const { eventId, eventTypeId } = useParams();
-  const [priceClasses, setPriceClasses] = useState({});
-  const [prevPrices, setPrevPrices] = useState({});
-
-  useEffect(() => {
-  //  return setPrevPrices({});
-   return setPriceClasses({});
-  }, [eventId, eventTypeId]);
-console.log({priceClasses});
-
+const ColumnTwo = ({
+  item,
+  isOpen,
+  sportsBook,
+  priceClasses,
+  setPriceClasses,
+  prevPrices,
+  setPrevPrices,
+}) => {
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
-      const newPriceClasses = {};
+   
       item.Items.forEach((column, i) => {
         newPrevPrices[i] = column.Price;
-        newPriceClasses[i] = "";
+     
       });
       setPrevPrices(newPrevPrices);
       const timer = setTimeout(() => {
@@ -58,7 +55,6 @@ console.log({priceClasses});
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
-            
                 // console.log(priceClasses[i]);
                 return (
                   <div

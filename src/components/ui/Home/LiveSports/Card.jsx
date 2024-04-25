@@ -92,9 +92,9 @@ const Card = ({ liveSports, keys }) => {
         /* Another card design */
         <div
           onClick={() => {
-            handleNavigateEventPage(liveSports, keys, navigate);
             setPrevPrices({});
             setPriceClasses({});
+            handleNavigateEventPage(liveSports, keys, navigate);
           }}
           className="bt228"
         >

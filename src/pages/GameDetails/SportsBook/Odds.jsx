@@ -3,7 +3,10 @@ import ColumnThree from "./ColumnThree";
 import ColumnTwo from "./ColumnTwo";
 import ColumnOne from "./ColumnOne";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-const Odds = ({ sportsBook,eventTypeId }) => {
+const Odds = ({ sportsBook,eventTypeId,priceClasses,
+  setPriceClasses,
+  prevPrices,
+  setPrevPrices }) => {
   const sports = sportsBook?.MarketGroups?.filter(
     (group) =>
       group?.Name !== "Bet Builder" &&
@@ -66,6 +69,10 @@ const Odds = ({ sportsBook,eventTypeId }) => {
                     item={item}
                     isOpen={isOpen}
                     sportsBook={sportsBook}
+                    priceClasses={priceClasses}
+                    setPriceClasses={setPriceClasses}
+                    prevPrices={prevPrices}
+                    setPrevPrices={setPrevPrices}
                   />
                 )}
                 {item?.MColumnCount === 2 && (
@@ -73,6 +80,10 @@ const Odds = ({ sportsBook,eventTypeId }) => {
                     item={item}
                     isOpen={isOpen}
                     sportsBook={sportsBook}
+                    priceClasses={priceClasses}
+                    setPriceClasses={setPriceClasses}
+                    prevPrices={prevPrices}
+                    setPrevPrices={setPrevPrices}
                   />
                 )}
                 {item?.MColumnCount === 1 && (
@@ -80,6 +91,10 @@ const Odds = ({ sportsBook,eventTypeId }) => {
                     item={item}
                     isOpen={isOpen}
                     sportsBook={sportsBook}
+                    priceClasses={priceClasses}
+                    setPriceClasses={setPriceClasses}
+                    prevPrices={prevPrices}
+                    setPrevPrices={setPrevPrices}
                   />
                 )}
               </div>

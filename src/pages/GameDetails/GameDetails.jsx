@@ -4,10 +4,12 @@ import Odds from "./SportsBook/Odds";
 import ScoreBoardCard from "./ScoreBoardCard";
 import ScoreCardSlider from "./ScoreCardSlider";
 import useEventDetails from "../../hooks/useEventDetails";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const GameDetails = () => {
   const { eventTypeId, eventId } = useParams();
+  const [priceClasses, setPriceClasses] = useState({});
+  const [prevPrices, setPrevPrices] = useState({});
   const { eventsData, refetchEventsData } = useEventDetails(
     eventTypeId,
     eventId
@@ -15,6 +17,12 @@ const GameDetails = () => {
   useEffect(() => {
     refetchEventsData();
   }, [refetchEventsData, eventTypeId]);
+
+  useEffect(() => {
+    setPrevPrices({});
+    setPriceClasses({});
+  }, [eventId, eventTypeId]);
+
 
   // console.log(eventsData);
   return (
@@ -26,6 +34,10 @@ const GameDetails = () => {
         <Odds
           eventTypeId={eventTypeId}
           sportsBook={eventsData?.sportsbook?.Result}
+          priceClasses={priceClasses}
+          setPriceClasses={setPriceClasses}
+          prevPrices={prevPrices}
+          setPrevPrices={setPrevPrices}
         />
       )}
     </>
