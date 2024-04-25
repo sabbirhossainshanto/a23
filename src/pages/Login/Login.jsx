@@ -224,7 +224,9 @@ const Login = () => {
                   >
                     <span>Demo Login</span>
                   </div>
-                  <div  className="google-login" style={{ cursor: "pointer",border:'none' }}>
+                  <div onClick={()=> {
+                    navigate('/register')
+                  }}  className="google-login" style={{ cursor: "pointer",border:'none' }}>
                     <span>Register</span>
                   </div>
                 </div>

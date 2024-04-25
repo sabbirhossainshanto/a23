@@ -1,9 +1,15 @@
-import { useEffect } from "react";
-import useContextState from "../../../hooks/useContextState";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ColumnOne = ({ item, isOpen, sportsBook }) => {
-  const { priceClasses, setPriceClasses, prevPrices, setPrevPrices } =
-    useContextState();
+  const { eventId, eventTypeId } = useParams();
+  const [priceClasses, setPriceClasses] = useState({});
+  const [prevPrices, setPrevPrices] = useState({});
+
+  useEffect(() => {
+    setPrevPrices({});
+    setPriceClasses({});
+  }, [eventId, eventTypeId]);
 
   useEffect(() => {
     if (item?.Items) {

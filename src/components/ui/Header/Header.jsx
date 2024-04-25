@@ -4,9 +4,11 @@ import useContextState from "../../../hooks/useContextState";
 import useBalance from "../../../hooks/useBalance";
 import { Settings } from "../../../api";
 const Header = () => {
-  const { setSportsType, sportsType, token } = useContextState();
+  const { setSportsType, sportsType, token, setPrevPrices, setPriceClasses } =
+    useContextState();
   const navigate = useNavigate();
   const { balanceData } = useBalance();
+
   return (
     <div className="mia0b51 mobile-header show">
       <div className="nologin-header-wrap">
@@ -116,6 +118,8 @@ const Header = () => {
 
           <button
             onClick={() => {
+              setPrevPrices({});
+              setPriceClasses({});
               setSportsType(4);
               navigate("/");
             }}
@@ -162,6 +166,8 @@ const Header = () => {
 
           <button
             onClick={() => {
+              setPrevPrices({});
+              setPriceClasses({});
               setSportsType(1);
               navigate("/");
             }}
@@ -193,6 +199,8 @@ const Header = () => {
 
           <button
             onClick={() => {
+              setPrevPrices({});
+              setPriceClasses({});
               setSportsType(2);
               navigate("/");
             }}

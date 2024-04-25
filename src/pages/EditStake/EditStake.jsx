@@ -5,6 +5,7 @@ import { API } from "../../api";
 import toast from "react-hot-toast";
 
 const EditStake = () => {
+  window.scrollTo(0,0)
   const navigate = useNavigate();
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const { register, handleSubmit } = useForm();

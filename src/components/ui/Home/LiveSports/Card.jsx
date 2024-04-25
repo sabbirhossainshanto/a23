@@ -3,8 +3,10 @@
 // import cricket from "../../../../assets/img/cricket.svg";
 import { useNavigate } from "react-router-dom";
 import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPage";
+import useContextState from "../../../../hooks/useContextState";
 
 const Card = ({ liveSports, keys }) => {
+  const { setPrevPrices, setPriceClasses } = useContextState();
   // const eventTypeImg = {
   //   1: football,
   //   2: tennis,
@@ -89,7 +91,11 @@ const Card = ({ liveSports, keys }) => {
 
         /* Another card design */
         <div
-          onClick={() => handleNavigateEventPage(liveSports, keys, navigate)}
+          onClick={() => {
+            handleNavigateEventPage(liveSports, keys, navigate);
+            setPrevPrices({});
+            setPriceClasses({});
+          }}
           className="bt228"
         >
           <div className="bt231">
@@ -287,7 +293,11 @@ const Card = ({ liveSports, keys }) => {
                         </div>
                         <div
                           className="bt287"
-                          style={{ height: "24px", lineHeight: "24px",textAlign:'start' }}
+                          style={{
+                            height: "24px",
+                            lineHeight: "24px",
+                            textAlign: "start",
+                          }}
                         >
                           {liveSports[keys]?.player1}
                         </div>
@@ -309,7 +319,11 @@ const Card = ({ liveSports, keys }) => {
                         </div>
                         <div
                           className="bt287"
-                          style={{ height: "24px", lineHeight: "24px",textAlign:'start' }}
+                          style={{
+                            height: "24px",
+                            lineHeight: "24px",
+                            textAlign: "start",
+                          }}
                         >
                           {liveSports[keys]?.player2}
                         </div>

@@ -9,6 +9,7 @@ import useContextState from "../../hooks/useContextState";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ChangePassword = () => {
+  window.scrollTo(0,0)
   const { token, setGetToken } = useContextState();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);

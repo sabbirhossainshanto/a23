@@ -1,9 +1,16 @@
-import { useEffect } from "react";
-import useContextState from "../../../hooks/useContextState";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ColumnTwo = ({ item, isOpen, sportsBook }) => {
-  const { priceClasses, setPriceClasses, prevPrices, setPrevPrices } =
-    useContextState();
+  const { eventId, eventTypeId } = useParams();
+  const [priceClasses, setPriceClasses] = useState({});
+  const [prevPrices, setPrevPrices] = useState({});
+
+  useEffect(() => {
+  //  return setPrevPrices({});
+   return setPriceClasses({});
+  }, [eventId, eventTypeId]);
+console.log({priceClasses});
 
   useEffect(() => {
     if (item?.Items) {
@@ -51,6 +58,8 @@ const ColumnTwo = ({ item, isOpen, sportsBook }) => {
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
+            
+                // console.log(priceClasses[i]);
                 return (
                   <div
                     key={i}

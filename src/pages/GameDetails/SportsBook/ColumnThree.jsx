@@ -1,17 +1,23 @@
-import { useEffect } from "react";
-import useContextState from "../../../hooks/useContextState";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ColumnThree = ({ item, isOpen, sportsBook }) => {
+  const { eventId, eventTypeId } = useParams();
+  const [priceClasses, setPriceClasses] = useState({});
+  const [prevPrices, setPrevPrices] = useState({});
 
-  const {priceClasses, setPriceClasses,prevPrices, setPrevPrices} = useContextState()
+  useEffect(() => {
+    setPrevPrices({});
+    setPriceClasses({});
+  }, [eventId, eventTypeId]);
 
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
-      const newPriceClasses = {};
+      // const newPriceClasses = {};
       item.Items.forEach((column, i) => {
         newPrevPrices[i] = column.Price;
-        newPriceClasses[i] = "";
+        // newPriceClasses[i] = "";
       });
       setPrevPrices(newPrevPrices);
       const timer = setTimeout(() => {
@@ -51,7 +57,6 @@ const ColumnThree = ({ item, isOpen, sportsBook }) => {
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
-              
                 return (
                   <div
                     key={i}
@@ -60,7 +65,7 @@ const ColumnThree = ({ item, isOpen, sportsBook }) => {
                   >
                     <div className="bt6592 bt12699">
                       <div className="bt1570">
-                      <span  className={priceClasses[i]}></span>
+                        <span className={priceClasses[i]}></span>
                       </div>
                       <div
                         className="bt6596 bt12703"
