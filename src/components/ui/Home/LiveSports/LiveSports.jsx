@@ -27,7 +27,8 @@ const LiveSports = ({ liveSports }) => {
       <div
         className="banner-scroll-wrap"
         style={{
-          height: "14.5rem",
+          // height: "14.5rem",
+          height: "200px",
         }}
       >
         <div className="live-list-wrap" style={{ height: "100%" }}>

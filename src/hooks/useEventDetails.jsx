@@ -13,6 +13,7 @@ const useEventDetails = (eventTypeId, eventId) => {
       return data;
     },
     refetchInterval: 2000,
+    gcTime:0
   });
 
   return { eventsData, refetchEventsData };

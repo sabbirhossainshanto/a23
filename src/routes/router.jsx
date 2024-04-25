@@ -8,6 +8,7 @@ import Deposit from "../pages/Deposit/Deposit";
 import Account from "../pages/Account/Account";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
 import EditStake from "../pages/EditStake/EditStake";
+import Aviator from "../pages/Aviator/Aviator";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "/edit-stake",
         element: <EditStake />,
+      },
+      {
+        path: "/aviator/:gameId",
+        element: <Aviator />,
       },
     ],
   },

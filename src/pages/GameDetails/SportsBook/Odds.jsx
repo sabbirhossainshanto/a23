@@ -3,10 +3,24 @@ import ColumnThree from "./ColumnThree";
 import ColumnTwo from "./ColumnTwo";
 import ColumnOne from "./ColumnOne";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-const Odds = ({ sportsBook,eventTypeId,priceClasses,
+import MatchOdds from "../GameType/MatchOdds";
+import Bookmaker from "../GameType/Bookmaker";
+import Fancy from "../GameType/Fancy";
+const Odds = ({
+  sportsBook,
+  eventTypeId,
+  priceClasses,
   setPriceClasses,
   prevPrices,
-  setPrevPrices }) => {
+  setPrevPrices,
+  data,
+}) => {
+  const [bookmarker, setBookmarker] = useState([]);
+  const [bookmarker2, setBookmarker2] = useState([]);
+  const [match_odds, setMatch_odds] = useState([]);
+  const [normal, setNormal] = useState([]);
+  const [fancy1, setFancy1] = useState([]);
+  const [overByOver, setOverByOver] = useState([]);
   const sports = sportsBook?.MarketGroups?.filter(
     (group) =>
       group?.Name !== "Bet Builder" &&
@@ -33,11 +47,49 @@ const Odds = ({ sportsBook,eventTypeId,priceClasses,
     );
   }, [eventTypeId]);
 
+  /* Filtered all the game  */
+  useEffect(() => {
+    const filterMatch_odds = data?.filter(
+      (match_odd) => match_odd.btype === "MATCH_ODDS"
+    );
+    setMatch_odds(filterMatch_odds);
+
+    const bookmarkerFilter = data?.filter(
+      (bookmarker) => bookmarker.btype === "BOOKMAKER"
+    );
+    setBookmarker(bookmarkerFilter);
+
+    const filterBookmarker2 = data?.filter(
+      (bookmarker2) => bookmarker2.btype === "BOOKMAKER2"
+    );
+    setBookmarker2(filterBookmarker2);
+
+    const normalFilter = data?.filter(
+      (normal) => normal.btype === "FANCY" && normal.tabGroupName === "Normal"
+    );
+    setNormal(normalFilter);
+
+    const fancy1Filter = data?.filter(
+      (fancy1) => fancy1.btype === "ODDS" && fancy1.tabGroupName === "Fancy1"
+    );
+    setFancy1(fancy1Filter);
+
+    const overByOverFilter = data?.filter(
+      (overByOver) =>
+        overByOver.btype === "FANCY" &&
+        overByOver.tabGroupName === "Over By Over"
+    );
+    setOverByOver(overByOverFilter);
+  }, [data]);
 
   return (
     <div className="bt12498">
       <div className="bt12671">
         {/* Tabs */}
+        {match_odds?.length > 0 && <MatchOdds match_odds={match_odds} />}
+        {bookmarker?.length > 0 && <Bookmaker bookmarker={bookmarker} />}
+        {normal?.length > 0 && <Fancy normal={normal} />}
+
         {sports?.map((group) =>
           group?.Items?.map((item, iIdx) => {
             const isOpen = openItems[iIdx];

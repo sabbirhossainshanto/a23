@@ -11,8 +11,7 @@ const StateProvider = ({ children }) => {
   const [tokenLoading, setTokenLoading] = useState(true);
   const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
   const [sportsType, setSportsType] = useState(0);
-  const [priceClasses, setPriceClasses] = useState({});
-  const [prevPrices, setPrevPrices] = useState({});
+ 
   /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -64,8 +63,6 @@ const StateProvider = ({ children }) => {
     isCheckedBonusToken,
     setIsCheckedBonusToken,
     getToken, setGetToken,
-    priceClasses, setPriceClasses,
-    prevPrices, setPrevPrices
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

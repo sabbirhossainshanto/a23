@@ -15,6 +15,7 @@ export const API = {
   uploadScreenshot: endPoints?.uploadScreenshot,
   buttonValue: endPoints?.buttonValue,
   changePassword: endPoints.changePassword,
+  liveCasinoIFrame:endPoints?.liveCasinoIFrame
 };
 
 export const Settings = {

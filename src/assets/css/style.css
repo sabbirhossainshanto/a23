@@ -135,7 +135,7 @@ html {
     fill: var(--primary-color);
 }
 
-.mia0b51 {
+/* .mia0b51 {
     --zofaf: #FFFFFF;
     --7fl37u: #EAECF3;
     --ygdmir: rgba(0, 0, 0, .25);
@@ -145,7 +145,7 @@ html {
     top: -1px;
 
     height: 3.75rem;
-}
+} */
 
 .mia0b51.show {
     height: 110px;
@@ -18061,7 +18061,7 @@ form {
 
 
 .bt6588 {
-    padding: 4px;
+    padding: 4px 2px;
     box-sizing: border-box;
     font-weight: 600;
 }
@@ -18167,6 +18167,7 @@ form {
 }
 
 .bt6598 {
+ 
     height: 1.2em;
     overflow: hidden;
     box-sizing: border-box;
@@ -19215,5 +19216,51 @@ button {
 .withdraw-section {
     animation: slide-in .3s cubic-bezier(.25, .46, .45, .94) forwards;
 }
+
+
+
+.mdc-button__label {
+width:100%;
+text-align: center;
+
+}
+
+.bookmaker_label {
+    width:100%;
+    text-align: center;
+    display: flex;
+align-items: center; 
+    }
+    
+.exposure_green{
+    margin: 4px 0; font-size:8px; 
+    color:green
+}
+
+.exposure_red{
+    margin: 4px 0; font-size:8px; 
+    color:red
+}
+
+.exposure{
+    display: flex;
+   flex-direction: column; 
+   align-items: flex-start;
+}
+
+.odds_back{
+    background-color:#a0d8fb;min-height: 40px; margin: auto; padding-top: 5px;
+}
+
+.odds_lay{
+    background-color:#fdc9d4;min-height: 40px; margin: auto; padding-top: 5px; 
+}
+
+.odds_suspended{
+    background-color:rgba(128,128,128,.7);min-height: 40px; margin: auto; padding-top: 5px;
+  
+}
+
+
 
 /* withdraw page end */

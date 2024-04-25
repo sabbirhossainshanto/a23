@@ -23,15 +23,16 @@ const GameDetails = () => {
     setPriceClasses({});
   }, [eventId, eventTypeId]);
 
-
-  // console.log(eventsData);
   return (
     <>
       <ScoreCardSlider />
-      {eventsData?.score && <ScoreBoardCard  eventTypeId={eventTypeId} score={eventsData?.score} />}
+      {eventsData?.score && (
+        <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
+      )}
       <MatchTrackerTab />
       {eventsData?.sportsbook?.Result && (
         <Odds
+          data={eventsData?.result}
           eventTypeId={eventTypeId}
           sportsBook={eventsData?.sportsbook?.Result}
           priceClasses={priceClasses}

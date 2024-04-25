@@ -3,10 +3,8 @@
 // import cricket from "../../../../assets/img/cricket.svg";
 import { useNavigate } from "react-router-dom";
 import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPage";
-import useContextState from "../../../../hooks/useContextState";
 
 const Card = ({ liveSports, keys }) => {
-  const { setPrevPrices, setPriceClasses } = useContextState();
   // const eventTypeImg = {
   //   1: football,
   //   2: tennis,
@@ -92,8 +90,6 @@ const Card = ({ liveSports, keys }) => {
         /* Another card design */
         <div
           onClick={() => {
-            setPrevPrices({});
-            setPriceClasses({});
             handleNavigateEventPage(liveSports, keys, navigate);
           }}
           className="bt228"
@@ -284,10 +280,13 @@ const Card = ({ liveSports, keys }) => {
                           style={{ width: "24px", height: "24px" }}
                         >
                           <img
+                            style={{
+                              objectFit: "contain",
+                              height: "24px",
+                              lineHeight: "24px",
+                            }}
                             src={liveSports?.[keys]?.image1}
                             alt=""
-                            height="24"
-                            width="24"
                             className="bt290"
                           />
                         </div>
@@ -310,6 +309,11 @@ const Card = ({ liveSports, keys }) => {
                           style={{ height: "24px", lineHeight: "24px" }}
                         >
                           <img
+                            style={{
+                              objectFit: "contain",
+                              height: "24px",
+                              lineHeight: "24px",
+                            }}
                             src={liveSports?.[keys]?.image2}
                             alt=""
                             height="24"

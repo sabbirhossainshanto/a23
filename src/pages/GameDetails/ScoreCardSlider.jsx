@@ -3,11 +3,10 @@ import useSportsBook from "../../hooks/home/useSportsBook";
 import { handleNavigateEventPage } from "../../utils/handleNavigateEventPage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import useContextState from "../../hooks/useContextState";
+
 const ScoreCardSlider = () => {
   const { eventTypeId, eventId } = useParams();
   const { sports } = useSportsBook(eventTypeId);
-  const { setPrevPrices, setPriceClasses } = useContextState();
   const navigate = useNavigate();
   const SportsLength =
     sports &&
@@ -65,8 +64,7 @@ const ScoreCardSlider = () => {
                               return (
                                 <SwiperSlide
                                   onClick={() => {
-                                    setPrevPrices({});
-                                    setPriceClasses({});
+                                 
                                     handleNavigateEventPage(
                                       sports,
                                       key,
