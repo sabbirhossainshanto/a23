@@ -6,9 +6,9 @@ const MainLayout = () => {
   return (
     <div className="centered-div">
       <Header />
-     <div style={{minHeight:'100vh'}}>
-     <Outlet />
-     </div>
+      <div style={{ minHeight: "100vh" }}>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

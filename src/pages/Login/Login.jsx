@@ -126,6 +126,7 @@ const Login = () => {
       });
   };
   return (
+    <div className="e-p-body-bc">
     <div className="login-page-abc">
       <div>
         <div className="login-page">
@@ -236,6 +237,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+   </div>
   );
 };
 

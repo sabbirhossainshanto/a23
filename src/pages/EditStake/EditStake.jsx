@@ -112,6 +112,7 @@ const EditStake = () => {
       });
   };
   return (
+    <div className="e-p-body-bc">
     <div className="login-page-abc">
       <div>
         <div className="login-page">
@@ -219,6 +220,7 @@ const EditStake = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
