@@ -6,6 +6,11 @@ import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import MatchOdds from "../GameType/MatchOdds";
 import Bookmaker from "../GameType/Bookmaker";
 import Fancy from "../GameType/Fancy";
+import BetSlip from "../../../components/modal/BetSlip";
+import useContextState from "../../../hooks/useContextState";
+import { useParams } from "react-router-dom";
+import useCurrentBets from "../../../hooks/useCurrentBets";
+import useExposer from "../../../hooks/useExposer";
 const Odds = ({
   sportsBook,
   eventTypeId,
@@ -15,12 +20,17 @@ const Odds = ({
   setPrevPrices,
   data,
 }) => {
+  const { eventId } = useParams();
+  const { placeBetValues, setPlaceBetValues, openBetSlip, setOpenBetSlip } =
+    useContextState();
   const [bookmarker, setBookmarker] = useState([]);
   const [bookmarker2, setBookmarker2] = useState([]);
   const [match_odds, setMatch_odds] = useState([]);
   const [normal, setNormal] = useState([]);
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
+  const { refetchCurrentBets } = useCurrentBets(eventId);
+  const { exposer, refetchExposure } = useExposer(eventId);
   const sports = sportsBook?.MarketGroups?.filter(
     (group) =>
       group?.Name !== "Bet Builder" &&
@@ -86,9 +96,39 @@ const Odds = ({
     <div className="bt12498">
       <div className="bt12671">
         {/* Tabs */}
-        {match_odds?.length > 0 && <MatchOdds match_odds={match_odds} />}
-        {bookmarker?.length > 0 && <Bookmaker bookmarker={bookmarker} />}
-        {normal?.length > 0 && <Fancy normal={normal} />}
+        {match_odds?.length > 0 && (
+          <MatchOdds
+            setOpenBetSlip={setOpenBetSlip}
+            setPlaceBetValues={setPlaceBetValues}
+            exposer={exposer}
+            match_odds={match_odds}
+          />
+        )}
+        {bookmarker?.length > 0 && (
+          <Bookmaker
+            bookmarker={bookmarker}
+            setOpenBetSlip={setOpenBetSlip}
+            setPlaceBetValues={setPlaceBetValues}
+            exposer={exposer}
+          />
+        )}
+        {normal?.length > 0 && (
+          <Fancy
+            normal={normal}
+            setOpenBetSlip={setOpenBetSlip}
+            setPlaceBetValues={setPlaceBetValues}
+            exposer={exposer}
+          />
+        )}
+
+        {openBetSlip && (
+          <BetSlip
+            refetchCurrentBets={refetchCurrentBets}
+            refetchExposure={refetchExposure}
+            setOpenBetSlip={setOpenBetSlip}
+            placeBetValues={placeBetValues}
+          />
+        )}
 
         {sports?.map((group) =>
           group?.Items?.map((item, iIdx) => {

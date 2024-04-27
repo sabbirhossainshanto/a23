@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import { handleToggle } from "../../../utils/handleToggle";
+import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
-const Bookmaker = ({ bookmarker }) => {
+const Bookmaker = ({
+  bookmarker,
+  setOpenBetSlip,
+  setPlaceBetValues,
+  exposer,
+}) => {
   const [previousData, setPreviousData] = useState(bookmarker);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
@@ -16,6 +22,13 @@ const Bookmaker = ({ bookmarker }) => {
       setChangedPrices
     );
   }, [bookmarker, previousData]);
+
+  let pnlBySelection;
+  /* Exposure */
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
 
   return (
     <>
@@ -73,6 +86,16 @@ const Bookmaker = ({ bookmarker }) => {
                       </div>
 
                       <div
+                        onClick={() =>
+                          handlePlaceBet(
+                            games,
+                            runner,
+                            "back",
+                            setOpenBetSlip,
+                            setPlaceBetValues,
+                            pnlBySelection
+                          )
+                        }
                         data-editor-id="tableOutcomePlate"
                         className="bt6588  "
                         style={{ flexBasis: "12%" }}
@@ -99,6 +122,16 @@ const Bookmaker = ({ bookmarker }) => {
                       </div>
 
                       <div
+                        onClick={() =>
+                          handlePlaceBet(
+                            games,
+                            runner,
+                            "lay",
+                            setOpenBetSlip,
+                            setPlaceBetValues,
+                            pnlBySelection
+                          )
+                        }
                         data-editor-id="tableOutcomePlate"
                         className="bt6588  "
                         style={{ flexBasis: "12%" }}

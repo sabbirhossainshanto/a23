@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 
-const Fancy = ({ normal }) => {
+const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
   const [previousData, setPreviousData] = useState(normal);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
@@ -10,6 +10,36 @@ const Fancy = ({ normal }) => {
   useEffect(() => {
     detectPriceChanges(normal, previousData, setPreviousData, setChangedPrices);
   }, [normal, previousData]);
+
+  const handlePlaceBet = (item, runner, betType) => {
+    setOpenBetSlip(true);
+    setPlaceBetValues({});
+    setPlaceBetValues({
+      price: betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
+      side: betType === "back" ? 0 : 1,
+      selectionId: runner?.id,
+      btype: item?.btype,
+      eventTypeId: item?.eventTypeId,
+      betDelay: item?.betDelay,
+      marketId: item?.id,
+      lay: betType === "lay",
+      back: betType === "back",
+      selectedBetName: runner?.name,
+      name: item.runners.map((runner) => runner.name),
+      runnerId: item.runners.map((runner) => runner.id),
+      isWeak: item?.isWeak,
+      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
+      isBettable: item?.isBettable,
+      maxLiabilityPerBet: item?.maxLiabilityPerBet,
+      eventId: item?.eventId,
+    });
+  };
+  /* exposure */
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
 
   return (
     <div className="bt12687">
@@ -60,6 +90,9 @@ const Fancy = ({ normal }) => {
                 </div>
 
                 <div
+                  onClick={() =>
+                    handlePlaceBet(games, games?.runners[0], "lay")
+                  }
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
                   style={{ flexBasis: "12%" }}
@@ -90,6 +123,9 @@ const Fancy = ({ normal }) => {
                 </div>
 
                 <div
+                  onClick={() =>
+                    handlePlaceBet(games, games?.runners[0], "back")
+                  }
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
                   style={{ flexBasis: "12%" }}

@@ -248,7 +248,9 @@ const Header = () => {
             </button>
 
             <button
-              onClick={() => navigate("/aviator/201206")}
+              onClick={() =>
+                navigate(`${token ? "/aviator/201206" : "/login"}`)
+              }
               className="mb-top-navigate-item"
             >
               <svg

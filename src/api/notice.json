@@ -25,7 +25,12 @@
       "uploadScreenshot": "https://b2c.bet/deposit/up.php",
       "buttonValue": "https://api7.live/api/exchange/diamond/buttonValue.php",
       "changePassword": "https://api7.live/api/exchange/diamond/changePassword",
-      "liveCasinoIFrame": " https://api7.live/api/livecasino/iframe"
+      "liveCasinoIFrame": " https://api7.live/api/livecasino/iframe",
+      "exposure": "https://api7.live/api/exchange/diamond/exposure",
+      "currentBets": "https://api7.live/api/exchange/diamond/currentBets",
+      "order": "https://api7.live/api/exchange/diamond/order",
+      "accountStatement": "https://api7.live/api/exchange/diamond/accountStatement",
+      "settledBets": "https://api7.live/api/exchange/diamond/settledBets"
     }
   },
   "success": true

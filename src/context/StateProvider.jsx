@@ -11,7 +11,11 @@ const StateProvider = ({ children }) => {
   const [tokenLoading, setTokenLoading] = useState(true);
   const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
   const [sportsType, setSportsType] = useState(0);
- 
+  const [placeBetValues, setPlaceBetValues] = useState({});
+  const [openBetSlip, setOpenBetSlip] = useState(false);
+  const [addBank, setAddBank] = useState(false);
+  
+
   /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -34,7 +38,7 @@ const StateProvider = ({ children }) => {
       /* handle loading for save crash website` */
       setTokenLoading(false);
     }
-  }, [token,getToken]);
+  }, [token, getToken]);
 
   useEffect(() => {
     const logo = `${API.assets}/${Settings.siteUrl}/logo.webp`;
@@ -62,7 +66,13 @@ const StateProvider = ({ children }) => {
     setSportsType,
     isCheckedBonusToken,
     setIsCheckedBonusToken,
-    getToken, setGetToken,
+    getToken,
+    setGetToken,
+    placeBetValues,
+    setPlaceBetValues,
+    openBetSlip,
+    setOpenBetSlip,
+    addBank, setAddBank
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

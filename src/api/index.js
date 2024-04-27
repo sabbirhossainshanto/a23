@@ -15,7 +15,12 @@ export const API = {
   uploadScreenshot: endPoints?.uploadScreenshot,
   buttonValue: endPoints?.buttonValue,
   changePassword: endPoints.changePassword,
-  liveCasinoIFrame:endPoints?.liveCasinoIFrame
+  liveCasinoIFrame: endPoints?.liveCasinoIFrame,
+  exposure: endPoints?.exposure,
+  currentBets: endPoints?.currentBets,
+  order: endPoints.order,
+  accountStatement: endPoints?.accountStatement,
+  settledBets:endPoints?.settledBets
 };
 
 export const Settings = {

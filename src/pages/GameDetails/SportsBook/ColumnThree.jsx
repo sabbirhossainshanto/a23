@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import useContextState from "../../../hooks/useContextState";
+import { handleSportsBookPlaceBet } from "../../../utils/handleSportsBookPlaceBet";
 
 const ColumnThree = ({
   item,
@@ -9,6 +11,7 @@ const ColumnThree = ({
   prevPrices,
   setPrevPrices,
 }) => {
+  const { setPlaceBetValues, setOpenBetSlip } = useContextState();
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
@@ -55,6 +58,15 @@ const ColumnThree = ({
               {item?.Items?.map((column, i) => {
                 return (
                   <div
+                  onClick={() =>
+                    handleSportsBookPlaceBet(
+                      column,
+                      item,
+                      sportsBook,
+                      setOpenBetSlip,
+                      setPlaceBetValues
+                    )
+                  }
                     key={i}
                     data-editor-id="tableOutcomePlate"
                     className="bt6588 bt12698 bt6591"

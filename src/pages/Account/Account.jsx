@@ -5,12 +5,12 @@ import useBalance from "../../hooks/useBalance";
 import depositProfileIcon from "../../../src/assets/img/depositProfileIcon.svg";
 import withdrawIcon from "../../../src/assets/img/withdrawIcon.svg";
 import profileCardWallet from "../../../src/assets/img/profile-card-wallet.webp";
-import profileWallet from '../../../src/assets/img/profile-wallet.svg'
-import profileLiveBets from '../../../src/assets/img/profile-live-bets.svg'
-import profileCurrency from '../../../src/assets/img/profile-currency.svg'
-import profileBettingProfitLoss from '../../../src/assets/img/profile-betting-profit-loss.webp'
-import profileAccountStatement from '../../../src/assets/img/profile-account-statement.png'
-import profileSettings from '../../../src/assets/img/profile-settings.svg'
+import profileWallet from "../../../src/assets/img/profile-wallet.svg";
+import profileLiveBets from "../../../src/assets/img/profile-live-bets.svg";
+import profileCurrency from "../../../src/assets/img/profile-currency.svg";
+import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-profit-loss.webp";
+import profileAccountStatement from "../../../src/assets/img/profile-account-statement.png";
+import profileSettings from "../../../src/assets/img/profile-settings.svg";
 
 const Account = () => {
   const { setGetToken } = useContextState();
@@ -154,7 +154,12 @@ const Account = () => {
       </div>
       <div className="profile-menu-box">
         <div className="button-container-profile-page">
-          <div className="button-container-profile-page-1 active">
+          <div
+            onClick={() => {
+              navigate("/withdraw");
+            }}
+            className="button-container-profile-page-1 active"
+          >
             <span className="button-container-profile-page-1-icon">
               <img src={withdrawIcon} alt="Withdraw" />
             </span>
@@ -179,7 +184,9 @@ const Account = () => {
       </div>
       <div className="profile-menu-box">
         <ul className="profile-menu-container active">
-          <li className="profile-menu-items ng-star-inserted">
+          <li onClick={()=> {
+            navigate('/deposit-withdraw-report')
+          }} className="profile-menu-items ng-star-inserted">
             <div className="routingProfile">
               <div className="profile-menu-items-left">
                 <span className="profile-menu-icon">
@@ -277,7 +284,12 @@ const Account = () => {
               </div>
             </div>
           </li>
-          <li className="profile-menu-items ng-star-inserted">
+          <li
+            onClick={() => {
+              navigate("/betting-profit-loss");
+            }}
+            className="profile-menu-items ng-star-inserted"
+          >
             <div className="routingProfile">
               <div className="profile-menu-items-left">
                 <span className="profile-menu-icon">

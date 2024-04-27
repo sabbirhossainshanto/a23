@@ -1,7 +1,6 @@
 export const handlePlaceBet = (
   item,
   runner,
-  price,
   betType,
   setOpenBetSlip,
   setPlaceBetValues,
@@ -17,7 +16,7 @@ export const handlePlaceBet = (
   setOpenBetSlip(true);
   setPlaceBetValues({});
   setPlaceBetValues({
-    price: price,
+    price: betType === "back" ? runner?.back[0].price : runner?.lay[0].price,
     side: betType === "back" ? 0 : 1,
     selectionId: runner?.id,
     btype: item?.btype,

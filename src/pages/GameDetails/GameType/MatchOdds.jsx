@@ -2,8 +2,19 @@ import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import { handleToggle } from "../../../utils/handleToggle";
+import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
-const MatchOdds = ({ match_odds }) => {
+const MatchOdds = ({
+  match_odds,
+  setOpenBetSlip,
+  setPlaceBetValues,
+  exposer,
+}) => {
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
   const [previousData, setPreviousData] = useState(match_odds);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
@@ -81,6 +92,16 @@ const MatchOdds = ({ match_odds }) => {
                       </div>
 
                       <div
+                        onClick={() =>
+                          handlePlaceBet(
+                            games,
+                            runner,
+                            "back",
+                            setOpenBetSlip,
+                            setPlaceBetValues,
+                            pnlBySelection
+                          )
+                        }
                         data-editor-id="tableOutcomePlate"
                         className="bt6588  "
                         style={{ flexBasis: "12%" }}
@@ -103,6 +124,16 @@ const MatchOdds = ({ match_odds }) => {
                       </div>
 
                       <div
+                        onClick={() =>
+                          handlePlaceBet(
+                            games,
+                            runner,
+                            "lay",
+                            setOpenBetSlip,
+                            setPlaceBetValues,
+                            pnlBySelection
+                          )
+                        }
                         data-editor-id="tableOutcomePlate"
                         className="bt6588  "
                         style={{ flexBasis: "12%" }}

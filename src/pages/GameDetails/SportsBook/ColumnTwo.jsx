@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { handleSportsBookPlaceBet } from "../../../utils/handleSportsBookPlaceBet";
+import useContextState from "../../../hooks/useContextState";
 
 const ColumnTwo = ({
   item,
@@ -9,13 +11,13 @@ const ColumnTwo = ({
   prevPrices,
   setPrevPrices,
 }) => {
+  const { setPlaceBetValues, setOpenBetSlip } = useContextState();
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
-   
+
       item.Items.forEach((column, i) => {
         newPrevPrices[i] = column.Price;
-     
       });
       setPrevPrices(newPrevPrices);
       const timer = setTimeout(() => {
@@ -58,6 +60,15 @@ const ColumnTwo = ({
                 // console.log(priceClasses[i]);
                 return (
                   <div
+                    onClick={() =>
+                      handleSportsBookPlaceBet(
+                        column,
+                        item,
+                        sportsBook,
+                        setOpenBetSlip,
+                        setPlaceBetValues
+                      )
+                    }
                     key={i}
                     data-editor-id="tableOutcomePlate"
                     className="bt6588 bt12698 bt6590"
