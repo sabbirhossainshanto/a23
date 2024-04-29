@@ -1,5 +1,5 @@
 const ScoreBoardCard = ({ score, eventTypeId }) => {
-  console.log(score);
+
   return (
     <>
       {eventTypeId == 2 ? (
@@ -65,19 +65,14 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
               </div>
             </div>
           </div>
-          <a
-            className="bt248"
-            data-editor-id="eventCardContent"
-           
-          >
+          <a className="bt248" data-editor-id="eventCardContent">
             <div className="bt235">
               <div className="bt236">
                 <div
                   className="bt273 bt276"
                   data-editor-id="eventCardStatusLabel"
                 >
-                 {score?.timeStatus
-}
+                  {score?.timeStatus}
                 </div>
               </div>
               <div className="bt237"></div>
@@ -114,8 +109,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                       style={{ width: "24px", height: "24px" }}
                     >
                       <img
-                        src={score?.image1
-                        }
+                        src={score?.image1}
                         alt=""
                         height="24"
                         width="24"
@@ -126,8 +120,7 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                       className="bt287"
                       style={{ height: "24px", lineHeight: "24px" }}
                     >
-                  {score?.player1
-}
+                      {score?.player1}
                     </div>
                   </div>
                 </div>
@@ -149,28 +142,49 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                       className="bt287"
                       style={{ height: "24px", lineHeight: "24px" }}
                     >
-                   {score?.player2}
+                      {score?.player2}
                     </div>
                   </div>
                 </div>
               </div>
               <div className="bt285">
                 <div data-editor-id="widgetScore" className="bt1379">
-                  <div>2</div>
-                  <div>3</div>
-                  <div>2</div>
-                  <div>3</div>
-                  <div>2</div>
-                  <div>3</div>
-                  <div className="bt1381">15</div>
-                  <div className="bt1381">0</div>
-                  <div className="bt1382"></div>
-                  <div className=""></div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {score?.set1?.map((item, i) => {
+                      return <div key={i}>{item}</div>;
+                    })}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {score?.set2?.map((item, i) => {
+                      return <div key={i}>{item}</div>;
+                    })}
+                  </div>
+                  <div className="bt1381">{score?.team1Score}</div>
+                  <div className="bt1381">{score?.team2Score}</div>
+                  <div
+                    className={`${score?.service == 1 ? "bt1382" : ""}`}
+                  ></div>
+                  <div
+                    className={`${score?.service == 2 ? "bt1382" : ""}`}
+                  ></div>
                   <div className="bt1384 bt1380 bt1493">
-                    <span className="bt1386">1</span>
+                    <span className="bt1386">{score?.totalSet1}</span>
                   </div>
                   <div className="bt1384 bt1380 bt1493">
-                    <span className="bt1386"> 0</span>
+                    <span className="bt1386">{score?.totalSet2}</span>
                   </div>
                 </div>
               </div>

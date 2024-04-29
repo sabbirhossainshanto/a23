@@ -10,7 +10,6 @@
       "referral": true,
       "balanceApiLoop": false,
       "registration": true
-
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
@@ -30,7 +29,8 @@
       "currentBets": "https://api7.live/api/exchange/diamond/currentBets",
       "order": "https://api7.live/api/exchange/diamond/order",
       "accountStatement": "https://api7.live/api/exchange/diamond/accountStatement",
-      "settledBets": "https://api7.live/api/exchange/diamond/settledBets"
+      "settledBets": "https://api7.live/api/exchange/diamond/settledBets",
+      "indiaCardGames": "https://api7.live/api/exchange/diamond/indianCardGames"
     }
   },
   "success": true

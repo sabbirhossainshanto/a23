@@ -21,6 +21,7 @@ export const API = {
   order: endPoints.order,
   accountStatement: endPoints?.accountStatement,
   settledBets: endPoints?.settledBets,
+  indiaCardGames: endPoints?.indiaCardGames,
 };
 
 export const Settings = {
