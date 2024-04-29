@@ -12,6 +12,7 @@ const Aviator = () => {
   const [iFrame, setIFrame] = useState("");
   const { gameId } = useParams();
   const { token } = useContextState();
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const getCasinoVideo = async () => {

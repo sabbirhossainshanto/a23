@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div
       className={`mia0b51 mobile-header ${
-        !location.pathname.includes("/aviator") ? "show" : ""
+        !location.pathname.includes("/casino") ? "show" : ""
       }`}
     >
       <div className="nologin-header-wrap">
@@ -83,7 +83,7 @@ const Header = () => {
         </div>
       </div>
 
-      {!location.pathname.includes("/aviator") && (
+      {!location.pathname.includes("/casino") && (
         <div
           className="mszcttz"
           style={{ transform: "translateY(0%) translateZ(0px)" }}
@@ -253,7 +253,7 @@ const Header = () => {
 
             <button
               onClick={() =>
-                navigate(`${token ? "/aviator/201206" : "/login"}`)
+                navigate(`${token ? "/casino/aviator/201206" : "/login"}`)
               }
               className="mb-top-navigate-item"
             >

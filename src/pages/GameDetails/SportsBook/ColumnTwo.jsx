@@ -57,7 +57,7 @@ const ColumnTwo = ({
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
-                // console.log(priceClasses[i]);
+         
                 return (
                   <div
                     onClick={() =>

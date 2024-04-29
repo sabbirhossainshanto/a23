@@ -4,7 +4,7 @@ import useIndianCasino from "../../hooks/useIndianCasino";
 const IndianCasino = () => {
   const { indianCasino } = useIndianCasino();
   const navigate = useNavigate();
-  console.log(indianCasino);
+
   return (
     <div className="s15yntg2">
       <div className="title">Indian Casino Games</div>
@@ -15,7 +15,9 @@ const IndianCasino = () => {
               <div
                 onClick={() =>
                   navigate(
-                    `/${casino?.game_name.replace(/ /g, "")}/${casino?.game_id}`
+                    `/casino/${casino?.game_name.replace(/ /g, "")}/${
+                      casino?.game_id
+                    }`
                   )
                 }
                 key={i}

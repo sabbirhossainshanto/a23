@@ -39,7 +39,7 @@ const PaymentMethods = ({ setUploadTransaction,
       setDepositData(data?.result);
     }
   };
-console.log(depositData);
+
   return (
     <>
       <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">

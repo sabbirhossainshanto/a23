@@ -28,7 +28,6 @@ const UploadTransaction = ({ paymentId, amount }) => {
           },
         });
         const data = res.data;
-        console.log(data);
         if (data?.success) {
           setLoading(false);
           setUploadedImage(data?.fileName);
@@ -69,7 +68,7 @@ const UploadTransaction = ({ paymentId, amount }) => {
         },
       });
       const result = res?.data;
-console.log(result);
+   
       if (result?.success) {
         setUtr(null);
         setImage(null);
@@ -237,13 +236,20 @@ console.log(result);
         </div>
       </div>
       <div
-      style={{cursor:`${!filePath || !utr ? 'not-allowed':'pointer'}`}}
+        style={{ cursor: `${!filePath || !utr ? "not-allowed" : "pointer"}` }}
         onClick={handleDepositSubmit}
-       
         className="makepayment ng-tns-c159-2"
       >
         <div className="madepay ng-tns-c159-2">
-          <button  style={{cursor:`${!filePath || !utr ? 'not-allowed':'pointer'}`}}  disabled={!filePath || !utr} className="ng-tns-c159-2">I have Made The Payment</button>
+          <button
+            style={{
+              cursor: `${!filePath || !utr ? "not-allowed" : "pointer"}`,
+            }}
+            disabled={!filePath || !utr}
+            className="ng-tns-c159-2"
+          >
+            I have Made The Payment
+          </button>
         </div>
       </div>
     </>

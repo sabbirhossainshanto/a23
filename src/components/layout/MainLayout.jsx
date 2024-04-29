@@ -1,23 +1,43 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Footer from "../ui/Footer/Footer";
 import Header from "../ui/Header/Header";
 import useContextState from "../../hooks/useContextState";
+import { Settings } from "../../api";
+import { useEffect } from "react";
+import disableDevtool from "disable-devtool";
+import { handleLogOut } from "../../utils/handleLogOut";
 
 const MainLayout = () => {
   const location = useLocation();
-  const { addBank } = useContextState();
+  const { addBank, setTokenLoading } = useContextState();
+  const disabledDevtool = Settings.disabledDevtool;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (disabledDevtool) {
+      disableDevtool({
+        ondevtoolopen: (type) => {
+          const info = "devtool opened!; type =" + type;
+          if (info) {
+            handleLogOut();
+            setTokenLoading(true);
+            navigate("/");
+          }
+        },
+      });
+    }
+  }, [navigate, disabledDevtool]);
   return (
     <div
       className="centered-div"
       style={{
-        paddingBottom: `${location.pathname.includes("/aviator") ? "0px" : ""}`,
+        paddingBottom: `${location.pathname.includes("/casino") ? "0px" : ""}`,
       }}
     >
       <Header />
       <div style={{ minHeight: "calc(100vh - 268px)" }}>
         <Outlet />
       </div>
-      {!location.pathname.includes("/aviator") && !addBank ? <Footer /> : null}
+      {!location.pathname.includes("/casino") && !addBank ? <Footer /> : null}
     </div>
   );
 };

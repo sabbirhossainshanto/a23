@@ -33,5 +33,6 @@ export const Settings = {
   balanceApiLoop: settings?.balanceApiLoop,
   register: settings?.registration,
   otp: settings?.otp,
+  disabledDevtool:settings?.disabledDevtool
  
 };

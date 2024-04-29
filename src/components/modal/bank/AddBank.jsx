@@ -35,7 +35,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       },
     });
     const data = res?.data;
-    console.log(data);
+
     if (data?.success) {
       toast.success(data?.result?.message);
       if (refetchBankData) {

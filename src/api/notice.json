@@ -9,7 +9,8 @@
       "siteUrl": "winexch23.com",
       "referral": true,
       "balanceApiLoop": false,
-      "registration": true
+      "registration": true,
+      "disabledDevtool": false
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
