@@ -3,6 +3,8 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import { handleToggle } from "../../../utils/handleToggle";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
+import useContextState from "../../../hooks/useContextState";
+import { useNavigate } from "react-router-dom";
 
 const Bookmaker = ({
   bookmarker,
@@ -10,6 +12,8 @@ const Bookmaker = ({
   setPlaceBetValues,
   exposer,
 }) => {
+  const { token } = useContextState();
+  const navigate = useNavigate();
   const [previousData, setPreviousData] = useState(bookmarker);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
@@ -54,6 +58,9 @@ const Bookmaker = ({
               </div>
             </div>
             {games?.runners?.map((runner) => {
+              const pnl =
+                pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) ||
+                [];
               return (
                 <div
                   key={runner?.id}
@@ -74,14 +81,53 @@ const Bookmaker = ({
                       >
                         <div
                           className="bt6592 bt12699"
-                          style={{ margin: "4px 0" }}
+                          style={{ minHeight: "40px" }}
                         >
-                          <div
-                            className="bt6596 bt12703"
-                            data-editor-id="tableOutcomePlateName"
-                          >
-                            <span className="bt6598"> {runner?.name}</span>
-                          </div>
+                          {pnl?.length > 0 ? (
+                            pnl.map(({ pnl }, i) => {
+                              return (
+                                <div
+                                  key={i}
+                                  className={`bt6596 bt12703 exposure`}
+                                  data-editor-id="tableOutcomePlateName"
+                                >
+                                  <span
+                                    className="bt6598"
+                                    style={{ margin: "4px 0" }}
+                                  >
+                                    {runner?.name}
+                                  </span>
+
+                                  <span
+                                    // onClick={() => handleLader(MarketId)}
+
+                                    className={`bt6598 ${
+                                      pnl > 0
+                                        ? "exposure_green"
+                                        : "exposure_red"
+                                    }`}
+                                    style={{
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    {pnl || ""}
+                                  </span>
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <div
+                              className={`bt6596 bt12703`}
+                              data-editor-id="tableOutcomePlateName"
+                            >
+                              <span
+                                className="bt6598"
+                                style={{ margin: "4px 0" }}
+                              >
+                                {runner?.name}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -93,7 +139,9 @@ const Bookmaker = ({
                             "back",
                             setOpenBetSlip,
                             setPlaceBetValues,
-                            pnlBySelection
+                            pnlBySelection,
+                            token,
+                            navigate
                           )
                         }
                         data-editor-id="tableOutcomePlate"
@@ -101,7 +149,11 @@ const Bookmaker = ({
                         style={{ flexBasis: "12%" }}
                       >
                         <div
-                          className="bt6592 bt12699"
+                          className={`bt6592 bt12699 ${
+                            changedPrices[`back-${runner?.id}-${i}`]
+                              ? "blink"
+                              : ""
+                          }`}
                           style={{
                             backgroundColor: "#a0d8fb",
                             minHeight: "40px",
@@ -109,11 +161,7 @@ const Bookmaker = ({
                           }}
                         >
                           <span
-                            className={`bookmaker_label  ${
-                              changedPrices[`back-${runner?.id}-${i}`]
-                                ? "blink"
-                                : ""
-                            }`}
+                            className={`bookmaker_label  `}
                             style={{ verticalAlign: "middle", width: "100%" }}
                           >
                             <h4> {runner?.back[0]?.price}</h4>
@@ -129,7 +177,9 @@ const Bookmaker = ({
                             "lay",
                             setOpenBetSlip,
                             setPlaceBetValues,
-                            pnlBySelection
+                            pnlBySelection,
+                            token,
+                            navigate
                           )
                         }
                         data-editor-id="tableOutcomePlate"
@@ -137,20 +187,18 @@ const Bookmaker = ({
                         style={{ flexBasis: "12%" }}
                       >
                         <div
-                          className="bt6592 bt12699"
+                          className={`bt6592 bt12699 ${
+                            changedPrices[`lay-${runner?.id}-${i}`]
+                              ? "blink"
+                              : ""
+                          }`}
                           style={{
                             backgroundColor: "#fdc9d4",
                             minHeight: "40px",
                             margin: "auto ",
                           }}
                         >
-                          <span
-                            className={`bookmaker_label  ${
-                              changedPrices[`lay-${runner?.id}-${i}`]
-                                ? "blink"
-                                : ""
-                            }`}
-                          >
+                          <span className={`bookmaker_label  `}>
                             <h4> {runner?.lay[0]?.price}</h4>
                           </span>
                         </div>

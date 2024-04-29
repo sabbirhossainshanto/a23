@@ -20,7 +20,7 @@ export const API = {
   currentBets: endPoints?.currentBets,
   order: endPoints.order,
   accountStatement: endPoints?.accountStatement,
-  settledBets:endPoints?.settledBets
+  settledBets: endPoints?.settledBets,
 };
 
 export const Settings = {

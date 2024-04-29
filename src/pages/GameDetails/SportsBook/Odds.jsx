@@ -38,6 +38,8 @@ const Odds = ({
       group?.Name !== "Player Specials"
   );
 
+
+ 
   const itemsLengthArray = sports?.map((group) => group?.Items?.length) || [];
   const [openItems, setOpenItems] = useState(
     new Array(itemsLengthArray[0] || 0).fill(false).map((_, index) => index < 5)

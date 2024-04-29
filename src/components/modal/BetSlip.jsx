@@ -6,7 +6,7 @@ import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { FaSpinner } from "react-icons/fa";
-
+import { RxCross2} from "react-icons/rx";
 const BetSlip = ({
   setOpenBetSlip,
   placeBetValues,
@@ -283,7 +283,27 @@ const BetSlip = ({
                   >
                     <div className="modal-header">
                       <h2> Place Bet | {placeBetValues?.marketName}</h2>
-                      <div className="action-btns"></div>
+                      <div className="action-btns" style={{top:'-5px',right:'-5px'}}>
+                        <button
+                          onClick={() => setOpenBetSlip(false)}
+                          className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
+                          type="button"
+                        >
+                          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                          <span
+                            style={{ marginLeft: "4px" }}
+                            role="img"
+                            className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                            aria-hidden="true"
+                            data-mat-icon-type="font"
+                          >
+                           <RxCross2 size={20}/>
+                          </span>
+                          <span className="mdc-button__label"></span>
+                          <span className="mat-mdc-focus-indicator"></span>
+                          <span className="mat-mdc-button-touch-target"></span>
+                        </button>
+                      </div>
                     </div>
                     <div className="modal-body">
                       <div

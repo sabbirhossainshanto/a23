@@ -3,6 +3,8 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import { handleToggle } from "../../../utils/handleToggle";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
+import useContextState from "../../../hooks/useContextState";
+import { useNavigate } from "react-router-dom";
 
 const MatchOdds = ({
   match_odds,
@@ -10,6 +12,8 @@ const MatchOdds = ({
   setPlaceBetValues,
   exposer,
 }) => {
+  const { token } = useContextState();
+  const navigate = useNavigate();
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -52,6 +56,10 @@ const MatchOdds = ({
               </div>
             </div>
             {games?.runners?.map((runner) => {
+              const pnl =
+                pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) ||
+                [];
+
               return (
                 <div
                   key={runner?.id}
@@ -74,20 +82,51 @@ const MatchOdds = ({
                           className="bt6592 bt12699"
                           style={{ minHeight: "40px" }}
                         >
-                          <div
-                            //   exposure (class)
-                            className="bt6596 bt12703 "
-                            data-editor-id="tableOutcomePlateName"
-                          >
-                            <span
-                              className="bt6598"
-                              style={{ margin: "4px 0" }}
+                          {pnl?.length > 0 ? (
+                            pnl.map(({ pnl }, i) => {
+                              return (
+                                <div
+                                  key={i}
+                                  className={`bt6596 bt12703 exposure`}
+                                  data-editor-id="tableOutcomePlateName"
+                                >
+                                  <span
+                                    className="bt6598"
+                                    style={{ margin: "4px 0" }}
+                                  >
+                                    {runner?.name}
+                                  </span>
+
+                                  <span
+                                    // onClick={() => handleLader(MarketId)}
+
+                                    className={`bt6598 ${
+                                      pnl > 0
+                                        ? "exposure_green"
+                                        : "exposure_red"
+                                    }`}
+                                    style={{
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    {pnl || ""}
+                                  </span>
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <div
+                              className={`bt6596 bt12703`}
+                              data-editor-id="tableOutcomePlateName"
                             >
-                              {runner?.name}
-                            </span>
-                            {/* <span className="bt6598 exposure_green">-100</span> */}
-                            {/* <!-- exposure_red --> */}
-                          </div>
+                              <span
+                                className="bt6598"
+                                style={{ margin: "4px 0" }}
+                              >
+                                {runner?.name}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -99,20 +138,24 @@ const MatchOdds = ({
                             "back",
                             setOpenBetSlip,
                             setPlaceBetValues,
-                            pnlBySelection
+                            pnlBySelection,
+                            token,
+                            navigate
                           )
                         }
                         data-editor-id="tableOutcomePlate"
                         className="bt6588  "
                         style={{ flexBasis: "12%" }}
                       >
-                        <div className="bt6592 bt12699 odds_back">
+                        <div
+                          className={`bt6592 bt12699 odds_back ${
+                            changedPrices[`back-${runner?.id}-${i}`]
+                              ? "blink"
+                              : ""
+                          }`}
+                        >
                           <span
-                            className={`mdc-button__label  ${
-                              changedPrices[`back-${runner?.id}-${i}`]
-                                ? "blink"
-                                : ""
-                            }`}
+                            className={`mdc-button__label  `}
                             style={{ verticalAlign: "middle", width: "100%" }}
                           >
                             <h4> {runner?.back[0]?.price}</h4>
@@ -131,21 +174,23 @@ const MatchOdds = ({
                             "lay",
                             setOpenBetSlip,
                             setPlaceBetValues,
-                            pnlBySelection
+                            pnlBySelection,
+                            token,
+                            navigate
                           )
                         }
                         data-editor-id="tableOutcomePlate"
-                        className="bt6588  "
+                        className={`bt6588 `}
                         style={{ flexBasis: "12%" }}
                       >
-                        <div className="bt6592 bt12699 odds_lay">
-                          <span
-                            className={`mdc-button__label ${
-                              changedPrices[`lay-${runner.id}-${i}`]
-                                ? "blink"
-                                : ""
-                            }`}
-                          >
+                        <div
+                          className={`bt6592 bt12699 odds_lay ${
+                            changedPrices[`lay-${runner.id}-${i}`]
+                              ? "blink"
+                              : ""
+                          }`}
+                        >
+                          <span className={`mdc-button__label `}>
                             <h4> {runner?.lay[0]?.price}</h4>
                             <p className="odds_volume">
                               {" "}

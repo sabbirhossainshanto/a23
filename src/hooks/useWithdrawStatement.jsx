@@ -4,9 +4,10 @@ import { API } from "../api";
 import useContextState from "./useContextState";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
-/*  deposit statement api */
-const useDepositStatement = () => {
-  /* from date seven days earlier */
+
+/* withdraw api */
+const useWithdrawStatement = () => {
+  /* from date 7 days earlier */
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
@@ -14,8 +15,9 @@ const useDepositStatement = () => {
   const toDate = new Date().toISOString().split("T")[0];
   const { token, tokenLoading } = useContextState();
 
-  const { data: accountStatement = [] } = useQuery({
-    queryKey: ["deposit-statement"],
+  const { data: withdrawStatement = [] } = useQuery({
+    queryKey: ["withdraw-statement"],
+    /* enable when token available */
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = handleRandomToken();
@@ -23,7 +25,7 @@ const useDepositStatement = () => {
       const encryptedData = handleEncryptData({
         from: fromDate,
         to: toDate,
-        type: "DEPOSIT",
+        type: "WITHDRAW",
         status: "ALL",
         token: generatedToken,
       });
@@ -40,7 +42,7 @@ const useDepositStatement = () => {
     },
     gcTime:0
   });
-  return { accountStatement };
+  return { withdrawStatement };
 };
 
-export default useDepositStatement;
+export default useWithdrawStatement;

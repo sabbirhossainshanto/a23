@@ -302,7 +302,36 @@ const Card = ({ liveSports, keys }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="bt282" style={{ marginBottom: "0px" }}>
+                    <div className="bt282" style={{ marginBottom: "8px" }}>
+                      <div className="bt286 bt283">
+                        <div
+                          className="bt289 bt288"
+                          style={{ width: "24px", height: "24px" }}
+                        >
+                          <img
+                            style={{
+                              objectFit: "contain",
+                              height: "24px",
+                              lineHeight: "24px",
+                            }}
+                            src={liveSports?.[keys]?.image2}
+                            alt=""
+                            className="bt290"
+                          />
+                        </div>
+                        <div
+                          className="bt287"
+                          style={{
+                            height: "24px",
+                            lineHeight: "24px",
+                            textAlign: "start",
+                          }}
+                        >
+                          {liveSports[keys]?.player2}
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div className="bt282" style={{ marginBottom: "0px" }}>
                       <div className="bt286 bt283">
                         <div
                           className="bt289 bt288"
@@ -332,7 +361,7 @@ const Card = ({ liveSports, keys }) => {
                           {liveSports[keys]?.player2}
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="bt285">
                     {liveSports?.[keys]?.eventTypeId == 2 ? (

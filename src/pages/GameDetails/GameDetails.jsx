@@ -5,8 +5,13 @@ import ScoreBoardCard from "./ScoreBoardCard";
 import ScoreCardSlider from "./ScoreCardSlider";
 import useEventDetails from "../../hooks/useEventDetails";
 import { useEffect, useState } from "react";
+import { Settings } from "../../api";
+import useContextState from "../../hooks/useContextState";
+import useBalance from "../../hooks/useBalance";
 
 const GameDetails = () => {
+  const { tokenLoading } = useContextState();
+  const { refetchBalance } = useBalance();
   const { eventTypeId, eventId } = useParams();
   const [priceClasses, setPriceClasses] = useState({});
   const [prevPrices, setPrevPrices] = useState({});
@@ -23,13 +28,21 @@ const GameDetails = () => {
     setPriceClasses({});
   }, [eventId, eventTypeId]);
 
+  useEffect(() => {
+    if (!tokenLoading && !Settings.balanceApiLoop) {
+      refetchBalance();
+    }
+  }, []);
+
+
+
   return (
     <>
       <ScoreCardSlider />
       {eventsData?.score && (
         <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
       )}
-      <MatchTrackerTab />
+      <MatchTrackerTab tracker={eventsData?.score?.tracker} />
       {eventsData?.sportsbook?.Result && (
         <Odds
           data={eventsData?.result}

@@ -12619,7 +12619,7 @@ img,
 
 .depositpop {
     display: flex;
-    padding: .5rem 1.5rem 5.625rem;
+    padding: .5rem 1.5rem 1.625rem;
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
@@ -23333,7 +23333,7 @@ div {
 
 /*! CSS Used from: Embedded */
 .card {
-    left: -15px;
+    left: -1px;
     background-color: #000;
     color: #fff;
     position: fixed;

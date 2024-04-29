@@ -13,7 +13,7 @@ import useContextState from "../../hooks/useContextState";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [disable, setDisable] = useState(false);
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
   const { setGetToken } = useContextState();
 
@@ -76,7 +76,7 @@ const Login = () => {
       /* Show error message during login failed */
       setDisable(false);
       toast.error(data?.error);
-      reset();
+  
     }
   };
 

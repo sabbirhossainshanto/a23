@@ -7,15 +7,23 @@ import useBannerImage from "../../hooks/home/useBannerImage";
 import useContextState from "../../hooks/useContextState";
 import useSportsBook from "../../hooks/home/useSportsBook";
 import Sports from "../../components/ui/Home/Sports/Sports";
+import { Settings } from "../../api";
+import useBalance from "../../hooks/useBalance";
 
 const Home = () => {
-  const { sportsType } = useContextState();
+  const { sportsType, tokenLoading } = useContextState();
   const { bannerImage } = useBannerImage();
   const { refetchSports, sports } = useSportsBook(sportsType);
+  const { refetchBalance } = useBalance();
 
   useEffect(() => {
     refetchSports();
   }, [refetchSports, sportsType]);
+  useEffect(() => {
+    if (!tokenLoading && !Settings.balanceApiLoop) {
+      refetchBalance();
+    }
+  }, []);
 
   return (
     <>
@@ -25,7 +33,7 @@ const Home = () => {
             <Banner bannerImage={bannerImage?.banner} />
           )}
           {bannerImage?.card?.length > 0 && <Slider card={bannerImage?.card} />}
-          <LiveSports  liveSports={sports} />
+          <LiveSports liveSports={sports} />
           <Casino />
         </>
       )}

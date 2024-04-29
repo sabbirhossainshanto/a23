@@ -1,16 +1,24 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
+import useGetSocialLink from "../../../hooks/useGetSocialLink";
 
 const Footer = () => {
   const { setSportsType, token } = useContextState();
   const navigate = useNavigate();
   const location = useLocation();
+  const { socialLink } = useGetSocialLink();
 
   const handleNavigate = (link) => {
     if (token) {
       navigate(link);
     } else {
       navigate("/login");
+    }
+  };
+
+  const openWhatsAppInNewTab = () => {
+    if (socialLink?.link) {
+      window.open(socialLink?.link, "_blank");
     }
   };
   return (
@@ -102,7 +110,11 @@ const Footer = () => {
         </svg>
         <span>Account</span>
       </div>
-      <div className="tabbar-item">
+      <div
+        onClick={openWhatsAppInNewTab}
+        style={{ cursor: "pointer" }}
+        className="tabbar-item"
+      >
         <div className="dont-badge"></div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

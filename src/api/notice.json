@@ -9,8 +9,8 @@
       "siteUrl": "a23money.com",
       "referral": true,
       "balanceApiLoop": false,
-      "registration": true,
-      "otp": true
+      "registration": true
+
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
