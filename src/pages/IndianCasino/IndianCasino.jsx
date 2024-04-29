@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import useIndianCasino from "../../hooks/useIndianCasino";
 
 const IndianCasino = () => {
   const { indianCasino } = useIndianCasino();
+  const navigate = useNavigate();
   console.log(indianCasino);
   return (
     <div className="s15yntg2">
@@ -10,7 +12,15 @@ const IndianCasino = () => {
         <div className="game-list">
           {indianCasino?.map((casino, i) => {
             return (
-              <div key={i} className="s1raq561">
+              <div
+                onClick={() =>
+                  navigate(
+                    `/${casino?.game_name.replace(/ /g, "")}/${casino?.game_id}`
+                  )
+                }
+                key={i}
+                className="s1raq561"
+              >
                 <a className="game-img-wrap">
                   <img src={casino?.img} className="game-img" alt="" />
                   <div className="online">

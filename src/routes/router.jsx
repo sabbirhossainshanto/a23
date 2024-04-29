@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
         element: <EditStake />,
       },
       {
-        path: "/aviator/:gameId",
+        path: "/:name/:gameId",
         element: <Aviator />,
       },
       {

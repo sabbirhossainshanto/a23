@@ -16,7 +16,7 @@ const SingleProfitLoss = () => {
 
   return (
     <>
-      <div className="back-nav-bc" style={{ margin: "10px" }}>
+      {/* <div className="back-nav-bc" style={{ margin: "10px" }}>
         <img
           loading="lazy"
           src="/src/assets/img/back-arrow.svg"
@@ -24,7 +24,7 @@ const SingleProfitLoss = () => {
           className=""
         />
         <span className="back-nav-title-bc">Back to Betting PNL</span>
-      </div>
+      </div> */}
 
       <div className="mat-accordion bet-history-accordion">
         <div className="mat-expansion-panel mat-expanded mat-expansion-panel-spacing">
