@@ -22,6 +22,7 @@ export const API = {
   accountStatement: endPoints?.accountStatement,
   settledBets: endPoints?.settledBets,
   indiaCardGames: endPoints?.indiaCardGames,
+  assets:endPoints?.assets
 };
 
 export const Settings = {
@@ -32,4 +33,5 @@ export const Settings = {
   balanceApiLoop: settings?.balanceApiLoop,
   register: settings?.registration,
   otp: settings?.otp,
+ 
 };

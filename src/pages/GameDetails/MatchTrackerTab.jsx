@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const MatchTrackerTab = ({ tracker }) => {
+  const [toggleTracker, setToggleTracker] = useState(false);
   return (
     <>
       <div className="bt12499">
@@ -83,6 +86,7 @@ const MatchTrackerTab = ({ tracker }) => {
                 <span className="bt12847">Video</span>
               </div>
               <div
+                onClick={() => setToggleTracker((prev) => !prev)}
                 className="bt12843 bt12848 bt12844 bt12845"
                 data-editor-id="matchTrackerTab"
               >
@@ -123,7 +127,9 @@ const MatchTrackerTab = ({ tracker }) => {
                 referrerPolicy="noreferrer"
                 src={tracker}
                 title="tracker"
-                style={{ height: `${tracker ? "392.75px" : "0px"}` }}
+                style={{
+                  height: `${tracker && toggleTracker ? "392.75px" : "0px"}`,
+                }}
               ></iframe>
             </div>
           </div>

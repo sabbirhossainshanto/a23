@@ -6,7 +6,7 @@
   "result": {
     "settings": {
       "siteTitle": "a23money",
-      "siteUrl": "a23money.com",
+      "siteUrl": "winexch23.com",
       "referral": true,
       "balanceApiLoop": false,
       "registration": true
@@ -30,7 +30,8 @@
       "order": "https://api7.live/api/exchange/diamond/order",
       "accountStatement": "https://api7.live/api/exchange/diamond/accountStatement",
       "settledBets": "https://api7.live/api/exchange/diamond/settledBets",
-      "indiaCardGames": "https://api7.live/api/exchange/diamond/indianCardGames"
+      "indiaCardGames": "https://api7.live/api/exchange/diamond/indianCardGames",
+      "assets": "https://api7.live/sitethemes"
     }
   },
   "success": true

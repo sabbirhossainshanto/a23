@@ -1,10 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../../assets/img/logo_small_w.webp";
 import useContextState from "../../../hooks/useContextState";
 import useBalance from "../../../hooks/useBalance";
 import { Settings } from "../../../api";
 const Header = () => {
-  const { setSportsType, sportsType, token } = useContextState();
+  const { setSportsType, sportsType, token,logo } = useContextState();
   const navigate = useNavigate();
   const { balanceData } = useBalance();
   const location = useLocation();
@@ -229,7 +228,12 @@ const Header = () => {
               <span>Tennis</span>
             </button>
 
-            <button className="mb-top-navigate-item">
+            <button
+              onClick={() => {
+                navigate("/indian-casino");
+              }}
+              className="mb-top-navigate-item"
+            >
               <svg
                 width="18"
                 height="19"
@@ -244,7 +248,7 @@ const Header = () => {
                   fill="#65C316"
                 ></path>
               </svg>
-              <span>Casino</span>
+              <span>Indian Casino</span>
             </button>
 
             <button

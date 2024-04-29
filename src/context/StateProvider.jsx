@@ -14,7 +14,6 @@ const StateProvider = ({ children }) => {
   const [placeBetValues, setPlaceBetValues] = useState({});
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const [addBank, setAddBank] = useState(false);
-  
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -41,8 +40,9 @@ const StateProvider = ({ children }) => {
   }, [token, getToken]);
 
   useEffect(() => {
-    const logo = `${API.assets}/${Settings.siteUrl}/logo.webp`;
+    const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
     setLogo(logo);
+    console.log(logo);
     /* Dynamically append  favicon  */
     const FavIconLink = document.createElement("link");
     FavIconLink.rel = "icon";
@@ -72,7 +72,8 @@ const StateProvider = ({ children }) => {
     setPlaceBetValues,
     openBetSlip,
     setOpenBetSlip,
-    addBank, setAddBank
+    addBank,
+    setAddBank,
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

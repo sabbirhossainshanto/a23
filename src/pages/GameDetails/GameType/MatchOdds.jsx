@@ -145,7 +145,7 @@ const MatchOdds = ({
                         }
                         data-editor-id="tableOutcomePlate"
                         className="bt6588  "
-                        style={{ flexBasis: "12%" }}
+                        style={{ flexBasis: "20%" }}
                       >
                         <div
                           className={`bt6592 bt12699 odds_back ${
@@ -181,7 +181,7 @@ const MatchOdds = ({
                         }
                         data-editor-id="tableOutcomePlate"
                         className={`bt6588 `}
-                        style={{ flexBasis: "12%" }}
+                        style={{ flexBasis: "20%" }}
                       >
                         <div
                           className={`bt6592 bt12699 odds_lay ${
