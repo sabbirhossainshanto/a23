@@ -452,29 +452,33 @@ const Card = ({ liveSports, keys }) => {
                           </div>
                         </div>
                   
-                 
-                        <div
-                          data-editor-id="outcomePlate"
-                          className="bt323 bt326"
-                        >
-                          <div className="bt327 bt308">
-                            <div className="bt342"></div>
-                            <div
-                              className="bt331"
-                              data-editor-id="outcomePlateName"
-                            >
-                              <span className="bt333">draw</span>
-                            </div>
-                            <div className="bt299 bt334">
-                              <span className="bt301">
-                                {
-                                  liveSports?.[keys]?.[2]?.ex
-                                    ?.availableToBack?.[0]?.price
-                                }
-                              </span>
-                            </div>
-                          </div>
-                        </div>
+                 {
+                  liveSports?.[keys]?.[2] && (
+                    <div
+                    data-editor-id="outcomePlate"
+                    className="bt323 bt326"
+                  >
+                    <div className="bt327 bt308">
+                      <div className="bt342"></div>
+                      <div
+                        className="bt331"
+                        data-editor-id="outcomePlateName"
+                      >
+                        <span className="bt333">draw</span>
+                      </div>
+                      <div className="bt299 bt334">
+                        <span className="bt301">
+                          {
+                            liveSports?.[keys]?.[2]?.ex
+                              ?.availableToBack?.[0]?.price
+                          }
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  )
+                 }
+                     
                    
                
                         <div

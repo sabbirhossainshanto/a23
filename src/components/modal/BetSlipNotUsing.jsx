@@ -188,7 +188,7 @@ const BetSlip = ({
         } else if (selectionId && selectionId.includes(".2")) {
           setOddStake(formatNumber(total + pnl2));
           setOddStakeLay1(formatNumber(pnl3 + -1 * totalSize));
-         setOddStakeLay2(formatNumber(pnl1 + -1 * totalSize));
+          setOddStakeLay2(formatNumber(pnl2 + -1 * totalSize));
         } else {
           setOddStake(formatNumber(total + pnl3));
           setOddStakeLay1(formatNumber(pnl1 + -1 * totalSize));

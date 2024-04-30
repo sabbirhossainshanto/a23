@@ -5,16 +5,19 @@ import { API } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
 import { useState } from "react";
 import useContextState from "../../hooks/useContextState";
-import contactOne from '../../../src/assets/img/contact_one.svg'
-import clipboardIcon from '../../../src/assets/img/clipboard_icon.svg'
-import contactTwo from '../../../src/assets/img/contact_two.svg'
-import codeBlock from '../../../src/assets/img/code_block.svg'
-import institution from '../../../src/assets/img/institution.svg'
+import contactOne from "../../../src/assets/img/contact_one.svg";
+import clipboardIcon from "../../../src/assets/img/clipboard_icon.svg";
+import contactTwo from "../../../src/assets/img/contact_two.svg";
+import codeBlock from "../../../src/assets/img/code_block.svg";
+import institution from "../../../src/assets/img/institution.svg";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 
 /* eslint-disable react/no-unknown-property */
-const PaymentMethods = ({ setUploadTransaction,
-    setPaymentMethods,setPaymentId}) => {
+const PaymentMethods = ({
+  setUploadTransaction,
+  setPaymentMethods,
+  setPaymentId,
+}) => {
   const { token } = useContextState();
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
   const [tabs, setTabs] = useState("");
@@ -56,7 +59,7 @@ const PaymentMethods = ({ setUploadTransaction,
             _ngcontent-kdb-c159=""
             className="accountdetailss ng-tns-c159-13 ng-star-inserted"
           >
-            <div className="payment_container" style={{width:'100%'}}>
+            <div className="payment_container" style={{ width: "100%" }}>
               {Array.isArray(depositMethods) &&
                 depositMethods?.map((method) => {
                   return (
@@ -116,12 +119,16 @@ const PaymentMethods = ({ setUploadTransaction,
                       _ngcontent-kdb-c159=""
                       className="accnum account-number ng-tns-c159-13"
                     >
-                     {depositData?.accountNumber
-}
+                      {depositData?.accountNumber}
                     </p>
                     <p
-                    onClick={()=> handleCopyToClipBoard(depositData?.accountNumber)}
-                    _ngcontent-kdb-c159="" className="svg ng-tns-c159-13">
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.accountNumber)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
@@ -156,7 +163,14 @@ const PaymentMethods = ({ setUploadTransaction,
                     >
                       {depositData?.accountName}
                     </p>
-                    <p _ngcontent-kdb-c159="" className="svg ng-tns-c159-13">
+                    <p
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.accountName)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
@@ -189,10 +203,14 @@ const PaymentMethods = ({ setUploadTransaction,
                       _ngcontent-kdb-c159=""
                       className="accnum ifsc-code ng-tns-c159-13"
                     >
-                    {depositData?.ifsc
-}
+                      {depositData?.ifsc}
                     </p>
-                    <p _ngcontent-kdb-c159="" className="svg ng-tns-c159-13">
+                    <p
+                      onClick={() => handleCopyToClipBoard(depositData?.ifsc)}
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
@@ -225,10 +243,16 @@ const PaymentMethods = ({ setUploadTransaction,
                       _ngcontent-kdb-c159=""
                       className="accnum bank-name ng-tns-c159-13"
                     >
-                     {depositData?.bankName
-}
+                      {depositData?.bankName}
                     </p>
-                    <p _ngcontent-kdb-c159="" className="svg ng-tns-c159-13">
+                    <p
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.bankName)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
@@ -241,12 +265,17 @@ const PaymentMethods = ({ setUploadTransaction,
                 </div>
               </div>
             </div>
-            <div onClick={()=> {
-                  setPaymentMethods(false)
-                  setUploadTransaction(true)
-                }} _ngcontent-kdb-c159="" className="makepayment ng-tns-c159-13" style={{marginTop:'10px'}}>
+            <div
+              onClick={() => {
+                setPaymentMethods(false);
+                setUploadTransaction(true);
+              }}
+              _ngcontent-kdb-c159=""
+              className="makepayment ng-tns-c159-13"
+              style={{ marginTop: "10px" }}
+            >
               <div _ngcontent-kdb-c159="" className="madepay ng-tns-c159-13">
-                <button  _ngcontent-kdb-c159="" className="ng-tns-c159-13">
+                <button _ngcontent-kdb-c159="" className="ng-tns-c159-13">
                   I have Made The Payment
                 </button>
               </div>

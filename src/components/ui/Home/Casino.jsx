@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
+import useContextState from "../../../hooks/useContextState";
 const Casino = () => {
   const { homeCasino } = useHomeCasino();
   const [category, setCategory] = useState("Top Games");
   const [filteredData, setFilteredData] = useState({});
   const navigate = useNavigate();
+  const { token } = useContextState();
 
   useEffect(() => {
     if (homeCasino?.length > 0) {
@@ -76,9 +78,12 @@ const Casino = () => {
                   <div
                     onClick={() =>
                       navigate(
-                        `/casino/${casino?.provider_name.replace(/ /g, "")}/${
-                          casino?.game_id
-                        }`
+                        token
+                          ? `/casino/${casino?.provider_name.replace(
+                              / /g,
+                              ""
+                            )}/${casino?.game_id}`
+                          : "/login"
                       )
                     }
                     className="s1raq561 grid-item"

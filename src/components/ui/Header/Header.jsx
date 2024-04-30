@@ -9,7 +9,6 @@ const Header = () => {
   const { balanceData } = useBalance();
   const location = useLocation();
 
-
   return (
     <div
       className={`mia0b51 mobile-header ${
@@ -126,11 +125,12 @@ const Header = () => {
 
             <button
               onClick={() => {
-            
                 setSportsType(4);
                 navigate("/");
               }}
-              className={`mb-top-navigate-item ${location.pathname == '/' && sportsType == 4 ? "active" : ""}`}
+              className={`mb-top-navigate-item ${
+                location.pathname == "/" && sportsType == 4 ? "active" : ""
+              }`}
             >
               <svg
                 width="18"
@@ -171,11 +171,12 @@ const Header = () => {
 
             <button
               onClick={() => {
-            
                 setSportsType(1);
                 navigate("/");
               }}
-              className={`mb-top-navigate-item ${location.pathname == '/' && sportsType == 1 ? "active" : ""}`}
+              className={`mb-top-navigate-item ${
+                location.pathname == "/" && sportsType == 1 ? "active" : ""
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,11 +202,12 @@ const Header = () => {
 
             <button
               onClick={() => {
-             
                 setSportsType(2);
                 navigate("/");
               }}
-              className={`mb-top-navigate-item ${location.pathname == '/' && sportsType == 2 ? "active" : ""}`}
+              className={`mb-top-navigate-item ${
+                location.pathname == "/" && sportsType == 2 ? "active" : ""
+              }`}
             >
               <svg
                 width="18"
@@ -231,7 +233,7 @@ const Header = () => {
 
             <button
               onClick={() => {
-                navigate("/indian-casino");
+                navigate(token ? "/indian-casino" : "/login");
               }}
               className={`mb-top-navigate-item ${
                 location.pathname == "/indian-casino" ? "active" : ""
@@ -255,7 +257,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => {
-                navigate("/int-casino");
+                navigate(token ? "/int-casino" : "/login");
               }}
               className={`mb-top-navigate-item ${
                 location.pathname == "/int-casino" ? "active" : ""
@@ -311,7 +313,7 @@ const Header = () => {
               <span>Aviator</span>
             </button>
             <button
-              onClick={() => navigate("/slots")}
+              onClick={() => navigate(token ? "/slots" : "/login")}
               className={`mb-top-navigate-item ${
                 location.pathname == "/slots" ? "active" : ""
               }`}

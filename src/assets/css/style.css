@@ -14480,7 +14480,7 @@ img,
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: rgba(54, 226, 250, .1019607843);
+    /* background: rgba(54, 226, 250, .1019607843); */
 }
 
 .user-name-icon-profile .user-icon-account-profile {
