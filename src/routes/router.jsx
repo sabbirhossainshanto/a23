@@ -15,6 +15,8 @@ import Withdraw from "../pages/Withdraw/Withdraw";
 import DepositWithdrawReport from "../pages/DepositWithdrawReport/DepositWithdrawReport";
 import SingleDWReport from "../pages/DepositWithdrawReport/SingleDWReport";
 import IndianCasino from "../pages/IndianCasino/IndianCasino";
+import InterNationalCasino from "../pages/InterNationalCasino/InterNationalCasino";
+import Slots from "../pages/Slots/Slots";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +82,14 @@ export const router = createBrowserRouter([
       {
         path: "indian-casino",
         element: <IndianCasino />,
+      },
+      {
+        path: "int-casino",
+        element: <InterNationalCasino />,
+      },
+      {
+        path: "slots",
+        element: <Slots />,
       },
     ],
   },

@@ -5,26 +5,31 @@ import { API } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
-const useIndianCasino = () => {
+
+const useInterNationalCasino = () => {
   const { token, tokenLoading } = useContextState();
-  const { data: indianCasino = [], refetch: refetchIndianCasino } = useQuery({
-    queryKey: ["indian-casino"],
+  const { data: intCasino = [], refetch: refetchIntCasino } = useQuery({
+    queryKey: ["int-casino"],
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);
-      const res = await axios.post(`${API.indiaCardGames}`, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(
+        `${API.internationalCasino}`,
+        encryptedData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = res.data;
       if (data.status === "success") {
         return data.data;
       }
     },
   });
-  return { indianCasino, refetchIndianCasino };
+  return { intCasino, refetchIntCasino };
 };
 
-export default useIndianCasino;
+export default useInterNationalCasino;

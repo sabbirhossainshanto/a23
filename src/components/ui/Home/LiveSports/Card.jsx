@@ -424,8 +424,7 @@ const Card = ({ liveSports, keys }) => {
                 <div className="bt312">
                   <div className="bt319">
                     <div className="bt321">
-                      {liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]
-                        ?.price && (
+                     
                         <div
                           data-editor-id="outcomePlate"
                           className={`${
@@ -452,9 +451,8 @@ const Card = ({ liveSports, keys }) => {
                             </div>
                           </div>
                         </div>
-                      )}
-                      {liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]
-                        ?.price && (
+                  
+                 
                         <div
                           data-editor-id="outcomePlate"
                           className="bt323 bt326"
@@ -477,9 +475,8 @@ const Card = ({ liveSports, keys }) => {
                             </div>
                           </div>
                         </div>
-                      )}
-                      {liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]
-                        ?.price && (
+                   
+               
                         <div
                           data-editor-id="outcomePlate"
                           className={`${
@@ -506,7 +503,7 @@ const Card = ({ liveSports, keys }) => {
                             </div>
                           </div>
                         </div>
-                      )}
+                    
                     </div>
                   </div>
                 </div>

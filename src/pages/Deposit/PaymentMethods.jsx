@@ -10,6 +10,7 @@ import clipboardIcon from '../../../src/assets/img/clipboard_icon.svg'
 import contactTwo from '../../../src/assets/img/contact_two.svg'
 import codeBlock from '../../../src/assets/img/code_block.svg'
 import institution from '../../../src/assets/img/institution.svg'
+import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({ setUploadTransaction,
@@ -118,7 +119,9 @@ const PaymentMethods = ({ setUploadTransaction,
                      {depositData?.accountNumber
 }
                     </p>
-                    <p _ngcontent-kdb-c159="" className="svg ng-tns-c159-13">
+                    <p
+                    onClick={()=> handleCopyToClipBoard(depositData?.accountNumber)}
+                    _ngcontent-kdb-c159="" className="svg ng-tns-c159-13">
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"

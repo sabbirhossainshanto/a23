@@ -12619,7 +12619,7 @@ img,
 
 .depositpop {
     display: flex;
-    padding: .5rem 1.5rem 1.625rem;
+    padding: .5rem 1.5rem 5.625rem;
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
@@ -15278,6 +15278,11 @@ form {
     gap: .5rem;
     border-radius: .5rem;
     border: 1px solid #f2f2f7;
+    display: flex;
+
+    background-color: #ebedf4;
+    margin-bottom: .38rem;
+
 
     position: relative;
     width: 100%;
@@ -20813,16 +20818,6 @@ img,
     border-radius: 1.5rem 1.5rem 0rem 0rem;
 }
 
-.input-box {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: .375rem;
-    background-color: #ebedf4;
-    margin-bottom: .38rem;
-    position: relative;
-}
-
 .input-box>p {
     display: flex;
     flex-direction: column;
@@ -25911,6 +25906,19 @@ p {
     flex-basis: 0;
     margin-right: 16px;
     align-items: center;
+}
+
+
+
+.card-blank {
+    width: 100%;
+    height: max-content;
+    border-radius: 10px;
+    color: #040404;
+    font-size: 12px;
+    font-weight: 500;
+    background: #fff;
+    padding: .69rem 1rem;
 }
 
 /*! CSS Used fontfaces */

@@ -5,15 +5,15 @@ import { API } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
-const useIndianCasino = () => {
+const useGetSlots = () => {
   const { token, tokenLoading } = useContextState();
-  const { data: indianCasino = [], refetch: refetchIndianCasino } = useQuery({
-    queryKey: ["indian-casino"],
+  const { data: slots = [], refetch: refetchSlots } = useQuery({
+    queryKey: ["slots"],
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);
-      const res = await axios.post(`${API.indiaCardGames}`, encryptedData, {
+      const res = await axios.post(`${API.slots}`, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -24,7 +24,7 @@ const useIndianCasino = () => {
       }
     },
   });
-  return { indianCasino, refetchIndianCasino };
+  return { slots, refetchSlots };
 };
 
-export default useIndianCasino;
+export default useGetSlots;

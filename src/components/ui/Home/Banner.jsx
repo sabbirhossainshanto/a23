@@ -30,7 +30,7 @@ const Banner = ({ bannerImage }) => {
             >
               {bannerImage?.map((image, i) => {
                 return (
-                  <SwiperSlide spaceBetween={30} centeredSlides={true} key={i}>
+                  <SwiperSlide  key={i}>
                     <div
                       className="swiper-slide"
                       style={{ marginRight: "8px" }}

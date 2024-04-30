@@ -22,13 +22,14 @@ const LiveSports = ({ liveSports }) => {
           </svg>
           Live Sports
         </div>
-        <a className="">View all</a>
+        {/* <a className="">View all</a> */}
       </div>
       <div
         className="banner-scroll-wrap"
         style={{
           // height: "14.5rem",
           height: "200px",
+          marginBottom:'1.5rem'
         }}
       >
         <div className="live-list-wrap" style={{ height: "100%" }}>

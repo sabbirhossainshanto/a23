@@ -10,7 +10,8 @@
       "referral": true,
       "balanceApiLoop": false,
       "registration": true,
-      "disabledDevtool": false
+      "disabledDevtool": false,
+      "otp": true
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
@@ -32,7 +33,10 @@
       "accountStatement": "https://api7.live/api/exchange/diamond/accountStatement",
       "settledBets": "https://api7.live/api/exchange/diamond/settledBets",
       "indiaCardGames": "https://api7.live/api/exchange/diamond/indianCardGames",
-      "assets": "https://api7.live/sitethemes"
+      "assets": "https://api7.live/sitethemes",
+      "internationalCasino": "https://api7.live/api/exchange/diamond/internationalCasino",
+      "slots": "https://api7.live/api/exchange/diamond/slots",
+      "homeCasino": "https://api7.live/api/exchange/diamond/homeCasino"
     }
   },
   "success": true
