@@ -125,7 +125,7 @@ const Casino = () => {
                     </a>
                     <div className="bot-info">
                       <div className="game-tit">
-                        <a className="txt">{casino?.provider_name}</a>
+                        <a style={{fontSize:'12px'}} className="txt">{casino?.provider_name}</a>
                       </div>
                     </div>
                   </div>

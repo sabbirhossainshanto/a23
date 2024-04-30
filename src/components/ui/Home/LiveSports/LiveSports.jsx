@@ -28,8 +28,8 @@ const LiveSports = ({ liveSports }) => {
         className="banner-scroll-wrap"
         style={{
           // height: "14.5rem",
-          height: "200px",
-          marginBottom:'1.5rem'
+          height: "215px",
+       
         }}
       >
         <div className="live-list-wrap" style={{ height: "100%" }}>
@@ -55,7 +55,7 @@ const LiveSports = ({ liveSports }) => {
                   .map((key, index) => {
                     return (
                       <SwiperSlide
-                        style={{ borderRadius: "10px", width: "21.875rem" }}
+                        style={{ borderRadius: "10px", width: "21.875rem"}}
                         key={index}
                       >
                         <Card keys={key} liveSports={liveSports} />
