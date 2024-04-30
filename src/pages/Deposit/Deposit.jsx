@@ -29,6 +29,7 @@ const Deposit = () => {
       )}
       {showModal && (
         <DepositModal
+        amount={amount}
           setShowModal={setShowModal}
           setPaymentMethods={setPaymentMethods}
         />

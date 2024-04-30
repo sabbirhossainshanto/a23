@@ -19266,12 +19266,15 @@ button {
 }
 
 .odds_suspended {
-    background-color: rgba(128, 128, 128, .7);
+    /* rgba(128, 128, 128, .7) */
+    background-color: lightgray !important;
     min-height: 40px;
     margin: auto;
     padding-top: 5px;
 
 }
+
+
 
 /* withdraw page end */
 
@@ -23333,7 +23336,7 @@ div {
     color: #fff;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    /* width: 100%; */
     border-radius: 1.5rem 1.5rem 0rem 0rem;
     background: #000C24;
     z-index: 9999999999;
@@ -25921,6 +25924,40 @@ p {
     padding: .69rem 1rem;
 }
 
+.card-blank {
+    width: 100%;
+    height: max-content;
+    border-radius: 10px;
+    color: #040404;
+    font-size: 12px;
+    font-weight: 500;
+    background: #fff;
+    padding: .69rem 1rem;
+}
+
+
+.card-header>h2 {
+    margin-bottom: 0;
+    color: #040404;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: .01875rem;
+}
+
+.card  {
+    color: #040404;
+    bottom: 0;
+    left: 25px;
+    /* width: 100%; */
+    border-radius: 10px;
+    background: #000c24;
+    z-index: 9999999999;
+    background: #fff;
+    animation: slide-in .7s cubic-bezier(.25,.46,.45,.94) both;
+}
 /*! CSS Used fontfaces */
 
 

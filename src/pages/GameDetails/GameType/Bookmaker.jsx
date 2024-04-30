@@ -5,6 +5,7 @@ import { handleToggle } from "../../../utils/handleToggle";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 import useContextState from "../../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
+import { isRunnerSuspended } from "../../../utils/isRunnerSuspended";
 
 const Bookmaker = ({
   bookmarker,
@@ -33,6 +34,8 @@ const Bookmaker = ({
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
+
+
 
   return (
     <>
@@ -153,7 +156,7 @@ const Bookmaker = ({
                             changedPrices[`back-${runner?.id}-${i}`]
                               ? "blink"
                               : ""
-                          }`}
+                          } ${isRunnerSuspended(games, runner)}`}
                           style={{
                             backgroundColor: "#a0d8fb",
                             minHeight: "40px",
@@ -164,7 +167,11 @@ const Bookmaker = ({
                             className={`bookmaker_label  `}
                             style={{ verticalAlign: "middle", width: "100%" }}
                           >
-                            <h4> {runner?.back[0]?.price}</h4>
+                            <h4>
+                              {" "}
+                              {!isRunnerSuspended(games, runner) &&
+                                runner?.back[0]?.price}
+                            </h4>
                           </span>
                         </div>
                       </div>
@@ -191,7 +198,7 @@ const Bookmaker = ({
                             changedPrices[`lay-${runner?.id}-${i}`]
                               ? "blink"
                               : ""
-                          }`}
+                          } ${isRunnerSuspended(games, runner)}`}
                           style={{
                             backgroundColor: "#fdc9d4",
                             minHeight: "40px",
@@ -199,7 +206,11 @@ const Bookmaker = ({
                           }}
                         >
                           <span className={`bookmaker_label  `}>
-                            <h4> {runner?.lay[0]?.price}</h4>
+                            <h4>
+                              {" "}
+                              {!isRunnerSuspended(games, runner) &&
+                                runner?.lay[0]?.price}
+                            </h4>
                           </span>
                         </div>
                       </div>

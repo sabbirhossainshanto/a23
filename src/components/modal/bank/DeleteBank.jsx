@@ -11,12 +11,14 @@ const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
   useCloseModalClickOutside(deleteBankRef, () => {
     setRemoveBank(false);
   });
+
+
   const { token } = useContextState();
   const handleDeleteBank = async () => {
     const generatedToken = handleRandomToken();
     const bankData = {
       type: "deleteBankAccount",
-      bankId: removeBank?.bankId,
+      bankId: removeBank,
       token: generatedToken,
     };
 

@@ -36,7 +36,8 @@
       "assets": "https://api7.live/sitethemes",
       "internationalCasino": "https://api7.live/api/exchange/diamond/internationalCasino",
       "slots": "https://api7.live/api/exchange/diamond/slots",
-      "homeCasino": "https://api7.live/api/exchange/diamond/homeCasino"
+      "homeCasino": "https://api7.live/api/exchange/diamond/homeCasino",
+      "depositBreakdown": "https://api7.live/api/exchange/diamond/depositBreakdown"
     }
   },
   "success": true

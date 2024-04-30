@@ -5,6 +5,7 @@ import { handleToggle } from "../../../utils/handleToggle";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 import useContextState from "../../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
+import { isRunnerSuspended } from "../../../utils/isRunnerSuspended";
 
 const MatchOdds = ({
   match_odds,
@@ -31,6 +32,8 @@ const MatchOdds = ({
       setChangedPrices
     );
   }, [match_odds, previousData]);
+
+
 
   return (
     <>
@@ -152,15 +155,20 @@ const MatchOdds = ({
                             changedPrices[`back-${runner?.id}-${i}`]
                               ? "blink"
                               : ""
-                          }`}
+                          } ${isRunnerSuspended(games, runner)} `}
                         >
                           <span
                             className={`mdc-button__label  `}
                             style={{ verticalAlign: "middle", width: "100%" }}
                           >
-                            <h4> {runner?.back[0]?.price}</h4>
+                            <h4>
+                              {" "}
+                              {!isRunnerSuspended(games, runner) &&
+                                runner?.back[0]?.price}
+                            </h4>
                             <p className="odds_volume">
-                              {runner?.back[0]?.size}
+                              {!isRunnerSuspended(games, runner) &&
+                                runner?.back[0]?.size}
                             </p>
                           </span>
                         </div>
@@ -188,13 +196,18 @@ const MatchOdds = ({
                             changedPrices[`lay-${runner.id}-${i}`]
                               ? "blink"
                               : ""
-                          }`}
+                          } ${isRunnerSuspended(games, runner)}`}
                         >
                           <span className={`mdc-button__label `}>
-                            <h4> {runner?.lay[0]?.price}</h4>
+                            <h4>
+                              {" "}
+                              {!isRunnerSuspended(games, runner) &&
+                                runner?.lay[0]?.price}
+                            </h4>
                             <p className="odds_volume">
                               {" "}
-                              {runner?.lay[0]?.size}
+                              {!isRunnerSuspended(games, runner) &&
+                                runner?.lay[0]?.size}
                             </p>
                           </span>
                         </div>
@@ -204,126 +217,6 @@ const MatchOdds = ({
                 </div>
               );
             })}
-            {/* 
-            <div
-              className=""
-              style={{
-                height: "auto",
-                overflow: "visible",
-                transition: "height 0.25s ease 0s",
-              }}
-            >
-              <div style={{ overflow: "visible" }}>
-                <div className="bt12683">
-                  <div
-                    data-editor-id="tableOutcomePlate"
-                    className="bt6588  "
-                    style={{ flex: "1" }}
-                  >
-                    <div
-                      className="bt6592 bt12699"
-                      style={{ minHeight: "40px" }}
-                    >
-                      <div
-                        className="bt6596 bt12703"
-                        data-editor-id="tableOutcomePlateName"
-                      >
-                        <span className="bt6598">Team 2</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    data-editor-id="tableOutcomePlate"
-                    className="bt6588  "
-                    style={{ flexBasis: "12%" }}
-                  >
-                    <div className="bt6592 bt12699 odds_back">
-                      <span
-                        className="mdc-button__label"
-                        style={{ verticalAlign: "middle" }}
-                      >
-                        <h4>6.2</h4>
-                        <p className="odds_volume">11.69</p>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div
-                    data-editor-id="tableOutcomePlate"
-                    className="bt6588  "
-                    style={{ flexBasis: "12%" }}
-                  >
-                    <div className="bt6592 bt12699 odds_lay">
-                      <span className="mdc-button__label">
-                        <h4>6.2</h4>
-                        <p className="odds_volume">11.69</p>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className=""
-              style={{
-                height: "auto",
-                overflow: "visible",
-                transition: "height 0.25s ease 0s",
-              }}
-            >
-              <div style={{ overflow: "visible" }}>
-                <div className="bt12683">
-                  <div
-                    data-editor-id="tableOutcomePlate"
-                    className="bt6588  "
-                    style={{ flex: "1" }}
-                  >
-                    <div
-                      className="bt6592 bt12699"
-                      style={{ minHeight: "40px" }}
-                    >
-                      <div
-                        className="bt6596 bt12703"
-                        data-editor-id="tableOutcomePlateName"
-                      >
-                        <span className="bt6598">Team 3</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    data-editor-id="tableOutcomePlate"
-                    className="bt6588  "
-                    style={{ flexBasis: "12%" }}
-                  >
-                    <div className="bt6592 bt12699 odds_back">
-                      <span
-                        className="mdc-button__label"
-                        style={{ verticalAlign: "middle" }}
-                      >
-                        <h4>6.2</h4>
-                        <p className="odds_volume">11.69</p>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div
-                    data-editor-id="tableOutcomePlate"
-                    className="bt6588  "
-                    style={{ flexBasis: "12%" }}
-                  >
-                    <div className="bt6592 bt12699 odds_lay odds_suspended">
-                      <span className="mdc-button__label">
-                        <h4>6.2</h4>
-                        <p className="odds_volume">11.69</p>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         );
       })}

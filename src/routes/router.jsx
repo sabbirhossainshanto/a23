@@ -17,6 +17,7 @@ import SingleDWReport from "../pages/DepositWithdrawReport/SingleDWReport";
 import IndianCasino from "../pages/IndianCasino/IndianCasino";
 import InterNationalCasino from "../pages/InterNationalCasino/InterNationalCasino";
 import Slots from "../pages/Slots/Slots";
+import Promotion from "../pages/Promotion/Promotion";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,14 @@ export const router = createBrowserRouter([
       {
         path: "slots",
         element: <Slots />,
+      },
+      {
+        path: "promotion",
+        element: <Promotion />,
+      },
+      {
+        path: "more-page",
+        element: <Promotion />,
       },
     ],
   },

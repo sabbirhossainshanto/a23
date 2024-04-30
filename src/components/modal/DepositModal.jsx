@@ -1,11 +1,15 @@
 import { useRef } from "react";
 import starImg from "../../assets/img/star.svg";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-const DepositModal = ({ setShowModal, setPaymentMethods }) => {
+import useDepositBreakDown from "../../hooks/useDepositBreakDown";
+const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
+  const { depositBreakdown } = useDepositBreakDown(amount);
   const depositRef = useRef();
   useCloseModalClickOutside(depositRef, () => {
     setShowModal(false);
   });
+
+  console.log(depositBreakdown);
   return (
     <div className="Modal-Background ng-tns-c159-13 ng-star-inserted">
       <div className="depositpop ng-tns-c159-13" ref={depositRef}>
@@ -40,21 +44,32 @@ const DepositModal = ({ setShowModal, setPaymentMethods }) => {
               <div className="balancetxt ng-tns-c159-13">
                 <p className="ng-tns-c159-13">Deposit Amount</p>
               </div>
-              <div className="amt ng-tns-c159-13">
-                <p className="ng-tns-c159-13">₹ 300</p>
-                <p className="depamt ng-tns-c159-13 ng-star-inserted">
-                  +1500 Bonus
+              {depositBreakdown?.deposit && (
+                <div className="amt ng-tns-c159-13">
+                  <p className="ng-tns-c159-13">
+                    ₹ {depositBreakdown?.deposit}
+                  </p>
+                  <p className="depamt ng-tns-c159-13 ng-star-inserted">
+                    +{depositBreakdown?.bonus} Bonus
+                  </p>
+                </div>
+              )}
+            </div>
+            {depositBreakdown?.instantMoney && (
+              <div className="moneybox ng-tns-c159-13">
+                <p className="money ng-tns-c159-13">3% Instant Money</p>
+                <p className="doll ng-tns-c159-13">
+                  ₹{depositBreakdown?.instantMoney}
                 </p>
               </div>
-            </div>
-            <div className="moneybox ng-tns-c159-13">
-              <p className="money ng-tns-c159-13">3% Instant Money</p>
-              <p className="doll ng-tns-c159-13">₹9</p>
-            </div>
+            )}
+
             <div className="line ng-tns-c159-13"></div>
             <div className="totalamt ng-tns-c159-13">
               <p className="money ng-tns-c159-13">Total Amount Credited</p>
-              <p className="doll1 ng-tns-c159-13">₹ 1809</p>
+              <p className="doll1 ng-tns-c159-13">
+                ₹ {depositBreakdown?.totalAmount}
+              </p>
             </div>
           </div>
           <div className="giftbox ng-tns-c159-13">
@@ -74,7 +89,9 @@ const DepositModal = ({ setShowModal, setPaymentMethods }) => {
               <p className="money ng-tns-c159-13">
                 Amount credited In main wallet
               </p>
-              <p className="doll ng-tns-c159-13">₹ 309</p>
+              <p className="doll ng-tns-c159-13">
+                ₹ {depositBreakdown?.mainWallet}
+              </p>
             </div>
             <img
               loading="lazy"
@@ -83,44 +100,47 @@ const DepositModal = ({ setShowModal, setPaymentMethods }) => {
               className="star3 ng-tns-c159-13"
             />
           </div>
-          <div className="giftbox1 ng-tns-c159-13 ng-star-inserted">
-            <img
-              loading="lazy"
-              src={starImg}
-              alt=""
-              className="star1 ng-tns-c159-13"
-            />
-            <img
-              loading="lazy"
-              src={starImg}
-              alt=""
-              className="star2 ng-tns-c159-13"
-            />
-            <div className="gift-input ng-tns-c159-13">
-              <p className="money ng-tns-c159-13">
-                Amount credited In bonus card
-              </p>
-              <p className="doll ng-tns-c159-13">₹1500</p>
+          {depositBreakdown?.bonusWallet && (
+            <div className="giftbox1 ng-tns-c159-13 ng-star-inserted">
+              <img
+                loading="lazy"
+                src={starImg}
+                alt=""
+                className="star1 ng-tns-c159-13"
+              />
+              <img
+                loading="lazy"
+                src={starImg}
+                alt=""
+                className="star2 ng-tns-c159-13"
+              />
+              <div className="gift-input ng-tns-c159-13">
+                <p className="money ng-tns-c159-13">
+                  Amount credited In bonus card
+                </p>
+                <p className="doll ng-tns-c159-13">
+                  ₹{depositBreakdown?.bonusWallet}
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src={starImg}
+                alt=""
+                className="star4 ng-tns-c159-13"
+              />
             </div>
-            <img
-              loading="lazy"
-              src={starImg}
-              alt=""
-              className="star4 ng-tns-c159-13"
-            />
-          </div>
-          <div 
-          style={{width:'100%'}}
-          onClick={() => {
-                  setPaymentMethods(true);
-                  setShowModal(false);
-                }} className="makepayment ng-tns-c159-13">
+          )}
+
+          <div
+            style={{ width: "100%" }}
+            onClick={() => {
+              setPaymentMethods(true);
+              setShowModal(false);
+            }}
+            className="makepayment ng-tns-c159-13"
+          >
             <div className="madepay ng-tns-c159-13">
-              <button
-               
-                type="button"
-                className="ng-tns-c159-13"
-              >
+              <button type="button" className="ng-tns-c159-13">
                 Confirm
               </button>
             </div>

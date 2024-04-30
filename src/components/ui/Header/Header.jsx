@@ -233,7 +233,7 @@ const Header = () => {
 
             <button
               onClick={() => {
-                navigate(token ? "/indian-casino" : "/login");
+                navigate("/indian-casino");
               }}
               className={`mb-top-navigate-item ${
                 location.pathname == "/indian-casino" ? "active" : ""
@@ -257,7 +257,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => {
-                navigate(token ? "/int-casino" : "/login");
+                navigate("/int-casino");
               }}
               className={`mb-top-navigate-item ${
                 location.pathname == "/int-casino" ? "active" : ""
@@ -313,7 +313,7 @@ const Header = () => {
               <span>Aviator</span>
             </button>
             <button
-              onClick={() => navigate(token ? "/slots" : "/login")}
+              onClick={() => navigate("/slots")}
               className={`mb-top-navigate-item ${
                 location.pathname == "/slots" ? "active" : ""
               }`}

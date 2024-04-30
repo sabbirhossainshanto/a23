@@ -17,27 +17,30 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
 
   const handlePlaceBet = (item, runner, betType) => {
     if (token) {
-      setOpenBetSlip(true);
-      setPlaceBetValues({});
-      setPlaceBetValues({
-        price: betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
-        side: betType === "back" ? 0 : 1,
-        selectionId: runner?.id,
-        btype: item?.btype,
-        eventTypeId: item?.eventTypeId,
-        betDelay: item?.betDelay,
-        marketId: item?.id,
-        lay: betType === "lay",
-        back: betType === "back",
-        selectedBetName: runner?.name,
-        name: item.runners.map((runner) => runner.name),
-        runnerId: item.runners.map((runner) => runner.id),
-        isWeak: item?.isWeak,
-        maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-        isBettable: item?.isBettable,
-        maxLiabilityPerBet: item?.maxLiabilityPerBet,
-        eventId: item?.eventId,
-      });
+      if (item?.status === "OPEN") {
+        setOpenBetSlip(true);
+        setPlaceBetValues({});
+        setPlaceBetValues({
+          price:
+            betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
+          side: betType === "back" ? 0 : 1,
+          selectionId: runner?.id,
+          btype: item?.btype,
+          eventTypeId: item?.eventTypeId,
+          betDelay: item?.betDelay,
+          marketId: item?.id,
+          lay: betType === "lay",
+          back: betType === "back",
+          selectedBetName: runner?.name,
+          name: item.runners.map((runner) => runner.name),
+          runnerId: item.runners.map((runner) => runner.id),
+          isWeak: item?.isWeak,
+          maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
+          isBettable: item?.isBettable,
+          maxLiabilityPerBet: item?.maxLiabilityPerBet,
+          eventId: item?.eventId,
+        });
+      }
     } else {
       navigate("/login");
     }
@@ -48,6 +51,12 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
+
+  const isRunnerSuspended = (games) => {
+    if (games?.status !== "OPEN") {
+      return "odds_suspended";
+    }
+  };
 
   return (
     <div className="bt12687">
@@ -152,7 +161,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                       changedPrices[`back-${games?.runners?.[0]?.id}-${i}`]
                         ? "blink"
                         : ""
-                    }`}
+                    } ${isRunnerSuspended(games)}`}
                     style={{
                       backgroundColor: "#fdc9d4",
                       minHeight: "40px",
@@ -164,9 +173,13 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                       className={`mdc-button__label `}
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
-                      <h4>{games?.runners?.[0]?.lay?.[0]?.line}</h4>
+                      <h4>
+                        {!isRunnerSuspended(games) &&
+                          games?.runners?.[0]?.lay?.[0]?.line}
+                      </h4>
                       <p className="odds_volume">
-                        {games?.runners?.[0]?.lay?.[0]?.price}
+                        {!isRunnerSuspended(games) &&
+                          games?.runners?.[0]?.lay?.[0]?.price}
                       </p>
                     </span>
                   </div>
@@ -185,7 +198,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                       changedPrices[`lay-${games?.runners?.[0].id}-${i}`]
                         ? "blink"
                         : ""
-                    }`}
+                    } ${isRunnerSuspended(games)}`}
                     style={{
                       backgroundColor: "#a0d8fb",
                       minHeight: "40px",
@@ -194,10 +207,15 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                     }}
                   >
                     <span className={`mdc-button__label `}>
-                      <h4> {games?.runners?.[0]?.back?.[0]?.line}</h4>
+                      <h4>
+                        {" "}
+                        {!isRunnerSuspended(games) &&
+                          games?.runners?.[0]?.back?.[0]?.line}
+                      </h4>
                       <p className="odds_volume">
                         {" "}
-                        {games?.runners?.[0]?.back[0]?.price}
+                        {!isRunnerSuspended(games) &&
+                          games?.runners?.[0]?.back[0]?.price}
                       </p>
                     </span>
                   </div>

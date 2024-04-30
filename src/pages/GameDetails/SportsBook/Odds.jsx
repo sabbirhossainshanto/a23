@@ -38,8 +38,8 @@ const Odds = ({
       group?.Name !== "Player Specials"
   );
 
+  
 
- 
   const itemsLengthArray = sports?.map((group) => group?.Items?.length) || [];
   const [openItems, setOpenItems] = useState(
     new Array(itemsLengthArray[0] || 0).fill(false).map((_, index) => index < 5)
@@ -62,34 +62,44 @@ const Odds = ({
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(
-      (match_odd) => match_odd.btype === "MATCH_ODDS"
+      (match_odd) =>
+        match_odd.btype === "MATCH_ODDS" && match_odd.visible == true
     );
     setMatch_odds(filterMatch_odds);
 
     const bookmarkerFilter = data?.filter(
-      (bookmarker) => bookmarker.btype === "BOOKMAKER"
+      (bookmarker) =>
+        bookmarker.btype === "BOOKMAKER" && bookmarker.visible == true
     );
     setBookmarker(bookmarkerFilter);
 
     const filterBookmarker2 = data?.filter(
-      (bookmarker2) => bookmarker2.btype === "BOOKMAKER2"
+      (bookmarker2) =>
+        bookmarker2.btype === "BOOKMAKER2" && bookmarker2.visible == true
     );
     setBookmarker2(filterBookmarker2);
 
     const normalFilter = data?.filter(
-      (normal) => normal.btype === "FANCY" && normal.tabGroupName === "Normal"
+      (normal) =>
+        normal.btype === "FANCY" &&
+        normal.tabGroupName === "Normal" &&
+        normal.visible == true
     );
     setNormal(normalFilter);
 
     const fancy1Filter = data?.filter(
-      (fancy1) => fancy1.btype === "ODDS" && fancy1.tabGroupName === "Fancy1"
+      (fancy1) =>
+        fancy1.btype === "ODDS" &&
+        fancy1.tabGroupName === "Fancy1" &&
+        fancy1.visible == true
     );
     setFancy1(fancy1Filter);
 
     const overByOverFilter = data?.filter(
       (overByOver) =>
         overByOver.btype === "FANCY" &&
-        overByOver.tabGroupName === "Over By Over"
+        overByOver.tabGroupName === "Over By Over" &&
+        overByOver.visible == true
     );
     setOverByOver(overByOverFilter);
   }, [data]);

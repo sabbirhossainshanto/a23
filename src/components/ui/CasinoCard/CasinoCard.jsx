@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import useContextState from "../../../hooks/useContextState";
 
 const CasinoCard = ({ games, title }) => {
+  const { token } = useContextState();
   const navigate = useNavigate();
   return (
     <div className="s15yntg2">
@@ -12,9 +14,11 @@ const CasinoCard = ({ games, title }) => {
               <div
                 onClick={() =>
                   navigate(
-                    `/casino/${casino?.game_name.replace(/ /g, "")}/${
-                      casino?.game_id
-                    }`
+                    token
+                      ? `/casino/${casino?.game_name.replace(/ /g, "")}/${
+                          casino?.game_id
+                        }`
+                      : "/login"
                   )
                 }
                 key={i}
