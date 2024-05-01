@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import handLogo from "../../../src/assets/img/hand-logo.webp";
 import indFlag from "../../../src/assets/img/ind-flag-icon.svg";
 import { API, Settings } from "../../api";
 import GetOTP from "./GetOTP";
@@ -142,7 +141,7 @@ const Register = () => {
             <div>
               <div className="register-box">
                 <div className="register-card">
-                  <div className="register-card-header">
+                  {/* <div className="register-card-header">
                     <span>New Member?</span>
                     <div className="register-text">
                       <p>Register Now,</p>
@@ -152,7 +151,7 @@ const Register = () => {
                         style={{ height: "24px", width: "24px" }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="ng-invalid ng-submitted ng-untouched ng-pristine"
@@ -193,7 +192,7 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className="terms">
+                    {/* <div className="terms">
                       <div className="radio-check">
                         <img
                           src="assets/img/checked.webp"
@@ -205,7 +204,7 @@ const Register = () => {
                         I confirm that I am 18 years old or above and agree to
                         the terms and conditions.
                       </span>
-                    </div>
+                    </div> */}
                     <div>
                       <div className="otp-input-box">
                         <span>Enter OTP*</span>
