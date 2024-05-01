@@ -22,7 +22,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
       const res = await axios.post(API.otp, encryptedData);
       const data = res.data;
       if (data?.success) {
-        toast.success(data?.result?.message);
+        // toast.success(data?.result?.message);
         setShowRegister(true);
       } else {
         toast.error(data?.error?.errorMessage);
