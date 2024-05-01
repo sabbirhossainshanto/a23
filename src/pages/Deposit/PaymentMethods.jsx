@@ -60,7 +60,7 @@ const PaymentMethods = ({
             className="accountdetailss ng-tns-c159-13 ng-star-inserted"
           >
             <div className="payment_container" style={{ width: "100%" }}>
-              {Array.isArray(depositMethods) &&
+              {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
                 depositMethods?.map((method) => {
                   return (
                     <div
@@ -76,7 +76,10 @@ const PaymentMethods = ({
                       <h2> {method?.type?.toUpperCase()}</h2>
                     </div>
                   );
-                })}
+                })
+              ) : (
+                <h2>No payment method available right now.</h2>
+              )}
 
               {/*    <!-- Add more divs as needed --> */}
             </div>

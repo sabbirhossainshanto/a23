@@ -3,6 +3,7 @@ import useContextState from "../../../hooks/useContextState";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
 import { useState } from "react";
 import OpenBets from "../../modal/OpenBets";
+import useCurrentBets from "../../../hooks/useCurrentBets";
 
 const Footer = () => {
   const { setSportsType, token } = useContextState();
@@ -24,9 +25,13 @@ const Footer = () => {
       window.open(socialLink?.link, "_blank");
     }
   };
+  const { myBets } = useCurrentBets();
+
   return (
     <>
-      {showOpenBets && <OpenBets setShowOpenBets={setShowOpenBets} />}
+      {showOpenBets && (
+        <OpenBets myBets={myBets} setShowOpenBets={setShowOpenBets} />
+      )}
       <div className="t1b5irhq">
         <div
           onClick={() => {

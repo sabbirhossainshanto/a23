@@ -27,6 +27,7 @@ export const API = {
   slots: endPoints?.slots,
   homeCasino: endPoints?.homeCasino,
   depositBreakdown: endPoints?.depositBreakdown,
+  withdrawBreakdown: endPoints?.withdrawBreakdown,
 };
 
 export const Settings = {

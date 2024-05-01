@@ -50,7 +50,8 @@ const DepositReport = () => {
                           <div className="top-content ">
                             <div className="left-top-text ">
                               <span className="">
-                                Deposit Via <span className=" ">WIZPAY</span>
+                             { data?.referenceNo}
+                                {/* Deposit Via <span className=" ">WIZPAY</span> */}
                               </span>
                               <span className="status  status-aproved">
                                 <svg
@@ -96,7 +97,7 @@ const DepositReport = () => {
                           <div className="bottom-content ">
                             <span className="left-bottom-id ">
                               {" "}
-                              {data?.referenceNo}{" "}
+                              {data?.remark}{" "}
                             </span>
                             {/* <span className="right-bottom-date ">
                               {" "}

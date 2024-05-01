@@ -37,7 +37,8 @@
       "internationalCasino": "https://api7.live/api/exchange/diamond/internationalCasino",
       "slots": "https://api7.live/api/exchange/diamond/slots",
       "homeCasino": "https://api7.live/api/exchange/diamond/homeCasino",
-      "depositBreakdown": "https://api7.live/api/exchange/diamond/depositBreakdown"
+      "depositBreakdown": "https://api7.live/api/exchange/diamond/depositBreakdown",
+      "withdrawBreakdown": "https://api7.live/api/exchange/diamond/withdrawBreakdown"
     }
   },
   "success": true

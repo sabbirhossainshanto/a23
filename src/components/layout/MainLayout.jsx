@@ -26,6 +26,18 @@ const MainLayout = () => {
       });
     }
   }, [navigate, disabledDevtool]);
+
+  const isFooterShown = () => {
+    if (
+      !location.pathname.includes("/casino") &&
+      !addBank &&
+      !location.pathname.includes("/game-details")
+    ) {
+      return true;
+    } else {
+      false;
+    }
+  };
   return (
     <div
       className="centered-div"
@@ -34,14 +46,20 @@ const MainLayout = () => {
       }}
     >
       <Header />
-      <div style={{ minHeight: "calc(100vh - 268px)" }}>
+      <div
+        style={{
+          minHeight: `calc(100vh - ${isFooterShown() ? "268px" : "210px"})`,
+        }}
+      >
         <Outlet />
       </div>
       {!location.pathname.includes("/casino") &&
       !addBank &&
-      !location.pathname.includes('/game-details') ? (
+      !location.pathname.includes("/game-details") ? (
         <Footer />
       ) : null}
+
+    
     </div>
   );
 };

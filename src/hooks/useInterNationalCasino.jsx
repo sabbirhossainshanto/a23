@@ -7,10 +7,10 @@ import handleEncryptData from "../utils/handleEncryptData";
 
 
 const useInterNationalCasino = () => {
-  const { token, tokenLoading } = useContextState();
+  const { token} = useContextState();
   const { data: intCasino = [], refetch: refetchIntCasino } = useQuery({
     queryKey: ["int-casino"],
-    enabled: !tokenLoading,
+  
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);

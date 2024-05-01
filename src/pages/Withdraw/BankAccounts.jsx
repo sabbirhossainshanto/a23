@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddBank from "../../components/modal/bank/AddBank";
 import DeleteBank from "../../components/modal/bank/DeleteBank";
 import useContextState from "../../hooks/useContextState";
@@ -16,6 +16,12 @@ const BankAccounts = ({
   const { addBank, setAddBank } = useContextState();
   const [removeBank, setRemoveBank] = useState("");
 
+  useEffect(() => {
+    setBank(bankData?.[0]);
+  }, [bankData, setBank]);
+
+  // console.log({bankData});
+
   return (
     <>
       <div className="dep-w-info-bc  ">
@@ -24,7 +30,7 @@ const BankAccounts = ({
             onClick={() => {
               setAmount("");
               setShowBankAccount(false);
-              setBank('');
+              setBank("");
             }}
             className="back-nav-bc "
           >
@@ -56,6 +62,7 @@ const BankAccounts = ({
             className=" "
           >
             {bankData?.map((data, i) => {
+              // console.log({ data }, { bank });
               return (
                 <div
                   onClick={() => setBank(data)}
@@ -67,10 +74,11 @@ const BankAccounts = ({
                   <div className=" bank-logo3">
                     <div className="logo ">
                       <img
+                      style={{maxWidth:'50px',width:'50px'}}
                         loading="lazy"
                         alt=""
                         className=""
-                        src="https://s3.ap-south-1.amazonaws.com/cdn.mac1j.com/gstatic/bankIcons/ICICI_BANK.svg"
+                        src={images?.bankPicture}
                       />
                       <p className=""> {data?.bankName}</p>
                     </div>

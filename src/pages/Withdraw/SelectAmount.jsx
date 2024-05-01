@@ -1,8 +1,8 @@
 import { images } from "../../assets";
-import useBalance from "../../hooks/useBalance";
+import useWithdrawBreakdown from "../../hooks/useWithdrawBreakdown";
 
 const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
-  const { balanceData } = useBalance();
+  const { withdrawBreakdown } = useWithdrawBreakdown();
   return (
     <div
       data-scroll-lock-scrollable=""
@@ -50,7 +50,7 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
           </div>
           <div className="wallet-card ">
             <span className="wallet-amount ">
-              ₹ {balanceData?.availBalance}
+              ₹ {withdrawBreakdown?.mainWallet}
             </span>
             <div className="wallet-txt ">
               <p className="">Main Wallet</p>
@@ -64,11 +64,11 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
           <div className="active-bonus-inner-card ">
             <div className="money-text ">
               <p className="">Free Money</p>
-              <p className="money-bal ">₹ 30</p>
+              <p className="money-bal ">₹ {withdrawBreakdown?.freeMoney}</p>
             </div>
             <div className="money-text ">
               <p className="">Active Bonus</p>
-              <p className="money-bal ">₹ 0</p>
+              <p className="money-bal ">₹ {withdrawBreakdown?.activeBonus}</p>
             </div>
             <div className="progressbar ">
               <div className="progressbg " style={{ width: "3%" }}>
@@ -116,7 +116,9 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
                       className="deposit_form_input   ng-pristine ng-invalid ng-touched"
                       placeholder="₹ Amount"
                     />
-                    <p className="deposit-input-min-text ">minimum ₹300</p>
+                    <p className="deposit-input-min-text ">
+                      minimum ₹{withdrawBreakdown?.minimumWithdraw}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -124,7 +126,7 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
           </form>
         </div>
         <button
-          disabled={amount < 300}
+          disabled={amount < 300 || amount > withdrawBreakdown?.mainWallet}
           onClick={() => setShowBankAccount(true)}
           className="btnn1 "
         >

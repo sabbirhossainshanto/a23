@@ -6,10 +6,10 @@ import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
 const useGetSlots = () => {
-  const { token, tokenLoading } = useContextState();
+  const { token } = useContextState();
   const { data: slots = [], refetch: refetchSlots } = useQuery({
     queryKey: ["slots"],
-    enabled: !tokenLoading,
+
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);

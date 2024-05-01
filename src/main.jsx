@@ -13,7 +13,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
-      <Toaster />
+      <Toaster toastOptions={{
+        style:{
+          // backgroundColor:'li',
+          // color:'#fff',
+          border: '1px solid #713200',
+          padding: '10px',
+          color: '#713200',
+        }
+      }} />
     </StateProvider>
   </React.StrictMode>
 );

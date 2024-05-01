@@ -7,7 +7,14 @@ import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import { images } from "../../assets";
 
-const WithdrawConfirm = ({ bank, amount, setAmount, setShowBankAccount,setConfirmWithdraw,setBank }) => {
+const WithdrawConfirm = ({
+  bank,
+  amount,
+  setAmount,
+  setShowBankAccount,
+  setConfirmWithdraw,
+  setBank,
+}) => {
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const { token } = useContextState();
   const handleCoinSubmit = async (e) => {
@@ -43,8 +50,8 @@ const WithdrawConfirm = ({ bank, amount, setAmount, setShowBankAccount,setConfir
           onClick={() => {
             setAmount("");
             setShowBankAccount(false);
-            setConfirmWithdraw(false)
-            setBank('')
+            setConfirmWithdraw(false);
+            setBank("");
           }}
           className="back-nav-bc "
         >
@@ -76,10 +83,11 @@ const WithdrawConfirm = ({ bank, amount, setAmount, setShowBankAccount,setConfir
           <div className="bank-logo1 ">
             <div className="logo ">
               <img
+                style={{ maxWidth: "50px", width: "50px" }}
                 loading="lazy"
                 alt=""
                 className=""
-                src="https://s3.ap-south-1.amazonaws.com/cdn.mac1j.com/gstatic/bankIcons/AXIX_BANK.svg"
+                src={images?.bankPicture}
               />
               <p className="">{bank?.bankName}</p>
             </div>
@@ -134,7 +142,9 @@ const WithdrawConfirm = ({ bank, amount, setAmount, setShowBankAccount,setConfir
           <span className="">Proceed</span>
         </button>
       </div>
-      {withdrawSuccess && <WithdrawSuccess setWithdrawSuccess={setWithdrawSuccess} />}
+      {withdrawSuccess && (
+        <WithdrawSuccess setWithdrawSuccess={setWithdrawSuccess} />
+      )}
     </>
   );
 };

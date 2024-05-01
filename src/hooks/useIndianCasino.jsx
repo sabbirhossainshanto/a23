@@ -6,10 +6,10 @@ import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
 const useIndianCasino = () => {
-  const { token, tokenLoading } = useContextState();
+  const { token} = useContextState();
   const { data: indianCasino = [], refetch: refetchIndianCasino } = useQuery({
     queryKey: ["indian-casino"],
-    enabled: !tokenLoading,
+
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);

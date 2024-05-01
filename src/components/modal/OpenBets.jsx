@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-import useCurrentBets from "../../hooks/useCurrentBets";
 
-const OpenBets = ({ setShowOpenBets }) => {
+
+const OpenBets = ({ setShowOpenBets,myBets }) => {
   const openBetsRef = useRef();
   useCloseModalClickOutside(openBetsRef, () => {
     setShowOpenBets(false);
   });
-  const { myBets } = useCurrentBets();
+
   return (
     <div className="Modal-Background ng-tns-c159-13 ng-star-inserted">
       <div
