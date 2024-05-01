@@ -78,9 +78,7 @@ const Footer = () => {
         {token ? (
           <div
             onClick={() =>
-              setShowOpenBets(
-                location.pathname.includes("/game-details") ? true : false
-              )
+              setShowOpenBets(location.pathname !== "/open-bets" ? true : false)
             }
             className="tabbar-item"
           >

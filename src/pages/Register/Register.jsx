@@ -40,9 +40,11 @@ const Register = () => {
 
   useEffect(() => {
     if (showRegister) {
-      if (inputs.current.length > 0) {
-        inputs.current[0].focus();
-      }
+      setTimeout(() => {
+        if (inputs?.current?.length > 0) {
+          inputs?.current?.[0]?.focus();
+        }
+      }, 1000);
     }
   }, [showRegister]);
 
@@ -135,7 +137,7 @@ const Register = () => {
           setShowRegister={setShowRegister}
         />
       ) : (
-        <div className="e-p-body-bc">
+        <div className="">
           <div className="login-page-abc">
             <div>
               <div className="register-box">

@@ -43,7 +43,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
   };
 
   return (
-    <div className="e-p-body-bc" style={{ backdropFilter: "blur(1px)" }}>
+    <div className="" style={{ backdropFilter: "blur(1px)"}}>
       <div className="login-page-abc">
         <div>
           <div className="register-box">

@@ -39,7 +39,7 @@ const MainLayout = () => {
       </div>
       {!location.pathname.includes("/casino") &&
       !addBank &&
-      location.pathname !== "/open-bets" ? (
+      !location.pathname.includes('/game-details') ? (
         <Footer />
       ) : null}
     </div>
