@@ -37,7 +37,11 @@ const MainLayout = () => {
       <div style={{ minHeight: "calc(100vh - 268px)" }}>
         <Outlet />
       </div>
-      {!location.pathname.includes("/casino") && !addBank ? <Footer /> : null}
+      {!location.pathname.includes("/casino") &&
+      !addBank &&
+      location.pathname !== "/open-bets" ? (
+        <Footer />
+      ) : null}
     </div>
   );
 };

@@ -227,7 +227,12 @@ const Account = () => {
               </div>
             </div>
           </li>
-          <li className="profile-menu-items ng-star-inserted">
+          <li
+            onClick={() => {
+              navigate("/open-bets");
+            }}
+            className="profile-menu-items ng-star-inserted"
+          >
             <div className="routingProfile">
               <div className="profile-menu-items-left">
                 <span className="profile-menu-icon">

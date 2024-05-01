@@ -18,6 +18,7 @@ import IndianCasino from "../pages/IndianCasino/IndianCasino";
 import InterNationalCasino from "../pages/InterNationalCasino/InterNationalCasino";
 import Slots from "../pages/Slots/Slots";
 import Promotion from "../pages/Promotion/Promotion";
+import OpenBets from "../pages/OpenBets/OpenBets";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
       {
         path: "more-page",
         element: <Promotion />,
+      },
+      {
+        path: "open-bets",
+        element: <OpenBets />,
       },
     ],
   },
