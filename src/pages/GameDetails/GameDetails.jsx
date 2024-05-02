@@ -18,6 +18,7 @@ const GameDetails = () => {
   const [priceClasses, setPriceClasses] = useState({});
   const [prevPrices, setPrevPrices] = useState({});
   const [showMyBets, setShowMyBets] = useState(false);
+  const [match_odds, setMatch_odds] = useState([]);
   const { eventsData, refetchEventsData } = useEventDetails(
     eventTypeId,
     eventId
@@ -39,6 +40,7 @@ const GameDetails = () => {
   }, []);
 
 
+
   return (
     <>
       {showMyBets && (
@@ -46,11 +48,13 @@ const GameDetails = () => {
       )}
       <ScoreCardSlider />
       {eventsData?.score && (
-        <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
+        <ScoreBoardCard  eventTypeId={eventTypeId} score={eventsData?.score} />
       )}
-      <MatchTrackerTab  score={eventsData?.score} />
+      <MatchTrackerTab score={eventsData?.score} match_odds={match_odds} />
       {eventsData?.sportsbook?.Result && (
         <Odds
+          match_odds={match_odds}
+          setMatch_odds={setMatch_odds}
           data={eventsData?.result}
           eventTypeId={eventTypeId}
           sportsBook={eventsData?.sportsbook?.Result}
@@ -60,8 +64,8 @@ const GameDetails = () => {
           setPrevPrices={setPrevPrices}
         />
       )}
- 
-        <div className="tabbar-item">
+
+      <div className="tabbar-item">
         <div className="ob_button " onClick={() => setShowMyBets(true)}>
           <div className="bt1043">
             <div
@@ -94,9 +98,7 @@ const GameDetails = () => {
             </div>
           </div>
         </div>
-        </div>
-    
-   
+      </div>
     </>
   );
 };

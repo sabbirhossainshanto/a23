@@ -28,6 +28,7 @@ export const API = {
   homeCasino: endPoints?.homeCasino,
   depositBreakdown: endPoints?.depositBreakdown,
   withdrawBreakdown: endPoints?.withdrawBreakdown,
+  accessToken: endPoints?.accessToken,
 };
 
 export const Settings = {

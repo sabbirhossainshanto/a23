@@ -1,7 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useIFrame from "../../hooks/useIFrame";
 
-const MatchTrackerTab = ({ score }) => {
-  const [toggleTracker, setToggleTracker] = useState(false);
+const MatchTrackerTab = ({ score, match_odds }) => {
+  const [toggle, setToggle] = useState(false);
+  const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
+  const isHasVideo = hasVideo ? true : false;
+  const { eventId, eventTypeId } = useParams();
+  const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
+  const [iframeVideo, setIframeVideo] = useState("");
+
+  const handleToggle = (tab) => {
+    if (toggle === tab) {
+      setToggle("");
+    } else {
+      setToggle(tab);
+    }
+  };
+
+  useEffect(() => {
+    if (toggle === "tracker") {
+      setIframeVideo(score?.tracker);
+    } else if (toggle === "video") {
+      setIframeVideo(iFrameUrl?.url);
+    } else {
+      setIframeVideo("");
+    }
+  }, [toggle, score, iFrameUrl]);
+
   return (
     <>
       {score?.hasVideo || score?.tracker ? (
@@ -65,6 +91,7 @@ const MatchTrackerTab = ({ score }) => {
               <div className="bt12634">
                 {score?.hasVideo && (
                   <div
+                    onClick={() => handleToggle("video")}
                     className="bt12843 bt12848 bt12844 bt12845"
                     data-editor-id="matchTrackerTab"
                   >
@@ -90,7 +117,7 @@ const MatchTrackerTab = ({ score }) => {
                 )}
                 {score?.tracker !== null && (
                   <div
-                    onClick={() => setToggleTracker((prev) => !prev)}
+                    onClick={() => handleToggle("tracker")}
                     className="bt12843 bt12848 bt12844 bt12845"
                     data-editor-id="matchTrackerTab"
                   >
@@ -130,11 +157,15 @@ const MatchTrackerTab = ({ score }) => {
                   // scrolling="no"
                   className="bt12648"
                   referrerPolicy="noreferrer"
-                  src={score?.tracker}
+                  src={iframeVideo}
                   title="tracker"
                   style={{
                     height: `${
-                      score?.tracker && toggleTracker ? "392.75px" : "0px"
+                      (score?.tracker || iFrameUrl?.url) &&
+                      toggle &&
+                      iframeVideo
+                        ? "392.75px"
+                        : "0px"
                     }`,
                   }}
                 ></iframe>

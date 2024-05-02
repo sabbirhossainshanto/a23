@@ -19,13 +19,13 @@ const Odds = ({
   prevPrices,
   setPrevPrices,
   data,
+  match_odds, setMatch_odds
 }) => {
   const { eventId } = useParams();
   const { placeBetValues, setPlaceBetValues, openBetSlip, setOpenBetSlip } =
     useContextState();
   const [bookmarker, setBookmarker] = useState([]);
   const [bookmarker2, setBookmarker2] = useState([]);
-  const [match_odds, setMatch_odds] = useState([]);
   const [normal, setNormal] = useState([]);
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);

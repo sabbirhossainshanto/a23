@@ -29,11 +29,11 @@ const WithdrawReport = () => {
                   ?.map((data, i) => {
                     return (
                       <div
-                        onClick={() => {
-                          navigate(
-                            `/deposit-withdraw-report/${data?.referenceNo}`
-                          );
-                        }}
+                        // onClick={() => {
+                        //   navigate(
+                        //     `/deposit-withdraw-report/${data?.referenceNo}`
+                        //   );
+                        // }}
                         key={i}
                         className="card-deposit  "
                       >
