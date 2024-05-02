@@ -14,6 +14,29 @@ const BettingProfitLoss = () => {
 
   return (
     <div className="mat-accordion bet-history-accordion ">
+      <div
+        onClick={() => navigate(-1)}
+        style={{ cursor: "pointer" }}
+        className="deposit-report-head "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+          viewBox="0 0 20 20"
+          fill="none"
+          className=""
+        >
+          <path
+            d="M13.1213 17.0761L6.25 10.2047L13.1213 3.33337L14.0833 4.31254L8.19115 10.2047L14.0833 16.0969L13.1213 17.0761Z"
+            fill="#228435"
+            className=""
+          ></path>
+        </svg>
+        <span className="deposit-withdraw-head-title  ng-star-inserted">
+          Back
+        </span>
+      </div>
       {token ? (
         passbook?.map((item, i) => {
           return (
