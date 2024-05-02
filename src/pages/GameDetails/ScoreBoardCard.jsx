@@ -198,7 +198,7 @@ const ScoreBoardCard = ({ score, eventTypeId}) => {
           <div className="bt12580 bt12579">
             <div className="bt12581">
               <div className="bt6522" data-editor-id="scoreBoardCategory">
-                {score?.time && (
+                {score?.time && eventTypeId != 1 &&  (
                   <div className="bt6523 bt12585 bt12583">
                     {/* <span className="bt6524">
                 {eventTypeId == 2 && (

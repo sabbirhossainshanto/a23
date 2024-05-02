@@ -15,10 +15,19 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </QueryClientProvider>
       <Toaster
         toastOptions={{
-          style: {
-            backgroundColor: "green",
-            color: "#fff",
-            padding: "10px 30px",
+          success: {
+            style: {
+              backgroundColor: "#39da8a",
+              color: "#fff",
+              padding: "10px 30px",
+            },
+          },
+          error: {
+            style: {
+              backgroundColor: "#ff5b5c",
+              color: "#fff",
+              padding: "10px 30px",
+            },
           },
         }}
       />
