@@ -38,6 +38,7 @@ const GameDetails = () => {
     }
   }, []);
 
+
   return (
     <>
       {showMyBets && (
@@ -47,7 +48,7 @@ const GameDetails = () => {
       {eventsData?.score && (
         <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
       )}
-      <MatchTrackerTab tracker={eventsData?.score?.tracker} />
+      <MatchTrackerTab  score={eventsData?.score} />
       {eventsData?.sportsbook?.Result && (
         <Odds
           data={eventsData?.result}

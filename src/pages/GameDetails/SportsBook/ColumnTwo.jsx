@@ -85,7 +85,7 @@ const ColumnTwo = ({
                       </div>
                       <div className="bt6564 bt6599">
                         <span className="bt6566">
-                          {column?.Price?.toFixed(2)}
+                        {column?.Price > 0 && column?.Price?.toFixed(2)}
                         </span>
                       </div>
                     </div>

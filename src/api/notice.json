@@ -11,7 +11,8 @@
       "balanceApiLoop": false,
       "registration": true,
       "disabledDevtool": false,
-      "otp": true
+      "otp": true,
+      "interval":700
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",

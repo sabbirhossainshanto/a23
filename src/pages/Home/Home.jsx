@@ -33,7 +33,10 @@ const Home = () => {
             <Banner bannerImage={bannerImage?.banner} />
           )}
           {bannerImage?.card?.length > 0 && <Slider card={bannerImage?.card} />}
-          <LiveSports liveSports={sports} />
+          {sports && Object.values(sports).length > 0 && (
+            <LiveSports liveSports={sports} />
+          )}
+
           <Casino />
         </>
       )}
