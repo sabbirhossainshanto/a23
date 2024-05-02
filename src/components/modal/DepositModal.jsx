@@ -9,7 +9,7 @@ const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
     setShowModal(false);
   });
 
-  console.log(depositBreakdown);
+
   return (
     <div className="Modal-Background ng-tns-c159-13 ng-star-inserted">
       <div className="depositpop ng-tns-c159-13" ref={depositRef}>

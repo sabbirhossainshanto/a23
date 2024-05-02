@@ -20,7 +20,7 @@ const BankAccounts = ({
     setBank(bankData?.[0]);
   }, [bankData, setBank]);
 
-  // console.log({bankData});
+
 
   return (
     <>
@@ -62,7 +62,7 @@ const BankAccounts = ({
             className=" "
           >
             {bankData?.map((data, i) => {
-              // console.log({ data }, { bank });
+         
               return (
                 <div
                   onClick={() => setBank(data)}

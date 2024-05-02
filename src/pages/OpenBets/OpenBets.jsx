@@ -51,7 +51,9 @@ const OpenBets = () => {
       ) : (
         <div className="profile-menu-box">
           <div className="card-blank">
-            <span>You {"don't"} have any matched</span>
+            <span>
+              You {"don't"} have any {"bet's"} matched
+            </span>
           </div>
         </div>
       )}
