@@ -10,10 +10,10 @@ import { images } from "../../assets";
 const WithdrawConfirm = ({
   bank,
   amount,
+  setBank,
   setAmount,
   setShowBankAccount,
   setConfirmWithdraw,
-  setBank,
 }) => {
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const { token } = useContextState();
@@ -48,10 +48,8 @@ const WithdrawConfirm = ({
       <div className="withdraw-account">
         <div
           onClick={() => {
-            setAmount("");
-            setShowBankAccount(false);
+            setShowBankAccount(true);
             setConfirmWithdraw(false);
-            setBank("");
           }}
           className="back-nav-bc "
         >
@@ -62,8 +60,17 @@ const WithdrawConfirm = ({
         </div>
         <div className="withdraw-amount ">
           <span className="">Withdrawal Amount</span>
-          <div className="edit-logo">
-            <img loading="lazy" src="assets/img/edit.svg" alt="" className="" />
+          <div
+            style={{ cursor: "pointer" }}
+            className="edit-logo"
+            onClick={() => {
+              setBank("");
+              setShowBankAccount(false);
+              setConfirmWithdraw(false);
+              setAmount("");
+            }}
+          >
+            <img loading="lazy" src={images.edit} alt="" className="" />
           </div>
         </div>
         <input
@@ -75,8 +82,15 @@ const WithdrawConfirm = ({
         />
         <div className="bank-account ">
           <span className="">Bank Account</span>
-          <div className="edit-logo ">
-            <img loading="lazy" src="assets/img/edit.svg" alt="" className="" />
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setShowBankAccount(true);
+              setConfirmWithdraw(false);
+            }}
+            className="edit-logo "
+          >
+            <img loading="lazy" src={images.edit} alt="" className="" />
           </div>
         </div>
         <div className="bank-card1 ">

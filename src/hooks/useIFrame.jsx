@@ -6,12 +6,12 @@ import { API } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 /* Iframe  api  */
-const useIFrame = (eventTypeId, eventId, hasVideo) => {
+const useIFrame = (eventTypeId, eventId) => {
   const { token } = useContextState();
   const { data: iFrameUrl } = useQuery({
     queryKey: ["iframeVideo"],
     /* match odds hasvideo = true then enable */
-    enabled: hasVideo,
+
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedVideoData = handleEncryptData({

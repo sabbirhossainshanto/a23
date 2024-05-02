@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useIFrame from "../../hooks/useIFrame";
 
-const MatchTrackerTab = ({ score, match_odds }) => {
+const MatchTrackerTab = ({ score }) => {
   const [toggle, setToggle] = useState(false);
-  const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
-  const isHasVideo = hasVideo ? true : false;
+
   const { eventId, eventTypeId } = useParams();
-  const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
+  const { iFrameUrl } = useIFrame(eventTypeId, eventId);
   const [iframeVideo, setIframeVideo] = useState("");
+
+
+  
 
   const handleToggle = (tab) => {
     if (toggle === tab) {
