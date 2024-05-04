@@ -8,6 +8,7 @@ import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { FaSpinner } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import useBalance from "../../hooks/useBalance";
+
 const BetSlip = ({
   setOpenBetSlip,
   placeBetValues,
@@ -30,6 +31,7 @@ const BetSlip = ({
   const [oddStake, setOddStake] = useState(null);
   const [oddStakeLay1, setOddStakeLay1] = useState(null);
   const [oddStakeLay2, setOddStakeLay2] = useState(null);
+  
 
   /* Set price */
   useEffect(() => {
@@ -98,6 +100,7 @@ const BetSlip = ({
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
+          console.log(data);
           refetchExposure();
           refetchBalance();
           refetchCurrentBets();
