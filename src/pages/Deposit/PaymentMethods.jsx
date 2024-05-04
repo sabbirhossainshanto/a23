@@ -374,7 +374,7 @@ const PaymentMethods = ({
                     </p>
                     <p
                       onClick={() =>
-                        handleCopyToClipBoard(depositData?.accountName)
+                        handleCopyToClipBoard(depositData?.upiAccountName)
                       }
                       style={{ cursor: "pointer" }}
                       _ngcontent-kdb-c159=""
