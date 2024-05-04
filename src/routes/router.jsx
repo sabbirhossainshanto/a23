@@ -8,7 +8,6 @@ import Deposit from "../pages/Deposit/Deposit";
 import Account from "../pages/Account/Account";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
 import EditStake from "../pages/EditStake/EditStake";
-import Aviator from "../pages/Aviator/Aviator";
 import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
 import SingleProfitLoss from "../pages/BettingProfitLoss/SingleProfitLoss";
 import Withdraw from "../pages/Withdraw/Withdraw";
@@ -19,6 +18,7 @@ import InterNationalCasino from "../pages/InterNationalCasino/InterNationalCasin
 import Slots from "../pages/Slots/Slots";
 import Promotion from "../pages/Promotion/Promotion";
 import OpenBets from "../pages/OpenBets/OpenBets";
+import IFrame from "../pages/IFrame/IFrame";
 
 export const router = createBrowserRouter([
   {
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/:route/:name/:gameId",
-        element: <Aviator />,
+        element: <IFrame />,
       },
       {
         path: "/betting-profit-loss",

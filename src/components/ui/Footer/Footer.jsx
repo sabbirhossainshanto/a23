@@ -9,6 +9,7 @@ const Footer = () => {
   const { setSportsType, token } = useContextState();
   const navigate = useNavigate();
   const location = useLocation();
+  /* get social link */
   const { socialLink } = useGetSocialLink();
   const [showOpenBets, setShowOpenBets] = useState(false);
 
@@ -20,11 +21,13 @@ const Footer = () => {
     }
   };
 
+
   const openWhatsAppInNewTab = () => {
     if (socialLink?.link) {
       window.open(socialLink?.link, "_blank");
     }
   };
+  /* get my bets */
   const { myBets } = useCurrentBets();
 
   return (

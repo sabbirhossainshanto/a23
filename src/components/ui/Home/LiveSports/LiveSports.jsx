@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Card from "./Card";
 const LiveSports = ({ liveSports }) => {
+
+  /* filtered sports visible = true and inPlay = true  */
   const filteredSports =
     liveSports &&
     Object.values(liveSports).length > 0 &&

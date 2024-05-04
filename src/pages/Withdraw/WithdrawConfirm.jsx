@@ -17,6 +17,7 @@ const WithdrawConfirm = ({
 }) => {
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const { token } = useContextState();
+  /* handle withdraw function */
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
     if (amount?.length > 0 && bank) {

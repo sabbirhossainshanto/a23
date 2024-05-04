@@ -18,7 +18,9 @@ const useBalance = () => {
       if (!token) {
         return;
       }
+      /* handle random token  */
       const generatedToken = handleRandomToken();
+      /* handle encrypt data */
       const encryptedData = handleEncryptData(generatedToken);
       const res = await axios.post(API.balance, encryptedData, {
         headers: {
@@ -36,7 +38,7 @@ const useBalance = () => {
         return data;
       }
     },
-    /* Refetch after 6 second */
+    /* Refetch based on balanceApiLoop in notice.json */
     refetchInterval: Settings?.balanceApiLoop ? 6000 : null,
   });
 

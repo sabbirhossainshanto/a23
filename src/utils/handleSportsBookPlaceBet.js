@@ -13,7 +13,7 @@ export const handleSportsBookPlaceBet = (
     selectionId: column?.Id,
     btype: "SPORTSBOOK",
     placeName: column?.Name,
-    eventTypeId: sportsBook?.eventTypeId,
+    eventTypeId: sportsBook?.EventTypeId,
     betDelay: sportsBook?.betDelay,
     marketId: item?.Id,
     maxLiabilityPerMarket: sportsBook?.maxLiabilityPerMarket,

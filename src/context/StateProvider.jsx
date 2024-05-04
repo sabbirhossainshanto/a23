@@ -9,41 +9,28 @@ const StateProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [getToken, setGetToken] = useState(false);
   const [tokenLoading, setTokenLoading] = useState(true);
-  const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
   const [sportsType, setSportsType] = useState(0);
   const [placeBetValues, setPlaceBetValues] = useState({});
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const [addBank, setAddBank] = useState(false);
-  
 
   /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
-    const getBonusToken = localStorage.getItem("bonusToken");
-    const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
-    /* If check box true of bonus token and bonus token available then using bonus token in authorization headers */
-    if (getCheckedBonusToken && getBonusToken) {
-      /* Set bonus token */
-      setToken(getBonusToken);
-      /* Check box true of bonus */
-      setIsCheckedBonusToken(true);
-    } else {
-      /* Set default token */
+    if (getToken) {
       setToken(getToken);
-      /* Checkbox box false */
-      setIsCheckedBonusToken(false);
     }
-
-    if (token && (getToken === token || getBonusToken === token)) {
-      /* handle loading for save crash website` */
+    if (token && getToken === token) {
+      /* handle loading for save crash website and set authorization token in header all api` */
       setTokenLoading(false);
     }
   }, [token, getToken]);
 
   useEffect(() => {
+    /* Get site logo */
     const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
     setLogo(logo);
-  
+
     /* Dynamically append  favicon  */
     const FavIconLink = document.createElement("link");
     FavIconLink.rel = "icon";
@@ -65,8 +52,6 @@ const StateProvider = ({ children }) => {
     setNavTabs,
     sportsType,
     setSportsType,
-    isCheckedBonusToken,
-    setIsCheckedBonusToken,
     getToken,
     setGetToken,
     placeBetValues,
@@ -75,7 +60,6 @@ const StateProvider = ({ children }) => {
     setOpenBetSlip,
     addBank,
     setAddBank,
-    
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

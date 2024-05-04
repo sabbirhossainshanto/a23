@@ -4,6 +4,7 @@ import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import useDepositBreakDown from "../../hooks/useDepositBreakDown";
 const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
   const { depositBreakdown } = useDepositBreakDown(amount);
+  /* close modal click outside */
   const depositRef = useRef();
   useCloseModalClickOutside(depositRef, () => {
     setShowModal(false);

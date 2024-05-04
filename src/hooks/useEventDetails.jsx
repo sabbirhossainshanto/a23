@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
 
+/* get single game details data */
 const useEventDetails = (eventTypeId, eventId) => {
   const { data: eventsData, refetch: refetchEventsData } = useQuery({
     queryKey: ["events"],
@@ -12,7 +13,8 @@ const useEventDetails = (eventTypeId, eventId) => {
       const data = res.data;
       return data;
     },
-    refetchInterval: 2000,
+    /* refetching after 2 second */
+    refetchInterval: Settings.interval,
     gcTime:0
   });
 

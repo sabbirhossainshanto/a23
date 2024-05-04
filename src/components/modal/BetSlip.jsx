@@ -23,7 +23,7 @@ const BetSlip = ({
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const [totalSize, setTotalSize] = useState("");
   const [loader, setLoader] = useState(false);
-  //   const { refetchBalance } = useBalance();
+    // const { refetchBalance } = useBalance();
   const [stakeErr, setStakeErr] = useState("");
   const [price, setPrice] = useState(null);
   const [oddStake, setOddStake] = useState(null);
@@ -76,7 +76,9 @@ const BetSlip = ({
     if (totalSize < 100) {
       return setStakeErr("Min bet amount is 100");
     }
+    /* random token */
     const generatedToken = handleRandomToken();
+    /* encrypt post data */
     const encryptedData = handleEncryptData([
       {
         ...payload,

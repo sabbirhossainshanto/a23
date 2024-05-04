@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
 const AddBank = ({ setAddBank, refetchBankData }) => {
+  /* Handle close modal click outside */
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
     setAddBank(false);
@@ -18,8 +19,10 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     accountNumber: "",
   });
 
+  /* Handle add bank function */
   const handleAddBank = async (e) => {
     e.preventDefault();
+    /* generating random token for post data */
     const generatedToken = handleRandomToken();
     const bankData = {
       accountName: bankDetails.accountName,

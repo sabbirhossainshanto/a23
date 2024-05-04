@@ -7,6 +7,7 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
 const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
+  /* Close modal click outside */
   const deleteBankRef = useRef();
   useCloseModalClickOutside(deleteBankRef, () => {
     setRemoveBank(false);
@@ -14,7 +15,9 @@ const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
 
 
   const { token } = useContextState();
+  /* Handle delete bank account */
   const handleDeleteBank = async () => {
+    /* Random token */
     const generatedToken = handleRandomToken();
     const bankData = {
       type: "deleteBankAccount",
@@ -31,10 +34,12 @@ const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
     if (data?.success) {
       setRemoveBank("");
       toast.success(data?.result?.message);
+      /* Refetch bank data to get updated bank */
       refetchBankData();
     } else {
       setRemoveBank("");
       toast.error(data?.error?.errorMessage);
+          /* Refetch bank data to get updated bank */
       refetchBankData();
     }
   };

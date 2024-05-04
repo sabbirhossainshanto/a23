@@ -1,12 +1,15 @@
 import Card from "../LiveSports/Card";
 
 const Sports = ({ sports }) => {
+  /* filtered visible = true sports */
   const filterSports =
     sports &&
     Object.keys(sports)?.filter((key) => {
       return sports?.[key]?.visible === true;
     });
 
+
+    
   if (filterSports?.length === 0) {
     return (
       <div className="profile-menu-box">

@@ -15,7 +15,9 @@ import profileSettings from "../../../src/assets/img/profile-settings.svg";
 const Account = () => {
   const { setGetToken } = useContextState();
   const navigate = useNavigate();
+  /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
+  /* get balance data */
   const { balanceData } = useBalance();
 
   return (

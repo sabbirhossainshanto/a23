@@ -4,7 +4,7 @@ import axios from "axios";
 import { API } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
-
+/* get slot api data */
 const useGetSlots = () => {
   const { token } = useContextState();
   const { data: slots = [], refetch: refetchSlots } = useQuery({

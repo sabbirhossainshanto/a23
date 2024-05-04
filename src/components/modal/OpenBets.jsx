@@ -3,6 +3,7 @@ import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
 
 const OpenBets = ({ setShowOpenBets,myBets }) => {
+  /* close modal click outside */
   const openBetsRef = useRef();
   useCloseModalClickOutside(openBetsRef, () => {
     setShowOpenBets(false);

@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API, Settings } from "../../api";
+import { API } from "../../api";
 
+/* get sports book */
 const useSportsBook = (sportsType) => {
   const { data: sports, refetch: refetchSports } = useQuery({
     queryKey: ["sports"],
@@ -10,7 +11,7 @@ const useSportsBook = (sportsType) => {
       const data = res.data;
       return data;
     },
-    refetchInterval: Settings.interval,
+    refetchInterval: 2000,
   });
 
   return { sports, refetchSports };

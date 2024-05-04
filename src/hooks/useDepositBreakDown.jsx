@@ -5,7 +5,7 @@ import { API, Settings } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
-/* exposure api */
+/* get deposit breakdown */
 const useDepositBreakDown = (amount) => {
   const { token, tokenLoading } = useContextState();
   const { data: depositBreakdown = {} } = useQuery({

@@ -5,12 +5,15 @@ import { Pagination, Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import useContextState from "../../../hooks/useContextState";
 const Casino = () => {
+  /* get all casino */
   const { homeCasino } = useHomeCasino();
   const [category, setCategory] = useState("Top Games");
   const [filteredData, setFilteredData] = useState({});
   const navigate = useNavigate();
   const { token } = useContextState();
 
+
+  /* find sports by tabs on ui */
   useEffect(() => {
     if (homeCasino?.length > 0) {
       const filteredCasino =

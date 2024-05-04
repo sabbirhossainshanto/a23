@@ -7,6 +7,7 @@ import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
 const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
+  /* get social link */
   const { socialLink } = useGetSocialLink();
   const getOtp = async (e) => {
     e.preventDefault();

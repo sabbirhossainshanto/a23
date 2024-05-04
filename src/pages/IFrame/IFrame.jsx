@@ -7,12 +7,14 @@ import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import Loader from "../../components/ui/Loader/Loader";
 
-const Aviator = () => {
+const IFrame = () => {
   const [loading, setLoading] = useState(false);
   const [iFrame, setIFrame] = useState("");
   const { gameId } = useParams();
   const { token } = useContextState();
 
+
+  /* get iframe url */
   useEffect(() => {
     window.scrollTo(0, 0);
     const getCasinoVideo = async () => {
@@ -40,6 +42,8 @@ const Aviator = () => {
     getCasinoVideo();
   }, [token, gameId]);
 
+
+  /* handle loading animation */
   if (loading) {
     return <Loader />;
   }
@@ -61,4 +65,4 @@ const Aviator = () => {
   );
 };
 
-export default Aviator;
+export default IFrame;

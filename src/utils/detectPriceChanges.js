@@ -1,3 +1,4 @@
+/* handle detect price change on game details page and based on blink color */
 export const detectPriceChanges = (
   matchOdds,
   previousData,

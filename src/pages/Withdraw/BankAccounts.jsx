@@ -16,6 +16,7 @@ const BankAccounts = ({
   const { addBank, setAddBank } = useContextState();
   const [removeBank, setRemoveBank] = useState("");
 
+  /* select first bank by default */
   useEffect(() => {
     setBank(bankData?.[0]);
   }, [bankData, setBank]);

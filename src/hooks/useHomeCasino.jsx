@@ -7,7 +7,6 @@ import handleEncryptData from "../utils/handleEncryptData";
 const useHomeCasino = () => {
   const { data: homeCasino = [], refetch: refetchHomeCasino } = useQuery({
     queryKey: ["home-casino"],
-
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);

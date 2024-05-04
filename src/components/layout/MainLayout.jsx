@@ -12,7 +12,10 @@ const MainLayout = () => {
   const { addBank, setTokenLoading } = useContextState();
   const disabledDevtool = Settings.disabledDevtool;
   const navigate = useNavigate();
+
+  /* Disable devtool */
   useEffect(() => {
+    /* If disable devtool true in notice.json then logout the user */
     if (disabledDevtool) {
       disableDevtool({
         ondevtoolopen: (type) => {
@@ -20,14 +23,15 @@ const MainLayout = () => {
           if (info) {
             handleLogOut();
             setTokenLoading(true);
-            navigate("/");
+            window.location.href = "https://www.google.com/";
           }
         },
       });
     }
   }, [navigate, disabledDevtool]);
 
-  const isFooterShown = () => {
+  /* handling main content height */
+  const handleMainContainerHeight = () => {
     if (
       !location.pathname.includes("/casino") &&
       !addBank &&
@@ -48,7 +52,9 @@ const MainLayout = () => {
       <Header />
       <div
         style={{
-          minHeight: `calc(100vh - ${isFooterShown() ? "268px" : "210px"})`,
+          minHeight: `calc(100vh - ${
+            handleMainContainerHeight() ? "268px" : "210px"
+          })`,
         }}
       >
         <Outlet />
@@ -58,8 +64,6 @@ const MainLayout = () => {
       !location.pathname.includes("/game-details") ? (
         <Footer />
       ) : null}
-
-    
     </div>
   );
 };

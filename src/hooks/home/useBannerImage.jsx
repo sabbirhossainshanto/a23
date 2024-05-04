@@ -4,7 +4,7 @@ import { API, Settings } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
 import handleEncryptData from "../../utils/handleEncryptData";
 import useContextState from "../useContextState";
-/* Get casino */
+/* Get casino banner image */
 const useBannerImage = () => {
   const { token } = useContextState();
   const { data: bannerImage } = useQuery({

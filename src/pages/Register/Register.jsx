@@ -27,6 +27,7 @@ const Register = () => {
   });
   const [otpValues, setOtpValues] = useState(["", "", "", ""]);
 
+  /* handle count down for register page */
   useEffect(() => {
     if (showRegister) {
       if (countDown > 0) {
@@ -37,6 +38,7 @@ const Register = () => {
     }
   }, [countDown, showRegister]);
 
+  /* handle focus first input for enter otp */
   useEffect(() => {
     if (showRegister) {
       setTimeout(() => {
@@ -47,6 +49,7 @@ const Register = () => {
     }
   }, [showRegister]);
 
+  /* handle focus input element  */
   const handleInput = (index, e) => {
     const newValue = e.target.value.slice(0, 1);
     const newOtpValues = [...otpValues];
@@ -57,6 +60,8 @@ const Register = () => {
     }
   };
 
+
+  /* handle register */
   const { handleSubmit } = useForm();
   const onSubmit = async () => {
     if (user.password.length < 8 || user.confirmPassword.length < 8) {

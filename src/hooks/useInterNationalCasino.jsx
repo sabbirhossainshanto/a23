@@ -5,7 +5,7 @@ import { API } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
-
+/* get international casino */
 const useInterNationalCasino = () => {
   const { token} = useContextState();
   const { data: intCasino = [], refetch: refetchIntCasino } = useQuery({

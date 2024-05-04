@@ -4,7 +4,7 @@ import axios from "axios";
 import { API } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
-
+/* get indian casino */
 const useIndianCasino = () => {
   const { token} = useContextState();
   const { data: indianCasino = [], refetch: refetchIndianCasino } = useQuery({

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API } from "../api";
 import handleRandomToken from "./handleRandomToken";
-
+/* handle deposit api */
 const handleDepositMethod = (token) => {
   const handleDeposit = async () => {
     const generatedToken = handleRandomToken();
