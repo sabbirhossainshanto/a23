@@ -9,7 +9,6 @@ const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
     setShowModal(false);
   });
 
-
   return (
     <div className="Modal-Background ng-tns-c159-13 ng-star-inserted">
       <div className="depositpop ng-tns-c159-13" ref={depositRef}>
@@ -44,16 +43,19 @@ const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
               <div className="balancetxt ng-tns-c159-13">
                 <p className="ng-tns-c159-13">Deposit Amount</p>
               </div>
-              {depositBreakdown?.deposit && (
-                <div className="amt ng-tns-c159-13">
+
+              <div className="amt ng-tns-c159-13">
+                {depositBreakdown?.deposit && (
                   <p className="ng-tns-c159-13">
                     ₹ {depositBreakdown?.deposit}
                   </p>
+                )}
+                {depositBreakdown?.bonus && (
                   <p className="depamt ng-tns-c159-13 ng-star-inserted">
                     +{depositBreakdown?.bonus} Bonus
                   </p>
-                </div>
-              )}
+                )}
+              </div>
             </div>
             {depositBreakdown?.instantMoney && (
               <div className="moneybox ng-tns-c159-13">

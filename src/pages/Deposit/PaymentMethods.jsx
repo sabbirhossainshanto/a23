@@ -64,6 +64,13 @@ const PaymentMethods = ({
                 depositMethods?.map((method) => {
                   return (
                     <div
+                      style={{
+                        border: `${
+                          tabs == method?.type
+                            ? "3px solid #f2f2f2"
+                            : "1px solid #f2f2f2"
+                        }`,
+                      }}
                       onClick={() => handleVisibleBankMethod(method)}
                       key={method?.paymentId}
                       className="payment_box"
@@ -251,6 +258,298 @@ const PaymentMethods = ({
                     <p
                       onClick={() =>
                         handleCopyToClipBoard(depositData?.bankName)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
+                      <img
+                        _ngcontent-kdb-c159=""
+                        loading="lazy"
+                        src={clipboardIcon}
+                        alt=""
+                        className="ng-tns-c159-13"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                setPaymentMethods(false);
+                setUploadTransaction(true);
+              }}
+              _ngcontent-kdb-c159=""
+              className="makepayment ng-tns-c159-13"
+              style={{ marginTop: "10px" }}
+            >
+              <div _ngcontent-kdb-c159="" className="madepay ng-tns-c159-13">
+                <button _ngcontent-kdb-c159="" className="ng-tns-c159-13">
+                  I have Made The Payment
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {tabs === "upi" && (
+        <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
+          <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
+            <p
+              _ngcontent-kdb-c159=""
+              className="make ng-tns-c159-13"
+              style={{ marginBottom: "0.75rem", color: "black" }}
+            >
+              Use below details to make payment
+            </p>
+            <div
+              _ngcontent-kdb-c159=""
+              className="accountdetailss ng-tns-c159-13 ng-star-inserted"
+            >
+              {/* <div _ngcontent-kdb-c159="" className="accountnum ng-tns-c159-13">
+                <div
+                  _ngcontent-kdb-c159=""
+                  className="bankdetail ng-tns-c159-13"
+                >
+                  <img
+                    _ngcontent-kdb-c159=""
+                    loading="lazy"
+                    src={contactOne}
+                    alt=""
+                    className="ng-tns-c159-13"
+                  />
+                </div>
+                <div _ngcontent-kdb-c159="" className="banknum ng-tns-c159-13">
+                  {" "}
+                  Account Number{" "}
+                  <div _ngcontent-kdb-c159="" className="icon ng-tns-c159-13">
+                    <p
+                      _ngcontent-kdb-c159=""
+                      className="accnum account-number ng-tns-c159-13"
+                    >
+                      {depositData?.accountNumber}
+                    </p>
+                    <p
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.accountNumber)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
+                      <img
+                        _ngcontent-kdb-c159=""
+                        loading="lazy"
+                        src={clipboardIcon}
+                        alt=""
+                        className="ng-tns-c159-13"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div> */}
+              <div _ngcontent-kdb-c159="" className="accountnum ng-tns-c159-13">
+                <div
+                  _ngcontent-kdb-c159=""
+                  className="bankdetail ng-tns-c159-13"
+                >
+                  <img
+                    _ngcontent-kdb-c159=""
+                    loading="lazy"
+                    src={contactTwo}
+                    alt=""
+                    className="ng-tns-c159-13"
+                  />
+                </div>
+                <div _ngcontent-kdb-c159="" className="banknum ng-tns-c159-13">
+                  {" "}
+                  Display Name{" "}
+                  <div _ngcontent-kdb-c159="" className="icon ng-tns-c159-13">
+                    <p
+                      _ngcontent-kdb-c159=""
+                      className="accnum account-name ng-tns-c159-13"
+                    >
+                      {depositData?.upiAccountName}
+                    </p>
+                    <p
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.accountName)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
+                      <img
+                        _ngcontent-kdb-c159=""
+                        loading="lazy"
+                        src={clipboardIcon}
+                        alt=""
+                        className="ng-tns-c159-13"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div _ngcontent-kdb-c159="" className="accountnum ng-tns-c159-13">
+                <div
+                  _ngcontent-kdb-c159=""
+                  className="bankdetail ng-tns-c159-13"
+                >
+                  <img
+                    _ngcontent-kdb-c159=""
+                    loading="lazy"
+                    src={codeBlock}
+                    alt=""
+                    className="ng-tns-c159-13"
+                  />
+                </div>
+                <div _ngcontent-kdb-c159="" className="banknum ng-tns-c159-13">
+                  {" "}
+                  UPI Details
+                  <div _ngcontent-kdb-c159="" className="icon ng-tns-c159-13">
+                    <p
+                      _ngcontent-kdb-c159=""
+                      className="accnum ifsc-code ng-tns-c159-13"
+                    >
+                      {depositData?.upiId}
+                    </p>
+                    <p
+                      onClick={() => handleCopyToClipBoard(depositData?.upiId)}
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
+                      <img
+                        _ngcontent-kdb-c159=""
+                        loading="lazy"
+                        src={clipboardIcon}
+                        alt=""
+                        className="ng-tns-c159-13"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* <div _ngcontent-kdb-c159="" className="accountnum ng-tns-c159-13">
+                <div
+                  _ngcontent-kdb-c159=""
+                  className="bankdetail ng-tns-c159-13"
+                >
+                  <img
+                    _ngcontent-kdb-c159=""
+                    loading="lazy"
+                    src={institution}
+                    alt=""
+                    className="ng-tns-c159-13"
+                  />
+                </div>
+                <div _ngcontent-kdb-c159="" className="banknum ng-tns-c159-13">
+                  {" "}
+                  Bank Name{" "}
+                  <div _ngcontent-kdb-c159="" className="icon ng-tns-c159-13">
+                    <p
+                      _ngcontent-kdb-c159=""
+                      className="accnum bank-name ng-tns-c159-13"
+                    >
+                      {depositData?.bankName}
+                    </p>
+                    <p
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.bankName)
+                      }
+                      style={{ cursor: "pointer" }}
+                      _ngcontent-kdb-c159=""
+                      className="svg ng-tns-c159-13"
+                    >
+                      <img
+                        _ngcontent-kdb-c159=""
+                        loading="lazy"
+                        src={clipboardIcon}
+                        alt=""
+                        className="ng-tns-c159-13"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div> */}
+            </div>
+            <div
+              onClick={() => {
+                setPaymentMethods(false);
+                setUploadTransaction(true);
+              }}
+              _ngcontent-kdb-c159=""
+              className="makepayment ng-tns-c159-13"
+              style={{ marginTop: "10px" }}
+            >
+              <div _ngcontent-kdb-c159="" className="madepay ng-tns-c159-13">
+                <button _ngcontent-kdb-c159="" className="ng-tns-c159-13">
+                  I have Made The Payment
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {tabs === "qr" && (
+        <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
+          <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
+            <p
+              _ngcontent-kdb-c159=""
+              className="make ng-tns-c159-13"
+              style={{ marginBottom: "0.75rem", color: "black" }}
+            >
+              QR code for payment
+            </p>
+            <div
+              _ngcontent-kdb-c159=""
+              className="accountdetailss ng-tns-c159-13 ng-star-inserted"
+            >
+              <div
+                _ngcontent-kdb-c159=""
+                className="accountnum ng-tns-c159-13"
+                style={{ alignItems: "flex-start", flexWrap: "wrap" }}
+              >
+                <div
+                  style={{
+                    border: "3px solid #f2f2f2",
+                    padding: "3px",
+                    borderRadius: "4px",
+                  }}
+                  _ngcontent-kdb-c159=""
+                  className="ng-tns-c159-13"
+                >
+                  <img
+                    style={{ height: "350px", borderRadius: "4px" }}
+                    _ngcontent-kdb-c159=""
+                    loading="lazy"
+                    src={depositData?.qrCodeLink}
+                    alt=""
+                    className="ng-tns-c159-13"
+                  />
+                </div>
+                <div _ngcontent-kdb-c159="" className="banknum ng-tns-c159-13">
+                  <span style={{ display: "flex", gap: "7px",alignItems:'center' }}>
+                    <img
+                      _ngcontent-kdb-c159=""
+                      loading="lazy"
+                      src={contactOne}
+                      alt=""
+                      className="ng-tns-c159-13"
+                    />{" "}
+                    <span> Display Name </span>
+                  </span>
+                  <div _ngcontent-kdb-c159="" className="icon ng-tns-c159-13">
+                    <p
+                      _ngcontent-kdb-c159=""
+                      className="accnum account-name ng-tns-c159-13"
+                    >
+                      {depositData?.qrDisplayName}
+                    </p>
+                    <p
+                      onClick={() =>
+                        handleCopyToClipBoard(depositData?.qrDisplayName)
                       }
                       style={{ cursor: "pointer" }}
                       _ngcontent-kdb-c159=""
