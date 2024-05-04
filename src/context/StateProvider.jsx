@@ -17,9 +17,7 @@ const StateProvider = ({ children }) => {
   /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
-    if (getToken) {
-      setToken(getToken);
-    }
+    setToken(getToken);
     if (token && getToken === token) {
       /* handle loading for save crash website and set authorization token in header all api` */
       setTokenLoading(false);

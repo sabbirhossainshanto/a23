@@ -6,7 +6,8 @@ import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { FaSpinner } from "react-icons/fa";
-import { RxCross2} from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
+import useBalance from "../../hooks/useBalance";
 const BetSlip = ({
   setOpenBetSlip,
   placeBetValues,
@@ -23,7 +24,7 @@ const BetSlip = ({
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const [totalSize, setTotalSize] = useState("");
   const [loader, setLoader] = useState(false);
-    // const { refetchBalance } = useBalance();
+  const { refetchBalance } = useBalance();
   const [stakeErr, setStakeErr] = useState("");
   const [price, setPrice] = useState(null);
   const [oddStake, setOddStake] = useState(null);
@@ -98,7 +99,7 @@ const BetSlip = ({
       .then((data) => {
         if (data?.success) {
           refetchExposure();
-          //   refetchBalance();
+          refetchBalance();
           refetchCurrentBets();
           setLoader(false);
           setOpenBetSlip(false);
@@ -110,7 +111,7 @@ const BetSlip = ({
           setLoader(false);
           setOpenBetSlip(false);
           refetchExposure();
-          //   refetchBalance();
+          refetchBalance();
           refetchCurrentBets();
         }
       });
@@ -190,7 +191,7 @@ const BetSlip = ({
         } else if (selectionId && selectionId.includes(".2")) {
           setOddStake(formatNumber(total + pnl2));
           setOddStakeLay1(formatNumber(pnl3 + -1 * totalSize));
-         setOddStakeLay2(formatNumber(pnl1 + -1 * totalSize));
+          setOddStakeLay2(formatNumber(pnl1 + -1 * totalSize));
         } else {
           setOddStake(formatNumber(total + pnl3));
           setOddStakeLay1(formatNumber(pnl1 + -1 * totalSize));
@@ -285,7 +286,10 @@ const BetSlip = ({
                   >
                     <div className="modal-header">
                       <h2> Place Bet | {placeBetValues?.marketName}</h2>
-                      <div className="action-btns" style={{top:'-5px',right:'-5px'}}>
+                      <div
+                        className="action-btns"
+                        style={{ top: "-5px", right: "-5px" }}
+                      >
                         <button
                           onClick={() => setOpenBetSlip(false)}
                           className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -299,7 +303,7 @@ const BetSlip = ({
                             aria-hidden="true"
                             data-mat-icon-type="font"
                           >
-                           <RxCross2 size={20}/>
+                            <RxCross2 size={20} />
                           </span>
                           <span className="mdc-button__label"></span>
                           <span className="mat-mdc-focus-indicator"></span>
