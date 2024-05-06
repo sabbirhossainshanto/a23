@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import useContextState from "../../../hooks/useContextState";
 import { handleSportsBookPlaceBet } from "../../../utils/handleSportsBookPlaceBet";
+import { isSportsRunnerSuspended } from "../../../utils/isSportsRunnerSuspended";
+import { useNavigate } from "react-router-dom";
 
 const ColumnOne = ({
   item,
@@ -11,7 +13,8 @@ const ColumnOne = ({
   prevPrices,
   setPrevPrices,
 }) => {
-  const { setPlaceBetValues, setOpenBetSlip } = useContextState();
+  const { setPlaceBetValues, setOpenBetSlip, token } = useContextState();
+  const navigate = useNavigate();
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
@@ -65,14 +68,23 @@ const ColumnOne = ({
                         item,
                         sportsBook,
                         setOpenBetSlip,
-                        setPlaceBetValues
+                        setPlaceBetValues,
+                        token,
+                        navigate
                       )
                     }
                     key={i}
                     data-editor-id="tableOutcomePlate"
                     className="bt6588 bt12698 bt6589"
                   >
-                    <div className="bt6592 bt12699">
+                    <div
+                      className="bt6592 bt12699"
+                      style={{
+                        backgroundColor: `${
+                          isSportsRunnerSuspended(column) ? "lightgray" : ""
+                        }`,
+                      }}
+                    >
                       <div className="bt1570">
                         <span className={priceClasses[i]}></span>
                       </div>
@@ -84,7 +96,9 @@ const ColumnOne = ({
                       </div>
                       <div className="bt6564 bt6599">
                         <span className="bt6566">
-                          {column?.Price > 0 && column?.Price?.toFixed(2)}
+                          {column?.Price > 0 &&
+                            !isSportsRunnerSuspended(column) &&
+                            column?.Price?.toFixed(2)}
                         </span>
                       </div>
                     </div>

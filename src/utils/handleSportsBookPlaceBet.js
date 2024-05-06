@@ -3,24 +3,32 @@ export const handleSportsBookPlaceBet = (
   item,
   sportsBook,
   setOpenBetSlip,
-  setPlaceBetValues
+  setPlaceBetValues,
+  token,
+  navigate
 ) => {
-  setOpenBetSlip(true);
-  setPlaceBetValues({});
-  setPlaceBetValues({
-    price: column?.Price?.toFixed(2),
-    side: 0,
-    selectionId: column?.Id,
-    btype: "SPORTSBOOK",
-    placeName: column?.Name,
-    eventTypeId: sportsBook?.EventTypeId,
-    betDelay: sportsBook?.betDelay,
-    marketId: item?.Id,
-    maxLiabilityPerMarket: sportsBook?.maxLiabilityPerMarket,
-    maxLiabilityPerBet: sportsBook?.maxLiabilityPerBet,
-    isBettable: sportsBook?.isBettable,
-    isWeak: sportsBook?.isWeak,
-    marketName: item?.Name,
-    eventId: sportsBook?.eventId,
-  });
+  if (token) {
+    if (column?.IsActive === 1) {
+      setOpenBetSlip(true);
+      setPlaceBetValues({});
+      setPlaceBetValues({
+        price: column?.Price?.toFixed(2),
+        side: 0,
+        selectionId: column?.Id,
+        btype: "SPORTSBOOK",
+        placeName: column?.Name,
+        eventTypeId: sportsBook?.EventTypeId,
+        betDelay: sportsBook?.betDelay,
+        marketId: item?.Id,
+        maxLiabilityPerMarket: sportsBook?.maxLiabilityPerMarket,
+        maxLiabilityPerBet: sportsBook?.maxLiabilityPerBet,
+        isBettable: sportsBook?.isBettable,
+        isWeak: sportsBook?.isWeak,
+        marketName: item?.Name,
+        eventId: sportsBook?.eventId,
+      });
+    }
+  } else {
+    navigate("/login");
+  }
 };

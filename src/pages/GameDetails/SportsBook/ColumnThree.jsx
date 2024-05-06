@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import useContextState from "../../../hooks/useContextState";
 import { handleSportsBookPlaceBet } from "../../../utils/handleSportsBookPlaceBet";
+import { isSportsRunnerSuspended } from "../../../utils/isSportsRunnerSuspended";
+import { useNavigate } from "react-router-dom";
 
 const ColumnThree = ({
   item,
@@ -11,7 +13,8 @@ const ColumnThree = ({
   prevPrices,
   setPrevPrices,
 }) => {
-  const { setPlaceBetValues, setOpenBetSlip } = useContextState();
+  const { setPlaceBetValues, setOpenBetSlip, token } = useContextState();
+  const navigate = useNavigate();
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
@@ -58,20 +61,29 @@ const ColumnThree = ({
               {item?.Items?.map((column, i) => {
                 return (
                   <div
-                  onClick={() =>
-                    handleSportsBookPlaceBet(
-                      column,
-                      item,
-                      sportsBook,
-                      setOpenBetSlip,
-                      setPlaceBetValues
-                    )
-                  }
+                    onClick={() =>
+                      handleSportsBookPlaceBet(
+                        column,
+                        item,
+                        sportsBook,
+                        setOpenBetSlip,
+                        setPlaceBetValues,
+                        token,
+                        navigate
+                      )
+                    }
                     key={i}
                     data-editor-id="tableOutcomePlate"
                     className="bt6588 bt12698 bt6591"
                   >
-                    <div className="bt6592 bt12699">
+                    <div
+                      className="bt6592 bt12699"
+                      style={{
+                        backgroundColor: `${
+                          isSportsRunnerSuspended(column) ? "lightgray" : ""
+                        }`,
+                      }}
+                    >
                       <div className="bt1570">
                         <span className={priceClasses[i]}></span>
                       </div>
@@ -83,7 +95,9 @@ const ColumnThree = ({
                       </div>
                       <div className="bt6564 bt6599">
                         <span className="bt6566">
-                        {column?.Price > 0 && column?.Price?.toFixed(2)}
+                        {column?.Price > 0 &&
+                            !isSportsRunnerSuspended(column) &&
+                            column?.Price?.toFixed(2)}
                         </span>
                       </div>
                     </div>
