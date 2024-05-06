@@ -26,6 +26,7 @@ const Login = () => {
       username: username,
       password: password,
       token: generatedToken,
+      site:Settings.siteUrl
     };
     const encryptedData = handleEncryptData(loginData);
     const res = await fetch(API.login, {
@@ -92,6 +93,7 @@ const Login = () => {
       username: "demo",
       password: "",
       token: generatedToken,
+      site:Settings.siteUrl
     });
     fetch(API.login, {
       method: "POST",
