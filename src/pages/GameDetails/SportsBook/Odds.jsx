@@ -104,6 +104,9 @@ const Odds = ({
     setOverByOver(overByOverFilter);
   }, [data]);
 
+
+  console.log(sports);
+
   return (
     <div className="bt12498">
       <div className="bt12671">
@@ -145,6 +148,7 @@ const Odds = ({
         {sports?.map((group) =>
           group?.Items?.map((item, iIdx) => {
             const isOpen = openItems[iIdx];
+            
             return (
               <div key={iIdx} className="bt12687">
                 <div onClick={() => toggleItem(iIdx)} className="bt12695">
