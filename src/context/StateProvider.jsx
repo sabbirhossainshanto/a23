@@ -28,7 +28,12 @@ const StateProvider = ({ children }) => {
     /* Get site logo */
     const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
     setLogo(logo);
-
+    /* Theme css */
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+    document.head.appendChild(link);
     /* Dynamically append  favicon  */
     const FavIconLink = document.createElement("link");
     FavIconLink.rel = "icon";
