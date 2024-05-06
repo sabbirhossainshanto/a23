@@ -39,8 +39,6 @@ const GameDetails = () => {
     }
   }, []);
 
-
-
   return (
     <>
       {showMyBets && (
@@ -48,7 +46,7 @@ const GameDetails = () => {
       )}
       <ScoreCardSlider />
       {eventsData?.score && (
-        <ScoreBoardCard  eventTypeId={eventTypeId} score={eventsData?.score} />
+        <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
       )}
       <MatchTrackerTab score={eventsData?.score} match_odds={match_odds} />
       {eventsData?.sportsbook?.Result && (
@@ -79,8 +77,8 @@ const GameDetails = () => {
                 height="24"
                 viewBox="0 0 32 32"
                 style={{
-                  fill: "currentcolor",
-                  color: "inherit",
+                  fill: "white",
+                  color: "white",
                   width: "auto",
                   height: "24",
                 }}
