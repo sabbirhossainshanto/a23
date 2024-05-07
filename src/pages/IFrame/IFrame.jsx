@@ -3,7 +3,7 @@ import handleRandomToken from "../../utils/handleRandomToken";
 import handleEncryptData from "../../utils/handleEncryptData";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import Loader from "../../components/ui/Loader/Loader";
 
@@ -25,6 +25,7 @@ const IFrame = () => {
         token: generatedToken,
         isHome: false,
         mobileOnly: true,
+        site:Settings.siteUrl
       });
 
       try {

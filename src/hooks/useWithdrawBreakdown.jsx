@@ -14,7 +14,7 @@ const useWithdrawBreakdown = () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData({
         token: generatedToken,
-        site: Settings.siteTitle,
+        site: Settings.siteUrl,
       });
       const res = await axios.post(`${API.withdrawBreakdown}`, encryptedData, {
         headers: {

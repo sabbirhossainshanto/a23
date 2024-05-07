@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import handleRandomToken from "../../utils/handleRandomToken";
@@ -61,6 +61,7 @@ const UploadTransaction = ({ paymentId, amount }) => {
         fileName: uploadedImage,
         utr: parseFloat(utr),
         token: generatedToken,
+        site:Settings.siteUrl
       };
       const res = await axios.post(API.bankAccount, screenshotPostData, {
         headers: {

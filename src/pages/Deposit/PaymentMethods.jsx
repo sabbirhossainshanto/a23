@@ -1,7 +1,7 @@
 import axios from "axios";
 import { depositMethodsPost } from "../../constant/constant";
 import useBankAccount from "../../hooks/useBankAccount";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
 import { useState } from "react";
 import useContextState from "../../hooks/useContextState";
@@ -32,6 +32,7 @@ const PaymentMethods = ({
       type: "depositDetails",
       paymentId: method?.paymentId,
       token: generatedToken,
+      site:Settings.siteUrl
     };
     const res = await axios.post(API.bankAccount, depositDetail, {
       headers: {

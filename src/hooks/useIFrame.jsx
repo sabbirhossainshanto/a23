@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useContextState from "./useContextState";
 import axios from "axios";
 
-import { API } from "../api";
+import { API, Settings } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 /* Iframe  api  */
@@ -19,6 +19,7 @@ const useIFrame = (eventTypeId, eventId) => {
         eventId: eventId,
         type: "video",
         token: generatedToken,
+        site:Settings.siteUrl
       });
       const res = await axios.post(API.accessToken, encryptedVideoData, {
         headers: {

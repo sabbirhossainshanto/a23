@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useContextState from "./useContextState";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 /* passbook api */
@@ -24,6 +24,7 @@ const usePassbook = () => {
         to: toDate,
         type: "GR",
         token: generatedToken,
+        site:Settings.siteUrl
       });
       const res = await axios.post(API.accountStatement, encryptedData, {
         headers: {

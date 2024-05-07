@@ -16,7 +16,8 @@ const useDepositBreakDown = (amount) => {
       const encryptedData = handleEncryptData({
         token: generatedToken,
         amount,
-        site: Settings.siteTitle,
+        site: Settings.siteUrl,
+      
       });
       const res = await axios.post(`${API.depositBreakdown}`, encryptedData, {
         headers: {

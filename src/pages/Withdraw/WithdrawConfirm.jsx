@@ -1,7 +1,7 @@
 import { useState } from "react";
 import WithdrawSuccess from "../../components/modal/WithdrawSuccess";
 import axios from "axios";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
 import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
@@ -27,6 +27,7 @@ const WithdrawConfirm = ({
         amount: amount,
         bankId: bank?.bankId,
         token: generatedToken,
+        site:Settings.siteUrl
       };
 
       const res = await axios.post(API.bankAccount, bankData, {

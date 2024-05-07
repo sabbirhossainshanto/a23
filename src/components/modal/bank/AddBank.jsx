@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import useContextState from "../../../hooks/useContextState";
 import handleRandomToken from "../../../utils/handleRandomToken";
 import axios from "axios";
-import { API } from "../../../api";
+import { API, Settings } from "../../../api";
 import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
@@ -30,6 +30,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       accountNumber: bankDetails.accountNumber,
       type: "addBankAccount",
       token: generatedToken,
+      site:Settings.siteUrl
     };
 
     const res = await axios.post(API.bankAccount, bankData, {

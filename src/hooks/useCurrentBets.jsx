@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import useContextState from "./useContextState";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
@@ -14,7 +14,10 @@ const useCurrentBets = (eventId) => {
     queryFn: async () => {
       try {
         const generatedToken = handleRandomToken();
-        const encryptedData = handleEncryptData(generatedToken);
+        const encryptedData = handleEncryptData({
+          token:generatedToken,
+          site:Settings.siteUrl
+        });
         const response = await fetch(
           `${API.currentBets}/${eventId || "sports"}`,
           {

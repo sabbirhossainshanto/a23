@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
 import handleEncryptData from "../../utils/handleEncryptData";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +29,7 @@ const ChangePassword = () => {
       password: newPassword,
       passVerify: newPasswordConfirm,
       token: generatedToken,
+      site:Settings.siteUrl
     });
     fetch(API.changePassword, {
       method: "POST",

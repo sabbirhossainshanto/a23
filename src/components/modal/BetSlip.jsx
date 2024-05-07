@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import handleRandomToken from "../../utils/handleRandomToken";
 import handleEncryptData from "../../utils/handleEncryptData";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { FaSpinner } from "react-icons/fa";
@@ -86,6 +86,7 @@ const BetSlip = ({
       {
         ...payload,
         token: generatedToken,
+        site:Settings.siteUrl
       },
     ]);
 

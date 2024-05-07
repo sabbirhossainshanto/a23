@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import useContextState from "./useContextState";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
@@ -13,7 +13,10 @@ const useSinglePassbook = (marketId) => {
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = handleRandomToken();
-      const encryptedData = handleEncryptData(generatedToken);
+      const encryptedData = handleEncryptData({
+        token:generatedToken,
+        site:Settings.siteUrl
+      });
       const res = await axios.post(
         `${API.settledBets}/${marketId}`,
         encryptedData,

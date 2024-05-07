@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import useContextState from "./useContextState";
 import handleRandomToken from "../utils/handleRandomToken";
 
@@ -13,6 +13,7 @@ const useBankAccount = (payload) => {
       const generatedToken = handleRandomToken();
       const bankData = {
         ...payload,
+        site:Settings.siteUrl,
         token: generatedToken,
       };
       //   const encryptedData = UseEncryptData(bankData);

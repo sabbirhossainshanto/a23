@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API } from "../../../api";
+import { API, Settings } from "../../../api";
 import useContextState from "../../../hooks/useContextState";
 import handleRandomToken from "../../../utils/handleRandomToken";
 import toast from "react-hot-toast";
@@ -23,6 +23,7 @@ const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
       type: "deleteBankAccount",
       bankId: removeBank,
       token: generatedToken,
+      site:Settings.siteUrl
     };
 
     const res = await axios.post(API.bankAccount, bankData, {

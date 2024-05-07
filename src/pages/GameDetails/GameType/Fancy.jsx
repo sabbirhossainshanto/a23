@@ -5,7 +5,7 @@ import useContextState from "../../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
 import handleRandomToken from "../../../utils/handleRandomToken";
 import handleEncryptData from "../../../utils/handleEncryptData";
-import { API } from "../../../api";
+import { API, Settings } from "../../../api";
 import Ladder from "../../../components/modal/Ladder";
 
 const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
@@ -66,7 +66,10 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
  
   const handleLadder = (marketId) => {
     const generatedToken = handleRandomToken();
-    const encryptedData = handleEncryptData(generatedToken);
+    const encryptedData = handleEncryptData({
+      token:generatedToken,
+      site:Settings.siteUrl
+    });
     fetch(`${API.ladder}/${marketId}`, {
       method: "POST",
       headers: {

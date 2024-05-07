@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
@@ -9,7 +9,10 @@ const useHomeCasino = () => {
     queryKey: ["home-casino"],
     queryFn: async () => {
       const generatedToken = handleRandomToken();
-      const encryptedData = handleEncryptData(generatedToken);
+      const encryptedData = handleEncryptData({
+        token:generatedToken,
+        site:Settings.siteUrl
+      });
       const res = await axios.post(`${API.homeCasino}`, encryptedData);
       const data = res.data;
       if (data.status === "success") {
