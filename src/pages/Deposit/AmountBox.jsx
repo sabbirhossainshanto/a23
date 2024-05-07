@@ -1,4 +1,5 @@
 const AmountBox = ({amount,setAmount,setShowModal}) => {
+
   return (
     <div className="amountBox ">
       <div className="withdraw_text ">

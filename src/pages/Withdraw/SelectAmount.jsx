@@ -3,6 +3,7 @@ import useWithdrawBreakdown from "../../hooks/useWithdrawBreakdown";
 
 const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
   const { withdrawBreakdown } = useWithdrawBreakdown();
+
   return (
     <div
       data-scroll-lock-scrollable=""
@@ -126,7 +127,10 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
           </form>
         </div>
         <button
-          disabled={amount < 300 || amount > withdrawBreakdown?.mainWallet}
+          disabled={
+            amount < withdrawBreakdown?.minimumWithdraw ||
+            amount > withdrawBreakdown?.mainWallet
+          }
           onClick={() => setShowBankAccount(true)}
           className="btnn1 "
         >

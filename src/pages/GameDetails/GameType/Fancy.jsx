@@ -98,7 +98,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                   className="bt6588  "
                   style={{ flex: "1" }}
                 >
-                  <div className="bt6592 bt12699" style={{ margin: "4px 0" }}>
+                  <div className="bt6592 bt12699" style={{ minHeight: "40px" }}>
                     {/* <div
                       className="bt6596 bt12703"
                       data-editor-id="tableOutcomePlateName"
