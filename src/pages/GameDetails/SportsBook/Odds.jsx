@@ -105,7 +105,7 @@ const Odds = ({
   }, [data]);
 
 
-  console.log(sports);
+ 
 
   return (
     <div className="bt12498">

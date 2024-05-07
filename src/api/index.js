@@ -29,6 +29,7 @@ export const API = {
   depositBreakdown: endPoints?.depositBreakdown,
   withdrawBreakdown: endPoints?.withdrawBreakdown,
   accessToken: endPoints?.accessToken,
+  ladder:endPoints?.ladder
 };
 
 export const Settings = {
