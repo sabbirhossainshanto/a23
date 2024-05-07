@@ -15,7 +15,7 @@ const Ladder = ({ ladderData, setLadderData }) => {
       >
         <div className="depositbreak ng-tns-c159-13" style={{ height: "25px" }}>
           <p className="ng-tns-c159-13" style={{ fontSize: "11px" }}>
-            Open Bets
+            Ladder
           </p>
           <div
             style={{ cursor: "pointer" }}
@@ -44,9 +44,9 @@ const Ladder = ({ ladderData, setLadderData }) => {
         <div className="mat-expansion-panel-content ng-trigger ng-trigger-bodyExpansion">
           <div
             className="mat-expansion-panel-body"
-            style={{ padding: "0 10px" }}
+            
           >
-            <div className="allbet-datawrap">
+            <div className="allbet-datawrap" style={{paddingRight:'10px'}}>
               <div className="allbet-header">
                 <div className="allbet-title">
                   <h3>Score</h3>
@@ -55,7 +55,7 @@ const Ladder = ({ ladderData, setLadderData }) => {
                   <h3></h3>
                   <h3></h3>
                   <h3></h3>
-                  <h3>Win/Loss</h3>
+                  <h3 style={{textAlign:'end'}}>Win/Loss</h3>
                 </div>
               </div>
               {ladderData?.map((item, i) => {
@@ -73,7 +73,9 @@ const Ladder = ({ ladderData, setLadderData }) => {
                       <h3> </h3>
                       <h3></h3>
                       <h3></h3>
-                      <h3
+                      <h3 
+                      
+                      style={{textAlign:'end'}}
                         className={`${
                           item?.exposure > 0 ? "text-success" : "text-danger"
                         }`}
