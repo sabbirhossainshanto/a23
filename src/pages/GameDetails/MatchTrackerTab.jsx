@@ -8,9 +8,15 @@ const MatchTrackerTab = ({ score }) => {
   const { eventId, eventTypeId } = useParams();
   const { iFrameUrl } = useIFrame(eventTypeId, eventId);
   const [iframeVideo, setIframeVideo] = useState("");
-
-
-  
+  const [responsiveHeight, setResponsiveHeight] = useState("");
+  const currentWidth = window.innerWidth;
+  useEffect(() => {
+    if (currentWidth < 735) {
+      setResponsiveHeight("100%");
+    } else {
+      setResponsiveHeight("392.75px");
+    }
+  }, [currentWidth]);
 
   const handleToggle = (tab) => {
     if (toggle === tab) {
@@ -166,7 +172,7 @@ const MatchTrackerTab = ({ score }) => {
                       (score?.tracker || iFrameUrl?.url) &&
                       toggle &&
                       iframeVideo
-                        ? "392.75px"
+                        ? responsiveHeight
                         : "0px"
                     }`,
                   }}
