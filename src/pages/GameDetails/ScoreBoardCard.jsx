@@ -4,7 +4,7 @@ const ScoreBoardCard = ({ score, eventTypeId}) => {
     <>
       {eventTypeId == 2 ? (
         <div className="bt12577 bt12497 tennis" data-editor-id="scoreBoardCard">
-          <div className="bt12580 bt12579">
+          {/* <div className="bt12580 bt12579">
             <div className="bt244">
               <div className="bt251" data-editor-id="eventCardCategory">
                 <div className="bt252 bt257 bt243">
@@ -66,7 +66,7 @@ const ScoreBoardCard = ({ score, eventTypeId}) => {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
           <a className="bt248" data-editor-id="eventCardContent">
             <div className="bt235">
               <div className="bt236">
