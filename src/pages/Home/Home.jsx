@@ -19,6 +19,8 @@ const Home = () => {
   useEffect(() => {
     refetchSports();
   }, [refetchSports, sportsType]);
+
+  
   useEffect(() => {
     if (!tokenLoading && !Settings.balanceApiLoop) {
       refetchBalance();

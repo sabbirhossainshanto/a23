@@ -39,6 +39,7 @@ const GameDetails = () => {
     }
   }, []);
 
+
   return (
     <>
       {showMyBets && (

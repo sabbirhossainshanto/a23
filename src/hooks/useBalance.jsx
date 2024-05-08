@@ -31,7 +31,7 @@ const useBalance = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res.data);
+    
       if (res?.data?.success === false && token) {
         /* Logout if success false  */
         handleLogOut();
