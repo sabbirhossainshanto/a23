@@ -160,38 +160,50 @@ const MatchTrackerTab = ({ score }) => {
               ></iframe>
             )}
             <div>
-              <div
-                data-editor-id="matchTrackerWidget"
-                // className="bt12646 bt12647"
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  // height: 0,
-                  paddingBottom: toggle ? "56.25%" : "",
-                  overflow: "hidden",
-                }}
-              >
-                {score?.tracker && toggle === "tracker" && (
+              {score?.tracker && toggle === "tracker" && (
+                <div
+                  data-editor-id="matchTrackerWidget"
+                  className="bt12646 bt12647"
+                  // style={{
+                  //   position: "relative",
+                  //   width: "100%",
+                  //   // height: 0,
+                  //   paddingBottom: toggle ? "56.25%" : "",
+                  //   overflow: "hidden",
+                  // }}
+                >
                   <iframe
                     className="bt12648"
                     referrerPolicy="noreferrer"
                     src={iframeVideo}
-                    title="tracker"
+                 
                     style={{
                       // width: "100%",
                       // border: "0px",
                       // height: `392px`,
                       // aspectRatio: 1 / 0.57,
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
+                      // position: "absolute",
+                      // top: 0,
+                      // left: 0,
                       width: "100%",
-                      height: "100%",
+                      height: "375px",
                     }}
                   ></iframe>
-                )}
+                </div>
+              )}
 
-                {iFrameUrl?.url && toggle === "video" && (
+              {iFrameUrl?.url && toggle === "video" && (
+                <div
+                  data-editor-id="matchTrackerWidget"
+                  // className="bt12646 bt12647"
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    // height: 0,
+                    paddingBottom: toggle ? "56.25%" : "",
+                    overflow: "hidden",
+                  }}
+                >
                   <iframe
                     className="bt12648"
                     referrerPolicy="noreferrer"
@@ -209,24 +221,8 @@ const MatchTrackerTab = ({ score }) => {
                       height: "100%",
                     }}
                   ></iframe>
-                )}
-                {/* <iframe
-                  // scrolling="no"
-                  className="bt12648"
-                  referrerPolicy="noreferrer"
-                  src={iframeVideo}
-                  title="tracker"
-                  style={{
-                    height: `${
-                      (score?.tracker || iFrameUrl?.url) &&
-                      toggle &&
-                      iframeVideo
-                        ? responsiveHeight
-                        : "0px"
-                    }`,
-                  }}
-                ></iframe> */}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
