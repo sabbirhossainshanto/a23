@@ -8,29 +8,6 @@ const MatchTrackerTab = ({ score }) => {
   const { eventId, eventTypeId } = useParams();
   const { iFrameUrl } = useIFrame(eventTypeId, eventId);
   const [iframeVideo, setIframeVideo] = useState("");
-  const [responsiveHeight, setResponsiveHeight] = useState("");
-  const currentWidth = window.innerWidth;
-  useEffect(() => {
-    if (currentWidth < 400) {
-      setResponsiveHeight("155px");
-    } else if (currentWidth > 399 && currentWidth < 430) {
-      setResponsiveHeight("200px");
-    } else if (currentWidth > 430 && currentWidth < 500) {
-      setResponsiveHeight("220px");
-    } else if (currentWidth > 500 && currentWidth < 550) {
-      setResponsiveHeight("250px");
-    } else if (currentWidth > 550 && currentWidth < 600) {
-      setResponsiveHeight("285px");
-    } else if (currentWidth > 600 && currentWidth < 650) {
-      setResponsiveHeight("305px");
-    } else if (currentWidth > 650 && currentWidth < 700) {
-      setResponsiveHeight("335px");
-    } else if (currentWidth > 700 && currentWidth < 750) {
-      setResponsiveHeight("360px");
-    } else {
-      setResponsiveHeight("392.75px");
-    }
-  }, [currentWidth]);
 
   const handleToggle = (tab) => {
     if (toggle === tab) {
@@ -170,10 +147,29 @@ const MatchTrackerTab = ({ score }) => {
                 )}
               </div>
             </div>
+            {score?.tracker && toggle === "tracker" && (
+              <iframe
+                className="bt12648"
+                referrerPolicy="noreferrer"
+                src={iframeVideo}
+                title="tracker"
+                style={{
+                  width: "100%",
+                  border: "0px",
+                }}
+              ></iframe>
+            )}
             <div>
               <div
                 data-editor-id="matchTrackerWidget"
-                className="bt12646 bt12647"
+                // className="bt12646 bt12647"
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  // height: 0,
+                  paddingBottom: toggle ? "56.25%" : "",
+                  overflow: "hidden",
+                }}
               >
                 {score?.tracker && toggle === "tracker" && (
                   <iframe
@@ -182,7 +178,15 @@ const MatchTrackerTab = ({ score }) => {
                     src={iframeVideo}
                     title="tracker"
                     style={{
-                      height: "360px",
+                      // width: "100%",
+                      // border: "0px",
+                      // height: `392px`,
+                      // aspectRatio: 1 / 0.57,
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
                     }}
                   ></iframe>
                 )}
@@ -194,7 +198,15 @@ const MatchTrackerTab = ({ score }) => {
                     src={iframeVideo}
                     title="tracker"
                     style={{
-                      height: responsiveHeight,
+                      // width: "100%",
+                      // border: "0px",
+                      // height: `${innerWidth / 1.869}px`,
+                      // aspectRatio: 1 / 0.57,
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
                     }}
                   ></iframe>
                 )}
