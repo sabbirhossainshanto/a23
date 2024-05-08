@@ -21,7 +21,7 @@ const handleDecryptData = (data) => {
   const decrypted = JSON.parse(
     CryptoJS.AES.decrypt(
       data,
-      'H}p:~@liD/:Q!ow.U7.{iP+6G*]$UITu[T=a)cS6-$pVV{e8]v4K;"@[r.W+O',
+      'vRpjunXa0Y5fHNsZbmGnvKGLWADa7HGymaQnZxAk5fyzOgwMgGmAu7cRxsilGx9E',
       { format: CryptoJSAesJson }
     ).toString(CryptoJS.enc.Utf8)
   );

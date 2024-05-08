@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API, Settings } from "../api";
+import handleDecryptData from "../utils/handleDecryptData";
 
 /* get single game details data */
 const useEventDetails = (eventTypeId, eventId) => {
@@ -11,11 +12,12 @@ const useEventDetails = (eventTypeId, eventId) => {
         `${API.eventDetails}/${eventTypeId}/${eventId}`
       );
       const data = res.data;
-      return data;
+      const decryptionData = await handleDecryptData(JSON.stringify(data));
+      return decryptionData;
     },
     /* refetching after 2 second */
     refetchInterval: Settings.interval,
-    gcTime:0
+    gcTime: 0,
   });
 
   return { eventsData, refetchEventsData };
