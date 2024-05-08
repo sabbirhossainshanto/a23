@@ -11,8 +11,22 @@ const MatchTrackerTab = ({ score }) => {
   const [responsiveHeight, setResponsiveHeight] = useState("");
   const currentWidth = window.innerWidth;
   useEffect(() => {
-    if (currentWidth < 735) {
-      setResponsiveHeight("100%");
+    if (currentWidth < 400) {
+      setResponsiveHeight("155px");
+    } else if (currentWidth > 399 && currentWidth < 430) {
+      setResponsiveHeight("200px");
+    } else if (currentWidth > 430 && currentWidth < 500) {
+      setResponsiveHeight("220px");
+    } else if (currentWidth > 500 && currentWidth < 550) {
+      setResponsiveHeight("250px");
+    } else if (currentWidth > 550 && currentWidth < 600) {
+      setResponsiveHeight("285px");
+    } else if (currentWidth > 600 && currentWidth < 650) {
+      setResponsiveHeight("305px");
+    } else if (currentWidth > 650 && currentWidth < 700) {
+      setResponsiveHeight("335px");
+    } else if (currentWidth > 700 && currentWidth < 750) {
+      setResponsiveHeight("360px");
     } else {
       setResponsiveHeight("392.75px");
     }
@@ -161,7 +175,30 @@ const MatchTrackerTab = ({ score }) => {
                 data-editor-id="matchTrackerWidget"
                 className="bt12646 bt12647"
               >
-                <iframe
+                {score?.tracker && toggle === "tracker" && (
+                  <iframe
+                    className="bt12648"
+                    referrerPolicy="noreferrer"
+                    src={iframeVideo}
+                    title="tracker"
+                    style={{
+                      height: "360px",
+                    }}
+                  ></iframe>
+                )}
+
+                {iFrameUrl?.url && toggle === "video" && (
+                  <iframe
+                    className="bt12648"
+                    referrerPolicy="noreferrer"
+                    src={iframeVideo}
+                    title="tracker"
+                    style={{
+                      height: responsiveHeight,
+                    }}
+                  ></iframe>
+                )}
+                {/* <iframe
                   // scrolling="no"
                   className="bt12648"
                   referrerPolicy="noreferrer"
@@ -176,7 +213,7 @@ const MatchTrackerTab = ({ score }) => {
                         : "0px"
                     }`,
                   }}
-                ></iframe>
+                ></iframe> */}
               </div>
             </div>
           </div>
