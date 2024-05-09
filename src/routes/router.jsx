@@ -105,6 +105,10 @@ export const router = createBrowserRouter([
         path: "open-bets",
         element: <OpenBets />,
       },
+      {
+        path: "/notice.json",
+        element: "/notice.json",
+      },
     ],
   },
 ]);
