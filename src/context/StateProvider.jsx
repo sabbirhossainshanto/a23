@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
+import { getSetApis } from "../api/config";
 
 const StateProvider = ({ children }) => {
   /* Global state this states we are using in full project */
@@ -13,36 +14,49 @@ const StateProvider = ({ children }) => {
   const [placeBetValues, setPlaceBetValues] = useState({});
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const [addBank, setAddBank] = useState(false);
+  const [noticeLoaded, setNoticeLoaded] = useState(false);
+
+  useEffect(() => {
+    getSetApis(setNoticeLoaded);
+  }, [noticeLoaded]);
 
   /* Get token from locale storage */
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
-    setToken(getToken);
-    if (token && getToken === token) {
-      /* handle loading for save crash website and set authorization token in header all api` */
-      setTokenLoading(false);
+    if (noticeLoaded) {
+      const getToken = localStorage.getItem("token");
+      setToken(getToken);
+      if (token && getToken === token) {
+        /* handle loading for save crash website and set authorization token in header all api` */
+        setTokenLoading(false);
+      }
     }
-  }, [token, getToken]);
+  }, [token, getToken, noticeLoaded]);
 
   useEffect(() => {
-    /* Get site logo */
-    const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
-    setLogo(logo);
-    /* Theme css */
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
-    document.head.appendChild(link);
-    /* Dynamically append  favicon  */
-    const FavIconLink = document.createElement("link");
-    FavIconLink.rel = "icon";
-    FavIconLink.type = "image/png";
-    FavIconLink.href = `${API.assets}/${Settings.siteUrl}/favicon.png`;
-    document.head.appendChild(FavIconLink);
-    /* Site title */
-    document.title = Settings.siteTitle;
-  }, []);
+    if (noticeLoaded) {
+      /* Get site logo */
+      const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
+      setLogo(logo);
+      /* Theme css */
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+      document.head.appendChild(link);
+      /* Dynamically append  favicon  */
+      const FavIconLink = document.createElement("link");
+      FavIconLink.rel = "icon";
+      FavIconLink.type = "image/png";
+      FavIconLink.href = `${API.assets}/${Settings.siteUrl}/favicon.png`;
+      document.head.appendChild(FavIconLink);
+      /* Site title */
+      document.title = Settings.siteTitle;
+    }
+  }, [noticeLoaded]);
+
+  if (!noticeLoaded) {
+    return;
+  }
 
   const stateInfo = {
     token,

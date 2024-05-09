@@ -1,2 +1,51 @@
-import configData from "../../notice.json";
-export const config = configData;
+import axios from "axios";
+import { API, Settings } from "./index";
+
+export const getSetApis = (setNoticeLoaded) => {
+  axios
+    .get("/notice.json")
+    .then((res) => {
+      const data = res.data;
+      if (data?.result?.endpoint) {
+        API.groupSportsBook = data?.result?.endpoint?.groupSportsBook;
+        API.banner = data?.result?.endpoint?.banner;
+        API.eventDetails = data?.result?.endpoint?.eventDetails;
+        API.login = data?.result?.endpoint?.login;
+        API.bankAccount = data?.result?.endpoint?.bankAccount;
+        API.balance = data?.result?.endpoint?.balance;
+        API.otp = data?.result?.endpoint?.otp;
+        API.whatsApp = data?.result?.endpoint?.whatsApp;
+        API.register = data?.result?.endpoint?.register;
+        API.uploadScreenshot = data?.result?.endpoint?.uploadScreenshot;
+        API.buttonValue = data?.result?.endpoint?.buttonValue;
+        API.changePassword = data?.result?.endpoint?.changePassword;
+        API.liveCasinoIFrame = data?.result?.endpoint?.liveCasinoIFrame;
+        API.exposure = data?.result?.endpoint?.exposure;
+        API.currentBets = data?.result?.endpoint?.currentBets;
+        API.order = data?.result?.endpoint?.order;
+        API.accountStatement = data?.result?.endpoint?.accountStatement;
+        API.settledBets = data?.result?.endpoint?.settledBets;
+        API.indiaCardGames = data?.result?.endpoint?.indiaCardGames;
+        API.assets = data?.result?.endpoint?.assets;
+        API.internationalCasino = data?.result?.endpoint?.internationalCasino;
+        API.slots = data?.result?.endpoint?.slots;
+        API.homeCasino = data?.result?.endpoint?.homeCasino;
+        API.depositBreakdown = data?.result?.endpoint?.depositBreakdown;
+        API.withdrawBreakdown = data?.result?.endpoint?.withdrawBreakdown;
+        API.accessToken = data?.result?.endpoint?.accessToken;
+        API.ladder = data?.result?.endpoint?.ladder;
+        Settings.siteUrl = data?.result?.settings?.siteUrl;
+        Settings.interval = data?.result?.settings?.interval;
+        Settings.siteTitle = data?.result?.settings?.siteTitle;
+        Settings.referral = data?.result?.settings.referral;
+        Settings.balanceApiLoop = data?.result?.settings?.balanceApiLoop;
+        Settings.register = data?.result?.settings?.registration;
+        Settings.otp = data?.result?.settings?.otp;
+        Settings.disabledDevtool = data?.result?.settings?.disabledDevtool;
+        setNoticeLoaded(true);
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};

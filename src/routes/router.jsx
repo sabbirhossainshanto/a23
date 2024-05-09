@@ -20,6 +20,9 @@ import Promotion from "../pages/Promotion/Promotion";
 import OpenBets from "../pages/OpenBets/OpenBets";
 import IFrame from "../pages/IFrame/IFrame";
 
+
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
