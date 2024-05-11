@@ -19,9 +19,7 @@ import Slots from "../pages/Slots/Slots";
 import Promotion from "../pages/Promotion/Promotion";
 import OpenBets from "../pages/OpenBets/OpenBets";
 import IFrame from "../pages/IFrame/IFrame";
-
-
-
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 export const router = createBrowserRouter([
   {
@@ -109,8 +107,8 @@ export const router = createBrowserRouter([
         element: <OpenBets />,
       },
       {
-        path: "/notice.json",
-        element: "/notice.json",
+        path: "forgot-password",
+        element: <ForgotPassword />,
       },
     ],
   },

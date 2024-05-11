@@ -17,7 +17,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { setGetToken } = useContextState();
 
-
   /* handle login */
   const onSubmit = async ({ username, password }) => {
     setDisable(true);
@@ -26,7 +25,7 @@ const Login = () => {
       username: username,
       password: password,
       token: generatedToken,
-      site:Settings.siteUrl
+      site: Settings.siteUrl,
     };
     const encryptedData = handleEncryptData(loginData);
     const res = await fetch(API.login, {
@@ -79,7 +78,6 @@ const Login = () => {
       /* Show error message during login failed */
       setDisable(false);
       toast.error(data?.error);
-  
     }
   };
 
@@ -93,7 +91,7 @@ const Login = () => {
       username: "demo",
       password: "",
       token: generatedToken,
-      site:Settings.siteUrl
+      site: Settings.siteUrl,
     });
     fetch(API.login, {
       method: "POST",
@@ -131,12 +129,12 @@ const Login = () => {
   };
   return (
     <div className="e-p-body-bc">
-    <div className="login-page-abc">
-      <div>
-        <div className="login-page">
-          <div className="login-box">
-            <div className="login-card">
-              {/* <div className="login-card-header">
+      <div className="login-page-abc">
+        <div>
+          <div className="login-page">
+            <div className="login-box">
+              <div className="login-card">
+                {/* <div className="login-card-header">
                 <span>Log in</span>
                 <div className="login-text">
                   <p>Welcome</p>
@@ -149,99 +147,111 @@ const Login = () => {
                 </div>
               </div> */}
 
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                style={{ width: "100%" }}
-                className="animateSignInFormUserId ng-dirty ng-touched ng-invalid"
-                data-gtm-form-interact-id="2"
-              >
-                <div className="whatsup-login-box">
-                  <div className="mobile-input">
-                    <span>User ID / Mobile Number*</span>
-                    <div className="input-box">
-                      <div className=""></div>
-                      <input
-                        {...register("username", {
-                          required: true,
-                        })}
-                        type="text"
-                        placeholder="Enter User ID / Mobile Number"
-                        className="ng-dirty ng-touched ng-invalid"
-                        data-gtm-form-interact-field-id="4"
-                      />
-                    </div>
-
-                    <div className="password-input password-input-1">
-                      <span>Password*</span>
-                      <input
-                        {...register("password", {
-                          required: true,
-                        })}
-                        placeholder="Enter your password"
-                        type={`${showPassword ? "text" : "password"}`}
-                        className="ng-dirty ng-touched ng-invalid"
-                        data-gtm-form-interact-field-id="5"
-                      />
-                      <span className="showPass">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  style={{ width: "100%" }}
+                  className="animateSignInFormUserId ng-dirty ng-touched ng-invalid"
+                  data-gtm-form-interact-id="2"
+                >
+                  <div className="whatsup-login-box">
+                    <div className="mobile-input">
+                      <span>User ID / Mobile Number*</span>
+                      <div className="input-box">
                         <div className=""></div>
-                        {showPassword ? (
-                          <FaEye
-                            onClick={() => setShowPassword((prev) => !prev)}
-                            style={{ cursor: "pointer" }}
-                            size={16}
-                          />
-                        ) : (
-                          <FaEyeSlash
-                            onClick={() => setShowPassword((prev) => !prev)}
-                            style={{ cursor: "pointer" }}
-                            size={16}
-                          />
-                        )}
-                      </span>
+                        <input
+                          {...register("username", {
+                            required: true,
+                          })}
+                          type="text"
+                          placeholder="Enter User ID / Mobile Number"
+                          className="ng-dirty ng-touched ng-invalid"
+                          data-gtm-form-interact-field-id="4"
+                        />
+                      </div>
+
+                      <div className="password-input password-input-1">
+                        <span>Password*</span>
+                        <input
+                          {...register("password", {
+                            required: true,
+                          })}
+                          placeholder="Enter your password"
+                          type={`${showPassword ? "text" : "password"}`}
+                          className="ng-dirty ng-touched ng-invalid"
+                          data-gtm-form-interact-field-id="5"
+                        />
+                        <span className="showPass">
+                          <div className=""></div>
+                          {showPassword ? (
+                            <FaEye
+                              onClick={() => setShowPassword((prev) => !prev)}
+                              style={{ cursor: "pointer" }}
+                              size={16}
+                            />
+                          ) : (
+                            <FaEyeSlash
+                              onClick={() => setShowPassword((prev) => !prev)}
+                              style={{ cursor: "pointer" }}
+                              size={16}
+                            />
+                          )}
+                        </span>
+                      </div>
+                      <div
+                        onClick={() => {
+                          navigate("/forgot-password");
+                        }}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-end",
+                          width: "100%",
+                          justifyContent: "flex-end",
+                          cursor: "pointer",
+                        }}
+                        className="forgot"
+                      >
+                        <span>Forgot Password?</span>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    disabled={disable}
+                    type="submit"
+                    className="login-btn"
+                  >
+                    <span>Log in</span>
+                  </button>
+                  <div className="login-with">
+                    <div className="line"></div>
+                    <span>OR </span>
+                    <div className="line"></div>
+                  </div>
+                  <div className="login-box1">
+                    <div
+                      style={{ border: "none" }}
+                      onClick={loginWithDemo}
+                      id="buttonDiv"
+                      className="google-login"
+                    >
+                      <span>Demo Login</span>
                     </div>
                     <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-end",
-                        width: "100%",
-                        justifyContent: "flex-end",
+                      onClick={() => {
+                        navigate("/register");
                       }}
-                      className="forgot"
+                      className="google-login"
+                      style={{ cursor: "pointer", border: "none" }}
                     >
-                      <span>Forgot Password?</span>
+                      <span>Register</span>
                     </div>
                   </div>
-                </div>
-                <button disabled={disable} type="submit" className="login-btn">
-                  <span>Log in</span>
-                </button>
-                <div className="login-with">
-                  <div className="line"></div>
-                  <span>OR </span>
-                  <div className="line"></div>
-                </div>
-                <div className="login-box1">
-                  <div
-                  style={{border:'none'}}
-                    onClick={loginWithDemo}
-                    id="buttonDiv"
-                    className="google-login"
-                  >
-                    <span>Demo Login</span>
-                  </div>
-                  <div onClick={()=> {
-                    navigate('/register')
-                  }}  className="google-login" style={{ cursor: "pointer",border:'none' }}>
-                    <span>Register</span>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-   </div>
   );
 };
 

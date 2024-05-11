@@ -34,6 +34,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.withdrawBreakdown = data?.result?.endpoint?.withdrawBreakdown;
         API.accessToken = data?.result?.endpoint?.accessToken;
         API.ladder = data?.result?.endpoint?.ladder;
+        API.forgotPassword = data?.result?.endpoint?.forgotPassword;
         Settings.siteUrl = data?.result?.settings?.siteUrl;
         Settings.interval = data?.result?.settings?.interval;
         Settings.siteTitle = data?.result?.settings?.siteTitle;

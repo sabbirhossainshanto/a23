@@ -1,53 +1,50 @@
 import { useEffect, useRef, useState } from "react";
+import GetForgotOTP from "./GetForgotOTP";
 import indFlag from "../../../src/assets/img/ind-flag-icon.svg";
-import { API, Settings } from "../../api";
-import GetOTP from "./GetOTP";
+import { images } from "../../assets";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import handleRandomToken from "../../utils/handleRandomToken";
+import { API, Settings } from "../../api";
 import handleEncryptData from "../../utils/handleEncryptData";
-import handleDepositMethod from "../../utils/handleDepositMethod";
-import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-const Register = () => {
+
+const ForgotPassword = () => {
+  const [showOtp, setShowOtp] = useState(false);
+  const [mobileNo, setMobileNo] = useState("");
+  const [countDown, setCountDown] = useState(45);
+  const inputs = useRef([]);
+  const [otpValues, setOtpValues] = useState(["", "", "", ""]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  const [mobileNo, setMobileNo] = useState("");
-  const [showRegister, setShowRegister] = useState(false);
-  const [countDown, setCountDown] = useState(45);
-  const { setGetToken } = useContextState();
-  const navigate = useNavigate();
-  const inputs = useRef([]);
   const [user, setUser] = useState({
-    userName: "",
     password: "",
     confirmPassword: "",
-    referralCode: "",
   });
-  const [otpValues, setOtpValues] = useState(["", "", "", ""]);
+  const { handleSubmit } = useForm();
+  const navigate = useNavigate();
 
-  /* handle count down for register page */
   useEffect(() => {
-    if (showRegister) {
+    if (showOtp) {
       if (countDown > 0) {
         setTimeout(() => {
           setCountDown((prev) => prev - 1);
         }, 1000);
       }
     }
-  }, [countDown, showRegister]);
+  }, [countDown, showOtp]);
 
   /* handle focus first input for enter otp */
   useEffect(() => {
-    if (showRegister) {
+    if (showOtp) {
       setTimeout(() => {
         if (inputs?.current?.length > 0) {
           inputs?.current?.[0]?.focus();
         }
       }, 1000);
     }
-  }, [showRegister]);
+  }, [showOtp]);
 
   /* handle focus input element  */
   const handleInput = (index, e) => {
@@ -60,31 +57,19 @@ const Register = () => {
     }
   };
 
-
-  /* handle register */
-  const { handleSubmit } = useForm();
   const onSubmit = async () => {
-    if (user.password.length < 8 || user.confirmPassword.length < 8) {
-      return toast.error("Password should be at least 8 character");
-    }
-    if (user.password !== user?.confirmPassword) {
-      return toast.error("Password did not matched");
-    }
     const generatedToken = handleRandomToken();
-    const registerData = {
-      username: user?.userName,
+    const forgotPasswordData = {
+      username: mobileNo,
       password: user?.password,
       confirmPassword: user?.confirmPassword,
-      mobile: mobileNo,
       site: Settings.siteUrl,
       token: generatedToken,
       otp: otpValues.join(""),
-      isOtpAvailable: Settings.otp,
-      referralCode: user.referralCode,
     };
 
-    const encryptedData = handleEncryptData(registerData);
-    const res = await fetch(API.register, {
+    const encryptedData = handleEncryptData(forgotPasswordData);
+    const res = await fetch(API.forgotPassword, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -93,40 +78,11 @@ const Register = () => {
     });
 
     const data = await res.json();
-
     if (data?.success) {
-      if (Settings.deposit) {
-        const handleDeposit = handleDepositMethod(data.result.token);
-        const res = await handleDeposit();
-        if (res?.success) {
-          localStorage.setItem("depositMethod", JSON.stringify(res?.result));
-        }
-      }
-
-      /* Set token to localeStorage */
-      localStorage.setItem("token", data.result.token);
-      /* Set bonus token in locale storage */
-      localStorage.setItem("bonusToken", data?.result?.bonusToken);
-      /* Set login name to locale storage */
-      localStorage.setItem("loginName", data.result.loginName);
-      const buttonValue = JSON.stringify(data.result.buttonValue.game);
-      /* set button value to locale storage */
-      localStorage.setItem("buttonValue", buttonValue);
-
-      /* if in locale storage token and login name available and  data?.result?.changePassword === false */
-      setGetToken((prev) => !prev);
-      if (
-        localStorage.getItem("token") &&
-        localStorage.getItem("loginName") &&
-        data?.result?.changePassword === false
-      ) {
-        /* Show success message */
-        toast.success("User registration successful!");
-        /* Close modal */
-        navigate("/");
-      } else {
-        toast.error(data?.error?.description);
-      }
+      toast.success("Password updated successfully");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } else {
       toast.error(data?.error?.description);
     }
@@ -134,29 +90,23 @@ const Register = () => {
 
   return (
     <>
-      {Settings.otp && !showRegister ? (
-        <GetOTP
-          setMobileNo={setMobileNo}
+      {!showOtp ? (
+        <GetForgotOTP
+          setShowOtp={setShowOtp}
           mobileNo={mobileNo}
-          setShowRegister={setShowRegister}
+          setMobileNo={setMobileNo}
         />
       ) : (
-        <div className="">
+        <div className="e-p-body-bc">
           <div className="login-page-abc">
             <div>
               <div className="register-box">
                 <div className="register-card">
-                  {/* <div className="register-card-header">
-                    <span>New Member?</span>
+                  <div className="register-card-header">
                     <div className="register-text">
-                      <p>Register Now,</p>
-                      <img
-                        src={handLogo}
-                        alt=""
-                        style={{ height: "24px", width: "24px" }}
-                      />
+                      <p>Forgot Password</p>
                     </div>
-                  </div> */}
+                  </div>
                   <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="ng-invalid ng-submitted ng-untouched ng-pristine"
@@ -175,7 +125,7 @@ const Register = () => {
                         <div className="str-line">
                           <img
                             loading="lazy"
-                            src="assets/img/straight-line1.svg"
+                            src={images.straightLine1}
                             alt=""
                           />
                         </div>
@@ -185,9 +135,10 @@ const Register = () => {
                           placeholder="Enter your Phone Number"
                           value={mobileNo}
                           data-gtm-form-interact-field-id="8"
+                          disabled=""
                         />
                         <img
-                          src="assets/img/right-click-check.svg"
+                          src={images.rightClickCheck}
                           alt=""
                           style={{
                             position: "absolute",
@@ -197,19 +148,7 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    {/* <div className="terms">
-                      <div className="radio-check">
-                        <img
-                          src="assets/img/checked.webp"
-                          alt=""
-                          style={{ height: "1rem" }}
-                        />
-                      </div>
-                      <span>
-                        I confirm that I am 18 years old or above and agree to
-                        the terms and conditions.
-                      </span>
-                    </div> */}
+
                     <div>
                       <div className="otp-input-box">
                         <span>Enter OTP*</span>
@@ -227,13 +166,9 @@ const Register = () => {
                             />
                           ))}
                         </div>
-                        {countDown === 0 ? (
-                          <span className="resend-otp">Resend</span>
-                        ) : (
-                          <span className="resend-otp">
-                            Resend in 00:{countDown}
-                          </span>
-                        )}
+                        <span className="resend-otp">
+                          Resend in 00:{countDown}
+                        </span>
                       </div>
                     </div>
 
@@ -253,8 +188,8 @@ const Register = () => {
                               password: e.target.value,
                             });
                           }}
-                          placeholder="Enter your password"
                           type={showPassword ? "text" : "password"}
+                          placeholder="Enter your password"
                           className="ng-untouched ng-pristine ng-invalid"
                         />
                         <span className="showPass">
@@ -307,7 +242,7 @@ const Register = () => {
                         </span>
                       </div>
                     </div>
-                    <button type="submit" className="submit-btn">
+                    <button className="submit-btn">
                       <span>Submit</span>
                     </button>
                   </form>
@@ -321,4 +256,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ForgotPassword;
