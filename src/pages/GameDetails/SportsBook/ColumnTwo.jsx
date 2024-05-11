@@ -15,33 +15,45 @@ const ColumnTwo = ({
 }) => {
   const { setPlaceBetValues, setOpenBetSlip, token } = useContextState();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (item?.Items) {
       const newPrevPrices = {};
-
-      item.Items.forEach((column, i) => {
-        newPrevPrices[i] = column.Price;
+      item.Items.forEach((column) => {
+        newPrevPrices[column?.Id] = column.Price;
       });
-      setPrevPrices(newPrevPrices);
+
+      setPrevPrices({ ...newPrevPrices });
       const timer = setTimeout(() => {
         setPriceClasses({});
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [item?.Items]);
+  }, [item?.Items, setPrevPrices, setPriceClasses]);
 
   useEffect(() => {
-    item?.Items?.forEach((column, i) => {
-      handlePriceChange(column.Price, i);
+    item?.Items?.forEach((column) => {
+      handlePriceChange(column.Price, column?.Id);
     });
   }, [item?.Items]);
 
-  const handlePriceChange = (newPrice, columnIndex) => {
-    if (prevPrices[columnIndex] !== undefined) {
-      if (newPrice > prevPrices[columnIndex]) {
-        setPriceClasses((prev) => ({ ...prev, [columnIndex]: "green_blink" }));
-      } else if (newPrice < prevPrices[columnIndex]) {
-        setPriceClasses((prev) => ({ ...prev, [columnIndex]: "red_blink" }));
+  const handlePriceChange = (newPrice, id) => {
+    if (prevPrices[id] !== undefined) {
+      if (newPrice !== prevPrices[id]) {
+        if (newPrice > prevPrices[id]) {
+          setPriceClasses((prev) => ({
+            ...prev,
+            [id]: "green_blink",
+          }));
+        } else if (newPrice < prevPrices[id]) {
+          setPriceClasses((prev) => ({ ...prev, [id]: "red_blink" }));
+        }
+      } else {
+        setPriceClasses((prev) => {
+          const updatedClasses = { ...prev };
+          delete updatedClasses[id];
+          return updatedClasses;
+        });
       }
     }
   };
@@ -60,7 +72,6 @@ const ColumnTwo = ({
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
-             
                 return (
                   <div
                     onClick={() =>
@@ -87,7 +98,7 @@ const ColumnTwo = ({
                       }}
                     >
                       <div accessKey="" className="bt1570">
-                        <span className={priceClasses[i]}></span>
+                        <span className={priceClasses[column?.Id]}></span>
                       </div>
                       <div
                         className="bt6596 bt12703"
@@ -99,7 +110,7 @@ const ColumnTwo = ({
                         <span className="bt6566">
                           {column?.Price > 0 &&
                             !isSportsRunnerSuspended(column) &&
-                            column?.Price?.toFixed(2)}
+                            column?.Price}
                         </span>
                       </div>
                     </div>
