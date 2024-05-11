@@ -136,9 +136,9 @@ const Login = () => {
         <div className="login-page">
           <div className="login-box">
             <div className="login-card">
-              <div className="login-card-header">
+              {/* <div className="login-card-header">
                 <span>Log in</span>
-                {/* <div className="login-text">
+                <div className="login-text">
                   <p>Welcome</p>
                   <img
                     loading="lazy"
@@ -146,8 +146,8 @@ const Login = () => {
                     alt="waving-hand"
                     style={{ height: "24px", width: "24px" }}
                   />
-                </div> */}
-              </div>
+                </div>
+              </div> */}
 
               <form
                 onSubmit={handleSubmit(onSubmit)}
