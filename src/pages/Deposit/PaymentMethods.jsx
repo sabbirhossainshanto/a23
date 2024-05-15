@@ -12,6 +12,8 @@ import codeBlock from "../../../src/assets/img/code_block.svg";
 import institution from "../../../src/assets/img/institution.svg";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 import { FaQrcode } from "react-icons/fa";
+import { CiBank } from "react-icons/ci";
+import { images } from "../../assets";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -77,7 +79,18 @@ const PaymentMethods = ({
                     class="payment_container"
                   >
                     <span>{method?.type?.toUpperCase()}</span>
-                    <FaQrcode size={20} color="gray" />
+                    {method?.type == "qr" && (
+                      <FaQrcode size={20} color="gray" />
+                    )}
+                    {method?.type == "bank" && (
+                      <CiBank size={20} color="gray" />
+                    )}
+                    {method?.type == "upi" && (
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src={images.upi}
+                      />
+                    )}
                   </div>
                 </div>
               );
@@ -494,18 +507,19 @@ const PaymentMethods = ({
             <p
               _ngcontent-kdb-c159=""
               className="make ng-tns-c159-13"
-              style={{ marginBottom: "0.75rem", color: "black" }}
+              style={{ marginBottom: "0.75rem",marginLeft:'10px', color: "black" }}
             >
               QR code for payment
             </p>
             <div
+             style={{ display:'flex',alignItems:'center',justifyContent:'center' }}
               _ngcontent-kdb-c159=""
               className="accountdetailss ng-tns-c159-13 ng-star-inserted"
             >
               <div
                 _ngcontent-kdb-c159=""
                 className="accountnum ng-tns-c159-13"
-                style={{ alignItems: "flex-start", flexWrap: "wrap" }}
+                style={{ width:'100%',justifyContent:'center' }}
               >
                 <div
                   style={{
@@ -517,7 +531,7 @@ const PaymentMethods = ({
                   className="ng-tns-c159-13"
                 >
                   <img
-                    style={{ height: "350px", borderRadius: "4px" }}
+                    style={{ height: "250px", borderRadius: "4px" }}
                     _ngcontent-kdb-c159=""
                     loading="lazy"
                     src={depositData?.qrCodeLink}

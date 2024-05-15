@@ -5,6 +5,7 @@ import bankPicture from "./img/bankPicture.svg";
 import edit from "./img/edit.svg";
 import straightLine1 from "./img/straight-line1.svg";
 import rightClickCheck from "./img/right-click-check.svg";
+import upi from "./img/upi.png";
 
 export const images = {
   star,
@@ -13,5 +14,6 @@ export const images = {
   bankPicture,
   edit,
   straightLine1,
-  rightClickCheck
+  rightClickCheck,
+  upi
 };
