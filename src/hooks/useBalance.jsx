@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
 import useContextState from "./useContextState";
 import { API, Settings } from "../api";
 import { handleLogOut } from "../utils/handleLogOut";
@@ -9,12 +8,13 @@ import handleEncryptData from "../utils/handleEncryptData";
 import { useNavigate } from "react-router-dom";
 /* Balance api */
 const useBalance = () => {
-  const { token, tokenLoading, setTokenLoading, setGetToken } =
+  const {   setTokenLoading, setGetToken } =
     useContextState();
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
   const { data: balanceData = {}, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
-    enabled: !tokenLoading,
+    // enabled: !tokenLoading,
     queryFn: async () => {
       if (!token) {
         return;

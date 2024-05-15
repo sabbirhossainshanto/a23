@@ -84,7 +84,7 @@ const ForgotPassword = () => {
         navigate("/login");
       }, 1000);
     } else {
-      toast.error(data?.error?.description);
+      toast.error(data?.error?.loginName[0]?.description);
     }
   };
 
