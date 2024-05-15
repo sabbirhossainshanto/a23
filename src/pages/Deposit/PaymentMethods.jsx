@@ -11,6 +11,7 @@ import contactTwo from "../../../src/assets/img/contact_two.svg";
 import codeBlock from "../../../src/assets/img/code_block.svg";
 import institution from "../../../src/assets/img/institution.svg";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
+import { FaQrcode } from "react-icons/fa";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -32,7 +33,7 @@ const PaymentMethods = ({
       type: "depositDetails",
       paymentId: method?.paymentId,
       token: generatedToken,
-      site:Settings.siteUrl
+      site: Settings.siteUrl,
     };
     const res = await axios.post(API.bankAccount, depositDetail, {
       headers: {
@@ -56,42 +57,36 @@ const PaymentMethods = ({
           >
             Payment Methods
           </p>
-          <div
-            _ngcontent-kdb-c159=""
-            className="accountdetailss ng-tns-c159-13 ng-star-inserted"
-          >
-            <div className="payment_container" style={{ width: "100%" }}>
-              {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
-                depositMethods?.map((method) => {
-                  return (
-                    <div
-                      style={{
-                        border: `${
-                          tabs == method?.type
-                            ? "3px solid #f2f2f2"
-                            : "1px solid #f2f2f2"
-                        }`,
-                      }}
-                      onClick={() => handleVisibleBankMethod(method)}
-                      key={method?.paymentId}
-                      className="payment_box"
-                    >
-                      <img
-                        src={`/img/${method?.type}.${
-                          method?.type === "qr" ? "svg" : "png"
-                        }`}
-                      />
-                      <h2> {method?.type?.toUpperCase()}</h2>
-                    </div>
-                  );
-                })
-              ) : (
-                <h2>No payment method available right now.</h2>
-              )}
 
-              {/*    <!-- Add more divs as needed --> */}
-            </div>
-          </div>
+          {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
+            depositMethods?.map((method) => {
+              return (
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleVisibleBankMethod(method)}
+                  key={method?.paymentId}
+                  _ngcontent-kdb-c159=""
+                  class="accountdetailss  "
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                    class="payment_container"
+                  >
+                    <span>{method?.type?.toUpperCase()}</span>
+                    <FaQrcode size={20} color="gray" />
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <h2>No payment method available right now.</h2>
+          )}
+
+          {/*    <!-- Add more divs as needed --> */}
         </div>
       </div>
 
@@ -530,10 +525,18 @@ const PaymentMethods = ({
                     className="ng-tns-c159-13"
                   />
                 </div>
-                {
-                  depositData?.qrDisplayName && (
-                    <div _ngcontent-kdb-c159="" className="banknum ng-tns-c159-13">
-                    <span style={{ display: "flex", gap: "7px",alignItems:'center' }}>
+                {depositData?.qrDisplayName && (
+                  <div
+                    _ngcontent-kdb-c159=""
+                    className="banknum ng-tns-c159-13"
+                  >
+                    <span
+                      style={{
+                        display: "flex",
+                        gap: "7px",
+                        alignItems: "center",
+                      }}
+                    >
                       <img
                         _ngcontent-kdb-c159=""
                         loading="lazy"
@@ -568,9 +571,7 @@ const PaymentMethods = ({
                       </p>
                     </div>
                   </div>
-                  )
-                }
-             
+                )}
               </div>
             </div>
             <div

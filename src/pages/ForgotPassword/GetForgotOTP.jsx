@@ -59,13 +59,7 @@ const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo }) => {
                       alt=""
                       className="india-flag"
                     />
-                    <div className="str-line">
-                      <img
-                        loading="lazy"
-                        src="assets/img/straight-line1.svg"
-                        alt=""
-                      />
-                    </div>
+      
                     <input
                       onChange={(e) => handleMobileNo(e)}
                       value={mobileNo}

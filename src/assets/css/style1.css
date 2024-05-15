@@ -10,7 +10,7 @@ html {
   max-width: 768px;
   min-height: 100%;
   margin: 0 auto;
-
+  position: relative;
   /* This centers the div horizontally */
   background-color: #ebedf4;
   padding-bottom: 100px;
@@ -237,7 +237,7 @@ html {
 }
 
 .mia0b51 .header-logo {
-  height: 24px;
+  height: 2.25rem;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
@@ -347,12 +347,12 @@ button {
 
 .ui-button.s-conic {
   color: #fff;
-  background-color: #1d803ab3;
+  background-color: var(--color1) !important;
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 1),
-    rgba(29, 128, 58, 1)
-  );
+    var(--color1),
+    var(--color2)
+  ) !important;
 }
 
 .ui-button.s-conic:hover {
@@ -5372,6 +5372,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -5756,8 +5757,12 @@ img,
   gap: 0.375rem;
   align-self: stretch;
   border-radius: 0.5rem;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    25% 90% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px var(--color2); */
   margin: 1.5rem 0rem;
   z-index: 100;
   width: 100%;
@@ -9938,6 +9943,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/styles.d0985dd7db2a4049.css ; media=all */
 @media all {
   .mat-typography h2 {
     font: 500 20px/32px "Inter", Helvetica Neue, sans-serif;
@@ -11236,6 +11242,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -12733,8 +12740,8 @@ img,
   border-radius: 0.5rem;
   opacity: 0.5;
   width: 100%;
-  background-color: #009d46;
-  box-shadow: 0 0 5px #2db261;
+  background-color: var(--color1);
+  /* box-shadow: 0 0 5px #2db261; */
   color: #fff;
   font-family: "Inter";
   font-size: 12px;
@@ -12756,8 +12763,12 @@ img,
 .btnn.active {
   opacity: 1;
   border-radius: 0.5rem;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    25% 90% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px var(--color1); */
 }
 
 .ellipsis {
@@ -12784,8 +12795,12 @@ img,
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    25% 90% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  ) !important;
+  /* box-shadow: 0 5px 21px var(--color1) !important; */
 }
 
 .makepayment:hover {
@@ -13059,6 +13074,7 @@ img,
   background-size: cover;
   background-position: bottom;
   border-radius: 8px 8px 0 0;
+  background-image: url(https://11exch.com/balancemanagement/zigzag.07675dd494843ed3.svg);
 }
 
 .zigzag:before {
@@ -13810,24 +13826,10 @@ img,
 
 .accountdetailss[_ngcontent-kdb-c159] {
   display: flex;
-  padding: 10px;
-  margin: 5px 10px;
+  padding: 1rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  color: #000c24;
-  border-radius: 0.75rem;
-  background: #fff;
-}
-
-.accountdetailss2[_ngcontent-kdb-c159] {
-  display: flex;
-  padding: 10px;
-
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  color: #000c24;
   border-radius: 0.75rem;
   background: #fff;
 }
@@ -14470,6 +14472,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -14691,7 +14694,7 @@ img,
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: rgba(54, 226, 250, 0.1019607843);
+  /* background: rgba(54, 226, 250, .1019607843); */
 }
 
 .user-name-icon-profile .user-icon-account-profile {
@@ -14996,8 +14999,12 @@ img,
   align-items: center;
   flex: 1 0 0;
   border-radius: 0.375rem;
-  background: linear-gradient(94deg, #019744 -2.18%, #33c76d 102.44%);
-  box-shadow: 0 4px 20px #00cf5859;
+  background: linear-gradient(
+    94deg,
+    var(--color1) -2.18%,
+    var(--color2) 102.44%
+  );
+  /* box-shadow: 0 4px 20px var(--color1); */
 }
 
 .button-container-profile-page
@@ -15608,7 +15615,7 @@ form {
 }
 
 .radio-check {
-  background-image: url(assets/img/unchecked.1ce25297f1f016dc.png);
+  background-image: url(https://11exch.com/unchecked.1ce25297f1f016dc.png);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -15623,7 +15630,11 @@ form {
 .otp-btn {
   border-radius: 0.5rem;
   opacity: 0.5;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
   display: flex;
   height: 2.5rem;
   padding: 0.5rem;
@@ -15637,8 +15648,12 @@ form {
 
 .otp-btn:enabled {
   opacity: 1;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px var(--color1); */
 }
 
 .otp-btn:active {
@@ -16215,7 +16230,7 @@ form {
 }
 
 .radio-check {
-  background-image: url(assets/img/unchecked.1ce25297f1f016dc.png);
+  background-image: url(https://11exch.com/unchecked.1ce25297f1f016dc.png);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -16302,14 +16317,22 @@ form {
   align-self: stretch;
   border-radius: 0.5rem;
   opacity: 0.5;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: radial-gradient(
+    25% 90% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
   animation: slideInSubmitOtPbutton 0.5s ease-in-out forwards;
 }
 
 .submit-btn:enabled {
   opacity: 1;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px var(--color1); */
 }
 
 .submit-btn:active {
@@ -16464,7 +16487,11 @@ form {
   width: 100%;
   border-radius: 0.5rem;
   opacity: 0.5;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
   display: flex;
   height: 2.5rem;
   padding: 0.5rem;
@@ -18690,7 +18717,6 @@ form {
 .payment_container {
   display: flex;
   flex-wrap: wrap;
-  font-size: 12px;
 }
 
 .payment_box {
@@ -19415,11 +19441,11 @@ button {
   border-radius: 0.5rem;
   opacity: 0.5;
   width: 100%;
-  background-color: #009d46;
-  box-shadow: 0 0 5px #2db261;
+  background-color: var(--color1);
+  /* box-shadow: 0 0 5px var(--color2); */
   color: #fff;
   font-family: "Inter";
-  font-size: 14px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -19428,7 +19454,6 @@ button {
 .btnn1:enabled {
   box-shadow: 0 5px 21px #00cf5875;
   opacity: 1;
-  font-size: 14px;
 }
 
 .withdraw-section {
@@ -19480,7 +19505,8 @@ button {
 }
 
 .odds_suspended {
-  background-color: rgba(128, 128, 128, 0.7);
+  /* rgba(128, 128, 128, .7) */
+  background-color: lightgray !important;
   min-height: 40px;
   margin: auto;
   padding-top: 5px;
@@ -20357,12 +20383,16 @@ img,
   gap: 0.375rem;
   opacity: 0.7;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
 }
 
 .process-btn:enabled {
   opacity: 1;
-  box-shadow: 0 5px 21px #00cf5875;
+  /* box-shadow: 0 5px 21px var(--color1); */
 }
 
 .process-btn:active {
@@ -20721,6 +20751,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -21029,7 +21060,11 @@ img,
   align-self: stretch;
   border-radius: 0.5rem;
   opacity: 0.7;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
 }
 
 .add-btn:enabled {
@@ -21836,8 +21871,12 @@ div {
 .confirm-btnn {
   width: 50%;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px #00cf5875; */
   display: flex;
   height: 2.5rem;
   padding: 0.5rem;
@@ -21934,6 +21973,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -22139,8 +22179,12 @@ img,
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    25% 90% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .bank-card > button > span {
@@ -22202,6 +22246,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/styles.d0985dd7db2a4049.css ; media=all */
 @media all {
   .mat-typography p {
     margin: 0 0 12px;
@@ -22442,6 +22487,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -22805,7 +22851,11 @@ img,
   gap: 0.375rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
   margin-top: 2rem;
 }
 
@@ -22877,6 +22927,7 @@ div {
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/styles.d0985dd7db2a4049.css ; media=all */
 @media all {
   .mat-typography h1 {
     font: 400 24px/32px "Inter", Helvetica Neue, sans-serif;
@@ -23159,6 +23210,7 @@ div {
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -23398,7 +23450,9 @@ div {
   }
 }
 
+/*! CSS Used from: Embedded */
 .makepayment {
+  width: 100%;
   margin-top: 1rem;
   display: flex;
   height: 2.5rem;
@@ -23407,8 +23461,12 @@ div {
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(
+    282.87% 0% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .makepayment:hover {
@@ -23456,7 +23514,7 @@ div {
 }
 
 .congo1 {
-  background-image: url(assets/img/congo.svg);
+  background-image: url(/src/assets/img/congo.svg);
   height: 10.37rem;
   width: 13.5rem;
   background-repeat: no-repeat;
@@ -23475,7 +23533,7 @@ div {
   color: #fff;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  /* width: 100%; */
   border-radius: 1.5rem 1.5rem 0rem 0rem;
   background: #000c24;
   z-index: 9999999999;
@@ -23614,7 +23672,7 @@ div {
   align-items: center;
   gap: 0.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(92deg, #48cd83 1.85%, #0c8d47 100%);
+  background: linear-gradient(92deg, var(--color1) 1.85%, var(--color2) 100%);
   z-index: 0;
   animation: right-to-left 0.5s ease-in-out forwards;
 }
@@ -23632,7 +23690,7 @@ div {
   align-items: center;
   gap: 0.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(92deg, #48cd83 1.85%, #0c8d47 100%);
+  background: linear-gradient(92deg, var(--color1) 1.85%, var(--color2) 100%);
   z-index: 0;
   animation: left-to-right 0.5s ease-in-out forwards;
 }
@@ -23702,6 +23760,7 @@ img,
   touch-action: pan-x pan-y !important;
 }
 
+/*! CSS Used from: https://11exch.com/main.610f95679d47798c.css ; media=all */
 @media all {
   *,
   *:before,
@@ -26171,6 +26230,93 @@ p {
   padding: 0.69rem 1rem;
 }
 
+.card-blank {
+  width: 100%;
+  height: max-content;
+  border-radius: 10px;
+  color: #040404;
+  font-size: 12px;
+  font-weight: 500;
+  background: #fff;
+  padding: 0.69rem 1rem;
+}
+
+.card-header > h2 {
+  margin-bottom: 0;
+  color: #040404;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: 0.01875rem;
+}
+
+.card {
+  color: #040404;
+  bottom: 0;
+  left: 25px;
+  /* width: 100%; */
+  border-radius: 10px;
+  background: #000c24;
+  z-index: 9999999999;
+  background: #fff;
+  animation: slide-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.ob_button {
+  /* left: 27%; */
+  bottom: 5%;
+  left: 5%;
+  position: fixed;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .ob_button {
+    /* left: 27%; */
+    bottom: 5%;
+    left: 3%;
+    position: fixed;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .ob_button {
+    /* left: 27%; */
+    bottom: 5%;
+    left: calc(50% - 370px);
+    position: fixed;
+    pointer-events: auto;
+  }
+}
+
+.open_bets_button {
+  color: #31373d;
+  width: 40px;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  background: var(--color1);
+  box-sizing: border-box;
+  align-items: center;
+  border-radius: 50%;
+  background-size: cover;
+  justify-content: center;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 /*! CSS Used fontfaces */
 
 /* passbook end */
+
+.floating-btns {
+  position: absolute;
+  bottom: 70px;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 7px;
+  z-index: 1000;
+}
