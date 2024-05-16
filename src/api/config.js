@@ -43,6 +43,7 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.register = data?.result?.settings?.registration;
         Settings.otp = data?.result?.settings?.otp;
         Settings.disabledDevtool = data?.result?.settings?.disabledDevtool;
+        Settings.apkLink = data?.result?.settings?.apkLink;
         setNoticeLoaded(true);
       }
     })

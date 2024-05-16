@@ -6,6 +6,8 @@ import edit from "./img/edit.svg";
 import straightLine1 from "./img/straight-line1.svg";
 import rightClickCheck from "./img/right-click-check.svg";
 import upi from "./img/upi.png";
+import appStar from "./img/app-star.svg";
+import playStore from "./img/playstore.svg";
 
 export const images = {
   star,
@@ -15,5 +17,7 @@ export const images = {
   edit,
   straightLine1,
   rightClickCheck,
-  upi
+  upi,
+  appStar,
+  playStore,
 };

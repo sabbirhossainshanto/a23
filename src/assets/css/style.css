@@ -26171,6 +26171,193 @@ p {
   padding: 0.69rem 1rem;
 }
 
+
+
 /*! CSS Used fontfaces */
 
 /* passbook end */
+
+.ob_button {
+  /* left: 27%; */
+  bottom: 5%;
+  left: 5%;
+  position: fixed;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .ob_button {
+    /* left: 27%; */
+    bottom: 5%;
+    left: 3%;
+    position: fixed;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .ob_button {
+    /* left: 27%; */
+    bottom: 5%;
+    left: calc(50% - 370px);
+    position: fixed;
+    pointer-events: auto;
+  }
+}
+
+
+.open_bets_button {
+  color: #31373d;
+  width: 40px;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  background: var(--color1);
+  box-sizing: border-box;
+  align-items: center;
+  border-radius: 50%;
+  background-size: cover;
+  justify-content: center;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+.floating-btns {
+  position: absolute;
+  bottom: 70px;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 7px;
+  z-index: 1000;
+}
+
+
+
+
+
+.android-popup {
+  width: 100%;
+  font-family: 'Inter';
+  background: #000C24;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.android-card {
+  font-family: 'Inter';
+  display: flex;
+  width: 282px;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+}
+
+.cancel-icon {
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #9CA3AF;
+}
+
+.side-logo {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-logo img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.app-text h2 {
+  color: #fff;
+  font-family: 'Inter';
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  margin-bottom: 0;
+}
+
+.app-text span {
+  color: #6b7280;
+  font-family: 'Inter';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  margin-bottom: 0;
+}
+
+.app-text .star {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.install-btn {
+  display: flex;
+  height: 28px;
+  padding: 0 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #0d4389;
+}
+
+.install-btn button {
+  color: #fff;
+  font-family: 'Inter';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: .3px;
+  z-index: 10;
+}
+
+.rect-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 141px;
+  height: 64px;
+  flex-shrink: 0;
+  background: linear-gradient(98deg, rgba(8, 248, 255, .7) .98%, rgba(59, 164, 253, .7) 51.52%, rgba(132, 54, 250, .7) 100%);
+  filter: blur(90px);
+  z-index: 0;
+}
+
+.rect-2 {
+  position: absolute;
+  width: 164px;
+  height: 64px;
+  right: 0;
+  top: 0;
+  flex-shrink: 0;
+  background: linear-gradient(98deg, rgba(8, 248, 255, .7) .98%, rgba(59, 164, 253, .7) 51.52%, rgba(132, 54, 250, .7) 100%);
+  filter: blur(90px);
+  z-index: 0;
+}

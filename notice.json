@@ -12,7 +12,8 @@
       "registration": true,
       "disabledDevtool": false,
       "otp": true,
-      "interval": 700
+      "interval": 700,
+      "apkLink": "https://a23money.com/site.apk"
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
