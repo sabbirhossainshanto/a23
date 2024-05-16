@@ -64,6 +64,7 @@ const Bookmaker = ({
               const pnl =
                 pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) ||
                 [];
+                console.log(isRunnerSuspended(games, runner));
               return (
                 <div
                   key={runner?.id}
@@ -198,7 +199,7 @@ const Bookmaker = ({
                             changedPrices[`lay-${runner?.id}-${i}`]
                               ? "blink"
                               : ""
-                          } ${isRunnerSuspended(games, runner)}`}
+                          } ${isRunnerSuspended(games, runner)} `}
                           style={{
                             backgroundColor: "#fdc9d4",
                             minHeight: "40px",

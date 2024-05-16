@@ -19480,7 +19480,7 @@ button {
 }
 
 .odds_suspended {
-  background-color: rgba(128, 128, 128, 0.7);
+  background-color: rgba(128, 128, 128, 0.7) !important;
   min-height: 40px;
   margin: auto;
   padding-top: 5px;

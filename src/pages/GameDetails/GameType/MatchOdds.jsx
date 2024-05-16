@@ -34,7 +34,7 @@ const MatchOdds = ({
   }, [match_odds, previousData]);
 
 
-  
+
 
 
   return (
