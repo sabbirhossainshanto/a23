@@ -1,1 +1,2 @@
-export const isSportsRunnerSuspended = (column) => column?.IsActive === 2;
+export const isSportsRunnerSuspended = (column) =>
+  column?.IsActive === 2 || !column?.IsActive;
