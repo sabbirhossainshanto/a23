@@ -8,7 +8,7 @@ export const handleSportsBookPlaceBet = (
   navigate
 ) => {
   if (token) {
-    if (column?.IsActive === 1) {
+    if (column?.IsActive === 1 || column?.IsActive) {
       setOpenBetSlip(true);
       setPlaceBetValues({});
       setPlaceBetValues({
