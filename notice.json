@@ -13,7 +13,8 @@
       "disabledDevtool": false,
       "otp": true,
       "interval": 700,
-      "apkLink": "https://a23money.com/site.apk"
+      "apkLink": "https://a23money.com/site.apk",
+      "casinoCurrency": "AED"
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",

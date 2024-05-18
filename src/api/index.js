@@ -38,5 +38,6 @@ export const Settings = {
   register: "",
   otp: "",
   disabledDevtool: "",
-  apkLink:""
+  apkLink:"",
+  casinoCurrency:""
 };

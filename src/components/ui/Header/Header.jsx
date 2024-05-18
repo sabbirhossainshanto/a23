@@ -4,7 +4,8 @@ import useBalance from "../../../hooks/useBalance";
 import { Settings } from "../../../api";
 import AppPopup from "./AppPopup";
 import { useEffect, useState } from "react";
-import {AndroidView} from 'react-device-detect'
+import { AndroidView } from "react-device-detect";
+import AEDRules from "../../modal/AEDRules";
 
 const Header = () => {
   const { setSportsType, token, logo, sportsType } = useContextState();
@@ -12,9 +13,8 @@ const Header = () => {
   /* get balance data */
   const { balanceData } = useBalance();
   const location = useLocation();
-
-
-
+  const [showModal, setShowModal] = useState(false);
+  const [casinoInfo, setCasinoInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     const expiryTime = localStorage.getItem("installPromptExpiryTime");
@@ -25,12 +25,33 @@ const Header = () => {
     }
   }, [isModalOpen]);
 
+  /* handle navigate aviator */
+  const navigateAviatorCasinoVideo = () => {
+    if (token) {
+      if (Settings.casinoCurrency !== "AED") {
+        navigate(`/casino/aviator/201206`);
+      } else {
+        setShowModal(true);
+        setCasinoInfo({
+          provider_name: "aviator",
+          game_id: "201206",
+          base: "casino",
+        });
+      }
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <>
       {Settings?.apkLink && isModalOpen && (
-      <AndroidView>
+        <AndroidView>
           <AppPopup setIsModalOpen={setIsModalOpen} />
-      </AndroidView>
+        </AndroidView>
+      )}
+      {showModal && (
+        <AEDRules setShowModal={setShowModal} casinoInfo={casinoInfo} />
       )}
       <div
         className={`mia0b51 mobile-header ${
@@ -301,9 +322,7 @@ const Header = () => {
               </button>
 
               <button
-                onClick={() =>
-                  navigate(`${token ? "/casino/aviator/201206" : "/login"}`)
-                }
+                onClick={navigateAviatorCasinoVideo}
                 className="mb-top-navigate-item"
               >
                 <svg
