@@ -6,6 +6,7 @@ import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import handleRandomToken from "../../utils/handleRandomToken";
+import { FaSpinner } from "react-icons/fa";
 
 const UploadTransaction = ({ paymentId, amount }) => {
   const { token } = useContextState();
@@ -31,6 +32,7 @@ const UploadTransaction = ({ paymentId, amount }) => {
         if (data?.success) {
           setLoading(false);
           setUploadedImage(data?.fileName);
+          setUtr(data?.utr);
           setFilePath(data?.filePath);
           setImage(null);
         } else {
@@ -61,7 +63,7 @@ const UploadTransaction = ({ paymentId, amount }) => {
         fileName: uploadedImage,
         utr: parseFloat(utr),
         token: generatedToken,
-        site:Settings.siteUrl
+        site: Settings.siteUrl,
       };
       const res = await axios.post(API.bankAccount, screenshotPostData, {
         headers: {
@@ -69,7 +71,6 @@ const UploadTransaction = ({ paymentId, amount }) => {
         },
       });
       const result = res?.data;
-   
       if (result?.success) {
         setUtr(null);
         setImage(null);
@@ -78,14 +79,16 @@ const UploadTransaction = ({ paymentId, amount }) => {
           navigate("/");
         }, 2000);
       } else {
-        setUtr(null);
+        setUtr('');
         setImage(null);
         setFilePath("");
         setUploadedImage(null);
-        toast.error(result?.error?.errorMessage);
+        toast.error(result?.error?.errorMessage || result?.result?.message);
       }
     }
   };
+
+  
   return (
     <>
       {!filePath && !loading && (
@@ -208,6 +211,18 @@ const UploadTransaction = ({ paymentId, amount }) => {
               />
             </div>
           </div>
+        </div>
+      )}
+
+      {loading && (
+        <div _ngcontent-ng-c3816252360="" class="utrbox ng-tns-c159-0">
+          <FaSpinner
+            style={{
+              width: "100%",
+            }}
+            className="animate-spin"
+            size={30}
+          />
         </div>
       )}
 
