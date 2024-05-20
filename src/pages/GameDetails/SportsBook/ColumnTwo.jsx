@@ -93,7 +93,7 @@ const ColumnTwo = ({
                       className="bt6592 bt12699"
                       style={{
                         backgroundColor: `${
-                          isSportsRunnerSuspended(column) ? "lightgray" : ""
+                          isSportsRunnerSuspended(column,item) ? "lightgray" : ""
                         }`,
                       }}
                     >
@@ -109,7 +109,7 @@ const ColumnTwo = ({
                       <div className="bt6564 bt6599">
                         <span className="bt6566">
                           {column?.Price > 0 &&
-                            !isSportsRunnerSuspended(column) &&
+                            !isSportsRunnerSuspended(column,item) &&
                             column?.Price}
                         </span>
                       </div>

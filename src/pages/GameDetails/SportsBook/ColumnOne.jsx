@@ -91,7 +91,7 @@ const ColumnOne = ({
                       className="bt6592 bt12699"
                       style={{
                         backgroundColor: `${
-                          isSportsRunnerSuspended(column) ? "lightgray" : ""
+                          isSportsRunnerSuspended(column,item) ? "lightgray" : ""
                         }`,
                       }}
                     >
@@ -107,7 +107,7 @@ const ColumnOne = ({
                       <div className="bt6564 bt6599">
                         <span className="bt6566">
                           {column?.Price > 0 &&
-                            !isSportsRunnerSuspended(column) &&
+                            !isSportsRunnerSuspended(column,item) &&
                             column?.Price?.toFixed(2)}
                         </span>
                       </div>

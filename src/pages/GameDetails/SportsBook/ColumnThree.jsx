@@ -56,6 +56,8 @@ const ColumnThree = ({
       }
     }
   };
+
+
   return (
     <>
       {isOpen && (
@@ -70,6 +72,7 @@ const ColumnThree = ({
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
+                // console.log(item);
                 return (
                   <div
                     onClick={() =>
@@ -91,7 +94,7 @@ const ColumnThree = ({
                       className="bt6592 bt12699"
                       style={{
                         backgroundColor: `${
-                          isSportsRunnerSuspended(column) ? "lightgray" : ""
+                          isSportsRunnerSuspended(column,item) ? "lightgray" : ""
                         }`,
                       }}
                     >
@@ -107,7 +110,7 @@ const ColumnThree = ({
                       <div className="bt6564 bt6599">
                         <span className="bt6566">
                           {column?.Price > 0 &&
-                            !isSportsRunnerSuspended(column) &&
+                            !isSportsRunnerSuspended(column,item) &&
                             column?.Price?.toFixed(2)}
                         </span>
                       </div>
