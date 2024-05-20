@@ -1,5 +1,4 @@
 import { useRef } from "react";
-// import starImg from "../../assets/img/star.svg";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { useNavigate } from "react-router-dom";
 const AEDRules = ({ casinoInfo, setShowModal }) => {
@@ -48,10 +47,6 @@ const AEDRules = ({ casinoInfo, setShowModal }) => {
         <div className="deposit-inner ng-tns-c159-13">
           <div className="balancebox ng-tns-c159-13">
             <div className="damount ng-tns-c159-13">
-              {/* <div className="balancetxt ng-tns-c159-13"> */}
-              {/* <p className="ng-tns-c159-13">Deposit Amount</p> */}
-              {/* </div> */}
-
               <div
                 className="amt ng-tns-c159-13"
                 style={{
@@ -61,94 +56,16 @@ const AEDRules = ({ casinoInfo, setShowModal }) => {
                   alignItems: "center",
                 }}
               >
-                <div style={{ fontSize: "20px" }}> (1 Point = ₹ 100)</div>
-                {/* <p className="ng-tns-c159-13"> */}
-                <div>
+                <div style={{ fontSize: "16px" }}> (1 Point = ₹ 100)</div>
+                <div style={{fontSize:'12px'}}>
                   {" "}
                   Immerse yourself in the excitement of live casino action, an
                   array of captivating slots, and a diverse range of games. With
                   over 1000 games available, the fun never ends....
                 </div>
-                {/* </p> */}
-                {/* <p className="depamt ng-tns-c159-13 ng-star-inserted">
-                    +{'depositBreakdown?.bonus'} Bonus
-                  </p> */}
               </div>
             </div>
-            {/*      
-              <div className="moneybox ng-tns-c159-13">
-                <p className="money ng-tns-c159-13">3% Instant Money</p>
-                <p className="doll ng-tns-c159-13">
-                  ₹{'depositBreakdown?.instantMoney'}
-                </p>
-              </div> */}
-
-            {/* <div className="line ng-tns-c159-13"></div> */}
-            {/* <div className="totalamt ng-tns-c159-13">
-              <p className="money ng-tns-c159-13">Total Amount Credited</p>
-              <p className="doll1 ng-tns-c159-13">
-                ₹ {'depositBreakdown?.totalAmount'}
-              </p>
-            </div> */}
           </div>
-          {/* <div className="giftbox ng-tns-c159-13">
-            <img
-              loading="lazy"
-              src={starImg}
-              alt=""
-              className="star1 ng-tns-c159-13"
-            />
-            <img
-              loading="lazy"
-              src={starImg}
-              alt=""
-              className="star2 ng-tns-c159-13"
-            />
-            <div className="gift-input ng-tns-c159-13">
-              <p className="money ng-tns-c159-13">
-                Amount credited In main wallet
-              </p>
-              <p className="doll ng-tns-c159-13">
-                ₹ {'depositBreakdown?.mainWallet'}
-              </p>
-            </div>
-            <img
-              loading="lazy"
-              src={starImg}
-              alt=""
-              className="star3 ng-tns-c159-13"
-            />
-          </div> */}
-          {/*          
-            <div className="giftbox1 ng-tns-c159-13 ng-star-inserted">
-              <img
-                loading="lazy"
-                src={starImg}
-                alt=""
-                className="star1 ng-tns-c159-13"
-              />
-              <img
-                loading="lazy"
-                src={starImg}
-                alt=""
-                className="star2 ng-tns-c159-13"
-              />
-              <div className="gift-input ng-tns-c159-13">
-                <p className="money ng-tns-c159-13">
-                  Amount credited In bonus card
-                </p>
-                <p className="doll ng-tns-c159-13">
-                  ₹{'depositBreakdown?.bonusWallet'}
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src={starImg}
-                alt=""
-                className="star4 ng-tns-c159-13"
-              />
-            </div> */}
-
           <div
             style={{ width: "100%" }}
             onClick={handleNavigate}

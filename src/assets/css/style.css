@@ -347,19 +347,19 @@ button {
 
 .ui-button.s-conic {
   color: #fff;
-  background-color: #1d803ab3;
+  background-color: var(--color1);
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 1),
-    rgba(29, 128, 58, 1)
+    var(--color1),
+    var(--color2)
   );
 }
 
 .ui-button.s-conic:hover {
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 0.7),
-    rgba(29, 128, 58, 0.7)
+    var(--color1),
+    var(--color2)
   );
 }
 
@@ -5756,8 +5756,8 @@ img,
   gap: 0.375rem;
   align-self: stretch;
   border-radius: 0.5rem;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: radial-gradient(25% 90% at 50% 50%, var(--color1) 0%, var(--color2) 100%);
+  /* box-shadow: 0 5px 21px #00cf5875; */
   margin: 1.5rem 0rem;
   z-index: 100;
   width: 100%;
@@ -6212,19 +6212,19 @@ p {
 
 .ui-button.s-conic {
   color: #fff;
-  background-color: #1d803ab3;
+  background-color: var(--color1);
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 1),
-    rgba(29, 128, 58, 1)
+    var(--color1),
+    var(--color2)
   );
 }
 
 .ui-button.s-conic:hover {
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 0.7),
-    rgba(29, 128, 58, 0.7)
+    var(--color1),
+    var(--color2)
   );
 }
 
@@ -6771,10 +6771,10 @@ p {
 .s1bscfa1 .ui-button.s-conic:hover {
   background: conic-gradient(
     from 90deg at 50% 50%,
-    #5de13b -90deg,
-    #28a700 269.96deg,
-    #5de13b 270deg,
-    #28a700 629.96deg
+    var(--color1) -90deg,
+    var(--color2) 269.96deg,
+    var(--color1) 270deg,
+    var(--color2)629.96deg
   );
 }
 
@@ -7503,19 +7503,19 @@ p {
 
 .ui-button.s-conic {
   color: #fff;
-  background-color: #1d803ab3;
+  background-color: var(--color1);
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 1),
-    rgba(29, 128, 58, 1)
+    var(--color1),
+    var(--color2)
   );
 }
 
 .ui-button.s-conic:hover {
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 0.7),
-    rgba(29, 128, 58, 0.7)
+    var(--color1),
+    var(--color2)
   );
 }
 
@@ -8536,19 +8536,19 @@ p {
 
 .ui-button.s-conic {
   color: #fff;
-  background-color: #1d803ab3;
+  background-color: var(--color1);
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 1),
-    rgba(29, 128, 58, 1)
+    var(--color1),
+    var(--color2)
   );
 }
 
 .ui-button.s-conic:hover {
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 0.7),
-    rgba(29, 128, 58, 0.7)
+    var(--color1),
+    var(--color2)
   );
 }
 
@@ -8997,19 +8997,19 @@ p {
 
 .ui-button.s-conic {
   color: #fff;
-  background-color: #1d803ab3;
+  background-color: var(--color1);
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 1),
-    rgba(29, 128, 58, 1)
+    var(--color1),
+    var(--color2)
   );
 }
 
 .ui-button.s-conic:hover {
   background-image: conic-gradient(
     from 1turn,
-    rgba(88, 175, 16, 0.7),
-    rgba(29, 128, 58, 0.7)
+    var(--color1),
+    var(--color2)
   );
 }
 
@@ -12733,8 +12733,8 @@ img,
   border-radius: 0.5rem;
   opacity: 0.5;
   width: 100%;
-  background-color: #009d46;
-  box-shadow: 0 0 5px #2db261;
+  background-color: var(--color1);
+  /* box-shadow: 0 0 5px #2db261; */
   color: #fff;
   font-family: "Inter";
   font-size: 12px;
@@ -12745,19 +12745,19 @@ img,
 
 .btnn:active {
   opacity: 0.7 !important;
-  background: #2ca894 !important;
+  /* background: #2ca894 !important; */
   scale: 0.98 !important;
 }
 
 .btnn:active:before {
-  color: #083f34 !important;
+  /* color: #083f34 !important; */
 }
 
 .btnn.active {
   opacity: 1;
   border-radius: 0.5rem;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: var(--color1)
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .ellipsis {
@@ -12784,8 +12784,8 @@ img,
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: var(--color1)
+
 }
 
 .makepayment:hover {
@@ -14996,8 +14996,8 @@ img,
   align-items: center;
   flex: 1 0 0;
   border-radius: 0.375rem;
-  background: linear-gradient(94deg, #019744 -2.18%, #33c76d 102.44%);
-  box-shadow: 0 4px 20px #00cf5859;
+  background: linear-gradient(94deg, var(--color1) -2.18%, var(--color2) 102.44%);
+  /* box-shadow: 0 4px 20px #00cf5859; */
 }
 
 .button-container-profile-page
@@ -18401,6 +18401,7 @@ form {
 .bt6597 .bt6598 {
   height: 100%;
   overflow: visible;
+  color: #31373D
 }
 
 @media (min-width: 599px) {
@@ -18409,6 +18410,7 @@ form {
   }
 
   .bt6597 .bt6598 {
+    color: #31373D;
     display: flex;
     align-items: center;
     padding-left: 8px;
@@ -18420,6 +18422,7 @@ form {
   overflow: hidden;
   box-sizing: border-box;
   word-break: break-all;
+  color: #31373D
 }
 
 .bt6599 {
@@ -19415,8 +19418,8 @@ button {
   border-radius: 0.5rem;
   opacity: 0.5;
   width: 100%;
-  background-color: #009d46;
-  box-shadow: 0 0 5px #2db261;
+  background-color: var(--color1);
+  /* box-shadow: 0 0 5px var(--color2); */
   color: #fff;
   font-family: "Inter";
   font-size: 14px;
@@ -20357,17 +20360,17 @@ img,
   gap: 0.375rem;
   opacity: 0.7;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: var(--color1);
 }
 
 .process-btn:enabled {
   opacity: 1;
-  box-shadow: 0 5px 21px #00cf5875;
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .process-btn:active {
-  border: 1px solid rgba(72, 205, 131, 0.5);
-  background: rgb(26, 53, 46);
+  border: 1px solid var(--color2);
+  background: var(--color2);
 }
 
 .process-btn > span {
@@ -22805,12 +22808,12 @@ img,
   gap: 0.375rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: var(--color1);
   margin-top: 2rem;
 }
 
 .proceed-btn:enabled {
-  box-shadow: 0 5px 21px #00cf5875;
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .proceed-btn > span {
@@ -23407,8 +23410,8 @@ div {
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: (--color1)
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .makepayment:hover {
@@ -23614,7 +23617,7 @@ div {
   align-items: center;
   gap: 0.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(92deg, #48cd83 1.85%, #0c8d47 100%);
+  background: linear-gradient(92deg, var(--color1) 1.85%, var(--color2) 100%);
   z-index: 0;
   animation: right-to-left 0.5s ease-in-out forwards;
 }
@@ -23632,7 +23635,7 @@ div {
   align-items: center;
   gap: 0.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(92deg, #48cd83 1.85%, #0c8d47 100%);
+  background: linear-gradient(92deg, var(--color1) 1.85%, var(--color2) 100%);
   z-index: 0;
   animation: left-to-right 0.5s ease-in-out forwards;
 }
