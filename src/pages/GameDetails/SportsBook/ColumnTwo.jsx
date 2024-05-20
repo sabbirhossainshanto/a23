@@ -58,6 +58,7 @@ const ColumnTwo = ({
     }
   };
 
+
   return (
     <>
       {isOpen && (
@@ -72,6 +73,7 @@ const ColumnTwo = ({
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
+               
                 return (
                   <div
                     onClick={() =>

@@ -1,5 +1,5 @@
 export const isSportsRunnerSuspended = (column, item) => {
-  if (item?.status === 2 || !item?.status) {
+  if (item?.Status === 2 || !item?.Status) {
     return true;
   } else if (column?.IsActive === 2 || !column?.IsActive) {
     return true;

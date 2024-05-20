@@ -64,7 +64,7 @@ const Bookmaker = ({
               const pnl =
                 pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) ||
                 [];
-                console.log(isRunnerSuspended(games, runner));
+     
               return (
                 <div
                   key={runner?.id}
