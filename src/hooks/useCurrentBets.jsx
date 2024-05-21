@@ -30,7 +30,6 @@ const useCurrentBets = (eventId) => {
         );
 
         const data = await response.json();
-
         if (data.success) {
           return data.result;
         }
@@ -38,6 +37,7 @@ const useCurrentBets = (eventId) => {
         console.error("Error fetching data:", error);
       }
     },
+    gcTime:0
   });
   return { myBets, refetchCurrentBets };
 };

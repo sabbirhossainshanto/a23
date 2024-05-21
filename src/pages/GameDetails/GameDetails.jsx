@@ -23,10 +23,17 @@ const GameDetails = () => {
     eventTypeId,
     eventId
   );
-  const { myBets } = useCurrentBets(eventId);
+  const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
+
+
   useEffect(() => {
-    refetchEventsData();
-  }, [refetchEventsData, eventTypeId]);
+    if (eventId && eventTypeId) {
+      refetchEventsData();
+      refetchCurrentBets();
+    }
+  }, [refetchEventsData, eventTypeId, eventId, refetchCurrentBets]);
+
+
 
   useEffect(() => {
     setPrevPrices({});
@@ -38,7 +45,6 @@ const GameDetails = () => {
       refetchBalance();
     }
   }, []);
-
 
   return (
     <>
@@ -52,6 +58,7 @@ const GameDetails = () => {
       <MatchTrackerTab score={eventsData?.score} match_odds={match_odds} />
       {eventsData?.sportsbook?.Result && (
         <Odds
+        refetchCurrentBets={refetchCurrentBets}
           match_odds={match_odds}
           setMatch_odds={setMatch_odds}
           data={eventsData?.result}

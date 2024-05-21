@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
-
-const OpenBets = ({ setShowOpenBets,myBets }) => {
+const OpenBets = ({ setShowOpenBets, myBets }) => {
   /* close modal click outside */
   const openBetsRef = useRef();
   useCloseModalClickOutside(openBetsRef, () => {
@@ -71,7 +70,9 @@ const OpenBets = ({ setShowOpenBets,myBets }) => {
                     >
                       <div className="allbet-gameinfo">
                         <div className="allbet-content">
-                          <h3> {item?.nation}</h3>
+                          <h3>
+                            {item?.marketName}: {item?.nation}
+                          </h3>
                           <p> {item?.placeDate} </p>
                         </div>
                       </div>

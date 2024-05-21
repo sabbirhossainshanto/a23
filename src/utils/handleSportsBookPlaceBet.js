@@ -14,6 +14,7 @@ export const handleSportsBookPlaceBet = (
         setPlaceBetValues({});
         setPlaceBetValues({
           price: column?.Price?.toFixed(2),
+          back:true,
           side: 0,
           selectionId: column?.Id,
           btype: "SPORTSBOOK",

@@ -9,7 +9,6 @@ import Fancy from "../GameType/Fancy";
 import BetSlip from "../../../components/modal/BetSlip";
 import useContextState from "../../../hooks/useContextState";
 import { useParams } from "react-router-dom";
-import useCurrentBets from "../../../hooks/useCurrentBets";
 import useExposer from "../../../hooks/useExposer";
 const Odds = ({
   sportsBook,
@@ -19,26 +18,32 @@ const Odds = ({
   prevPrices,
   setPrevPrices,
   data,
-  match_odds, setMatch_odds
+  match_odds,
+  setMatch_odds,
+  refetchCurrentBets,
 }) => {
   const { eventId } = useParams();
   const { placeBetValues, setPlaceBetValues, openBetSlip, setOpenBetSlip } =
     useContextState();
   const [bookmarker, setBookmarker] = useState([]);
-  const [bookmarker2, setBookmarker2] = useState([]);
+  // const [bookmarker2, setBookmarker2] = useState([]);
   const [normal, setNormal] = useState([]);
-  const [fancy1, setFancy1] = useState([]);
-  const [overByOver, setOverByOver] = useState([]);
-  const { refetchCurrentBets } = useCurrentBets(eventId);
+  // const [fancy1, setFancy1] = useState([]);
+  // const [overByOver, setOverByOver] = useState([]);
   const { exposer, refetchExposure } = useExposer(eventId);
+
+  useEffect(() => {
+    if (eventId) {
+      refetchExposure();
+    }
+  }, [eventId, refetchExposure]);
+
   const sports = sportsBook?.MarketGroups?.filter(
     (group) =>
       group?.Name !== "Bet Builder" &&
       group?.Name !== "Fast Markets" &&
       group?.Name !== "Player Specials"
   );
-
-  
 
   const itemsLengthArray = sports?.map((group) => group?.Items?.length) || [];
   const [openItems, setOpenItems] = useState(
@@ -73,11 +78,11 @@ const Odds = ({
     );
     setBookmarker(bookmarkerFilter);
 
-    const filterBookmarker2 = data?.filter(
-      (bookmarker2) =>
-        bookmarker2.btype === "BOOKMAKER2" && bookmarker2.visible == true
-    );
-    setBookmarker2(filterBookmarker2);
+    // const filterBookmarker2 = data?.filter(
+    //   (bookmarker2) =>
+    //     bookmarker2.btype === "BOOKMAKER2" && bookmarker2.visible == true
+    // );
+    // setBookmarker2(filterBookmarker2);
 
     const normalFilter = data?.filter(
       (normal) =>
@@ -87,25 +92,22 @@ const Odds = ({
     );
     setNormal(normalFilter);
 
-    const fancy1Filter = data?.filter(
-      (fancy1) =>
-        fancy1.btype === "ODDS" &&
-        fancy1.tabGroupName === "Fancy1" &&
-        fancy1.visible == true
-    );
-    setFancy1(fancy1Filter);
+    // const fancy1Filter = data?.filter(
+    //   (fancy1) =>
+    //     fancy1.btype === "ODDS" &&
+    //     fancy1.tabGroupName === "Fancy1" &&
+    //     fancy1.visible == true
+    // );
+    // setFancy1(fancy1Filter);
 
-    const overByOverFilter = data?.filter(
-      (overByOver) =>
-        overByOver.btype === "FANCY" &&
-        overByOver.tabGroupName === "Over By Over" &&
-        overByOver.visible == true
-    );
-    setOverByOver(overByOverFilter);
+    // const overByOverFilter = data?.filter(
+    //   (overByOver) =>
+    //     overByOver.btype === "FANCY" &&
+    //     overByOver.tabGroupName === "Over By Over" &&
+    //     overByOver.visible == true
+    // );
+    // setOverByOver(overByOverFilter);
   }, [data]);
-
-
- 
 
   return (
     <div className="bt12498">
@@ -148,7 +150,7 @@ const Odds = ({
         {sports?.map((group) =>
           group?.Items?.map((item, iIdx) => {
             const isOpen = openItems[iIdx];
-            
+
             return (
               <div key={iIdx} className="bt12687">
                 <div onClick={() => toggleItem(iIdx)} className="bt12695">
