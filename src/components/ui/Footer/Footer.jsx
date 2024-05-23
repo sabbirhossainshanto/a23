@@ -11,7 +11,7 @@ const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { socialLink } = useGetSocialLink();
-
+  const loginName = localStorage.getItem("loginName");
   const { myBets } = useCurrentBets();
   const [showOpenBets, setShowOpenBets] = useState(false);
 
@@ -23,37 +23,47 @@ const Footer = () => {
     }
   };
 
+
   useEffect(() => {
     if (Settings.chaportAppId) {
       const script = document.createElement("script");
       script.setAttribute("type", "text/javascript");
+      const chaportConfig = {
+        appId: Settings.chaportAppId,
+        appearance: {
+          windowColor: "#25d366",
+          teamName: "Customer Care",
+          onlineWelcome: "Hello, we are online!",
+          offlineWelcome: "We are not online.",
+          position: ["right", 0, 50],
+          textStatuses: true,
+        },
+        launcher: {
+          show: false,
+        },
+      };
+
+      if (token) {
+        chaportConfig.visitor = {
+          name: loginName,
+        };
+      }
+      const configString = JSON.stringify(chaportConfig);
       script.innerHTML = `
         (function(w,d,v3){
-          w.chaportConfig = {
-            appId: '${Settings.chaportAppId}',
-            appearance: {
-              windowColor: '#25d366',
-              teamName: 'Customer Care',
-              onlineWelcome: 'Hello, we are online!',
-              offlineWelcome: 'We are not online.',
-              position: ['right', 0, 50],
-              textStatuses: true,
-            },
-            launcher: {
-              show: false,
-            },
-          };
+          w.chaportConfig = ${configString};
           
           if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss);
         })(window, document);
       `;
       document.body.appendChild(script);
-
       return () => {
         document.body.removeChild(script);
       };
     }
-  }, []);
+  }, [token,loginName]);
+
+
 
   const openChaportOrWhatsapp = () => {
     if (Settings.chaportAppId) {
