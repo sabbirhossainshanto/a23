@@ -24,13 +24,13 @@ const Footer = () => {
   };
 
   useEffect(() => {
-    if (Settings.appId) {
+    if (Settings.chaportAppId) {
       const script = document.createElement("script");
       script.setAttribute("type", "text/javascript");
       script.innerHTML = `
         (function(w,d,v3){
           w.chaportConfig = {
-            appId: '${Settings.appId}',
+            appId: '${Settings.chaportAppId}',
             appearance: {
               windowColor: '#25d366',
               teamName: 'Customer Care',
@@ -56,7 +56,7 @@ const Footer = () => {
   }, []);
 
   const openChaportOrWhatsapp = () => {
-    if (Settings.appId) {
+    if (Settings.chaportAppId) {
       return window.chaport.on("ready", function () {
         window.chaport.open();
       });

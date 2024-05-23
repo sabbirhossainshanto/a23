@@ -41,5 +41,5 @@ export const Settings = {
   disabledDevtool: "",
   apkLink:"",
   casinoCurrency:"",
-  appId:""
+  chaportAppId:""
 };

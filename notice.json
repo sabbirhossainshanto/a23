@@ -15,7 +15,7 @@
       "interval": 700,
       "apkLink": "https://a23money.com/site.apk",
       "casinoCurrency": "AED",
-      "appId": "66011d3c44d81009081c97c5"
+      "chaportAppId": "66011d3c44d81009081c97c5"
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",

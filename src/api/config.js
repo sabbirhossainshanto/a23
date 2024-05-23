@@ -46,7 +46,7 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.disabledDevtool = data?.result?.settings?.disabledDevtool;
         Settings.casinoCurrency = data?.result?.settings?.casinoCurrency;
         Settings.apkLink = data?.result?.settings?.apkLink;
-        Settings.appId = data?.result?.settings?.appId;
+        Settings.chaportAppId = data?.result?.settings?.chaportAppId;
         setNoticeLoaded(true);
       }
     })
