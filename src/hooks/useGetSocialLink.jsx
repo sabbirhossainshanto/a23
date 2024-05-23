@@ -8,7 +8,7 @@ import handleEncryptData from "../utils/handleEncryptData";
 const useGetSocialLink = () => {
   const { token } = useContextState();
   /* get whats app link */
-  const { data: socialLink } = useQuery({
+  const { data: socialLink = {} } = useQuery({
     queryKey: ["whatsApp"],
     queryFn: async () => {
       /* random token function */

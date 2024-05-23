@@ -14,7 +14,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.bankAccount = data?.result?.endpoint?.bankAccount;
         API.balance = data?.result?.endpoint?.balance;
         API.otp = data?.result?.endpoint?.otp;
-        API.whatsApp = data?.result?.endpoint?.whatsApp;
+        API.whatsApp = data?.result?.endpoint?.whatsapp;
         API.register = data?.result?.endpoint?.register;
         API.uploadScreenshot = data?.result?.endpoint?.uploadScreenshot;
         API.buttonValue = data?.result?.endpoint?.buttonValue;
@@ -35,6 +35,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.accessToken = data?.result?.endpoint?.accessToken;
         API.ladder = data?.result?.endpoint?.ladder;
         API.forgotPassword = data?.result?.endpoint?.forgotPassword;
+        API.siteSettings = data?.result?.endpoint?.siteSettings;
         Settings.siteUrl = data?.result?.settings?.siteUrl;
         Settings.interval = data?.result?.settings?.interval;
         Settings.siteTitle = data?.result?.settings?.siteTitle;

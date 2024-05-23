@@ -44,7 +44,8 @@
       "withdrawBreakdown": "https://api7.live/api/exchange/diamond/withdrawBreakdown",
       "accessToken": "https://api7.live/api/exchange/diamond/accessToken",
       "ladder": "https://api7.live/api/exchange/diamond/ladder",
-      "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword"
+      "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword",
+      "siteSettings": "https://cache7.live/api/exchange/diamond/settings"
     }
   },
   "success": true

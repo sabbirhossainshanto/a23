@@ -26,7 +26,8 @@ export const API = {
   withdrawBreakdown: "",
   accessToken: "",
   ladder: "",
-  forgotPassword:""
+  forgotPassword:"",
+  siteSettings: "",
 };
 
 export const Settings = {
