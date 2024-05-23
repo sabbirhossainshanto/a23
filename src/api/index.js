@@ -40,5 +40,6 @@ export const Settings = {
   otp: "",
   disabledDevtool: "",
   apkLink:"",
-  casinoCurrency:""
+  casinoCurrency:"",
+  appId:""
 };

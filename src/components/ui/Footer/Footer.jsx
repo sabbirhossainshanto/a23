@@ -4,18 +4,16 @@ import useGetSocialLink from "../../../hooks/useGetSocialLink";
 import { useEffect, useState } from "react";
 import OpenBets from "../../modal/OpenBets";
 import useCurrentBets from "../../../hooks/useCurrentBets";
-import useGetVersion from "../../../hooks/useGetVersion";
+import { Settings } from "../../../api";
 
 const Footer = () => {
   const { setSportsType, token } = useContextState();
   const navigate = useNavigate();
   const location = useLocation();
   const { socialLink } = useGetSocialLink();
-  const { version } = useGetVersion();
+
   const { myBets } = useCurrentBets();
   const [showOpenBets, setShowOpenBets] = useState(false);
-
-
 
   const handleNavigate = (link) => {
     if (token) {
@@ -26,13 +24,13 @@ const Footer = () => {
   };
 
   useEffect(() => {
-    if (version?.chaport?.isChaportEnabled) {
+    if (Settings.appId) {
       const script = document.createElement("script");
       script.setAttribute("type", "text/javascript");
       script.innerHTML = `
         (function(w,d,v3){
           w.chaportConfig = {
-            appId: '${version?.chaport?.chaportAppId}',
+            appId: '${Settings.appId}',
             appearance: {
               windowColor: '#25d366',
               teamName: 'Customer Care',
@@ -55,12 +53,11 @@ const Footer = () => {
         document.body.removeChild(script);
       };
     }
-  }, [version]);
-
+  }, []);
 
   const openChaportOrWhatsapp = () => {
-    if (version?.chaport?.isChaportVisible) {
-      window.chaport.on("ready", function () {
+    if (Settings.appId) {
+      return window.chaport.on("ready", function () {
         window.chaport.open();
       });
     }
