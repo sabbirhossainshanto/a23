@@ -54,6 +54,9 @@ const UploadTransaction = ({ paymentId, amount }) => {
   };
 
   const handleDepositSubmit = async () => {
+    if (!filePath || !utr) {
+      return;
+    }
     if (uploadedImage || utr) {
       const generatedToken = handleRandomToken();
       const screenshotPostData = {
@@ -79,7 +82,7 @@ const UploadTransaction = ({ paymentId, amount }) => {
           navigate("/");
         }, 2000);
       } else {
-        setUtr('');
+        setUtr("");
         setImage(null);
         setFilePath("");
         setUploadedImage(null);
@@ -88,7 +91,6 @@ const UploadTransaction = ({ paymentId, amount }) => {
     }
   };
 
-  
   return (
     <>
       {!filePath && !loading && (
@@ -258,10 +260,6 @@ const UploadTransaction = ({ paymentId, amount }) => {
       >
         <div className="madepay ng-tns-c159-2">
           <button
-            style={{
-              cursor: `${!filePath || !utr ? "not-allowed" : "pointer"}`,
-            }}
-            disabled={!filePath || !utr}
             className="ng-tns-c159-2"
           >
             I have Made The Payment
