@@ -10,6 +10,7 @@ const Deposit = () => {
   const [paymentMethods, setPaymentMethods] = useState(false);
   const [uploadTransaction, setUploadTransaction] = useState(false);
   const [paymentId, setPaymentId] = useState("");
+  
   return (
     <>
       {!paymentMethods && !uploadTransaction && (
