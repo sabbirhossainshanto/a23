@@ -21794,7 +21794,7 @@ div {
 
 .remove-text {
   margin-top: 1rem;
-  color: #040404;
+  color: #bbbbbb;
   font-family: "Inter";
   font-size: 0.875rem;
   font-style: normal;
@@ -21830,7 +21830,7 @@ div {
 .cancel-btnn > span {
   color: #d5d9de;
   font-family: "Inter";
-  font-size: 1rem;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -21883,7 +21883,7 @@ div {
 }
 
 .card {
-  margin: 18rem 1rem;
+  margin: 18rem 0rem;
   color: #040404;
   bottom: 0;
   width: 90%;
@@ -23845,7 +23845,7 @@ img,
 .main-content .card-deposit .logo img {
   width: 100%;
   height: auto;
-  scale: 1.45;
+  /* scale: 1.45; */
 }
 
 .main-content .card-deposit .card-content {
@@ -24104,7 +24104,7 @@ img,
   .logo img {
     max-width: 70%;
     height: max-content;
-    scale: 1.45;
+    /* scale: 1.45; */
   }
 }
 
@@ -24132,7 +24132,7 @@ img,
   .logo img {
     max-width: 50%;
     height: max-content;
-    scale: 1.45;
+    /* scale: 1.45; */
   }
 }
 
@@ -24160,7 +24160,7 @@ img,
   .logo img {
     max-width: 40%;
     height: max-content;
-    scale: 1.45;
+    /* scale: 1.45; */
   }
 }
 

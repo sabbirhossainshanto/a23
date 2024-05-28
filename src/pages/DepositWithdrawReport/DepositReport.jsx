@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import useDepositStatement from "../../hooks/useDepositStatement";
 import { useEffect, useState } from "react";
+import DepositImage from "./DepositImage";
 
 const DepositReport = () => {
   const { accountStatement } = useDepositStatement();
   const [category, setCategory] = useState();
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (accountStatement?.length > 0) {
@@ -18,6 +19,7 @@ const DepositReport = () => {
 
   return (
     <>
+      {showModal && image && <DepositImage setShowModal={setShowModal} image={image} />}
       <div className="main-content  ">
         {accountStatement?.length > 0 ? (
           category?.map((category, i) => {
@@ -37,7 +39,14 @@ const DepositReport = () => {
                         key={i}
                         className="card-deposit  "
                       >
-                        <div className="logo ">
+                        <div
+                          onClick={() => {
+                            setImage("");
+                            setShowModal(true);
+                            setImage(data?.image);
+                          }}
+                          className="logo "
+                        >
                           {data?.image && (
                             <img
                               src={data?.image}
@@ -50,7 +59,7 @@ const DepositReport = () => {
                           <div className="top-content ">
                             <div className="left-top-text ">
                               <span className="">
-                             { data?.referenceNo}
+                                {data?.referenceNo}
                                 {/* Deposit Via <span className=" ">WIZPAY</span> */}
                               </span>
                               <span className="status  status-aproved">
