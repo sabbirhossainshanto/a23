@@ -1,10 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import useWithdrawStatement from "../../hooks/useWithdrawStatement";
 import { useEffect, useState } from "react";
 
 const WithdrawReport = () => {
   const { withdrawStatement } = useWithdrawStatement();
-  const navigate = useNavigate();
   const [category, setCategory] = useState();
 
   useEffect(() => {
@@ -27,6 +25,7 @@ const WithdrawReport = () => {
                 {withdrawStatement
                   ?.filter((item) => item?.date?.split(" ")?.[0] === category)
                   ?.map((data, i) => {
+                    console.log(data);
                     return (
                       <div
                         // onClick={() => {
@@ -50,7 +49,7 @@ const WithdrawReport = () => {
                           <div className="top-content ">
                             <div className="left-top-text ">
                               <span className="">
-                                Deposit Via <span className=" ">WIZPAY</span>
+                             {data?.remark}
                               </span>
                               <span className="status  status-aproved">
                                 <svg
