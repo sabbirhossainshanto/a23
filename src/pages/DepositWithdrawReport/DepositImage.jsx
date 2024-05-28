@@ -40,7 +40,7 @@ const DepositImage = ({ setShowModal, image }) => {
             <div className="damount ng-tns-c159-13">
               <div
                 style={{
-                  height: "250px",
+                  height: "60vh",
                   overflowY: "scroll",
                   overflowX: "hidden",
                 }}
