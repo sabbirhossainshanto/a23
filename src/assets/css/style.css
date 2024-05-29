@@ -15500,7 +15500,7 @@ img,
 .whatsup-card > span {
   color: #fff;
   font-family: "Inter";
-  font-size: 0.875rem;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
@@ -15649,7 +15649,7 @@ form {
 .otp-btn > span {
   color: #fff;
   font-family: "Inter";
-  font-size: 1rem;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: 150%;

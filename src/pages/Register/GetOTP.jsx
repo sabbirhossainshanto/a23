@@ -6,6 +6,7 @@ import handleEncryptData from "../../utils/handleEncryptData";
 import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
+import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
   /* get social link */
   const { socialLink } = useGetSocialLink();
@@ -47,27 +48,8 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
     }
   };
 
-  const getOtpOnWhatsapp = async () => {
-    const generatedToken = handleRandomToken();
-    const otpData = {
-      mobile: mobileNo,
-      token: generatedToken,
-      site: Settings?.siteUrl,
-      type: "otpsend",
-    };
-    const encryptedData = handleEncryptData(otpData);
-    const res = await axios.post(API.otpless, encryptedData);
-    const data = res.data;
-    if (data?.success) {
-      setOrderId({
-        orderId: data?.result?.orderId,
-        otpMethod: "whatsapp",
-      });
-      toast.success(data?.result?.message);
-      setShowRegister(true);
-    } else {
-      toast.error(data?.error?.errorMessage);
-    }
+  const handleGetOtpOnWhatsapp = async () => {
+    await getOtpOnWhatsapp(mobileNo, setOrderId, setShowRegister);
   };
 
   return (
@@ -141,7 +123,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
 
                   {Settings.otpless && (
                     <button
-                      onClick={getOtpOnWhatsapp}
+                      onClick={handleGetOtpOnWhatsapp}
                       disabled={mobileNo?.length < 10}
                       type="button"
                       className="otp-btn"

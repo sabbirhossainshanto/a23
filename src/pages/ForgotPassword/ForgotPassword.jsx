@@ -22,6 +22,10 @@ const ForgotPassword = () => {
     password: "",
     confirmPassword: "",
   });
+  const [orderId, setOrderId] = useState({
+    orderId: "",
+    otpMethod: "",
+  });
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
 
@@ -66,6 +70,8 @@ const ForgotPassword = () => {
       site: Settings.siteUrl,
       token: generatedToken,
       otp: otpValues.join(""),
+      orderId: orderId.orderId,
+      otpMethod: orderId.otpMethod,
     };
 
     const encryptedData = handleEncryptData(forgotPasswordData);
@@ -92,6 +98,7 @@ const ForgotPassword = () => {
     <>
       {!showOtp ? (
         <GetForgotOTP
+          setOrderId={setOrderId}
           setShowOtp={setShowOtp}
           mobileNo={mobileNo}
           setMobileNo={setMobileNo}
@@ -134,6 +141,7 @@ const ForgotPassword = () => {
                           className="mobile-input ng-dirty ng-touched"
                           placeholder="Enter your Phone Number"
                           value={mobileNo}
+                          readOnly
                           data-gtm-form-interact-field-id="8"
                           disabled=""
                         />

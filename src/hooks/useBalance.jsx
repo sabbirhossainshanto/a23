@@ -14,7 +14,7 @@ const useBalance = () => {
   const token = localStorage.getItem('token');
   const { data: balanceData = {}, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
-    // enabled: !tokenLoading,
+    enabled: token ? true : false,
     queryFn: async () => {
       if (!token) {
         return;

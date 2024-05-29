@@ -4,7 +4,8 @@ import { API, Settings } from "../../api";
 import handleEncryptData from "../../utils/handleEncryptData";
 import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
-const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo }) => {
+import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
+const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo, setOrderId }) => {
   const getOtp = async (e) => {
     e.preventDefault();
     /* Get Otp based on settings*/
@@ -19,6 +20,10 @@ const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo }) => {
       const res = await axios.post(API.otp, encryptedData);
       const data = res.data;
       if (data?.success) {
+        setOrderId({
+          orderId: null,
+          otpMethod: "sms",
+        });
         toast.success(data?.result?.message);
         setShowOtp(true);
       } else {
@@ -33,6 +38,10 @@ const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo }) => {
     if (e.target.value.length <= 10) {
       setMobileNo(e.target.value);
     }
+  };
+
+  const handleGetOtpOnWhatsapp = async () => {
+    await getOtpOnWhatsapp(mobileNo, setOrderId, setShowOtp);
   };
   return (
     <div className="e-p-body-bc" style={{ backdropFilter: "blur(1px)" }}>
@@ -59,7 +68,7 @@ const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo }) => {
                       alt=""
                       className="india-flag"
                     />
-      
+
                     <input
                       onChange={(e) => handleMobileNo(e)}
                       value={mobileNo}
@@ -69,14 +78,26 @@ const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo }) => {
                     />
                   </div>
                 </div>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    disabled={Settings.otp && mobileNo?.length < 10}
+                    type="submit"
+                    className="otp-btn"
+                  >
+                    <span>Get OTP on SMS</span>
+                  </button>
 
-                <button
-                  disabled={Settings.otp && mobileNo?.length < 10}
-                  type="submit"
-                  className="otp-btn"
-                >
-                  <span>Get OTP</span>
-                </button>
+                  {Settings.otpless && (
+                    <button
+                      onClick={handleGetOtpOnWhatsapp}
+                      disabled={mobileNo?.length < 10}
+                      type="button"
+                      className="otp-btn"
+                    >
+                      <span> Get OTP on Whatsapp</span>
+                    </button>
+                  )}
+                </div>
               </form>
             </div>
           </div>

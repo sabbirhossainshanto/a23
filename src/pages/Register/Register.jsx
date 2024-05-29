@@ -88,7 +88,7 @@ const Register = () => {
       otpMethod:orderId.otpMethod
     };
 
-    console.log(registerData);
+    
 
     const encryptedData = handleEncryptData(registerData);
     const res = await fetch(API.register, {
@@ -192,6 +192,7 @@ const Register = () => {
                           className="mobile-input ng-dirty ng-touched"
                           placeholder="Enter your Phone Number"
                           value={mobileNo}
+                          readOnly
                           data-gtm-form-interact-field-id="8"
                         />
                         <img
