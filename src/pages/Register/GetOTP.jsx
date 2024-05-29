@@ -6,7 +6,7 @@ import handleEncryptData from "../../utils/handleEncryptData";
 import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
-const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
+const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
   /* get social link */
   const { socialLink } = useGetSocialLink();
   const getOtp = async (e) => {
@@ -23,6 +23,10 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
       const res = await axios.post(API.otp, encryptedData);
       const data = res.data;
       if (data?.success) {
+        setOrderId({
+          orderId: null,
+          otpMethod: "sms",
+        });
         toast.success(data?.result?.message);
         setShowRegister(true);
       } else {
@@ -55,7 +59,12 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
     const res = await axios.post(API.otpless, encryptedData);
     const data = res.data;
     if (data?.success) {
+      setOrderId({
+        orderId: data?.result?.orderId,
+        otpMethod: "whatsapp",
+      });
       toast.success(data?.result?.message);
+      setShowRegister(true);
     } else {
       toast.error(data?.error?.errorMessage);
     }

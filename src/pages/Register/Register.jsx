@@ -14,6 +14,10 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [mobileNo, setMobileNo] = useState("");
+  const [orderId, setOrderId] = useState({
+    orderId: "",
+    otpMethod: "",
+  });
   const [showRegister, setShowRegister] = useState(false);
   const [countDown, setCountDown] = useState(45);
   const { setGetToken } = useContextState();
@@ -60,7 +64,6 @@ const Register = () => {
     }
   };
 
-
   /* handle register */
   const { handleSubmit } = useForm();
   const onSubmit = async () => {
@@ -81,7 +84,11 @@ const Register = () => {
       otp: otpValues.join(""),
       isOtpAvailable: Settings.otp,
       referralCode: user.referralCode,
+      orderId:orderId.orderId,
+      otpMethod:orderId.otpMethod
     };
+
+    console.log(registerData);
 
     const encryptedData = handleEncryptData(registerData);
     const res = await fetch(API.register, {
@@ -139,6 +146,7 @@ const Register = () => {
           setMobileNo={setMobileNo}
           mobileNo={mobileNo}
           setShowRegister={setShowRegister}
+          setOrderId={setOrderId}
         />
       ) : (
         <div className="">
