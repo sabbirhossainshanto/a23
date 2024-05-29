@@ -43,8 +43,26 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
     }
   };
 
+  const getOtpOnWhatsapp = async () => {
+    const generatedToken = handleRandomToken();
+    const otpData = {
+      mobile: mobileNo,
+      token: generatedToken,
+      site: Settings?.siteUrl,
+      type: "otpsend",
+    };
+    const encryptedData = handleEncryptData(otpData);
+    const res = await axios.post(API.otpless, encryptedData);
+    const data = res.data;
+    if (data?.success) {
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
+
   return (
-    <div className="" style={{ backdropFilter: "blur(1px)"}}>
+    <div className="" style={{ backdropFilter: "blur(1px)" }}>
       <div className="login-page-abc">
         <div>
           <div className="register-box">
@@ -103,13 +121,26 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister }) => {
                     terms and conditions.
                   </span>
                 </div>
-                <button
-                  disabled={Settings.otp && mobileNo?.length < 10}
-                  type="submit"
-                  className="otp-btn"
-                >
-                  <span> {Settings.otp ? " Get OTP" : "Proceed"}</span>
-                </button>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    disabled={Settings.otp && mobileNo?.length < 10}
+                    type="submit"
+                    className="otp-btn"
+                  >
+                    <span> {Settings.otp ? "Get OTP on SMS" : "Proceed"}</span>
+                  </button>
+
+                  {Settings.otpless && (
+                    <button
+                      onClick={getOtpOnWhatsapp}
+                      disabled={mobileNo?.length < 10}
+                      type="button"
+                      className="otp-btn"
+                    >
+                      <span> Get OTP on Whatsapp</span>
+                    </button>
+                  )}
+                </div>
               </form>
               {socialLink?.link && (
                 <div

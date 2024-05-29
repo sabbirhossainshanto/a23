@@ -36,6 +36,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.ladder = data?.result?.endpoint?.ladder;
         API.forgotPassword = data?.result?.endpoint?.forgotPassword;
         API.siteSettings = data?.result?.endpoint?.siteSettings;
+        API.otpless = data?.result?.endpoint?.otpless;
         Settings.siteUrl = data?.result?.settings?.siteUrl;
         Settings.interval = data?.result?.settings?.interval;
         Settings.siteTitle = data?.result?.settings?.siteTitle;
@@ -47,6 +48,8 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.casinoCurrency = data?.result?.settings?.casinoCurrency;
         Settings.apkLink = data?.result?.settings?.apkLink;
         Settings.chaportAppId = data?.result?.settings?.chaportAppId;
+        Settings.otpless = data?.result?.settings?.otpless;
+
         setNoticeLoaded(true);
       }
     })

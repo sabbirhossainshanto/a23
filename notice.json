@@ -15,7 +15,8 @@
       "interval": 700,
       "apkLink": "https://a23money.com/site.apk",
       "casinoCurrency": "AED",
-      "chaportAppId": "66011d3c44d81009081c97c5"
+      "chaportAppId": "66011d3c44d81009081c97c5",
+      "otpless": true
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
@@ -46,7 +47,8 @@
       "accessToken": "https://api7.live/api/exchange/diamond/accessToken",
       "ladder": "https://api7.live/api/exchange/diamond/ladder",
       "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword",
-      "siteSettings": "https://cache7.live/api/exchange/diamond/settings"
+      "siteSettings": "https://cache7.live/api/exchange/diamond/settings",
+      "otpless": "https://api7.live/api/exchange/diamond/otpless"
     }
   },
   "success": true

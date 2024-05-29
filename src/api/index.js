@@ -28,6 +28,7 @@ export const API = {
   ladder: "",
   forgotPassword:"",
   siteSettings: "",
+  otpless:""
 };
 
 export const Settings = {
@@ -41,5 +42,6 @@ export const Settings = {
   disabledDevtool: "",
   apkLink:"",
   casinoCurrency:"",
-  chaportAppId:""
+  chaportAppId:"",
+  otpless:""
 };
