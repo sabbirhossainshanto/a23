@@ -48,7 +48,8 @@
       "ladder": "https://api7.live/api/exchange/diamond/ladder",
       "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword",
       "siteSettings": "https://cache7.live/api/exchange/diamond/settings",
-      "otpless": "https://api7.live/api/exchange/diamond/otpless"
+      "otpless": "https://api7.live/api/exchange/diamond/otpless",
+      "casinoGames": "https://api7.live/api/exchange/diamond/casinoGames"
     }
   },
   "success": true

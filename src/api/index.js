@@ -28,7 +28,8 @@ export const API = {
   ladder: "",
   forgotPassword:"",
   siteSettings: "",
-  otpless:""
+  otpless:"",
+  casinoGames:""
 };
 
 export const Settings = {

@@ -9,18 +9,21 @@ import useSportsBook from "../../hooks/home/useSportsBook";
 import Sports from "../../components/ui/Home/Sports/Sports";
 import { Settings } from "../../api";
 import useBalance from "../../hooks/useBalance";
+import useHomeCasino from "../../hooks/useHomeCasino";
+import useCasinoGames from "../../hooks/useCasinoGames";
 
 const Home = () => {
   const { sportsType, tokenLoading } = useContextState();
   const { bannerImage } = useBannerImage();
   const { refetchSports, sports } = useSportsBook(sportsType);
   const { refetchBalance } = useBalance();
+  const { homeCasino } = useHomeCasino();
+  const { casinoGames } = useCasinoGames();
 
   useEffect(() => {
     refetchSports();
   }, [refetchSports, sportsType]);
 
-  
   useEffect(() => {
     if (!tokenLoading && !Settings.balanceApiLoop) {
       refetchBalance();
@@ -39,7 +42,12 @@ const Home = () => {
             <LiveSports liveSports={sports} />
           )}
 
-          <Casino />
+          {homeCasino?.length > 0 && (
+            <Casino casino={homeCasino} title="Top Providers" />
+          )}
+          {homeCasino?.length > 0 && (
+            <Casino casino={casinoGames} title=" Casino Games" />
+          )}
         </>
       )}
       {sportsType ? <Sports sports={sports} /> : null}

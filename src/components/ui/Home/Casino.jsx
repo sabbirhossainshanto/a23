@@ -1,4 +1,3 @@
-import useHomeCasino from "../../../hooks/useHomeCasino";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
@@ -6,9 +5,9 @@ import { useEffect, useState } from "react";
 import useContextState from "../../../hooks/useContextState";
 import { Settings } from "../../../api";
 import AEDRules from "../../modal/AEDRules";
-const Casino = () => {
+const Casino = ({casino,title}) => {
   /* get all casino */
-  const { homeCasino } = useHomeCasino();
+
   const [category, setCategory] = useState("Top Games");
   const [filteredData, setFilteredData] = useState({});
   const navigate = useNavigate();
@@ -18,12 +17,12 @@ const Casino = () => {
 
   /* find sports by tabs on ui */
   useEffect(() => {
-    if (homeCasino?.length > 0) {
+    if (casino?.length > 0) {
       const filteredCasino =
-        homeCasino?.find((casino) => casino?.category === category) || {};
+        casino?.find((casino) => casino?.category === category) || {};
       setFilteredData(filteredCasino);
     }
-  }, [category, homeCasino]);
+  }, [category, casino]);
 
   
 
@@ -70,7 +69,8 @@ const Casino = () => {
                 fill="#65C316"
               ></path>
             </svg>
-            Casino
+            {title}
+
           </div>
           {/* <a href="/casino" className="">
           View all
@@ -78,7 +78,7 @@ const Casino = () => {
         </div>
 
         <div className="tabs-wrap">
-          {homeCasino?.map((casino, i) => {
+          {casino?.map((casino, i) => {
             return (
               <a
                 onClick={() => setCategory(casino?.category)}
