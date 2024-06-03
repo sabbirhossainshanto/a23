@@ -33,10 +33,6 @@ const MatchOdds = ({
     );
   }, [match_odds, previousData]);
 
-
-
-
-
   return (
     <>
       {match_odds?.map((games, i) => {
@@ -58,6 +54,7 @@ const MatchOdds = ({
                     <IoMdArrowDropup size={20} />
                   )}
                 </div>
+                <span style={{fontSize:"12px",color:"gray"}}> Max: {games?.maxLiabilityPerBet}</span>
               </div>
             </div>
             {games?.runners?.map((runner) => {

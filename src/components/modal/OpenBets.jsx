@@ -56,7 +56,7 @@ const OpenBets = ({ setShowOpenBets, myBets }) => {
                   <div className="allbet-headcol">
                     <h3></h3>
                     <h3></h3>
-                    <h3>Odds</h3>
+                    <h3>Odd</h3>
                     <h3>Stake</h3>
                   </div>
                 </div>
@@ -79,8 +79,8 @@ const OpenBets = ({ setShowOpenBets, myBets }) => {
                       <div className="allbet-odds-stake-wrap">
                         <h3> </h3>
                         <h3></h3>
+                        <h3>{item?.userRate} </h3>
                         <h3> {item?.amount}</h3>
-                        <h3> {item?.userRate}</h3>
                       </div>
                     </div>
                   );
