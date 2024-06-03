@@ -58,6 +58,7 @@ const Bookmaker = ({
                     <IoMdArrowDropup size={20} />
                   )}
                 </div>
+                <span style={{fontSize:"9px",color:"#959595"}}> Max: {games?.maxLiabilityPerBet}</span>
               </div>
             </div>
             {games?.runners?.map((runner) => {

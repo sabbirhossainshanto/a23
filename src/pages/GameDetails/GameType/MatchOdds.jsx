@@ -54,7 +54,7 @@ const MatchOdds = ({
                     <IoMdArrowDropup size={20} />
                   )}
                 </div>
-                <span style={{fontSize:"12px",color:"gray"}}> Max: {games?.maxLiabilityPerBet}</span>
+                <span style={{fontSize:"9px",color:"#959595"}}> Max: {games?.maxLiabilityPerBet}</span>
               </div>
             </div>
             {games?.runners?.map((runner) => {

@@ -107,6 +107,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                 <IoMdArrowDropup size={20} />
               )}
             </div>
+            <span style={{fontSize:"9px",color:"#959595"}}> Max: {normal?.[0]?.maxLiabilityPerBet}</span>
           </div>
         </div>
 
