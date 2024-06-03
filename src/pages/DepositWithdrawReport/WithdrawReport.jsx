@@ -1,7 +1,10 @@
 import useWithdrawStatement from "../../hooks/useWithdrawStatement";
 import { useEffect, useState } from "react";
+import ImageModal from "./ImageModal";
 
 const WithdrawReport = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState("");
   const { withdrawStatement } = useWithdrawStatement();
   const [category, setCategory] = useState();
 
@@ -16,6 +19,9 @@ const WithdrawReport = () => {
 
   return (
     <>
+      {showModal && image && (
+        <ImageModal setShowModal={setShowModal} image={image} />
+      )}
       <div className="main-content  ">
         {withdrawStatement?.length > 0 ? (
           category?.map((category, i) => {
@@ -36,7 +42,14 @@ const WithdrawReport = () => {
                         key={i}
                         className="card-deposit  "
                       >
-                        <div className="logo ">
+                        <div
+                          className="logo"
+                          onClick={() => {
+                            setImage("");
+                            setShowModal(true);
+                            setImage(data?.image);
+                          }}
+                        >
                           {data?.image && (
                             <img
                               src={data?.image}
@@ -48,9 +61,7 @@ const WithdrawReport = () => {
                         <div className="card-content ">
                           <div className="top-content ">
                             <div className="left-top-text ">
-                              <span className="">
-                             {data?.remark}
-                              </span>
+                              <span className="">{data?.remark}</span>
                               <span className="status  status-aproved">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 import useDepositStatement from "../../hooks/useDepositStatement";
 import { useEffect, useState } from "react";
-import DepositImage from "./DepositImage";
+import ImageModal from "./ImageModal";
 
 const DepositReport = () => {
   const { accountStatement } = useDepositStatement();
@@ -19,7 +19,9 @@ const DepositReport = () => {
 
   return (
     <>
-      {showModal && image && <DepositImage setShowModal={setShowModal} image={image} />}
+      {showModal && image && (
+        <ImageModal setShowModal={setShowModal} image={image} />
+      )}
       <div className="main-content  ">
         {accountStatement?.length > 0 ? (
           category?.map((category, i) => {

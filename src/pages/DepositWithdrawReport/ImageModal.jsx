@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
-const DepositImage = ({ setShowModal, image }) => {
+const ImageModal = ({ setShowModal, image }) => {
   const depositImageRef = useRef();
 
   useCloseModalClickOutside(depositImageRef, () => {
@@ -60,4 +60,4 @@ const DepositImage = ({ setShowModal, image }) => {
   );
 };
 
-export default DepositImage;
+export default ImageModal;
