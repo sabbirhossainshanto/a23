@@ -8,7 +8,7 @@ import handleEncryptData from "../utils/handleEncryptData";
 /* Iframe  api  */
 const useIFrame = (eventTypeId, eventId) => {
   const { token } = useContextState();
-  const { data: iFrameUrl } = useQuery({
+  const { data: iFrameUrl,refetch:refetchIFrameUrl } = useQuery({
     queryKey: ["iframeVideo"],
     /* match odds hasvideo = true then enable */
 
@@ -32,8 +32,9 @@ const useIFrame = (eventTypeId, eventId) => {
         return data?.result;
       }
     },
+    gcTime:0
   });
-  return { iFrameUrl };
+  return { iFrameUrl,refetchIFrameUrl };
 };
 
 export default useIFrame;

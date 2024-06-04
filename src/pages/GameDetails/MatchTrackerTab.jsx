@@ -6,7 +6,7 @@ const MatchTrackerTab = ({ score }) => {
   const [toggle, setToggle] = useState(false);
 
   const { eventId, eventTypeId } = useParams();
-  const { iFrameUrl } = useIFrame(eventTypeId, eventId);
+  const { iFrameUrl, refetchIFrameUrl } = useIFrame(eventTypeId, eventId);
   const [iframeVideo, setIframeVideo] = useState("");
 
   const handleToggle = (tab) => {
@@ -26,6 +26,20 @@ const MatchTrackerTab = ({ score }) => {
       setIframeVideo("");
     }
   }, [toggle, score, iFrameUrl]);
+
+  useEffect(() => {
+    refetchIFrameUrl();
+  }, [eventId, eventTypeId, refetchIFrameUrl]);
+
+
+  
+  useEffect(() => {
+    if (toggle === "video") {
+      if (!score?.hasVideo) {
+        setToggle("");
+      }
+    }
+  }, [eventId, eventTypeId,score,toggle]);
 
   return (
     <>
@@ -147,7 +161,7 @@ const MatchTrackerTab = ({ score }) => {
                 )}
               </div>
             </div>
-            {score?.tracker && toggle === "tracker" && (
+            {/* {score?.tracker && toggle === "tracker" && (
               <iframe
                 className="bt12648"
                 referrerPolicy="noreferrer"
@@ -158,7 +172,7 @@ const MatchTrackerTab = ({ score }) => {
                   border: "0px",
                 }}
               ></iframe>
-            )}
+            )} */}
             <div>
               {score?.tracker && toggle === "tracker" && (
                 <div
@@ -176,7 +190,6 @@ const MatchTrackerTab = ({ score }) => {
                     className="bt12648"
                     referrerPolicy="noreferrer"
                     src={iframeVideo}
-                 
                     style={{
                       // width: "100%",
                       // border: "0px",
@@ -192,7 +205,7 @@ const MatchTrackerTab = ({ score }) => {
                 </div>
               )}
 
-              {iFrameUrl?.url && toggle === "video" && (
+              {iFrameUrl?.url && toggle === "video" && score?.hasVideo && (
                 <div
                   data-editor-id="matchTrackerWidget"
                   // className="bt12646 bt12647"
