@@ -88,7 +88,7 @@ const Register = () => {
       otpMethod:orderId.otpMethod
     };
 
-    
+
 
     const encryptedData = handleEncryptData(registerData);
     const res = await fetch(API.register, {
