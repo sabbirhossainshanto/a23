@@ -6,7 +6,7 @@
   "result": {
     "settings": {
       "siteTitle": "a23money",
-      "siteUrl": "a23money.com",
+      "siteUrl": "rockybook.online",
       "referral": true,
       "balanceApiLoop": false,
       "registration": true,
@@ -49,7 +49,8 @@
       "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword",
       "siteSettings": "https://cache7.live/api/exchange/diamond/settings",
       "otpless": "https://api7.live/api/exchange/diamond/otpless",
-      "casinoGames": "https://api7.live/api/exchange/diamond/casinoGames"
+      "casinoGames": "https://api7.live/api/exchange/diamond/casinoGames",
+      "pg" : "https://api7.live/api/exchange/diamond/pg"
     }
   },
   "success": true

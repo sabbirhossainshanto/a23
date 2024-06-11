@@ -14,12 +14,14 @@ import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 import { FaQrcode } from "react-icons/fa";
 import { CiBank } from "react-icons/ci";
 import { images } from "../../assets";
+import toast from "react-hot-toast";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
   setUploadTransaction,
   setPaymentMethods,
   setPaymentId,
+  amount,
 }) => {
   const { token } = useContextState();
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
@@ -31,20 +33,41 @@ const PaymentMethods = ({
     setTabs(method?.type);
     setPaymentId(method?.paymentId);
     const generatedToken = handleRandomToken();
-    const depositDetail = {
-      type: "depositDetails",
-      paymentId: method?.paymentId,
-      token: generatedToken,
-      site: Settings.siteUrl,
-    };
-    const res = await axios.post(API.bankAccount, depositDetail, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = res?.data;
-    if (data?.success) {
-      setDepositData(data?.result);
+
+    if (method?.type === "pg") {
+      const depositDetailForPg = {
+        paymentId: method?.paymentId,
+        token: generatedToken,
+        site: Settings.siteUrl,
+        amount,
+      };
+      const res = await axios.post(API.pg, depositDetailForPg, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = res?.data;
+      if (data?.success) {
+        window.open(data?.result?.link, "_blank");
+      } else {
+        toast.error(data?.result?.message);
+      }
+    } else {
+      const depositDetail = {
+        type: "depositDetails",
+        paymentId: method?.paymentId,
+        token: generatedToken,
+        site: Settings.siteUrl,
+      };
+      const res = await axios.post(API.bankAccount, depositDetail, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = res?.data;
+      if (data?.success) {
+        setDepositData(data?.result);
+      }
     }
   };
 
@@ -85,12 +108,12 @@ const PaymentMethods = ({
                     {method?.type == "bank" && (
                       <CiBank size={20} color="gray" />
                     )}
-                    {method?.type == "upi" && (
+                    {method?.type == "upi" || method?.type == "pg" ? (
                       <img
                         style={{ height: "20px", width: "20px" }}
                         src={images.upi}
                       />
-                    )}
+                    ) : null}
                   </div>
                 </div>
               );
@@ -507,19 +530,27 @@ const PaymentMethods = ({
             <p
               _ngcontent-kdb-c159=""
               className="make ng-tns-c159-13"
-              style={{ marginBottom: "0.75rem",marginLeft:'10px', color: "black" }}
+              style={{
+                marginBottom: "0.75rem",
+                marginLeft: "10px",
+                color: "black",
+              }}
             >
               QR code for payment
             </p>
             <div
-             style={{ display:'flex',alignItems:'center',justifyContent:'center' }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
               _ngcontent-kdb-c159=""
               className="accountdetailss ng-tns-c159-13 ng-star-inserted"
             >
               <div
                 _ngcontent-kdb-c159=""
                 className="accountnum ng-tns-c159-13"
-                style={{ width:'100%',justifyContent:'center' }}
+                style={{ width: "100%", justifyContent: "center" }}
               >
                 <div
                   style={{

@@ -29,7 +29,8 @@ export const API = {
   forgotPassword:"",
   siteSettings: "",
   otpless:"",
-  casinoGames:""
+  casinoGames:"",
+  pg:""
 };
 
 export const Settings = {

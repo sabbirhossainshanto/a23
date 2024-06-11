@@ -26,6 +26,7 @@ const Deposit = () => {
         setUploadTransaction={setUploadTransaction}
         setPaymentMethods={setPaymentMethods}
         setPaymentId={setPaymentId}
+        amount={amount}
         />
       )}
       {showModal && (

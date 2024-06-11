@@ -37,6 +37,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.ladder = data?.result?.endpoint?.ladder;
         API.forgotPassword = data?.result?.endpoint?.forgotPassword;
         API.siteSettings = data?.result?.endpoint?.siteSettings;
+        API.pg = data?.result?.endpoint?.pg;
         API.otpless = data?.result?.endpoint?.otpless;
         API.casinoGames = data?.result?.endpoint?.casinoGames;
         Settings.siteUrl = data?.result?.settings?.siteUrl;
