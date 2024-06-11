@@ -21,7 +21,7 @@ const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo, setOrderId }) => {
       const data = res.data;
       if (data?.success) {
         setOrderId({
-          orderId: null,
+          orderId: data?.result?.orderId,
           otpMethod: "sms",
         });
         toast.success(data?.result?.message);

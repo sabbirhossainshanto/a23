@@ -74,6 +74,8 @@ const ForgotPassword = () => {
       otpMethod: orderId.otpMethod,
     };
 
+   
+
     const encryptedData = handleEncryptData(forgotPasswordData);
     const res = await fetch(API.forgotPassword, {
       method: "POST",

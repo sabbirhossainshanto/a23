@@ -5,6 +5,7 @@ export const getSetApis = (setNoticeLoaded) => {
   axios
     .get("/notice.json")
     .then((res) => {
+      console.log(res);
       const data = res.data;
       if (data?.result?.endpoint) {
         API.groupSportsBook = data?.result?.endpoint?.groupSportsBook;
