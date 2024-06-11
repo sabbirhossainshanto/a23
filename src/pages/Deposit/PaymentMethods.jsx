@@ -29,7 +29,8 @@ const PaymentMethods = ({
 
   const [depositData, setDepositData] = useState({});
 
-  const handleVisibleBankMethod = async (method) => {
+  const handleVisibleBankMethod = async (e, method) => {
+    e.preventDefault();
     setTabs(method?.type);
     setPaymentId(method?.paymentId);
     const generatedToken = handleRandomToken();
@@ -48,7 +49,7 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
-        window.open(data?.result?.link, "_blank");
+        window.location.href = data?.result?.link;
       } else {
         toast.error(data?.result?.message);
       }
@@ -88,7 +89,7 @@ const PaymentMethods = ({
               return (
                 <div
                   style={{ cursor: "pointer" }}
-                  onClick={() => handleVisibleBankMethod(method)}
+                  onClick={(e) => handleVisibleBankMethod(e, method)}
                   key={method?.paymentId}
                   _ngcontent-kdb-c159=""
                   class="accountdetailss  "
