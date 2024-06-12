@@ -172,8 +172,8 @@ const Footer = () => {
             }`}
           >
             <div className="wallet-tabbar-wrap">
-              <div className="in-1">
-                <div className="in-2">
+              <div className="in-1 footerBG">
+                <div className="in-2 footerCircle">
                   <svg
                     className="footerIcon"
                     xmlns="http://www.w3.org/2000/svg"
