@@ -8,7 +8,7 @@ import handleEncryptData from "../utils/handleEncryptData";
 /* Iframe  api  */
 const useIFrame = (eventTypeId, eventId) => {
   const { token } = useContextState();
-  const { data: iFrameUrl,refetch:refetchIFrameUrl } = useQuery({
+  const { data: iFrameUrl, refetch: refetchIFrameUrl } = useQuery({
     queryKey: ["iframeVideo"],
     /* match odds hasvideo = true then enable */
 
@@ -19,7 +19,8 @@ const useIFrame = (eventTypeId, eventId) => {
         eventId: eventId,
         type: "video",
         token: generatedToken,
-        site:Settings.siteUrl
+        site: Settings.siteUrl,
+        casinoCurrency: Settings.casinoCurrency,
       });
       const res = await axios.post(API.accessToken, encryptedVideoData, {
         headers: {
@@ -32,9 +33,9 @@ const useIFrame = (eventTypeId, eventId) => {
         return data?.result;
       }
     },
-    gcTime:0
+    gcTime: 0,
   });
-  return { iFrameUrl,refetchIFrameUrl };
+  return { iFrameUrl, refetchIFrameUrl };
 };
 
 export default useIFrame;

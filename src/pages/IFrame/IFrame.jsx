@@ -25,7 +25,8 @@ const IFrame = () => {
         token: generatedToken,
         isHome: false,
         mobileOnly: true,
-        site:Settings.siteUrl
+        site:Settings.siteUrl,
+        casinoCurrency:Settings.casinoCurrency
       });
 
       try {
