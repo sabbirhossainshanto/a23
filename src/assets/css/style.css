@@ -23423,7 +23423,7 @@ div {
 }
 
 .congo1 {
-  background-image: url(assets/img/congo.svg);
+  background-image: url("/src/assets/img/congo.svg");
   height: 10.37rem;
   width: 13.5rem;
   background-repeat: no-repeat;
