@@ -58,7 +58,7 @@ const Header = () => {
           !location.pathname.includes("/casino") ? "show" : ""
         }`}
       >
-        <div className="nologin-header-wrap">
+        <div className="nologin-header-wrap headerBG">
           <Link onClick={() => setSportsType(0)} to="/">
             <img alt="logo" className="header-logo" src={logo} />
           </Link>
@@ -67,10 +67,10 @@ const Header = () => {
             {token ? (
               <div className="mobile-nologin-enter">
                 <div
+                className="headerText"
                   style={{
                     marginRight: "20px",
                     fontSize: "11px",
-                    color: "#000",
                     textAlign: "right",
                     fontWeight: "500",
                   }}

@@ -166,7 +166,6 @@ html {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  background-color: var(--zofaf);
   box-shadow: 0 4px 14px 0 var(--ygdmir);
   position: relative;
   z-index: 2;
@@ -2442,11 +2441,10 @@ a:active:hover {
   width: 2.875rem;
   height: 2.875rem;
   border-radius: 50%;
-  background-color: var(--11p5p8q);
+
 }
 
 .t1b5irhq .tabbar-item .wallet-tabbar-wrap .in-1 .in-2 svg {
-  fill: var(--hsryh1);
   width: 1.5rem;
   height: 1.5rem;
 }
