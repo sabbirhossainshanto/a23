@@ -8,6 +8,7 @@ import { Settings } from "../../../api";
 
 
 const Footer = () => {
+
   const { setSportsType, token } = useContextState();
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,7 +16,7 @@ const Footer = () => {
   const loginName = localStorage.getItem("loginName");
   const { myBets } = useCurrentBets();
   const [showOpenBets, setShowOpenBets] = useState(false);
-
+  /* Handle navigate  */
   const handleNavigate = (link) => {
     if (token) {
       navigate(link);
