@@ -6,6 +6,7 @@ html {
   font-family: "Inter";
 }
 
+
 .centered-div {
   max-width: 768px;
   min-height: 100%;
@@ -347,19 +348,11 @@ button {
 .ui-button.s-conic {
   color: #fff;
   background-color: var(--color1);
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .ui-button.s-conic:hover {
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 /*! CSS Used fontfaces */
@@ -2440,7 +2433,6 @@ a:active:hover {
   width: 2.875rem;
   height: 2.875rem;
   border-radius: 50%;
-
 }
 
 .t1b5irhq .tabbar-item .wallet-tabbar-wrap .in-1 .in-2 svg {
@@ -5753,7 +5745,11 @@ img,
   gap: 0.375rem;
   align-self: stretch;
   border-radius: 0.5rem;
-  background: radial-gradient(25% 90% at 50% 50%, var(--color1) 0%, var(--color2) 100%);
+  background: radial-gradient(
+    25% 90% at 50% 50%,
+    var(--color1) 0%,
+    var(--color2) 100%
+  );
   /* box-shadow: 0 5px 21px #00cf5875; */
   margin: 1.5rem 0rem;
   z-index: 100;
@@ -6210,19 +6206,11 @@ p {
 .ui-button.s-conic {
   color: #fff;
   background-color: var(--color1);
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .ui-button.s-conic:hover {
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .i1gm0mn8 {
@@ -6771,7 +6759,7 @@ p {
     var(--color1) -90deg,
     var(--color2) 269.96deg,
     var(--color1) 270deg,
-    var(--color2)629.96deg
+    var(--color2) 629.96deg
   );
 }
 
@@ -7501,19 +7489,11 @@ p {
 .ui-button.s-conic {
   color: #fff;
   background-color: var(--color1);
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .ui-button.s-conic:hover {
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 /* account logdded in :start */
@@ -8534,19 +8514,11 @@ p {
 .ui-button.s-conic {
   color: #fff;
   background-color: var(--color1);
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .ui-button.s-conic:hover {
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .i1gm0mn8 {
@@ -8995,19 +8967,11 @@ p {
 .ui-button.s-conic {
   color: #fff;
   background-color: var(--color1);
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .ui-button.s-conic:hover {
-  background-image: conic-gradient(
-    from 1turn,
-    var(--color1),
-    var(--color2)
-  );
+  background-image: conic-gradient(from 1turn, var(--color1), var(--color2));
 }
 
 .i1gm0mn8 {
@@ -12753,7 +12717,7 @@ img,
 .btnn.active {
   opacity: 1;
   border-radius: 0.5rem;
-  background: var(--color1)
+  background: var(--color1);
   /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
@@ -12781,8 +12745,7 @@ img,
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: var(--color1)
-
+  background: var(--color1);
 }
 
 .makepayment:hover {
@@ -14993,7 +14956,11 @@ img,
   align-items: center;
   flex: 1 0 0;
   border-radius: 0.375rem;
-  background: linear-gradient(94deg, var(--color1) -2.18%, var(--color2) 102.44%);
+  background: linear-gradient(
+    94deg,
+    var(--color1) -2.18%,
+    var(--color2) 102.44%
+  );
   /* box-shadow: 0 4px 20px #00cf5859; */
 }
 
@@ -18398,7 +18365,7 @@ form {
 .bt6597 .bt6598 {
   height: 100%;
   overflow: visible;
-  color: #31373D
+  color: #31373d;
 }
 
 @media (min-width: 599px) {
@@ -18407,7 +18374,7 @@ form {
   }
 
   .bt6597 .bt6598 {
-    color: #31373D;
+    color: #31373d;
     display: flex;
     align-items: center;
     padding-left: 8px;
@@ -18419,7 +18386,7 @@ form {
   overflow: hidden;
   box-sizing: border-box;
   word-break: break-all;
-  color: #31373D
+  color: #31373d;
 }
 
 .bt6599 {
@@ -23407,7 +23374,7 @@ div {
   align-items: center;
   gap: 0.375rem;
   border-radius: 0.5rem;
-  background: (--color1)
+  background: (--color1);
   /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
@@ -26171,8 +26138,6 @@ p {
   padding: 0.69rem 1rem;
 }
 
-
-
 /*! CSS Used fontfaces */
 
 /* passbook end */
@@ -26205,7 +26170,6 @@ p {
   }
 }
 
-
 .open_bets_button {
   color: #31373d;
   width: 40px;
@@ -26221,7 +26185,6 @@ p {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-
 .floating-btns {
   position: absolute;
   bottom: 70px;
@@ -26233,14 +26196,10 @@ p {
   z-index: 1000;
 }
 
-
-
-
-
 .android-popup {
   width: 100%;
-  font-family: 'Inter';
-  background: #000C24;
+  font-family: "Inter";
+  background: #000c24;
   padding: 16px;
   display: flex;
   align-items: center;
@@ -26251,7 +26210,7 @@ p {
 }
 
 .android-card {
-  font-family: 'Inter';
+  font-family: "Inter";
   display: flex;
   width: 282px;
   align-items: center;
@@ -26266,7 +26225,7 @@ p {
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  background: #9CA3AF;
+  background: #9ca3af;
 }
 
 .side-logo {
@@ -26291,7 +26250,7 @@ p {
 
 .app-text h2 {
   color: #fff;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 11px;
   font-style: normal;
   font-weight: 700;
@@ -26301,7 +26260,7 @@ p {
 
 .app-text span {
   color: #6b7280;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -26329,12 +26288,12 @@ p {
 
 .install-btn button {
   color: #fff;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
   z-index: 10;
 }
 
@@ -26345,7 +26304,12 @@ p {
   width: 141px;
   height: 64px;
   flex-shrink: 0;
-  background: linear-gradient(98deg, rgba(8, 248, 255, .7) .98%, rgba(59, 164, 253, .7) 51.52%, rgba(132, 54, 250, .7) 100%);
+  background: linear-gradient(
+    98deg,
+    rgba(8, 248, 255, 0.7) 0.98%,
+    rgba(59, 164, 253, 0.7) 51.52%,
+    rgba(132, 54, 250, 0.7) 100%
+  );
   filter: blur(90px);
   z-index: 0;
 }
@@ -26357,7 +26321,34 @@ p {
   right: 0;
   top: 0;
   flex-shrink: 0;
-  background: linear-gradient(98deg, rgba(8, 248, 255, .7) .98%, rgba(59, 164, 253, .7) 51.52%, rgba(132, 54, 250, .7) 100%);
+  background: linear-gradient(
+    98deg,
+    rgba(8, 248, 255, 0.7) 0.98%,
+    rgba(59, 164, 253, 0.7) 51.52%,
+    rgba(132, 54, 250, 0.7) 100%
+  );
   filter: blur(90px);
   z-index: 0;
 }
+
+
+.headerBG {
+  background-color: var(--headerBG);
+}
+.footerBG {
+  background-color: var(--footerBG);
+}
+.footerText {
+  color: var(--footerText);
+}
+.footerIcon {
+  fill: var(--footerIcon);
+  stroke: var(--footerIcon);
+}
+.footerCircle {
+  background-color: var(--footerCircle);
+}
+.headerText {
+  color: var(--headerText);
+}
+

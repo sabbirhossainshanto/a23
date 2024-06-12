@@ -19,22 +19,3 @@
 
 
 
-.headerBG {
-  background-color: var(--headerBG);
-}
-.footerBG {
-  background-color: var(--footerBG);
-}
-.footerText {
-  color: var(--footerText);
-}
-.footerIcon {
-  fill: var(--footerIcon);
-  stroke: var(--footerIcon);
-}
-.footerCircle {
-  background-color: var(--footerCircle);
-}
-.headerText {
-  color: var(--headerText);
-}
