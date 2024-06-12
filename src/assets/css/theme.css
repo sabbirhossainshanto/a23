@@ -10,12 +10,15 @@
   --color1: #fab841;
   --color2: #cd890e;
   --headerBG: #303030;
-  --headerText:#FFF;
+  --headerText: #fff;
   --footerBG: #303030;
-  --footerCircle: #505050;
+  --footerCircle:#535353;
   --footerText: #ffffff;
   --footerIcon: #000;
 }
+
+
+
 .headerBG {
   background-color: var(--headerBG);
 }
@@ -33,5 +36,5 @@
   background-color: var(--footerCircle);
 }
 .headerText {
-color: var(--headerText);
+  color: var(--headerText);
 }
