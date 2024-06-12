@@ -9,6 +9,7 @@ import { API, Settings } from "../../api";
 import handleEncryptData from "../../utils/handleEncryptData";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const [showOtp, setShowOtp] = useState(false);
@@ -73,9 +74,6 @@ const ForgotPassword = () => {
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
     };
-
-   
-
     const encryptedData = handleEncryptData(forgotPasswordData);
     const res = await fetch(API.forgotPassword, {
       method: "POST",
@@ -93,6 +91,27 @@ const ForgotPassword = () => {
       }, 1000);
     } else {
       toast.error(data?.error?.loginName[0]?.description);
+    }
+  };
+
+  const getOtp = async () => {
+    /* Get Otp based on settings*/
+
+    const generatedToken = handleRandomToken();
+    const otpData = {
+      mobile: mobileNo,
+      token: generatedToken,
+      site: Settings?.siteUrl,
+    };
+    const encryptedData = handleEncryptData(otpData);
+    const res = await axios.post(API.otp, encryptedData);
+    const data = res.data;
+    console.log(data);
+    if (data?.success) {
+      setCountDown(45);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
     }
   };
 
@@ -176,9 +195,15 @@ const ForgotPassword = () => {
                             />
                           ))}
                         </div>
-                        <span className="resend-otp">
-                          Resend in 00:{countDown}
-                        </span>
+                        {countDown <= 0 ? (
+                          <span onClick={getOtp} className="resend-otp">
+                            Resend
+                          </span>
+                        ) : (
+                          <span className="resend-otp">
+                            Resend in 00:{countDown}
+                          </span>
+                        )}
                       </div>
                     </div>
 

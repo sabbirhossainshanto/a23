@@ -10,6 +10,7 @@ import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -84,11 +85,9 @@ const Register = () => {
       otp: otpValues.join(""),
       isOtpAvailable: Settings.otp,
       referralCode: user.referralCode,
-      orderId:orderId.orderId,
-      otpMethod:orderId.otpMethod
+      orderId: orderId.orderId,
+      otpMethod: orderId.otpMethod,
     };
-
-
 
     const encryptedData = handleEncryptData(registerData);
     const res = await fetch(API.register, {
@@ -136,6 +135,26 @@ const Register = () => {
       }
     } else {
       toast.error(data?.error?.description);
+    }
+  };
+
+  const getOtp = async () => {
+    /* Get Otp based on settings*/
+    const generatedToken = handleRandomToken();
+    const otpData = {
+      mobile: mobileNo,
+      token: generatedToken,
+      site: Settings?.siteUrl,
+    };
+    const encryptedData = handleEncryptData(otpData);
+    const res = await axios.post(API.otp, encryptedData);
+    const data = res.data;
+    console.log(data);
+    if (data?.success) {
+      setCountDown(45);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
     }
   };
 
@@ -236,8 +255,10 @@ const Register = () => {
                             />
                           ))}
                         </div>
-                        {countDown === 0 ? (
-                          <span className="resend-otp">Resend</span>
+                        {countDown <= 0 ? (
+                          <span onClick={getOtp} className="resend-otp">
+                            Resend
+                          </span>
                         ) : (
                           <span className="resend-otp">
                             Resend in 00:{countDown}
