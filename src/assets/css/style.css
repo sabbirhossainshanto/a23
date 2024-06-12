@@ -26343,7 +26343,6 @@ p {
 }
 .footerIcon {
   fill: var(--footerIcon);
-  stroke: var(--footerIcon);
 }
 .footerCircle {
   background-color: var(--footerCircle);
