@@ -27,6 +27,7 @@ const ForgotPassword = () => {
     orderId: "",
     otpMethod: "",
   });
+  const [isFormValid, setIsFormValid] = useState(false);
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
 
@@ -63,6 +64,9 @@ const ForgotPassword = () => {
   };
 
   const onSubmit = async () => {
+    if (user.password !== user.confirmPassword) {
+      toast.error("Passwords not matching!");
+    }
     const generatedToken = handleRandomToken();
     const forgotPasswordData = {
       username: mobileNo,
@@ -115,6 +119,18 @@ const ForgotPassword = () => {
     }
   };
 
+  const validateForm = (otpValues, user) => {
+    const isOtpFilled = otpValues.every((value) => value.trim() !== "");
+    const isPasswordFilled = user.password.trim() !== "";
+    const isConfirmPasswordFilled = user.confirmPassword.trim() !== "";
+    const isFormValid =
+      isOtpFilled && isPasswordFilled && isConfirmPasswordFilled;
+    setIsFormValid(isFormValid);
+  };
+
+  useEffect(() => {
+    validateForm(otpValues, user);
+  }, [otpValues, user]);
   return (
     <>
       {!showOtp ? (
@@ -277,7 +293,7 @@ const ForgotPassword = () => {
                         </span>
                       </div>
                     </div>
-                    <button className="submit-btn">
+                    <button disabled={!isFormValid} className="submit-btn">
                       <span>Submit</span>
                     </button>
                   </form>

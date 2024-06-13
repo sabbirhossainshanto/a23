@@ -15446,8 +15446,8 @@ img,
 .whatsup-card {
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid #48cd83;
-  background: var(--success-01, #22c55e);
+  border: 1px solid var(--color1);
+  background: var(--color1);
   display: flex;
   height: 2.875rem;
   padding: 0.5rem 1.25rem;
@@ -15587,7 +15587,7 @@ form {
 .otp-btn {
   border-radius: 0.5rem;
   opacity: 0.5;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: var(--color1);
   display: flex;
   height: 2.5rem;
   padding: 0.5rem;
@@ -15601,7 +15601,7 @@ form {
 
 .otp-btn:enabled {
   opacity: 1;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: var(--color1);
   box-shadow: 0 5px 21px #00cf5875;
 }
 
@@ -16266,14 +16266,14 @@ form {
   align-self: stretch;
   border-radius: 0.5rem;
   opacity: 0.5;
-  background: radial-gradient(25% 90% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: var(--color1);
   animation: slideInSubmitOtPbutton 0.5s ease-in-out forwards;
 }
 
 .submit-btn:enabled {
   opacity: 1;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
-  box-shadow: 0 5px 21px #00cf5875;
+  background: var(--color1)
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .submit-btn:active {
