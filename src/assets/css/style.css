@@ -19393,7 +19393,7 @@ button {
 }
 
 .btnn1:enabled {
-  box-shadow: 0 5px 21px #00cf5875;
+  /* box-shadow: 0 5px 21px #00cf5875; */
   opacity: 1;
   font-size: 14px;
 }
@@ -20961,7 +20961,7 @@ img,
 }
 
 .input-box:nth-child(4) {
-  margin-bottom: 0 !important;
+  margin-bottom: 15px !important;
 }
 
 .btn-box {
@@ -20996,11 +20996,11 @@ img,
   align-self: stretch;
   border-radius: 0.5rem;
   opacity: 0.7;
-  background: radial-gradient(282.87% 0% at 50% 50%, #009d46 0%, #2db261 100%);
+  background: var(--color1)
 }
 
 .add-btn:enabled {
-  box-shadow: 0 5px 21px #00cf5875;
+  /* box-shadow: 0 5px 21px #00cf5875; */
   opacity: 1;
 }
 

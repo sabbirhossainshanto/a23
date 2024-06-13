@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useContextState from "../../../hooks/useContextState";
 import handleRandomToken from "../../../utils/handleRandomToken";
 import axios from "axios";
@@ -13,6 +13,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
   useCloseModalClickOutside(addBankRef, () => {
     setAddBank(false);
   });
+  const [isFormValid, setIsFormValid] = useState(false);
   const { token } = useContextState();
   const [bankDetails, setBankDetails] = useState({
     accountName: "",
@@ -31,7 +32,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       accountNumber: bankDetails.accountNumber,
       type: "addBankAccount",
       token: generatedToken,
-      site:Settings.siteUrl
+      site: Settings.siteUrl,
     };
     const encryptedData = handleEncryptData(bankData);
     const res = await axios.post(API.bankAccount, encryptedData, {
@@ -54,6 +55,19 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       toast.error(data?.result?.message);
     }
   };
+
+  const validateForm = (bankDetails) => {
+    const isaccountNameFilled = bankDetails.accountName.trim() !== "";
+    const isaccountNumberFilled = bankDetails.accountNumber.trim() !== "";
+    const isIfscFilled = bankDetails.ifsc.trim() !== "";
+    const isFormValid =
+      isaccountNameFilled && isIfscFilled && isaccountNumberFilled;
+    setIsFormValid(isFormValid);
+  };
+
+  useEffect(() => {
+    validateForm(bankDetails);
+  }, [bankDetails]);
   return (
     <div className="Modal-Background  ">
       <div className="card-add-bank" ref={addBankRef}>
@@ -136,7 +150,11 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                 >
                   <span className="">Cancel</span>
                 </button>
-                <button className="add-btn " type="submit">
+                <button
+                  disabled={!isFormValid}
+                  className="add-btn "
+                  type="submit"
+                >
                   <span className="">Add Bank Account</span>
                 </button>
               </div>
