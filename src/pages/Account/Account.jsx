@@ -11,6 +11,7 @@ import profileLiveBets from "../../../src/assets/img/profile-live-bets.svg";
 import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-profit-loss.webp";
 // import profileAccountStatement from "../../../src/assets/img/profile-account-statement.png";
 import profileSettings from "../../../src/assets/img/profile-settings.svg";
+import { useEffect } from "react";
 
 const Account = () => {
   const { setGetToken } = useContextState();
@@ -18,7 +19,12 @@ const Account = () => {
   /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
   /* get balance data */
-  const { balanceData } = useBalance();
+  const { balanceData, refetchBalance } = useBalance();
+
+  useEffect(() => {
+    const intervalId = setInterval(refetchBalance, 5000);
+    return () => clearInterval(intervalId);
+  }, [refetchBalance]);
 
   return (
     <div className="p-1 body-profile-page">
