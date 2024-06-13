@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API, Settings } from "../api";
 import handleRandomToken from "./handleRandomToken";
+import handleEncryptData from "./handleEncryptData";
 /* handle deposit api */
 const handleDepositMethod = (token) => {
   const handleDeposit = async () => {
@@ -8,10 +9,10 @@ const handleDepositMethod = (token) => {
     const bankData = {
       type: "depositMethods",
       token: generatedToken,
-      site:Settings.siteUrl
+      site: Settings.siteUrl,
     };
-    //   const encryptedData = UseEncryptData(bankData);
-    const res = await axios.post(API.bankAccount, bankData, {
+    const encryptedData = handleEncryptData(bankData);
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

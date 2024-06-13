@@ -5,6 +5,7 @@ import handleRandomToken from "../../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
+import handleEncryptData from "../../../utils/handleEncryptData";
 
 const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
   /* Close modal click outside */
@@ -25,8 +26,8 @@ const DeleteBank = ({ setRemoveBank, removeBank, refetchBankData }) => {
       token: generatedToken,
       site:Settings.siteUrl
     };
-
-    const res = await axios.post(API.bankAccount, bankData, {
+    const encryptedData = handleEncryptData(bankData);
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

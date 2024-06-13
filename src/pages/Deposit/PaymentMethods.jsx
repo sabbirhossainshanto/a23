@@ -15,6 +15,7 @@ import { FaQrcode } from "react-icons/fa";
 import { CiBank } from "react-icons/ci";
 import { images } from "../../assets";
 import toast from "react-hot-toast";
+import handleEncryptData from "../../utils/handleEncryptData";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -60,11 +61,13 @@ const PaymentMethods = ({
         token: generatedToken,
         site: Settings.siteUrl,
       };
-      const res = await axios.post(API.bankAccount, depositDetail, {
+      const encryptedData = handleEncryptData(depositDetail);
+      const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+     
       const data = res?.data;
       if (data?.success) {
         setDepositData(data?.result);

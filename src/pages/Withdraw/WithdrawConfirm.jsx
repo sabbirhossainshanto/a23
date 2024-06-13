@@ -6,6 +6,7 @@ import handleRandomToken from "../../utils/handleRandomToken";
 import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import { images } from "../../assets";
+import handleEncryptData from "../../utils/handleEncryptData";
 
 const WithdrawConfirm = ({
   bank,
@@ -29,8 +30,8 @@ const WithdrawConfirm = ({
         token: generatedToken,
         site:Settings.siteUrl
       };
-
-      const res = await axios.post(API.bankAccount, bankData, {
+      const encryptedData = handleEncryptData(bankData);
+      const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

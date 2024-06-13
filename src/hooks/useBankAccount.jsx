@@ -3,6 +3,7 @@ import axios from "axios";
 import { API, Settings } from "../api";
 import useContextState from "./useContextState";
 import handleRandomToken from "../utils/handleRandomToken";
+import handleEncryptData from "../utils/handleEncryptData";
 
 const useBankAccount = (payload) => {
   const { token, tokenLoading } = useContextState();
@@ -13,11 +14,11 @@ const useBankAccount = (payload) => {
       const generatedToken = handleRandomToken();
       const bankData = {
         ...payload,
-        site:Settings.siteUrl,
+        site: Settings.siteUrl,
         token: generatedToken,
       };
-      //   const encryptedData = UseEncryptData(bankData);
-      const res = await axios.post(API.bankAccount, bankData, {
+      const encryptedData = handleEncryptData(bankData);
+      const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

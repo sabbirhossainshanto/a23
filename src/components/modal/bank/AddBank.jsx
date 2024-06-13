@@ -5,6 +5,7 @@ import axios from "axios";
 import { API, Settings } from "../../../api";
 import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
+import handleEncryptData from "../../../utils/handleEncryptData";
 
 const AddBank = ({ setAddBank, refetchBankData }) => {
   /* Handle close modal click outside */
@@ -32,8 +33,8 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       token: generatedToken,
       site:Settings.siteUrl
     };
-
-    const res = await axios.post(API.bankAccount, bankData, {
+    const encryptedData = handleEncryptData(bankData);
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
