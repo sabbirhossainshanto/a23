@@ -15602,7 +15602,7 @@ form {
 .otp-btn:enabled {
   opacity: 1;
   background: var(--color1);
-  box-shadow: 0 5px 21px #00cf5875;
+  /* box-shadow: 0 5px 21px #00cf5875; */
 }
 
 .otp-btn:active {
