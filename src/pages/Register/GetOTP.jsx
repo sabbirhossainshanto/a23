@@ -59,7 +59,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
           <div className="register-box">
             <div className="register-card">
               <div className="register-card-header">
-                <span>New Member?</span>
+                {/* <span>New Member?</span> */}
                 <div className="register-text">
                   <p>Register Now,</p>
                   <img
