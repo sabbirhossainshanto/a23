@@ -30,7 +30,8 @@ export const API = {
   siteSettings: "",
   otpless:"",
   casinoGames:"",
-  pg:""
+  pg:"",
+  pgStatus:""
 };
 
 export const Settings = {

@@ -20,6 +20,7 @@ import QRCode from "qrcode.react";
 import { isDesktop, isAndroid } from "react-device-detect";
 import { ProgressBar } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import useGetPGStatus from "../../hooks/useGetPGStatus";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -36,6 +37,8 @@ const PaymentMethods = ({
   const [depositData, setDepositData] = useState({});
   const [time, setTime] = useState(null);
   const navigate = useNavigate();
+  const [orderId, setOrderId] = useState("");
+  const { pgStatus } = useGetPGStatus(orderId, tabs);
 
   useEffect(() => {
     refetchBankData();
@@ -54,8 +57,11 @@ const PaymentMethods = ({
   useEffect(() => {
     if (time === 0) {
       navigate("/account");
+    } else if (pgStatus?.success) {
+      toast.success(pgStatus?.result?.message);
+      navigate("/account");
     }
-  }, [time, navigate]);
+  }, [time, navigate, pgStatus]);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -85,9 +91,11 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
-        if (!Settings?.paymentIntent) {
-          setTime(10);
+        console.log(data);
+        if (Settings?.paymentIntent) {
+          setTime(60 * 20);
           setQrcode(data?.result?.upi);
+          setOrderId(data?.result?.orderId);
         } else {
           window.location.href = data?.result?.upi;
         }
