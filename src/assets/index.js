@@ -8,6 +8,10 @@ import rightClickCheck from "./img/right-click-check.svg";
 import upi from "./img/upi.png";
 import appStar from "./img/app-star.svg";
 import playStore from "./img/playstore.svg";
+import paytm from "./img/PYTM_WEB.png";
+import phonePay from "./img/PHONEPE_WEB.png";
+import gpay from "./img/gpay.webp";
+import bhim from "./img/BHIM_WEB.png";
 
 export const images = {
   star,
@@ -20,4 +24,9 @@ export const images = {
   upi,
   appStar,
   playStore,
+  paytm,
+  phonePay,
+  gpay,
+  bhim
+
 };

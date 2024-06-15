@@ -3,7 +3,7 @@ import { depositMethodsPost } from "../../constant/constant";
 import useBankAccount from "../../hooks/useBankAccount";
 import { API, Settings } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useContextState from "../../hooks/useContextState";
 import contactOne from "../../../src/assets/img/contact_one.svg";
 import clipboardIcon from "../../../src/assets/img/clipboard_icon.svg";
@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import handleEncryptData from "../../utils/handleEncryptData";
 import QRCode from "qrcode.react";
 import { isDesktop } from "react-device-detect";
+import { ProgressBar } from "react-loader-spinner";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -27,10 +28,34 @@ const PaymentMethods = ({
   amount,
 }) => {
   const { token } = useContextState();
-  const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
+  const { bankData: depositMethods, refetchBankData } =
+    useBankAccount(depositMethodsPost);
   const [tabs, setTabs] = useState("");
   const [qrcode, setQrcode] = useState("");
   const [depositData, setDepositData] = useState({});
+  const [time, setTime] = useState(null);
+
+  useEffect(() => {
+    refetchBankData();
+  }, []);
+
+  useEffect(() => {
+    if (time) {
+      const timer = setInterval(() => {
+        setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [time]);
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
+  };
 
   const handleVisibleBankMethod = async (e, method) => {
     e.preventDefault();
@@ -52,9 +77,13 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
+        setTime(20 * 60);
         // console.log(data);
         // window.location.href = data?.result?.link;
-        setQrcode(data?.result?.upi);
+        // setQrcode(data?.result?.upi);
+        setQrcode(
+          "upi://pay?pa=M22MA4PAMRRA2@ybl&pn=MPay&am=1000.00&mam=1000.00&tr=12274439&tn=Payment%20for%2012274439&mc=4816&mode=04&purpose=00&utm_campaign=B2B_PG&utm_medium=M22MA4PAMRRA2&utm_source=12274439"
+        );
       } else {
         toast.error(data?.result?.message);
       }
@@ -93,6 +122,7 @@ const PaymentMethods = ({
 
           {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
             depositMethods?.map((method) => {
+              console.log(method);
               return (
                 <div
                   style={{ cursor: "pointer" }}
@@ -109,7 +139,7 @@ const PaymentMethods = ({
                     }}
                     class="payment_container"
                   >
-                    <span>{method?.type?.toUpperCase()}</span>
+                    <span>{method?.title?.toUpperCase()}</span>
                     {method?.type == "qr" && (
                       <FaQrcode size={20} color="gray" />
                     )}
@@ -683,6 +713,44 @@ const PaymentMethods = ({
                   className="ng-tns-c159-13"
                 >
                   <QRCode size={200} value={qrcode} />
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <p>Scan to pay with any UPI app.</p>
+                <p style={{ paddingTop: "8px", paddingBottom: "8px" }}>
+                  checking payment status..
+                  <span style={{ color: "green" }}>{formatTime(time)}</span>
+                </p>
+                {time && (
+                  <ProgressBar
+                    visible={true}
+                    height="80"
+                    width="80"
+                    borderColor="green"
+                    color="#4fa94d"
+                    ariaLabel="progress-bar-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                )}
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <img
+                    style={{ height: "40px" }}
+                    src={images.phonePay}
+                    alt=""
+                  />
+                  <img style={{ height: "40px" }} src={images.paytm} alt="" />
+                  <img style={{ height: "40px" }} src={images.gpay} alt="" />
+                  <img style={{ height: "40px" }} src={images.bhim} alt="" />
                 </div>
               </div>
             </div>
