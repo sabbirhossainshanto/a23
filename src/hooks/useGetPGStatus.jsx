@@ -26,6 +26,7 @@ const useGetPGStatus = (orderId, method) => {
      return data
     },
     refetchInterval: method === "pg" ? 10000 : null,
+    gcTime:0
   });
   return { pgStatus, refetchPGStatus };
 };

@@ -39,7 +39,7 @@ const PaymentMethods = ({
   const navigate = useNavigate();
   const [orderId, setOrderId] = useState("");
   const { pgStatus } = useGetPGStatus(orderId, tabs);
-
+console.log(pgStatus);
   useEffect(() => {
     refetchBankData();
   }, [refetchBankData]);
@@ -58,6 +58,8 @@ const PaymentMethods = ({
     if (time === 0) {
       navigate("/account");
     } else if (pgStatus?.success) {
+      setTabs("")
+      setOrderId("")
       toast.success(pgStatus?.result?.message);
       navigate("/account");
     }
