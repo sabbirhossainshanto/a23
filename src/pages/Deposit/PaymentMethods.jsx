@@ -52,8 +52,9 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
+        // console.log(data);
         // window.location.href = data?.result?.link;
-        setQrcode(data?.result?.link);
+        setQrcode(data?.result?.upi);
       } else {
         toast.error(data?.result?.message);
       }
@@ -644,7 +645,7 @@ const PaymentMethods = ({
           </div>
         </div>
       )}
-      {tabs === 'pg' && qrcode && isDesktop && (
+      {tabs === "pg" && qrcode && isDesktop && (
         <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
           <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
             <p
