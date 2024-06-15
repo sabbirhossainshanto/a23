@@ -45,5 +45,6 @@ export const Settings = {
   apkLink:"",
   casinoCurrency:"",
   chaportAppId:"",
-  otpless:""
+  otpless:"",
+  paymentIntent:""
 };

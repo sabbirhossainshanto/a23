@@ -52,6 +52,7 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.apkLink = data?.result?.settings?.apkLink;
         Settings.chaportAppId = data?.result?.settings?.chaportAppId;
         Settings.otpless = data?.result?.settings?.otpless;
+        Settings.paymentIntent = data?.result?.settings?.paymentIntent;
 
         setNoticeLoaded(true);
       }

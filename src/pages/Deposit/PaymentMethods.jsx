@@ -19,6 +19,7 @@ import handleEncryptData from "../../utils/handleEncryptData";
 import QRCode from "qrcode.react";
 import { isDesktop, isAndroid } from "react-device-detect";
 import { ProgressBar } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -34,6 +35,7 @@ const PaymentMethods = ({
   const [qrcode, setQrcode] = useState("");
   const [depositData, setDepositData] = useState({});
   const [time, setTime] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     refetchBankData();
@@ -48,6 +50,12 @@ const PaymentMethods = ({
       return () => clearInterval(timer);
     }
   }, [time, tabs]);
+
+  useEffect(() => {
+    if (time === 0) {
+      navigate("/account");
+    }
+  }, [time, navigate]);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -77,8 +85,12 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
-        setTime(20 * 60);
-        setQrcode(data?.result?.upi);
+        if (!Settings?.paymentIntent) {
+          setTime(10);
+          setQrcode(data?.result?.upi);
+        } else {
+          window.location.href = data?.result?.upi;
+        }
       } else {
         toast.error(data?.result?.message);
       }
@@ -107,8 +119,6 @@ const PaymentMethods = ({
     window.location.href = qrcode;
   };
 
-
-
   return (
     <>
       <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
@@ -123,7 +133,6 @@ const PaymentMethods = ({
 
           {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
             depositMethods?.map((method) => {
-         
               return (
                 <div
                   style={{ cursor: "pointer" }}
@@ -745,9 +754,7 @@ const PaymentMethods = ({
                     borderColor="#5c2092"
                     barColor="#873de4"
                     ariaLabel="progress-bar-loading"
-                    wrapperStyle={{
-                      
-                    }}
+                    wrapperStyle={{}}
                     wrapperClass="progress-bar-loading"
                   />
                 )}
