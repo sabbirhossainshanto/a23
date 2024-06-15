@@ -26351,3 +26351,7 @@ p {
   color: var(--headerText);
 }
 
+/* .progress-bar-loading path stroke {
+  fill: var(--color1) !important;
+} */
+

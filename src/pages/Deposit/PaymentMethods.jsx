@@ -17,7 +17,7 @@ import { images } from "../../assets";
 import toast from "react-hot-toast";
 import handleEncryptData from "../../utils/handleEncryptData";
 import QRCode from "qrcode.react";
-import { isDesktop } from "react-device-detect";
+import { isDesktop, isAndroid } from "react-device-detect";
 import { ProgressBar } from "react-loader-spinner";
 
 /* eslint-disable react/no-unknown-property */
@@ -37,17 +37,17 @@ const PaymentMethods = ({
 
   useEffect(() => {
     refetchBankData();
-  }, []);
+  }, [refetchBankData]);
 
   useEffect(() => {
-    if (time) {
+    if (time && tabs === "pg") {
       const timer = setInterval(() => {
         setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
       }, 1000);
 
       return () => clearInterval(timer);
     }
-  }, [time]);
+  }, [time, tabs]);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -78,12 +78,7 @@ const PaymentMethods = ({
       const data = res?.data;
       if (data?.success) {
         setTime(20 * 60);
-        // console.log(data);
-        // window.location.href = data?.result?.link;
-        // setQrcode(data?.result?.upi);
-        setQrcode(
-          "upi://pay?pa=M22MA4PAMRRA2@ybl&pn=MPay&am=1000.00&mam=1000.00&tr=12274439&tn=Payment%20for%2012274439&mc=4816&mode=04&purpose=00&utm_campaign=B2B_PG&utm_medium=M22MA4PAMRRA2&utm_source=12274439"
-        );
+        setQrcode(data?.result?.upi);
       } else {
         toast.error(data?.result?.message);
       }
@@ -108,6 +103,12 @@ const PaymentMethods = ({
     }
   };
 
+  const navigatePGLink = () => {
+    window.location.href = qrcode;
+  };
+
+
+
   return (
     <>
       <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
@@ -122,7 +123,7 @@ const PaymentMethods = ({
 
           {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
             depositMethods?.map((method) => {
-              console.log(method);
+         
               return (
                 <div
                   style={{ cursor: "pointer" }}
@@ -723,21 +724,31 @@ const PaymentMethods = ({
                   justifyContent: "center",
                 }}
               >
-                <p>Scan to pay with any UPI app.</p>
-                <p style={{ paddingTop: "8px", paddingBottom: "8px" }}>
+                <p style={{ fontSize: "12px" }}>
+                  Scan to pay with any UPI app.
+                </p>
+                <p
+                  style={{
+                    paddingTop: "8px",
+                    paddingBottom: "8px",
+                    fontSize: "12px",
+                  }}
+                >
                   checking payment status..
                   <span style={{ color: "green" }}>{formatTime(time)}</span>
                 </p>
                 {time && (
                   <ProgressBar
                     visible={true}
-                    height="80"
-                    width="80"
-                    borderColor="green"
-                    color="#4fa94d"
+                    height="40"
+                    width="40"
+                    borderColor="#5c2092"
+                    barColor="#873de4"
                     ariaLabel="progress-bar-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
+                    wrapperStyle={{
+                      
+                    }}
+                    wrapperClass="progress-bar-loading"
                   />
                 )}
                 <div
@@ -752,6 +763,63 @@ const PaymentMethods = ({
                   <img style={{ height: "40px" }} src={images.gpay} alt="" />
                   <img style={{ height: "40px" }} src={images.bhim} alt="" />
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {tabs === "pg" && qrcode && isAndroid && (
+        <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
+          <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
+            <p
+              _ngcontent-kdb-c159=""
+              className="make ng-tns-c159-13"
+              style={{
+                marginBottom: "0.75rem",
+                marginLeft: "10px",
+                color: "black",
+              }}
+            >
+              QR code for payment
+            </p>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              _ngcontent-kdb-c159=""
+              className="accountdetailss ng-tns-c159-13 ng-star-inserted"
+            >
+              <div
+                _ngcontent-kdb-c159=""
+                className="accountnum ng-tns-c159-13"
+                style={{ width: "100%", justifyContent: "center" }}
+              >
+                <div
+                  onClick={navigatePGLink}
+                  _ngcontent-kdb-c159=""
+                  className="makepayment ng-tns-c159-13"
+                  style={{ marginTop: "10px" }}
+                >
+                  <div
+                    _ngcontent-kdb-c159=""
+                    className="madepay ng-tns-c159-13"
+                  >
+                    <button _ngcontent-kdb-c159="" className="ng-tns-c159-13">
+                      Pay with any UPI app
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <img style={{ height: "40px" }} src={images.phonePay} alt="" />
+                <img style={{ height: "40px" }} src={images.paytm} alt="" />
+                <img style={{ height: "40px" }} src={images.gpay} alt="" />
+                <img style={{ height: "40px" }} src={images.bhim} alt="" />
               </div>
             </div>
           </div>
