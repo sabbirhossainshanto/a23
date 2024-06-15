@@ -16,6 +16,8 @@ import { CiBank } from "react-icons/ci";
 import { images } from "../../assets";
 import toast from "react-hot-toast";
 import handleEncryptData from "../../utils/handleEncryptData";
+import QRCode from "qrcode.react";
+import { isDesktop } from "react-device-detect";
 
 /* eslint-disable react/no-unknown-property */
 const PaymentMethods = ({
@@ -27,7 +29,7 @@ const PaymentMethods = ({
   const { token } = useContextState();
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
   const [tabs, setTabs] = useState("");
-
+  const [qrcode, setQrcode] = useState("");
   const [depositData, setDepositData] = useState({});
 
   const handleVisibleBankMethod = async (e, method) => {
@@ -50,7 +52,8 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
-        window.location.href = data?.result?.link;
+        // window.location.href = data?.result?.link;
+        setQrcode(data?.result?.link);
       } else {
         toast.error(data?.result?.message);
       }
@@ -67,7 +70,7 @@ const PaymentMethods = ({
           Authorization: `Bearer ${token}`,
         },
       });
-     
+
       const data = res?.data;
       if (data?.success) {
         setDepositData(data?.result);
@@ -636,6 +639,50 @@ const PaymentMethods = ({
                 <button _ngcontent-kdb-c159="" className="ng-tns-c159-13">
                   I have Made The Payment
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {tabs === 'pg' && qrcode && isDesktop && (
+        <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
+          <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
+            <p
+              _ngcontent-kdb-c159=""
+              className="make ng-tns-c159-13"
+              style={{
+                marginBottom: "0.75rem",
+                marginLeft: "10px",
+                color: "black",
+              }}
+            >
+              QR code for payment
+            </p>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              _ngcontent-kdb-c159=""
+              className="accountdetailss ng-tns-c159-13 ng-star-inserted"
+            >
+              <div
+                _ngcontent-kdb-c159=""
+                className="accountnum ng-tns-c159-13"
+                style={{ width: "100%", justifyContent: "center" }}
+              >
+                <div
+                  style={{
+                    border: "3px solid #f2f2f2",
+                    padding: "3px",
+                    borderRadius: "4px",
+                  }}
+                  _ngcontent-kdb-c159=""
+                  className="ng-tns-c159-13"
+                >
+                  <QRCode size={200} value={qrcode} />
+                </div>
               </div>
             </div>
           </div>

@@ -42,6 +42,7 @@ const MainLayout = () => {
       false;
     }
   };
+
   return (
     <div
       className="centered-div"
