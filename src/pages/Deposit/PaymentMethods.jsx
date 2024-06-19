@@ -38,8 +38,9 @@ const PaymentMethods = ({
   const [time, setTime] = useState(null);
   const navigate = useNavigate();
   const [orderId, setOrderId] = useState("");
+  const [pgPaymentMethods, setPgPaymentMethods] = useState({});
   const { pgStatus } = useGetPGStatus(orderId, tabs);
-console.log(pgStatus);
+
   useEffect(() => {
     refetchBankData();
   }, [refetchBankData]);
@@ -58,8 +59,8 @@ console.log(pgStatus);
     if (time === 0) {
       navigate("/account");
     } else if (pgStatus?.success) {
-      setTabs("")
-      setOrderId("")
+      setTabs("");
+      setOrderId("");
       toast.success(pgStatus?.result?.message);
       navigate("/account");
     }
@@ -74,6 +75,7 @@ console.log(pgStatus);
   };
 
   const handleVisibleBankMethod = async (e, method) => {
+    console.log(method);
     e.preventDefault();
     setTabs(method?.type);
     setPaymentId(method?.paymentId);
@@ -95,6 +97,7 @@ console.log(pgStatus);
       if (data?.success) {
         console.log(data);
         if (Settings?.paymentIntent) {
+          setPgPaymentMethods(data?.result);
           setTime(60 * 20);
           setQrcode(data?.result?.upi);
           setOrderId(data?.result?.orderId);
@@ -125,8 +128,8 @@ console.log(pgStatus);
     }
   };
 
-  const navigatePGLink = () => {
-    window.location.href = qrcode;
+  const navigatePGLink = (link) => {
+    window.location.href = link;
   };
 
   return (
@@ -149,7 +152,7 @@ console.log(pgStatus);
                   onClick={(e) => handleVisibleBankMethod(e, method)}
                   key={method?.paymentId}
                   _ngcontent-kdb-c159=""
-                  class="accountdetailss  "
+                  className="accountdetailss  "
                 >
                   <div
                     style={{
@@ -157,7 +160,7 @@ console.log(pgStatus);
                       justifyContent: "space-between",
                       width: "100%",
                     }}
-                    class="payment_container"
+                    className="payment_container"
                   >
                     <span>{method?.title?.toUpperCase()}</span>
                     {method?.type == "qr" && (
@@ -799,7 +802,103 @@ console.log(pgStatus);
             >
               QR code for payment
             </p>
-            <div
+            {pgPaymentMethods?.upi && (
+              <div
+                onClick={() => navigatePGLink(pgPaymentMethods?.upi)}
+                style={{ cursor: "pointer" }}
+                _ngcontent-kdb-c159=""
+                className="accountdetailss  "
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                  className="payment_container"
+                >
+                  <span>Instant UPI</span>
+
+                  <img
+                    style={{ height: "20px", width: "20px" }}
+                    src={images.upi}
+                  />
+                </div>
+              </div>
+            )}
+            {pgPaymentMethods?.gpay && (
+              <div
+                onClick={() => navigatePGLink(pgPaymentMethods?.gpay)}
+                style={{ cursor: "pointer" }}
+                _ngcontent-kdb-c159=""
+                className="accountdetailss  "
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                  className="payment_container"
+                >
+                  <span>Instant Google Pay</span>
+
+                  <img
+                    style={{ height: "20px", width: "20px" }}
+                    src={images.gpay}
+                  />
+                </div>
+              </div>
+            )}
+            {pgPaymentMethods?.paytm && (
+              <div
+                onClick={() => navigatePGLink(pgPaymentMethods?.paytm)}
+                style={{ cursor: "pointer" }}
+                _ngcontent-kdb-c159=""
+                className="accountdetailss  "
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                  className="payment_container"
+                >
+                  <span>Instant Paytm</span>
+
+                  <img
+                    style={{ height: "20px", width: "20px" }}
+                    src={images.paytm}
+                  />
+                </div>
+              </div>
+            )}
+            {pgPaymentMethods?.phonepe && (
+              <div
+                onClick={() => navigatePGLink(pgPaymentMethods?.phonepe)}
+                style={{ cursor: "pointer" }}
+                _ngcontent-kdb-c159=""
+                className="accountdetailss  "
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                  className="payment_container"
+                >
+                  <span>Instant Phone Pe</span>
+
+                  <img
+                    style={{ height: "20px", width: "20px" }}
+                    src={images.phonePay}
+                  />
+                </div>
+              </div>
+            )}
+            {/* <div
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -807,8 +906,9 @@ console.log(pgStatus);
               }}
               _ngcontent-kdb-c159=""
               className="accountdetailss ng-tns-c159-13 ng-star-inserted"
-            >
-              <div
+            > */}
+
+            {/*   <div
                 _ngcontent-kdb-c159=""
                 className="accountnum ng-tns-c159-13"
                 style={{ width: "100%", justifyContent: "center" }}
@@ -828,17 +928,17 @@ console.log(pgStatus);
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div
+            {/*     <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
                 <img style={{ height: "40px" }} src={images.phonePay} alt="" />
                 <img style={{ height: "40px" }} src={images.paytm} alt="" />
                 <img style={{ height: "40px" }} src={images.gpay} alt="" />
                 <img style={{ height: "40px" }} src={images.bhim} alt="" />
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
           </div>
         </div>
       )}

@@ -1,18 +1,16 @@
-const AmountBox = ({amount,setAmount,setShowModal}) => {
-
+const AmountBox = ({ amount, setAmount, setShowModal }) => {
   return (
     <div className="amountBox ">
       <div className="withdraw_text ">
-        <p style={{ color: "#3d3d3d", }}>Please enter the amount to deposit</p>
+        <p style={{ color: "#3d3d3d" }}>Please enter the amount to deposit</p>
       </div>
       <div className="diposit_form ">
         <div className="w-100 deposit_form_input ">
           <div className="w-100 deposit_form_input ">
-            <div className="inputBox "  style={{backgroundColor:"#ebedf4"}}>
+            <div className="inputBox " style={{ backgroundColor: "#ebedf4" }}>
               <input
-             
                 onChange={(e) => setAmount(e.target.value)}
-                value={amount}
+                value={amount !== null && amount !== undefined ? amount : ""}
                 id="depositamount"
                 name="depositamount"
                 type="text"
