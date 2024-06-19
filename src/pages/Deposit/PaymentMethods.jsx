@@ -102,7 +102,7 @@ const PaymentMethods = ({
           setQrcode(data?.result?.upi);
           setOrderId(data?.result?.orderId);
         } else {
-          window.location.href = data?.result?.upi;
+          window.location.href = data?.result?.link;
         }
       } else {
         toast.error(data?.result?.message);
