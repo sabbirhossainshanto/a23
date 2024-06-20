@@ -24,6 +24,7 @@ const MatchOdds = ({
   const [previousData, setPreviousData] = useState(match_odds);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
+  const [teamProfit, setTeamProfit] = useState({});
 
   useEffect(() => {
     detectPriceChanges(
@@ -34,31 +35,148 @@ const MatchOdds = ({
     );
   }, [match_odds, previousData]);
 
+  const computeExposureAndStake = (
+    exposureA,
+    exposureB,
+    teamALay,
+    teamBLay
+  ) => {
+    let teamName, largerExposure, layValue, oppositLayValue, lowerExposure;
+    if (exposureA > exposureB) {
+      // Team A has a larger exposure.
+      teamName = "Team A";
+      largerExposure = exposureA;
+      layValue = teamALay;
+      oppositLayValue = teamBLay;
+      lowerExposure = exposureB;
+    } else {
+      // Team B has a larger exposure.
+      teamName = "Team B";
+      largerExposure = exposureB;
+      layValue = teamBLay;
+      oppositLayValue = teamALay;
+      lowerExposure = exposureA;
+    }
+
+    // Compute the absolute value of the lower exposure.
+    let absLowerExposure = Math.abs(lowerExposure);
+
+    // Compute the liability for the team with the initially larger exposure.
+    let liability = absLowerExposure * (layValue - 1);
+
+    // Compute the new exposure of the team with the initially larger exposure.
+    let newExposure = largerExposure - liability;
+
+    // Compute the profit using the new exposure and the lay odds of the opposite team.
+    let profit = newExposure / layValue;
+
+    // Calculate the new stake value for the opposite team by adding profit to the absolute value of its exposure.
+    let newStakeValue = absLowerExposure + profit;
+
+    // Return the results.
+    return {
+      team: teamName,
+      newExposure: newExposure,
+      profit: profit,
+      newStakeValue: newStakeValue,
+      oppositLayValue,
+    };
+  };
+
+  // useEffect(() => {
+  //   if (match_odds) {
+  //     const results = [];
+
+  //     match_odds?.forEach((game) => {
+  //       const runners = game?.runners || [];
+  //       if (runners.length >= 2) {
+  //         const runner1 = runners[0];
+  //         const runner2 = runners[1];
+  //         const pnl1 = pnlBySelection?.find((pnl) => pnl?.RunnerId === runner1?.id)?.pnl;
+  //         const pnl2 = pnlBySelection?.find((pnl) => pnl?.RunnerId === runner2?.id)?.pnl;
+
+  //         const layPrice1 = runner1?.lay?.[0]?.price;
+  //         const layPrice2 = runner2?.lay?.[0]?.price;
+
+  //         if (pnl1 && pnl2 && layPrice1 && layPrice2) {
+  //           const result = computeExposureAndStake(pnl1, pnl2, layPrice1, layPrice2);
+  //           results.push(result);
+  //         }
+  //       }
+  //     });
+
+  //     if (results.length > 0) {
+  //       setTeamProfit(results);
+  //     }
+  //   }
+  // }, [match_odds, pnlBySelection]);
+
+  useEffect(() => {
+    let results = {};
+    if (match_odds?.length > 0 && pnlBySelection?.length > 0) {
+     
+      match_odds.forEach((game) => {
+        const runners = game?.runners || [];
+        if (runners.length >= 2) {
+          const runner1 = runners[0];
+          const runner2 = runners[1];
+          const pnl1 = pnlBySelection?.find(
+            (pnl) => pnl?.RunnerId === runner1?.id
+          )?.pnl;
+          const pnl2 = pnlBySelection?.find(
+            (pnl) => pnl?.RunnerId === runner2?.id
+          )?.pnl;
+
+          const layPrice1 = runner1?.lay?.[0]?.price;
+          const layPrice2 = runner2?.lay?.[0]?.price;
+
+          if (pnl1 && pnl2 && layPrice1 && layPrice2) {
+            const result = computeExposureAndStake(
+              pnl1,
+              pnl2,
+              layPrice1,
+              layPrice2
+            );
+            results = result;
+          }
+        }
+      });
+      console.log(results);
+    }
+    setTeamProfit(results)
+  }, [match_odds, pnlBySelection]);
+
   return (
     <>
       {match_odds?.map((games, i) => {
         return (
           <div key={i} className="bt12687">
             <div className="bt12695">
-              <div className="bt12689" data-editor-id="marketTitle">
-                {games?.name}
-                <div
-                  onClick={() =>
-                    handleToggle(i, toggleAccordion, setToggleAccordion)
-                  }
-                  className="bt6471 bt12696 bt12690"
-                  style={{ width: "20px", height: "20px" }}
-                >
-                  {toggleAccordion[i] ? (
-                    <IoMdArrowDropdown size={20} />
-                  ) : (
-                    <IoMdArrowDropup size={20} />
-                  )}
+              <div
+                className="bt12689"
+                data-editor-id="marketTitle"
+                style={{ justifyContent: "space-between" }}
+              >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span>{games?.name}</span>
+                  <div
+                    onClick={() =>
+                      handleToggle(i, toggleAccordion, setToggleAccordion)
+                    }
+                    className="bt6471 bt12696 bt12690"
+                    style={{ width: "20px", height: "20px" }}
+                  >
+                    {toggleAccordion[i] ? (
+                      <IoMdArrowDropdown size={20} />
+                    ) : (
+                      <IoMdArrowDropup size={20} />
+                    )}
+                  </div>
+                  <span style={{ fontSize: "9px", color: "#959595" }}>
+                    {" "}
+                    Max: {games?.maxLiabilityPerBet}
+                  </span>
                 </div>
-                <span style={{ fontSize: "9px", color: "#959595" }}>
-                  {" "}
-                  Max: {games?.maxLiabilityPerBet}
-                </span>
                 {Settings.betFairCashOut && (
                   <button
                     type="button"
@@ -68,8 +186,13 @@ const MatchOdds = ({
                     <span style={{ fontSize: "10px", color: "black" }}>
                       Cashout:
                     </span>{" "}
-                    <span style={{ fontSize: "10px", color: "green" }}>
-                      +100
+                    <span
+                      style={{
+                        fontSize: "10px",
+                        color: `${teamProfit?.profit > 0 ? "green" : "red"}`,
+                      }}
+                    >
+                      {teamProfit?.profit?.toFixed(2) || 0}
                     </span>
                   </button>
                 )}
