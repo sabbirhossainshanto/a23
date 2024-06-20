@@ -7,6 +7,7 @@ import useContextState from "../../../hooks/useContextState";
 import { useNavigate, useParams } from "react-router-dom";
 import { isRunnerSuspended } from "../../../utils/isRunnerSuspended";
 import { Settings } from "../../../api";
+import { handleCashOutPlaceBet } from "../../../utils/handleCashOutPlaceBet";
 
 const MatchOdds = ({
   match_odds,
@@ -37,26 +38,21 @@ const MatchOdds = ({
     );
   }, [match_odds, previousData]);
 
-  const computeExposureAndStake = (
-    exposureA,
-    exposureB,
-    teamALay,
-    teamBLay
-  ) => {
-    let teamName, largerExposure, layValue, oppositLayValue, lowerExposure;
+  const computeExposureAndStake = (exposureA, exposureB, runner1, runner2) => {
+    let runner, largerExposure, layValue, oppositeLayValue, lowerExposure;
     if (exposureA > exposureB) {
       // Team A has a larger exposure.
-      teamName = "Team A";
+      runner = runner1;
       largerExposure = exposureA;
-      layValue = teamALay;
-      oppositLayValue = teamBLay;
+      layValue = runner1?.lay?.[0]?.price;
+      oppositeLayValue = runner2?.lay?.[0]?.price;
       lowerExposure = exposureB;
     } else {
       // Team B has a larger exposure.
-      teamName = "Team B";
+      runner = runner2;
       largerExposure = exposureB;
-      layValue = teamBLay;
-      oppositLayValue = teamALay;
+      layValue = runner2?.lay?.[0]?.price;
+      oppositeLayValue = runner1?.lay?.[0]?.price;
       lowerExposure = exposureA;
     }
 
@@ -77,11 +73,11 @@ const MatchOdds = ({
 
     // Return the results.
     return {
-      teamName,
+      runner,
       newExposure,
       profit,
       newStakeValue,
-      oppositLayValue,
+      oppositeLayValue,
     };
   };
 
@@ -101,15 +97,12 @@ const MatchOdds = ({
             (pnl) => pnl?.RunnerId === runner2?.id
           )?.pnl;
 
-          const layPrice1 = runner1?.lay?.[0]?.price;
-          const layPrice2 = runner2?.lay?.[0]?.price;
-
-          if (pnl1 && pnl2 && layPrice1 && layPrice2) {
+          if (pnl1 && pnl2 && runner1 && runner2) {
             const result = computeExposureAndStake(
               pnl1,
               pnl2,
-              layPrice1,
-              layPrice2
+              runner1,
+              runner2
             );
             results = result;
           }
@@ -119,10 +112,7 @@ const MatchOdds = ({
     } else {
       teamProfitRef.current = results;
     }
-  }, [match_odds, pnlBySelection, eventId,teamProfitRef]);
-
-  // console.log(teamProfitRef.current);
-  // console.log(isShowCashOut.current);
+  }, [match_odds, pnlBySelection, eventId, teamProfitRef]);
 
   return (
     <>
@@ -157,6 +147,18 @@ const MatchOdds = ({
                 </div>
                 {Settings.betFairCashOut && games?.runners?.length !== 3 && (
                   <button
+                    onClick={() =>
+                      handleCashOutPlaceBet(
+                        games,
+                        "lay",
+                        setOpenBetSlip,
+                        setPlaceBetValues,
+                        pnlBySelection,
+                        token,
+                        navigate,
+                        teamProfitRef.current
+                      )
+                    }
                     type="button"
                     className="btn_box "
                     style={{ width: "100px", backgroundColor: "#c9c9c9" }}
@@ -273,9 +275,7 @@ const MatchOdds = ({
                             setPlaceBetValues,
                             pnlBySelection,
                             token,
-                            navigate,
-                            'matchOdds',
-                            teamProfitRef.current
+                            navigate
                           )
                         }
                         data-editor-id="tableOutcomePlate"
@@ -316,9 +316,7 @@ const MatchOdds = ({
                             setPlaceBetValues,
                             pnlBySelection,
                             token,
-                            navigate,
-                           'matchOdds',
-                            teamProfitRef.current
+                            navigate
                           )
                         }
                         data-editor-id="tableOutcomePlate"

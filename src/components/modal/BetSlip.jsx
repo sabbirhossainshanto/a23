@@ -35,6 +35,7 @@ const BetSlip = ({
   /* Set price */
   useEffect(() => {
     setPrice(placeBetValues?.price);
+    setTotalSize(placeBetValues?.totalSize?.toFixed(2))
   }, [placeBetValues]);
 
   let payload = {};
