@@ -31,7 +31,6 @@ const BetSlip = ({
   const [oddStake, setOddStake] = useState(null);
   const [oddStakeLay1, setOddStakeLay1] = useState(null);
   const [oddStakeLay2, setOddStakeLay2] = useState(null);
-  
 
   /* Set price */
   useEffect(() => {
@@ -86,7 +85,7 @@ const BetSlip = ({
       {
         ...payload,
         token: generatedToken,
-        site:Settings.siteUrl
+        site: Settings.siteUrl,
       },
     ]);
 
@@ -392,7 +391,10 @@ const BetSlip = ({
                               onChange={(e) => setTotalSize(e.target.value)}
                               type="number"
                               name="betStake"
-                              defaultValue={totalSize}
+                              value={
+                                totalSize ||
+                                placeBetValues?.totalSize?.toFixed(2)
+                              }
                               className="ng-untouched ng-pristine ng-valid"
                             />
                           </div>

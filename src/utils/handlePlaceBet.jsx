@@ -7,10 +7,15 @@ export const handlePlaceBet = (
   setPlaceBetValues,
   pnlBySelection,
   token,
-  navigate
+  navigate,
+  oddsType,
+  teamProfit
 ) => {
   if (token) {
     if (item?.status === "OPEN" && runner?.status === "OPEN") {
+      if (oddsType === "matchOdds" && teamProfit && teamProfit?.profit === 0) {
+        return;
+      }
       const updatedPnl = [];
       item?.runners?.forEach((runner) => {
         const pnl = pnlBySelection?.find((p) => p?.RunnerId === runner?.id);
@@ -41,6 +46,7 @@ export const handlePlaceBet = (
         pnl: updatedPnl,
         marketName: item?.name,
         eventId: item?.eventId,
+        totalSize: teamProfit?.newStakeValue,
       });
     }
   } else {

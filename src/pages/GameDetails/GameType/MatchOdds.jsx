@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import { handleToggle } from "../../../utils/handleToggle";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 import useContextState from "../../../hooks/useContextState";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { isRunnerSuspended } from "../../../utils/isRunnerSuspended";
 import { Settings } from "../../../api";
 
@@ -14,7 +14,7 @@ const MatchOdds = ({
   setPlaceBetValues,
   exposer,
 }) => {
-  const { token } = useContextState();
+  const { token, teamProfitRef } = useContextState();
   const navigate = useNavigate();
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
@@ -24,7 +24,9 @@ const MatchOdds = ({
   const [previousData, setPreviousData] = useState(match_odds);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
-  const [teamProfit, setTeamProfit] = useState({});
+
+  const isShowCashOut = useRef(false);
+  const { eventId } = useParams();
 
   useEffect(() => {
     detectPriceChanges(
@@ -75,49 +77,21 @@ const MatchOdds = ({
 
     // Return the results.
     return {
-      team: teamName,
-      newExposure: newExposure,
-      profit: profit,
-      newStakeValue: newStakeValue,
+      teamName,
+      newExposure,
+      profit,
+      newStakeValue,
       oppositLayValue,
     };
   };
 
-  // useEffect(() => {
-  //   if (match_odds) {
-  //     const results = [];
-
-  //     match_odds?.forEach((game) => {
-  //       const runners = game?.runners || [];
-  //       if (runners.length >= 2) {
-  //         const runner1 = runners[0];
-  //         const runner2 = runners[1];
-  //         const pnl1 = pnlBySelection?.find((pnl) => pnl?.RunnerId === runner1?.id)?.pnl;
-  //         const pnl2 = pnlBySelection?.find((pnl) => pnl?.RunnerId === runner2?.id)?.pnl;
-
-  //         const layPrice1 = runner1?.lay?.[0]?.price;
-  //         const layPrice2 = runner2?.lay?.[0]?.price;
-
-  //         if (pnl1 && pnl2 && layPrice1 && layPrice2) {
-  //           const result = computeExposureAndStake(pnl1, pnl2, layPrice1, layPrice2);
-  //           results.push(result);
-  //         }
-  //       }
-  //     });
-
-  //     if (results.length > 0) {
-  //       setTeamProfit(results);
-  //     }
-  //   }
-  // }, [match_odds, pnlBySelection]);
-
   useEffect(() => {
     let results = {};
     if (match_odds?.length > 0 && pnlBySelection?.length > 0) {
-     
       match_odds.forEach((game) => {
         const runners = game?.runners || [];
-        if (runners.length >= 2) {
+        isShowCashOut.current = runners?.length !== 3;
+        if (runners.length === 2) {
           const runner1 = runners[0];
           const runner2 = runners[1];
           const pnl1 = pnlBySelection?.find(
@@ -141,10 +115,14 @@ const MatchOdds = ({
           }
         }
       });
-      console.log(results);
+      teamProfitRef.current = results;
+    } else {
+      teamProfitRef.current = results;
     }
-    setTeamProfit(results)
-  }, [match_odds, pnlBySelection]);
+  }, [match_odds, pnlBySelection, eventId,teamProfitRef]);
+
+  // console.log(teamProfitRef.current);
+  // console.log(isShowCashOut.current);
 
   return (
     <>
@@ -177,7 +155,7 @@ const MatchOdds = ({
                     Max: {games?.maxLiabilityPerBet}
                   </span>
                 </div>
-                {Settings.betFairCashOut && (
+                {Settings.betFairCashOut && games?.runners?.length !== 3 && (
                   <button
                     type="button"
                     className="btn_box "
@@ -186,13 +164,25 @@ const MatchOdds = ({
                     <span style={{ fontSize: "10px", color: "black" }}>
                       Cashout:
                     </span>{" "}
-                    <span
-                      style={{
-                        fontSize: "10px",
-                        color: `${teamProfit?.profit > 0 ? "green" : "red"}`,
-                      }}
-                    >
-                      {teamProfit?.profit?.toFixed(2) || 0}
+                    <span>
+                      {teamProfitRef.current?.profit ? (
+                        <span
+                          style={{
+                            fontSize: "10px",
+                            color: `${
+                              teamProfitRef.current?.profit > 0
+                                ? "green"
+                                : "red"
+                            }`,
+                          }}
+                        >
+                          {teamProfitRef.current?.profit?.toFixed(2)}
+                        </span>
+                      ) : (
+                        <span style={{ color: "black", fontSize: "10px" }}>
+                          0
+                        </span>
+                      )}
                     </span>
                   </button>
                 )}
@@ -283,7 +273,9 @@ const MatchOdds = ({
                             setPlaceBetValues,
                             pnlBySelection,
                             token,
-                            navigate
+                            navigate,
+                            'matchOdds',
+                            teamProfitRef.current
                           )
                         }
                         data-editor-id="tableOutcomePlate"
@@ -324,7 +316,9 @@ const MatchOdds = ({
                             setPlaceBetValues,
                             pnlBySelection,
                             token,
-                            navigate
+                            navigate,
+                           'matchOdds',
+                            teamProfitRef.current
                           )
                         }
                         data-editor-id="tableOutcomePlate"
