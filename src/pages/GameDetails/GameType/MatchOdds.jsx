@@ -6,6 +6,7 @@ import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 import useContextState from "../../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
 import { isRunnerSuspended } from "../../../utils/isRunnerSuspended";
+import { Settings } from "../../../api";
 
 const MatchOdds = ({
   match_odds,
@@ -54,7 +55,24 @@ const MatchOdds = ({
                     <IoMdArrowDropup size={20} />
                   )}
                 </div>
-                <span style={{fontSize:"9px",color:"#959595"}}> Max: {games?.maxLiabilityPerBet}</span>
+                <span style={{ fontSize: "9px", color: "#959595" }}>
+                  {" "}
+                  Max: {games?.maxLiabilityPerBet}
+                </span>
+                {Settings.betFairCashOut && (
+                  <button
+                    type="button"
+                    className="btn_box "
+                    style={{ width: "100px", backgroundColor: "#c9c9c9" }}
+                  >
+                    <span style={{ fontSize: "10px", color: "black" }}>
+                      Cashout:
+                    </span>{" "}
+                    <span style={{ fontSize: "10px", color: "green" }}>
+                      +100
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
             {games?.runners?.map((runner) => {

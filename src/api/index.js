@@ -47,5 +47,6 @@ export const Settings = {
   casinoCurrency:"",
   chaportAppId:"",
   otpless:"",
-  paymentIntent:""
+  paymentIntent:"",
+  betFairCashOut:""
 };
