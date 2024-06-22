@@ -6,6 +6,7 @@ import handleEncryptData from "../utils/handleEncryptData";
 
 const useCurrentBets = (eventId) => {
   const { token, tokenLoading } = useContextState();
+ 
   /* Fetch Current Bets */
   const { data: myBets = [], refetch: refetchCurrentBets } = useQuery({
     queryKey: ["currentBets"],

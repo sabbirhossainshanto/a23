@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect,useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 import { getSetApis } from "../api/config";
@@ -15,7 +15,7 @@ const StateProvider = ({ children }) => {
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const [addBank, setAddBank] = useState(false);
   const [noticeLoaded, setNoticeLoaded] = useState(false);
-  const teamProfitRef = useRef({});
+  
 
   useEffect(() => {
     getSetApis(setNoticeLoaded);
@@ -78,7 +78,6 @@ const StateProvider = ({ children }) => {
     setOpenBetSlip,
     addBank,
     setAddBank,
-    teamProfitRef
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

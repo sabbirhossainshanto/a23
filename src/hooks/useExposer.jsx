@@ -8,7 +8,7 @@ import handleEncryptData from "../utils/handleEncryptData";
 /* exposure api */
 const useExposer = (eventId) => {
   const { token, tokenLoading } = useContextState();
-  const { data: exposer = [], refetch: refetchExposure } = useQuery({
+  const { data: exposer = {}, refetch: refetchExposure } = useQuery({
     queryKey: ["exposure"],
     enabled: !tokenLoading,
     queryFn: async () => {

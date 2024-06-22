@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import { handleToggle } from "../../../utils/handleToggle";
@@ -15,19 +15,21 @@ const MatchOdds = ({
   setPlaceBetValues,
   exposer,
 }) => {
-  const { token, teamProfitRef } = useContextState();
+  const { token } = useContextState();
   const navigate = useNavigate();
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
+
   const [previousData, setPreviousData] = useState(match_odds);
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
-
-  const isShowCashOut = useRef(false);
   const { eventId } = useParams();
+  const [teamProfit, setTeamProfit] = useState({});
+  const [isOnlyOnePositiveExposure, setIsOnlyOnePositiveExposure] =
+    useState(false);
 
   useEffect(() => {
     detectPriceChanges(
@@ -81,12 +83,20 @@ const MatchOdds = ({
     };
   };
 
+  function onlyOnePositive(arr) {
+    let positiveCount = arr.filter((num) => num > 0).length;
+    return positiveCount === 1;
+  }
+
   useEffect(() => {
     let results = {};
-    if (match_odds?.length > 0 && pnlBySelection?.length > 0) {
+    if (
+      match_odds?.length > 0 &&
+      exposer?.pnlBySelection &&
+      Object.keys(exposer?.pnlBySelection)?.length > 0
+    ) {
       match_odds.forEach((game) => {
         const runners = game?.runners || [];
-        isShowCashOut.current = runners?.length !== 3;
         if (runners.length === 2) {
           const runner1 = runners[0];
           const runner2 = runners[1];
@@ -96,7 +106,9 @@ const MatchOdds = ({
           const pnl2 = pnlBySelection?.find(
             (pnl) => pnl?.RunnerId === runner2?.id
           )?.pnl;
-
+          const pnlArr = [24, -200];
+          const isPositiveExposure = onlyOnePositive(pnlArr);
+          setIsOnlyOnePositiveExposure(isPositiveExposure);
           if (pnl1 && pnl2 && runner1 && runner2) {
             const result = computeExposureAndStake(
               pnl1,
@@ -108,11 +120,9 @@ const MatchOdds = ({
           }
         }
       });
-      teamProfitRef.current = results;
-    } else {
-      teamProfitRef.current = results;
+      setTeamProfit(results);
     }
-  }, [match_odds, pnlBySelection, eventId, teamProfitRef]);
+  }, [match_odds, eventId, exposer]);
 
   return (
     <>
@@ -145,49 +155,54 @@ const MatchOdds = ({
                     Max: {games?.maxLiabilityPerBet}
                   </span>
                 </div>
-                {Settings.betFairCashOut && games?.runners?.length !== 3 && (
-                  <button
-                    onClick={() =>
-                      handleCashOutPlaceBet(
-                        games,
-                        "lay",
-                        setOpenBetSlip,
-                        setPlaceBetValues,
-                        pnlBySelection,
-                        token,
-                        navigate,
-                        teamProfitRef.current
-                      )
-                    }
-                    type="button"
-                    className="btn_box "
-                    style={{ width: "100px", backgroundColor: "#c9c9c9" }}
-                  >
-                    <span style={{ fontSize: "10px", color: "black" }}>
-                      Cashout:
-                    </span>{" "}
-                    <span>
-                      {teamProfitRef.current?.profit ? (
-                        <span
-                          style={{
-                            fontSize: "10px",
-                            color: `${
-                              teamProfitRef.current?.profit > 0
-                                ? "green"
-                                : "red"
-                            }`,
-                          }}
-                        >
-                          {teamProfitRef.current?.profit?.toFixed(2)}
-                        </span>
-                      ) : (
-                        <span style={{ color: "black", fontSize: "10px" }}>
-                          0
-                        </span>
-                      )}
-                    </span>
-                  </button>
-                )}
+                {Settings.betFairCashOut &&
+                  games?.runners?.length !== 3 &&
+                  isOnlyOnePositiveExposure && (
+                    <button
+                      onClick={() =>
+                        handleCashOutPlaceBet(
+                          games,
+                          "lay",
+                          setOpenBetSlip,
+                          setPlaceBetValues,
+                          pnlBySelection,
+                          token,
+                          navigate,
+                          teamProfit
+                        )
+                      }
+                      type="button"
+                      className="btn_box "
+                      style={{
+                        width: "100px",
+                        backgroundColor: "#c9c9c9",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span style={{ fontSize: "10px", color: "black" }}>
+                        Cashout:
+                      </span>{" "}
+                      <span style={{ display: "flex", alignItems: "center" }}>
+                        {teamProfit?.profit ? (
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              color: `${
+                                teamProfit?.profit > 0 ? "green" : "red"
+                              }`,
+                            }}
+                          >
+                            {teamProfit?.profit?.toFixed(2)}
+                          </span>
+                        ) : (
+                          <span style={{ color: "black", fontSize: "10px" }}>
+                            0
+                          </span>
+                        )}
+                      </span>
+                    </button>
+                  )}
               </div>
             </div>
             {games?.runners?.map((runner) => {
