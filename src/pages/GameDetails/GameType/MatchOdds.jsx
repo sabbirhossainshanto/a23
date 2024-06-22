@@ -28,8 +28,6 @@ const MatchOdds = ({
   const [toggleAccordion, setToggleAccordion] = useState(false);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
-  const [isOnlyOnePositiveExposure, setIsOnlyOnePositiveExposure] =
-    useState(false);
 
   useEffect(() => {
     detectPriceChanges(
@@ -48,6 +46,10 @@ const MatchOdds = ({
     gameId
   ) => {
     let runner, largerExposure, layValue, oppositeLayValue, lowerExposure;
+
+    const pnlArr = [exposureA, exposureB];
+    const isOnePositiveExposure = onlyOnePositive(pnlArr);
+
     if (exposureA > exposureB) {
       // Team A has a larger exposure.
       runner = runner1;
@@ -87,6 +89,7 @@ const MatchOdds = ({
       newStakeValue,
       oppositeLayValue,
       gameId,
+      isOnePositiveExposure,
     };
   };
 
@@ -113,9 +116,7 @@ const MatchOdds = ({
           const pnl2 = pnlBySelection?.find(
             (pnl) => pnl?.RunnerId === runner2?.id
           )?.pnl;
-          const pnlArr = [pnl1, pnl2];
-          const isPositiveExposure = onlyOnePositive(pnlArr);
-          setIsOnlyOnePositiveExposure(isPositiveExposure);
+
           if (pnl1 && pnl2 && runner1 && runner2) {
             const result = computeExposureAndStake(
               pnl1,
@@ -138,7 +139,8 @@ const MatchOdds = ({
     <>
       {match_odds?.map((games, i) => {
         const teamProfitForGame = teamProfit?.find(
-          (profit) => profit?.gameId === games?.id
+          (profit) =>
+            profit?.gameId === games?.id && profit?.isOnePositiveExposure
         );
 
         return (
@@ -171,7 +173,6 @@ const MatchOdds = ({
                 </div>
                 {Settings.betFairCashOut &&
                   games?.runners?.length !== 3 &&
-                  isOnlyOnePositiveExposure &&
                   teamProfitForGame && (
                     <button
                       onClick={() =>
