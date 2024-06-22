@@ -113,7 +113,7 @@ const MatchOdds = ({
           const pnl2 = pnlBySelection?.find(
             (pnl) => pnl?.RunnerId === runner2?.id
           )?.pnl;
-          const pnlArr = [24, -200];
+          const pnlArr = [pnl1, pnl2];
           const isPositiveExposure = onlyOnePositive(pnlArr);
           setIsOnlyOnePositiveExposure(isPositiveExposure);
           if (pnl1 && pnl2 && runner1 && runner2) {
@@ -137,12 +137,6 @@ const MatchOdds = ({
   return (
     <>
       {match_odds?.map((games, i) => {
-        // const anyRunnerHasPnl = games?.runners?.some((runner) => {
-        //   const pnl =
-        //     pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) || [];
-        //   return pnl.length > 0;
-        // });
-
         const teamProfitForGame = teamProfit?.find(
           (profit) => profit?.gameId === games?.id
         );
