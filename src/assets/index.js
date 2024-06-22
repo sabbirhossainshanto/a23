@@ -12,6 +12,8 @@ import paytm from "./img/PYTM_WEB.png";
 import phonePay from "./img/PHONEPE_WEB.png";
 import gpay from "./img/gpay.webp";
 import bhim from "./img/BHIM_WEB.png";
+import checked from "./img/checked.png";
+import whatsapp from "./img/whatsapp.png";
 
 export const images = {
   star,
@@ -27,6 +29,8 @@ export const images = {
   paytm,
   phonePay,
   gpay,
-  bhim
+  bhim,
+  checked,
+  whatsapp,
 
 };

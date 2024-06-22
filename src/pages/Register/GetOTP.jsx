@@ -7,6 +7,7 @@ import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
 import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
+import { images } from "../../assets";
 const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
   /* get social link */
   const { socialLink } = useGetSocialLink();
@@ -86,7 +87,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
                     <div className="str-line">
                       <img
                         loading="lazy"
-                        src="https://11exch.com/assets/images/straight-line1.svg"
+                        src={images.straightLine1}
                         alt=""
                       />
                     </div>
@@ -102,7 +103,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
                 <div className="terms">
                   <div className="radio-check">
                     <img
-                      src="https://11exch.com/assets/images/checked.png"
+                      src={images.checked}
                       alt=""
                       style={{ height: "1rem" }}
                     />
@@ -141,7 +142,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
                 >
                   <img
                     loading="lazy"
-                    src="https://11exch.com/assets/images/whatsup.svg"
+                    src={images.whatsapp}
                     alt=""
                   />
                   <span>Get Instant ID on Whatsapp</span>

@@ -124,9 +124,15 @@ const MatchOdds = ({
     }
   }, [match_odds, eventId, exposer]);
 
+  // console.log(match_odds);
+
   return (
     <>
       {match_odds?.map((games, i) => {
+    const anyRunnerHasPnl = games?.runners?.some((runner) => {
+      const pnl = pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) || [];
+      return pnl.length > 0;
+    });
         return (
           <div key={i} className="bt12687">
             <div className="bt12695">
@@ -157,7 +163,7 @@ const MatchOdds = ({
                 </div>
                 {Settings.betFairCashOut &&
                   games?.runners?.length !== 3 &&
-                  isOnlyOnePositiveExposure && (
+                  isOnlyOnePositiveExposure && anyRunnerHasPnl && (
                     <button
                       onClick={() =>
                         handleCashOutPlaceBet(
@@ -206,6 +212,7 @@ const MatchOdds = ({
               </div>
             </div>
             {games?.runners?.map((runner) => {
+              // console.log(runner);
               const pnl =
                 pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) ||
                 [];
