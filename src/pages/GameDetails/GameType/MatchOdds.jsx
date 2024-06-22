@@ -27,7 +27,7 @@ const MatchOdds = ({
   const [changedPrices, setChangedPrices] = useState({});
   const [toggleAccordion, setToggleAccordion] = useState(false);
   const { eventId } = useParams();
-  const [teamProfit, setTeamProfit] = useState({});
+  const [teamProfit, setTeamProfit] = useState([]);
   const [isOnlyOnePositiveExposure, setIsOnlyOnePositiveExposure] =
     useState(false);
 
@@ -40,7 +40,13 @@ const MatchOdds = ({
     );
   }, [match_odds, previousData]);
 
-  const computeExposureAndStake = (exposureA, exposureB, runner1, runner2) => {
+  const computeExposureAndStake = (
+    exposureA,
+    exposureB,
+    runner1,
+    runner2,
+    gameId
+  ) => {
     let runner, largerExposure, layValue, oppositeLayValue, lowerExposure;
     if (exposureA > exposureB) {
       // Team A has a larger exposure.
@@ -80,6 +86,7 @@ const MatchOdds = ({
       profit,
       newStakeValue,
       oppositeLayValue,
+      gameId,
     };
   };
 
@@ -89,7 +96,7 @@ const MatchOdds = ({
   }
 
   useEffect(() => {
-    let results = {};
+    let results = [];
     if (
       match_odds?.length > 0 &&
       exposer?.pnlBySelection &&
@@ -114,25 +121,32 @@ const MatchOdds = ({
               pnl1,
               pnl2,
               runner1,
-              runner2
+              runner2,
+              game?.id
             );
-            results = result;
+            results.push(result);
           }
         }
       });
       setTeamProfit(results);
+    } else {
+      setTeamProfit([]);
     }
   }, [match_odds, eventId, exposer]);
-
-  // console.log(match_odds);
 
   return (
     <>
       {match_odds?.map((games, i) => {
-    const anyRunnerHasPnl = games?.runners?.some((runner) => {
-      const pnl = pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) || [];
-      return pnl.length > 0;
-    });
+        // const anyRunnerHasPnl = games?.runners?.some((runner) => {
+        //   const pnl =
+        //     pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) || [];
+        //   return pnl.length > 0;
+        // });
+
+        const teamProfitForGame = teamProfit?.find(
+          (profit) => profit?.gameId === games?.id
+        );
+
         return (
           <div key={i} className="bt12687">
             <div className="bt12695">
@@ -163,7 +177,8 @@ const MatchOdds = ({
                 </div>
                 {Settings.betFairCashOut &&
                   games?.runners?.length !== 3 &&
-                  isOnlyOnePositiveExposure && anyRunnerHasPnl && (
+                  isOnlyOnePositiveExposure &&
+                  teamProfitForGame && (
                     <button
                       onClick={() =>
                         handleCashOutPlaceBet(
@@ -174,7 +189,7 @@ const MatchOdds = ({
                           pnlBySelection,
                           token,
                           navigate,
-                          teamProfit
+                          teamProfitForGame
                         )
                       }
                       type="button"
@@ -190,16 +205,16 @@ const MatchOdds = ({
                         Cashout:
                       </span>{" "}
                       <span style={{ display: "flex", alignItems: "center" }}>
-                        {teamProfit?.profit ? (
+                        {teamProfitForGame?.profit ? (
                           <span
                             style={{
                               fontSize: "10px",
                               color: `${
-                                teamProfit?.profit > 0 ? "green" : "red"
+                                teamProfitForGame?.profit > 0 ? "green" : "red"
                               }`,
                             }}
                           >
-                            {teamProfit?.profit?.toFixed(2)}
+                            {teamProfitForGame?.profit?.toFixed(2)}
                           </span>
                         ) : (
                           <span style={{ color: "black", fontSize: "10px" }}>
