@@ -1,4 +1,4 @@
-import { createContext, useEffect,useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 import { getSetApis } from "../api/config";
@@ -15,7 +15,7 @@ const StateProvider = ({ children }) => {
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const [addBank, setAddBank] = useState(false);
   const [noticeLoaded, setNoticeLoaded] = useState(false);
-  
+  const [wallet, setWallet] = useState("main");
 
   useEffect(() => {
     getSetApis(setNoticeLoaded);
@@ -24,10 +24,19 @@ const StateProvider = ({ children }) => {
   /* Get token from locale storage */
   useEffect(() => {
     if (noticeLoaded) {
+      const wallet = localStorage.getItem("wallet");
       const getToken = localStorage.getItem("token");
-      setToken(getToken);
-      if (token && getToken === token) {
-        /* handle loading for save crash website and set authorization token in header all api` */
+      const getBonusToken = localStorage.getItem("bonusToken");
+      if (wallet && getBonusToken) {
+        setToken(getBonusToken);
+        setWallet("bonus");
+      } else {
+        setToken(getToken);
+        setWallet("main");
+      }
+
+      if (token && (getToken === token || getBonusToken === token)) {
+        /* handle loading for save crash website` */
         setTokenLoading(false);
       }
     }
@@ -78,6 +87,8 @@ const StateProvider = ({ children }) => {
     setOpenBetSlip,
     addBank,
     setAddBank,
+    wallet,
+    setWallet,
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

@@ -6,12 +6,15 @@ import AppPopup from "./AppPopup";
 import { useEffect, useState } from "react";
 import { AndroidView } from "react-device-detect";
 import AEDRules from "../../modal/AEDRules";
+import useBonusBalance from "../../../hooks/useBonusBalance";
 
 const Header = () => {
-  const { setSportsType, token, logo, sportsType } = useContextState();
+  const { setSportsType, token, logo, sportsType, wallet } = useContextState();
+  const storedWallet = localStorage.getItem("wallet");
   const navigate = useNavigate();
   /* get balance data */
   const { balanceData } = useBalance();
+  const { bonusBalanceData } = useBonusBalance();
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
@@ -67,7 +70,7 @@ const Header = () => {
             {token ? (
               <div className="mobile-nologin-enter">
                 <div
-                className="headerText"
+                  className="headerText"
                   style={{
                     marginRight: "20px",
                     fontSize: "11px",
@@ -75,9 +78,15 @@ const Header = () => {
                     fontWeight: "500",
                   }}
                 >
-                  Bal: {balanceData?.availBalance}
+                  Bal:{" "}
+                  {!storedWallet && wallet === "main"
+                    ? balanceData?.availBalance
+                    : bonusBalanceData?.availBalance}
                   <br />
-                  Exp : {balanceData?.deductedExposure}
+                  Exp :{" "}
+                  {!storedWallet && wallet === "main"
+                    ? balanceData?.deductedExposure
+                    : bonusBalanceData?.deductedExposure}
                 </div>
 
                 <button

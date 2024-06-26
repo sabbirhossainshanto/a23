@@ -13,18 +13,34 @@ import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-pr
 import profileSettings from "../../../src/assets/img/profile-settings.svg";
 import { useEffect } from "react";
 
+
 const Account = () => {
-  const { setGetToken } = useContextState();
+  const { setGetToken, wallet, setWallet } = useContextState();
   const navigate = useNavigate();
+  const storedWallet = localStorage.getItem("wallet");
   /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
   /* get balance data */
   const { balanceData, refetchBalance } = useBalance();
 
+
+
   useEffect(() => {
     const intervalId = setInterval(refetchBalance, 5000);
     return () => clearInterval(intervalId);
   }, [refetchBalance]);
+
+  const handleToggleBalance = (e, type) => {
+    const checked = e.target.checked;
+    if (checked && type === "main") {
+      localStorage.removeItem("wallet");
+      setWallet(type);
+    } else if (checked && type === "bonus") {
+      localStorage.removeItem("wallet");
+      localStorage.setItem("wallet", type);
+      setWallet(type);
+    }
+  };
 
   return (
     <div className="p-1 body-profile-page">
@@ -41,10 +57,52 @@ const Account = () => {
               </span>
               <span
                 className="card-profile-page-upper-div-left-main-wallet"
+                style={{
+                  color: "#000",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                {" "}
+                <span> Main Wallet </span>{" "}
+                <input
+                  onChange={(e) => handleToggleBalance(e, "main")}
+                  style={{ cursor: "pointer" }}
+                  type="checkbox"
+                  checked={!storedWallet && wallet === "main"}
+                  name=""
+                  id=""
+                />
+              </span>
+            </div>
+            <div className="card-profile-page-upper-div-left">
+              <span
+                className="card-profile-page-upper-div-left-balance"
                 style={{ color: "#000" }}
               >
                 {" "}
-                Main Wallet
+                ₹{balanceData?.availBalance}{" "}
+              </span>
+              <span
+                className="card-profile-page-upper-div-left-main-wallet"
+                style={{
+                  color: "#000",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                {" "}
+                <span> Bonus Wallet </span>{" "}
+                <input
+                  onChange={(e) => handleToggleBalance(e, "bonus")}
+                  style={{ cursor: "pointer" }}
+                  type="checkbox"
+                  checked={storedWallet == "bonus" && wallet === "bonus"}
+                  name=""
+                  id=""
+                />
               </span>
             </div>
 
