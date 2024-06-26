@@ -5747,8 +5747,8 @@ img,
   border-radius: 0.5rem;
   background: radial-gradient(
     25% 90% at 50% 50%,
-    var(--color1) 0%,
-    var(--color2) 100%
+    var(--color2) 0%,
+    var(--color1) 100%
   );
   /* box-shadow: 0 5px 21px #00cf5875; */
   margin: 1.5rem 0rem;

@@ -85,11 +85,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
                       className="india-flag"
                     />
                     <div className="str-line">
-                      <img
-                        loading="lazy"
-                        src={images.straightLine1}
-                        alt=""
-                      />
+                      <img loading="lazy" src={images.straightLine1} alt="" />
                     </div>
                     <input
                       onChange={(e) => handleMobileNo(e)}
@@ -141,6 +137,7 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
                   style={{ cursor: "pointer" }}
                 >
                   <img
+                    style={{ height: "20px" }}
                     loading="lazy"
                     src={images.whatsapp}
                     alt=""
