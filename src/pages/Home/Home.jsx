@@ -11,6 +11,8 @@ import { Settings } from "../../api";
 import useBalance from "../../hooks/useBalance";
 import useHomeCasino from "../../hooks/useHomeCasino";
 import useCasinoGames from "../../hooks/useCasinoGames";
+import { images } from "../../assets";
+import useGetSocialLink from "../../hooks/useGetSocialLink";
 
 const Home = () => {
   const { sportsType, tokenLoading } = useContextState();
@@ -19,6 +21,7 @@ const Home = () => {
   const { refetchBalance } = useBalance();
   const { homeCasino } = useHomeCasino();
   const { casinoGames } = useCasinoGames();
+  const { socialLink } = useGetSocialLink();
 
   useEffect(() => {
     refetchSports();
@@ -28,7 +31,11 @@ const Home = () => {
     if (!tokenLoading && !Settings.balanceApiLoop) {
       refetchBalance();
     }
-  }, []);
+  }, [refetchBalance, tokenLoading]);
+
+  const navigateWhatsApp = () => {
+    window.open(socialLink?.link, "_blank");
+  };
 
   return (
     <>
@@ -51,6 +58,30 @@ const Home = () => {
         </>
       )}
       {sportsType ? <Sports sports={sports} /> : null}
+
+      {socialLink?.link && (
+        <div onClick={navigateWhatsApp} className="tabbar-item">
+          <div className="ob_button" style={{ zIndex: 1040, bottom: "13%" }}>
+            <div className="bt1043">
+              <div
+                style={{ background: "none", height: "30px", width: "30px" }}
+                className="open_bets_button"
+                data-editor-id="betslipMobileButtonGradient"
+              >
+                <img
+                  style={{ height: "30px", width: "30px" }}
+                  src={images.whatsapp}
+                  alt=""
+                />
+                <div
+                  id="bt-header-total"
+                  className="bt1054 bt1063 bt1052 bt1042"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
