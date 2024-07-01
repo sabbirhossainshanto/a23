@@ -15,9 +15,9 @@ import { useEffect } from "react";
 
 
 const Account = () => {
-  const { setGetToken, wallet, setWallet } = useContextState();
+  const { setGetToken } = useContextState();
   const navigate = useNavigate();
-  const storedWallet = localStorage.getItem("wallet");
+  // const storedWallet = localStorage.getItem("wallet");
   /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
   /* get balance data */
@@ -30,17 +30,17 @@ const Account = () => {
     return () => clearInterval(intervalId);
   }, [refetchBalance]);
 
-  const handleToggleBalance = (e, type) => {
-    const checked = e.target.checked;
-    if (checked && type === "main") {
-      localStorage.removeItem("wallet");
-      setWallet(type);
-    } else if (checked && type === "bonus") {
-      localStorage.removeItem("wallet");
-      localStorage.setItem("wallet", type);
-      setWallet(type);
-    }
-  };
+  // const handleToggleBalance = (e, type) => {
+  //   const checked = e.target.checked;
+  //   if (checked && type === "main") {
+  //     localStorage.removeItem("wallet");
+  //     setWallet(type);
+  //   } else if (checked && type === "bonus") {
+  //     localStorage.removeItem("wallet");
+  //     localStorage.setItem("wallet", type);
+  //     setWallet(type);
+  //   }
+  // };
 
   return (
     <div className="p-1 body-profile-page">
@@ -50,7 +50,7 @@ const Account = () => {
             <div className="card-profile-page-upper-div-left">
               <span
                 className="card-profile-page-upper-div-left-balance"
-                style={{ color: "#000" }}
+                style={{ color: "#000",fontSize:'14px' }}
               >
                 {" "}
                 ₹{balanceData?.availBalance}{" "}
@@ -66,14 +66,14 @@ const Account = () => {
               >
                 {" "}
                 <span> Main Wallet </span>{" "}
-                <input
+                {/* <input
                   onChange={(e) => handleToggleBalance(e, "main")}
                   style={{ cursor: "pointer" }}
                   type="checkbox"
                   checked={!storedWallet && wallet === "main"}
                   name=""
                   id=""
-                />
+                /> */}
               </span>
             </div>
             {/* <div className="card-profile-page-upper-div-left">
