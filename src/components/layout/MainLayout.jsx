@@ -35,7 +35,7 @@ const MainLayout = () => {
     if (
       !location.pathname.includes("/casino") &&
       !addBank &&
-      !location.pathname.includes("/game-details")
+      !location.pathname.includes("/1" || "/2" || "/4")
     ) {
       return true;
     } else {
@@ -62,7 +62,7 @@ const MainLayout = () => {
       </div>
       {!location.pathname.includes("/casino") &&
       !addBank &&
-      !location.pathname.includes("/game-details") ? (
+      !location.pathname.includes("/1" || "/2" || "/4") ? (
         <Footer />
       ) : null}
     </div>

@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/game-details/:eventTypeId/:eventId",
+        path: "/:eventTypeId/:eventId",
         element: <GameDetails />,
       },
       {

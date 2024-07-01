@@ -48,5 +48,6 @@ export const Settings = {
   chaportAppId:"",
   otpless:"",
   paymentIntent:"",
-  betFairCashOut:""
+  betFairCashOut:"",
+
 };

@@ -23,6 +23,7 @@ const Home = () => {
   const { casinoGames } = useCasinoGames();
   const { socialLink } = useGetSocialLink();
 
+
   useEffect(() => {
     refetchSports();
   }, [refetchSports, sportsType]);
@@ -34,8 +35,10 @@ const Home = () => {
   }, [refetchBalance, tokenLoading]);
 
   const navigateWhatsApp = () => {
-    window.open(socialLink?.link, "_blank");
+    window.open(socialLink?.whatsapplink, "_blank");
   };
+
+  
 
   return (
     <>
@@ -59,7 +62,7 @@ const Home = () => {
       )}
       {sportsType ? <Sports sports={sports} /> : null}
 
-      {socialLink?.link && (
+      {socialLink?.whatsappFloatIconVisible && socialLink?.whatsapplink && (
         <div onClick={navigateWhatsApp} className="tabbar-item">
           <div className="ob_button" style={{ zIndex: 1040, bottom: "13%" }}>
             <div className="bt1043">

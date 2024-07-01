@@ -7,7 +7,7 @@ const Slider = ({ card }) => {
 
   const handleNavigate = (item) => {
     if (item?.link) {
-      navigate(`/game-details/${item?.link}`);
+      navigate(`/${item?.link}`);
     }
   };
   return (
