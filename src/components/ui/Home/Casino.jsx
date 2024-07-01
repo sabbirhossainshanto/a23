@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import useContextState from "../../../hooks/useContextState";
 import { Settings } from "../../../api";
 import AEDRules from "../../modal/AEDRules";
-const Casino = ({casino,title}) => {
+const Casino = ({ casino, title }) => {
   /* get all casino */
 
   const [category, setCategory] = useState("Top Games");
   const [filteredData, setFilteredData] = useState({});
   const navigate = useNavigate();
-  const { token } = useContextState();
+  const { token, wallet, setShowWarning } = useContextState();
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
 
@@ -24,23 +24,26 @@ const Casino = ({casino,title}) => {
     }
   }, [category, casino]);
 
-  
-
   const navigateCasinoVideo = (casino) => {
     if (token) {
-      if (Settings.casinoCurrency !== "AED") {
-        navigate(
-          `/casino/${casino?.provider_name.replace(/ /g, "")}/${
-            casino?.game_id
-          }`
-        );
+      if (wallet === "main") {
+        if (Settings.casinoCurrency !== "AED") {
+          navigate(
+            `/casino/${casino?.provider_name.replace(/ /g, "")}/${
+              casino?.game_id
+            }`
+          );
+        } else {
+          setShowModal(true);
+          setCasinoInfo({
+            provider_name: casino?.provider_name.replace(/ /g, ""),
+            game_id: casino?.game_id,
+            base: "casino",
+          });
+        }
       } else {
-        setShowModal(true);
-        setCasinoInfo({
-          provider_name: casino?.provider_name.replace(/ /g, ""),
-          game_id: casino?.game_id,
-          base: "casino",
-        });
+        /* Showing warning modal */
+        setShowWarning(true);
       }
     } else {
       navigate("/login");
@@ -70,7 +73,6 @@ const Casino = ({casino,title}) => {
               ></path>
             </svg>
             {title}
-
           </div>
           {/* <a href="/casino" className="">
           View all

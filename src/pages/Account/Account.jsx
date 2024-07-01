@@ -76,7 +76,7 @@ const Account = () => {
                 />
               </span>
             </div>
-            <div className="card-profile-page-upper-div-left">
+            {/* <div className="card-profile-page-upper-div-left">
               <span
                 className="card-profile-page-upper-div-left-balance"
                 style={{ color: "#000" }}
@@ -104,7 +104,7 @@ const Account = () => {
                   id=""
                 />
               </span>
-            </div>
+            </div> */}
 
             <div
               style={{ display: "flex", alignItems: "center" }}

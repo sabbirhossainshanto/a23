@@ -13,16 +13,17 @@ import useHomeCasino from "../../hooks/useHomeCasino";
 import useCasinoGames from "../../hooks/useCasinoGames";
 import { images } from "../../assets";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
+import Warning from "../../components/modal/Warning";
 
 const Home = () => {
-  const { sportsType, tokenLoading } = useContextState();
+  const { sportsType, tokenLoading, showWarning, setShowWarning } =
+    useContextState();
   const { bannerImage } = useBannerImage();
   const { refetchSports, sports } = useSportsBook(sportsType);
   const { refetchBalance } = useBalance();
   const { homeCasino } = useHomeCasino();
   const { casinoGames } = useCasinoGames();
   const { socialLink } = useGetSocialLink();
-
 
   useEffect(() => {
     refetchSports();
@@ -37,8 +38,6 @@ const Home = () => {
   const navigateWhatsApp = () => {
     window.open(socialLink?.whatsapplink, "_blank");
   };
-
-  
 
   return (
     <>
@@ -64,7 +63,7 @@ const Home = () => {
 
       {socialLink?.whatsappFloatIconVisible && socialLink?.whatsapplink && (
         <div onClick={navigateWhatsApp} className="tabbar-item">
-          <div className="ob_button" style={{ zIndex: 1040, bottom: "13%" }}>
+          <div className="ob_button" style={{ zIndex: 100, bottom: "13%" }}>
             <div className="bt1043">
               <div
                 style={{ background: "none", height: "30px", width: "30px" }}
@@ -85,6 +84,7 @@ const Home = () => {
           </div>
         </div>
       )}
+      {showWarning && <Warning setShowModal={setShowWarning} />}
     </>
   );
 };

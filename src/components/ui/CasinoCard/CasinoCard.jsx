@@ -3,41 +3,58 @@ import useContextState from "../../../hooks/useContextState";
 import { Settings } from "../../../api";
 import { useState } from "react";
 import AEDRules from "../../modal/AEDRules";
+import Warning from "../../modal/Warning";
 
 const CasinoCard = ({ games, title }) => {
-  const { token } = useContextState();
+  const { token, wallet, setShowWarning, showWarning } = useContextState();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
 
+
   const navigateCasinoVideo = (casino) => {
     if (title !== "Indian") {
       if (token) {
-        if (Settings.casinoCurrency !== "AED") {
-          navigate(
-            `/casino/${casino?.game_name.replace(/ /g, "")}/${casino?.game_id}`
-          );
+        if (wallet === "main") {
+          if (Settings.casinoCurrency !== "AED") {
+            navigate(
+              `/casino/${casino?.game_name.replace(/ /g, "")}/${
+                casino?.game_id
+              }`
+            );
+          } else {
+            setShowModal(true);
+            setCasinoInfo({
+              provider_name: casino?.game_name.replace(/ /g, ""),
+              game_id: casino?.game_id,
+              base: "casino",
+            });
+          }
         } else {
-          setShowModal(true);
-          setCasinoInfo({
-            provider_name: casino?.game_name.replace(/ /g, ""),
-            game_id: casino?.game_id,
-            base: "casino",
-          });
+          setShowWarning(true);
         }
       } else {
         navigate("/login");
       }
-    } else {
-      navigate(
-        token
-          ? `/casino/${casino?.game_name.replace(/ /g, "")}/${casino?.game_id}`
-          : navigate("/login")
-      );
+    }
+    if (title === "Indian") {
+      if (wallet === "bonus") {
+        setShowWarning(true);
+      } else {
+        navigate(
+          token
+            ? `/casino/${casino?.game_name.replace(/ /g, "")}/${
+                casino?.game_id
+              }`
+            : navigate("/login")
+        );
+      }
     }
   };
+
   return (
     <>
+      {showWarning && <Warning setShowModal={setShowWarning} />}
       {showModal && (
         <AEDRules setShowModal={setShowModal} casinoInfo={casinoInfo} />
       )}

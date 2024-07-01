@@ -13,7 +13,6 @@ const IFrame = () => {
   const { gameId } = useParams();
   const { token } = useContextState();
 
-
   /* get iframe url */
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,9 +24,10 @@ const IFrame = () => {
         token: generatedToken,
         isHome: false,
         mobileOnly: true,
-        site:Settings.siteUrl,
-        casinoCurrency:Settings.casinoCurrency
+        site: Settings.siteUrl,
+        casinoCurrency: Settings.casinoCurrency,
       });
+
 
       try {
         const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
@@ -43,7 +43,6 @@ const IFrame = () => {
     };
     getCasinoVideo();
   }, [token, gameId]);
-
 
   /* handle loading animation */
   if (loading) {

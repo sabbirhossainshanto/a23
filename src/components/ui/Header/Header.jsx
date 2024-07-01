@@ -78,7 +78,7 @@ const Header = () => {
                     fontWeight: "500",
                   }}
                 >
-                  Bal:{" "}
+                  {!storedWallet && wallet === "main" ? "Bal:" : "Bonus:"}{" "}
                   {!storedWallet && wallet === "main"
                     ? balanceData?.availBalance
                     : bonusBalanceData?.availBalance}

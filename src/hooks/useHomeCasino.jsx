@@ -10,9 +10,10 @@ const useHomeCasino = () => {
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData({
-        token:generatedToken,
-        site:Settings.siteUrl
+        token: generatedToken,
+        site: Settings.siteUrl,
       });
+     
       const res = await axios.post(`${API.homeCasino}`, encryptedData);
       const data = res.data;
       if (data.status === "success") {
