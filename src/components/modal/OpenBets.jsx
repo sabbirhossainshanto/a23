@@ -1,8 +1,10 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
+import { useNavigate } from "react-router-dom";
 
 const OpenBets = ({ setShowOpenBets, myBets }) => {
   /* close modal click outside */
+  const navigate = useNavigate();
   const openBetsRef = useRef();
   useCloseModalClickOutside(openBetsRef, () => {
     setShowOpenBets(false);
@@ -63,6 +65,11 @@ const OpenBets = ({ setShowOpenBets, myBets }) => {
                 {myBets?.map((item, i) => {
                   return (
                     <div
+                      onClick={() => {
+                        setShowOpenBets(false);
+                        navigate(`/${item?.eventTypeId}/${item?.eventId}`);
+                      }}
+                      style={{ cursor: "pointer" }}
                       key={i}
                       className={`allbet-datalist ${
                         item?.betType === "Back" ? "forback " : "forlay "

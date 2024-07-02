@@ -133,7 +133,7 @@ const MatchOdds = ({
     } else {
       setTeamProfit([]);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match_odds, eventId, exposer]);
 
   return (
@@ -172,36 +172,42 @@ const MatchOdds = ({
                     Max: {games?.maxLiabilityPerBet}
                   </span>
                 </div>
-                {Settings.betFairCashOut &&
-                  games?.runners?.length !== 3 &&
-                  teamProfitForGame && (
-                    <button
-                      onClick={() =>
-                        handleCashOutPlaceBet(
-                          games,
-                          "lay",
-                          setOpenBetSlip,
-                          setPlaceBetValues,
-                          pnlBySelection,
-                          token,
-                          navigate,
-                          teamProfitForGame
-                        )
-                      }
-                      type="button"
-                      className="btn_box "
-                      style={{
-                        width: "100px",
-                        backgroundColor: "#c9c9c9",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <span style={{ fontSize: "10px", color: "black" }}>
-                        Cashout:
-                      </span>{" "}
-                      <span style={{ display: "flex", alignItems: "center" }}>
-                        {teamProfitForGame?.profit ? (
+                {Settings.betFairCashOut && games?.runners?.length !== 3 && (
+                  <button
+                    disabled={!teamProfitForGame}
+                    onClick={() =>
+                      handleCashOutPlaceBet(
+                        games,
+                        "lay",
+                        setOpenBetSlip,
+                        setPlaceBetValues,
+                        pnlBySelection,
+                        token,
+                        navigate,
+                        teamProfitForGame
+                      )
+                    }
+                    type="button"
+                    className="btn_box "
+                    style={{
+                      width: "100px",
+                      backgroundColor: "#c9c9c9",
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: `${
+                        !teamProfitForGame ? "not-allowed" : "pointer"
+                      }`,
+                      opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
+                    }}
+                  >
+                    <span style={{ fontSize: "10px", color: "black" }}>
+                      Cashout
+                    </span>{" "}
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                      {teamProfitForGame?.profit && (
+                        <span style={{ color: "black" }}>
+                          {" "}
+                          :
                           <span
                             style={{
                               fontSize: "10px",
@@ -212,14 +218,11 @@ const MatchOdds = ({
                           >
                             {teamProfitForGame?.profit?.toFixed(2)}
                           </span>
-                        ) : (
-                          <span style={{ color: "black", fontSize: "10px" }}>
-                            0
-                          </span>
-                        )}
-                      </span>
-                    </button>
-                  )}
+                        </span>
+                      )}
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
             {games?.runners?.map((runner) => {
