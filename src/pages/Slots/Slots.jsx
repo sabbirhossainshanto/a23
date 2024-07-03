@@ -1,12 +1,10 @@
-import useGetSlots from "../../hooks/useGetSlots";
-import CasinoCard from "../../components/ui/CasinoCard/CasinoCard";
+import { API } from "../../api";
+import LiveSlotWolf from "../../components/ui/LiveSlotWolf/LiveSlotWolf";
 
 const Slots = () => {
-  /* get slot data */
-  const { slots } = useGetSlots();
   return (
     <>
-      <CasinoCard games={slots} title="Slots" />
+      <LiveSlotWolf api={API.slotsWolf} />
     </>
   );
 };

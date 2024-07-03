@@ -41,6 +41,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.otpless = data?.result?.endpoint?.otpless;
         API.casinoGames = data?.result?.endpoint?.casinoGames;
         API.liveCasinoWolf = data?.result?.endpoint?.liveCasinoWolf;
+        API.slotsWolf = data?.result?.endpoint?.slotsWolf;
         Settings.siteUrl = data?.result?.settings?.siteUrl;
         Settings.interval = data?.result?.settings?.interval;
         Settings.siteTitle = data?.result?.settings?.siteTitle;

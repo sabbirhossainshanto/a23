@@ -32,7 +32,8 @@ export const API = {
   casinoGames:"",
   pg:"",
   pgStatus:"",
-  liveCasinoWolf:""
+  liveCasinoWolf:"",
+  slotsWolf:""
 };
 
 export const Settings = {

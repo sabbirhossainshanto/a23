@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
+import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
 const Dropdown = ({
   showLeftDropdown,
@@ -21,18 +21,13 @@ const Dropdown = ({
     setShowRightDropdown(false);
   });
 
- 
   return (
     <div
       style={{ position: "relative" }}
       _ngcontent-ng-c1965075897=""
       className="filter-search"
     >
-      <div
-       
-        _ngcontent-ng-c1965075897=""
-        className="select-wrap"
-      >
+      <div _ngcontent-ng-c1965075897="" className="select-wrap">
         <div _ngcontent-ng-c1965075897="" className="label-cont">
           <label _ngcontent-ng-c1965075897="">Game Provider</label>
         </div>
@@ -41,8 +36,12 @@ const Dropdown = ({
           className="mat-mdc-form-field mat-form-field  ng-tns-c1205077789-1 mat-mdc-form-field-type-mat-select mat-form-field-appearance-fill mat-primary ng-pristine ng-valid ng-star-inserted ng-touched"
         >
           <div
-           onClick={() => setShowLeftDropdown(!showLeftDropdown)}
-            style={{ backgroundColor: "#c6c6c6",borderRadius:'5px',padding:'5px'}}
+            onClick={() => setShowLeftDropdown(!showLeftDropdown)}
+            style={{
+              backgroundColor: "#c6c6c6",
+              borderRadius: "5px",
+              padding: "5px",
+            }}
             className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-1 mdc-text-field--filled mdc-text-field--no-label"
           >
             <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-1 ng-star-inserted"></div>
@@ -72,10 +71,7 @@ const Dropdown = ({
                       className="mat-mdc-select-value ng-tns-c3393473648-2"
                       id="mat-select-value-1"
                     >
-                      <span
-                        
-                        className="mat-mdc-select-value-text ng-tns-c3393473648-2 ng-star-inserted"
-                      >
+                      <span className="mat-mdc-select-value-text ng-tns-c3393473648-2 ng-star-inserted">
                         <span className="mat-mdc-select-min-line ng-tns-c3393473648-2 ng-star-inserted">
                           {product === "All" ? "All Providers" : product}
                         </span>
@@ -126,12 +122,12 @@ const Dropdown = ({
           className="dropdown-container"
         >
           <button
+            className={`${product === "All" ? "dropdownBG" : "white-bg"}`}
             onClick={() => {
               setProduct("All");
               setShowLeftDropdown(false);
             }}
             style={{
-              backgroundColor: `${product === "All" ? "#dc4599" : "white"}`,
               color: `${product === "All" ? "white" : "black"}`,
             }}
           >
@@ -140,14 +136,14 @@ const Dropdown = ({
           {data?.companyListData?.map((item, i) => {
             return (
               <button
+                className={`${
+                  item?.product === product ? "dropdownBG" : "white-bg"
+                }`}
                 onClick={() => {
                   setProduct(item?.product);
                   setShowLeftDropdown(false);
                 }}
                 style={{
-                  backgroundColor: `${
-                    item?.product === product ? "#dc4599" : "white"
-                  }`,
                   color: `${item?.product === product ? "white" : "black"}`,
                   display: "flex",
                   alignItems: "center",
@@ -169,11 +165,7 @@ const Dropdown = ({
           })}
         </motion.div>
       )}
-      <div
-       
-        _ngcontent-ng-c1965075897=""
-        className="select-wrap"
-      >
+      <div _ngcontent-ng-c1965075897="" className="select-wrap">
         <div _ngcontent-ng-c1965075897="" className="label-cont">
           <label _ngcontent-ng-c1965075897="">Game Type</label>
         </div>
@@ -182,10 +174,15 @@ const Dropdown = ({
           className="mat-mdc-form-field mat-form-field  ng-tns-c1205077789-3 mat-mdc-form-field-type-mat-select mat-form-field-appearance-fill mat-primary ng-pristine ng-valid ng-star-inserted ng-touched"
         >
           <div
-          // mdc-text-field--filled
-           onClick={() => setShowRightDropdown(!showRightDropdown)}
-           style={{ backgroundColor: "#c6c6c6",borderRadius:'5px',padding:'5px'}}
-          className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-3 mdc-text-field--filled mdc-text-field--no-label">
+            // mdc-text-field--filled
+            onClick={() => setShowRightDropdown(!showRightDropdown)}
+            style={{
+              backgroundColor: "#c6c6c6",
+              borderRadius: "5px",
+              padding: "5px",
+            }}
+            className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-3 mdc-text-field--filled mdc-text-field--no-label"
+          >
             <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-3 ng-star-inserted"></div>
 
             <div className="mat-mdc-form-field-flex ng-tns-c1205077789-3">
@@ -265,12 +262,12 @@ const Dropdown = ({
           className="dropdown-container"
         >
           <button
+            className={`${gameList === "All" ? "dropdownBG" : "white-bg"}`}
             onClick={() => {
               setGameList("All");
               setShowRightDropdown(false);
             }}
             style={{
-              backgroundColor: `${gameList === "All" ? "#dc4599" : "white"}`,
               color: `${gameList === "All" ? "white" : "black"}`,
             }}
           >
@@ -279,12 +276,12 @@ const Dropdown = ({
           {data?.gameListData?.map((item, i) => {
             return (
               <button
+                className={`${item === gameList ? "dropdownBG" : "white-bg"}`}
                 onClick={() => {
                   setGameList(item);
                   setShowRightDropdown(false);
                 }}
                 style={{
-                  backgroundColor: `${item === gameList ? "#dc4599" : "white"}`,
                   color: `${item === gameList ? "white" : "black"}`,
                 }}
                 key={i}
