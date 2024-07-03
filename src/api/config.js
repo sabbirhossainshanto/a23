@@ -40,6 +40,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.pgStatus = data?.result?.endpoint?.pgStatus;
         API.otpless = data?.result?.endpoint?.otpless;
         API.casinoGames = data?.result?.endpoint?.casinoGames;
+        API.liveCasinoWolf = data?.result?.endpoint?.liveCasinoWolf;
         Settings.siteUrl = data?.result?.settings?.siteUrl;
         Settings.interval = data?.result?.settings?.interval;
         Settings.siteTitle = data?.result?.settings?.siteTitle;
@@ -54,7 +55,6 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.otpless = data?.result?.settings?.otpless;
         Settings.paymentIntent = data?.result?.settings?.paymentIntent;
         Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
- 
 
         setNoticeLoaded(true);
       }

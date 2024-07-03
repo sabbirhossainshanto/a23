@@ -116,7 +116,7 @@ const Casino = ({ casino, title }) => {
                     >
                       <a className="game-img-wrap">
                         <img src={casino?.img} className="game-img" alt="" />
-                        <div className="online">
+                        {/* <div className="online">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="9"
@@ -147,7 +147,7 @@ const Casino = ({ casino, title }) => {
                             </defs>
                           </svg>
                           <span>{casino?.active_players}</span>
-                        </div>
+                        </div> */}
                       </a>
                       <div className="bot-info">
                         <div className="game-tit">

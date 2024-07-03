@@ -31,7 +31,8 @@ export const API = {
   otpless:"",
   casinoGames:"",
   pg:"",
-  pgStatus:""
+  pgStatus:"",
+  liveCasinoWolf:""
 };
 
 export const Settings = {

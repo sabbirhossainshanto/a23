@@ -54,7 +54,8 @@
       "otpless": "https://api7.live/api/exchange/diamond/otpless",
       "casinoGames": "https://api7.live/api/exchange/diamond/casinoGames",
       "pg": "https://api7.live/api/exchange/diamond/pg",
-      "pgStatus": "https://api7.live/api/exchange/diamond/pgStatus"
+      "pgStatus": "https://api7.live/api/exchange/diamond/pgStatus",
+      "liveCasinoWolf": "https://api7.live/api/exchange/diamond/liveCasinoWolf"
     }
   },
   "success": true
