@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { HiUsers } from "react-icons/hi";
+// import { HiUsers } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -134,7 +134,7 @@ const LiveSlotWolf = ({ api }) => {
                                     src={item?.url_thumb}
                                   />
                                 </a>
-                                <p
+                                {/* <p
                                   style={{ zIndex: 99 }}
                                   _ngcontent-ng-c1965075897=""
                                   className="total-players"
@@ -142,7 +142,7 @@ const LiveSlotWolf = ({ api }) => {
                                   {" "}
                                   <HiUsers size={15} />
                                   {item?.active_players}
-                                </p>
+                                </p> */}
                                 <div
                                   _ngcontent-ng-c1965075897=""
                                   className="game-detail"
@@ -159,12 +159,12 @@ const LiveSlotWolf = ({ api }) => {
                                   >
                                     {item?.game_name}
                                   </p>
-                                  <p
+                                  {/* <p
                                     _ngcontent-ng-c1965075897=""
                                     className="coins-limit ng-star-inserted"
                                   >
                                     {item?.text}
-                                  </p>
+                                  </p> */}
                                 </div>
                               </li>
                             </>
@@ -194,7 +194,7 @@ const LiveSlotWolf = ({ api }) => {
                                     src={item?.url_thumb}
                                   />
                                 </a>
-                                <p
+                                {/* <p
                                   style={{ zIndex: 99 }}
                                   _ngcontent-ng-c1965075897=""
                                   className="total-players"
@@ -202,7 +202,7 @@ const LiveSlotWolf = ({ api }) => {
                                   {" "}
                                   <HiUsers size={15} />
                                   {item?.active_players}
-                                </p>
+                                </p> */}
                                 <div
                                   _ngcontent-ng-c1965075897=""
                                   className="game-detail"
@@ -219,12 +219,12 @@ const LiveSlotWolf = ({ api }) => {
                                   >
                                     {item?.game_name}
                                   </p>
-                                  <p
+                                  {/* <p
                                     _ngcontent-ng-c1965075897=""
                                     className="coins-limit ng-star-inserted"
                                   >
                                     {item?.text}
-                                  </p>
+                                  </p> */}
                                 </div>
                               </li>
                             );
