@@ -9,8 +9,6 @@ const Sports = ({ sports }) => {
       return sports?.[key]?.visible === true;
     });
 
-
-    
   if (filterSports?.length === 0) {
     return (
       <div className="profile-menu-box">
@@ -21,13 +19,28 @@ const Sports = ({ sports }) => {
     );
   }
 
- 
-
   return (
     <>
       {sports && Object.values(sports).length > 0
         ? filterSports
-            ?.sort((keyA, keyB) => sports[keyA].sort - sports[keyB].sort)
+            ?.sort((keyA, keyB) => {
+              return sports[keyA].sort - sports[keyB].sort;
+            })
+            ?.sort((keyA, keyB) => {
+              if (
+                sports[keyA].timeStatus === "Suspended" &&
+                sports[keyB].timeStatus !== "Suspended"
+              ) {
+                return 1;
+              }
+              if (
+                sports[keyA].timeStatus !== "Suspended" &&
+                sports[keyB].timeStatus === "Suspended"
+              ) {
+                return -1;
+              }
+              return 0;
+            })
             .map((key, index) => {
               return <Card key={index} keys={key} liveSports={sports} />;
             })
