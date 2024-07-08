@@ -74,9 +74,11 @@ const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
                     )}
                   </div>
                 </div>
-                {depositBreakdown?.instantMoney > 0  && (
+                {depositBreakdown?.instantMoney > 0 && (
                   <div className="moneybox ng-tns-c159-13">
-                    <p className="money ng-tns-c159-13">3% Instant Money</p>
+                    <p className="money ng-tns-c159-13">
+                      {depositBreakdown?.instantMoneyTitle}
+                    </p>
                     <p className="doll ng-tns-c159-13">
                       ₹{depositBreakdown?.instantMoney}
                     </p>
