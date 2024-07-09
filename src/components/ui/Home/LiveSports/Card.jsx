@@ -339,7 +339,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                 </div>
               </div>
             </div>
-            <div className="bt12593" style={{position:'absolute'}}>
+            <div className="bt12593" style={{position:'absolute',top:'50px'}}>
                 <div className="bt12613">
                   <svg
                     className="bt12614"
