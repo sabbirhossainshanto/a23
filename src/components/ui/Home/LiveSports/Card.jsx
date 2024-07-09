@@ -3,7 +3,7 @@ import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPa
 
 const Card = ({ liveSports, keys, sportsType }) => {
   const navigate = useNavigate();
-
+  console.log(liveSports);
   return (
     <>
       {liveSports?.[keys]?.visible &&
@@ -83,10 +83,11 @@ const Card = ({ liveSports, keys, sportsType }) => {
           onClick={() => {
             handleNavigateEventPage(liveSports, keys, navigate);
           }}
+          style={{ cursor: "pointer" }}
           className="bt12577 bt12497"
           data-editor-id="scoreBoardCard"
         >
-          <div className="bt12580 bt12579">
+          {/* <div className="bt12580 bt12579">
             <div className="bt12581">
               <div className="bt6522" data-editor-id="scoreBoardCategory">
                 {liveSports?.[keys]?.time && (
@@ -98,7 +99,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
           <div
             className="bt12590 bt12591"
             data-editor-id="scoreBoardContent"
@@ -128,7 +129,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                     <div
                       data-editor-id="tableOutcomePlate"
                       className="bt6588  "
-                      style={{ width: "50px" }}
+                      style={{ width: "50px", paddingLeft: "0px" }}
                     >
                       <div className={`bt6592 bt12699 odds_back  `}>
                         <span
@@ -256,7 +257,12 @@ const Card = ({ liveSports, keys, sportsType }) => {
                   <div className="bt12602">
                     <div
                       className="bt6474"
-                      style={{ width: "40px", height: "40px" }}
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                      }}
                     >
                       <img
                         data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/72.png"
@@ -306,7 +312,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                     <div
                       data-editor-id="tableOutcomePlate"
                       className="bt6588  "
-                      style={{ width: "50px" }}
+                      style={{ width: "50px", paddingRight: "0px" }}
                     >
                       <div className={`bt6592 bt12699 odds_lay  `}>
                         <span
@@ -339,8 +345,12 @@ const Card = ({ liveSports, keys, sportsType }) => {
                 </div>
               </div>
             </div>
-            <div className="bt12593" style={{position:'absolute',top:'50px'}}>
-                <div className="bt12613">
+            <div
+              className="bt12593"
+              style={{ position: "absolute", top: "50px" }}
+            >
+              <div className="bt12613">
+                {liveSports?.[keys]?.inPlay == 1 && (
                   <svg
                     className="bt12614"
                     data-cy="ic-live-simple"
@@ -362,42 +372,44 @@ const Card = ({ liveSports, keys, sportsType }) => {
                     <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
                     <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
                   </svg>
-                  <div
-                    style={{ fontSize: "10px" }}
-                    className="bt6541 bt12616"
-                    data-editor-id="eventCardStatusLabel"
-                  >
-                    {liveSports?.[keys]?.timeStatus}
-                  </div>
-                </div>
-                <div className="bt12617 bt12594">
-                  {liveSports?.[keys]?.team1Score && (
-                    <div
-                      style={{ fontSize: "10px" }}
-                      className="bt12618 bt12619"
-                      data-editor-id="scoreBoardScore"
-                    >
-                      {liveSports?.[keys]?.team1Score}
-                    </div>
-                  )}
+                )}
 
-                  {liveSports?.[keys]?.team1Score && (
-                    <div className="bt12620" style={{ fontSize: "10px" }}>
-                      :
-                    </div>
-                  )}
-
-                  {liveSports?.[keys]?.team2Score && (
-                    <div
-                      style={{ fontSize: "10px" }}
-                      className="bt12618 bt12619"
-                      data-editor-id="scoreBoardScore"
-                    >
-                      {liveSports?.[keys]?.team2Score}
-                    </div>
-                  )}
+                <div
+                  style={{ fontSize: "10px" }}
+                  className="bt6541 bt12616"
+                  data-editor-id="eventCardStatusLabel"
+                >
+                  {liveSports?.[keys]?.timeStatus}
                 </div>
               </div>
+              <div className="bt12617 bt12594">
+                {liveSports?.[keys]?.team1Score && (
+                  <div
+                    style={{ fontSize: "10px" }}
+                    className="bt12618 bt12619"
+                    data-editor-id="scoreBoardScore"
+                  >
+                    {liveSports?.[keys]?.team1Score}
+                  </div>
+                )}
+
+                {liveSports?.[keys]?.team1Score && (
+                  <div className="bt12620" style={{ fontSize: "10px" }}>
+                    :
+                  </div>
+                )}
+
+                {liveSports?.[keys]?.team2Score && (
+                  <div
+                    style={{ fontSize: "10px" }}
+                    className="bt12618 bt12619"
+                    data-editor-id="scoreBoardScore"
+                  >
+                    {liveSports?.[keys]?.team2Score}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       ) : (
