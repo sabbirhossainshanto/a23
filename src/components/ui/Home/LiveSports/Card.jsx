@@ -3,7 +3,7 @@ import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPa
 
 const Card = ({ liveSports, keys, sportsType }) => {
   const navigate = useNavigate();
-  console.log(liveSports);
+  console.log(liveSports?.[keys]?.score && liveSports);
   return (
     <>
       {liveSports?.[keys]?.visible &&
@@ -103,7 +103,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
           <div
             className="bt12590 bt12591"
             data-editor-id="scoreBoardContent"
-            style={{ position: "relative" }}
+            style={{ position: "relative",paddingBottom:'3px' }}
           >
             <div className="bt12592">
               <div className="bt12593">
@@ -152,7 +152,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                                 keys
                               ]?.[0]?.ex?.availableToBack?.[0]?.size?.split(
                                 "."
-                              )?.[0]
+                              )?.[0]?.slice(0,4)
                             }
                           </p>
                         </span>
@@ -184,7 +184,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                                 keys
                               ]?.[0]?.ex?.availableToLay?.[0]?.size?.split(
                                 "."
-                              )?.[0]
+                              )?.[0]?.slice(0,4)
                             }
                           </p>
                         </span>
@@ -303,7 +303,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                                 keys
                               ]?.[1]?.ex?.availableToBack?.[0]?.size?.split(
                                 "."
-                              )?.[0]
+                              )?.[0]?.slice(0,4)
                             }
                           </p>
                         </span>
@@ -335,7 +335,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                                 keys
                               ]?.[1]?.ex?.availableToLay?.[0]?.size?.split(
                                 "."
-                              )?.[0]
+                              )?.[0]?.slice(0,4)
                             }
                           </p>
                         </span>
@@ -383,29 +383,29 @@ const Card = ({ liveSports, keys, sportsType }) => {
                 </div>
               </div>
               <div className="bt12617 bt12594">
-                {liveSports?.[keys]?.team1Score && (
+                {liveSports?.[keys]?.score?.total_1 && (
                   <div
                     style={{ fontSize: "10px" }}
                     className="bt12618 bt12619"
                     data-editor-id="scoreBoardScore"
                   >
-                    {liveSports?.[keys]?.team1Score}
+                    {liveSports?.[keys]?.score?.total_1}
                   </div>
                 )}
 
-                {liveSports?.[keys]?.team1Score && (
+                {liveSports?.[keys]?.score?.total_1 && (
                   <div className="bt12620" style={{ fontSize: "10px" }}>
                     :
                   </div>
                 )}
 
-                {liveSports?.[keys]?.team2Score && (
+                {liveSports?.[keys]?.score?.total_2 && (
                   <div
                     style={{ fontSize: "10px" }}
                     className="bt12618 bt12619"
                     data-editor-id="scoreBoardScore"
                   >
-                    {liveSports?.[keys]?.team2Score}
+                    {liveSports?.[keys]?.score?.total_2}
                   </div>
                 )}
               </div>
