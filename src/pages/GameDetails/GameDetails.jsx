@@ -23,6 +23,7 @@ const GameDetails = () => {
     eventTypeId,
     eventId
   );
+
   const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
 
 

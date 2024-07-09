@@ -1,6 +1,6 @@
 import Card from "../LiveSports/Card";
 
-const Sports = ({ sports }) => {
+const Sports = ({ sports,sportsType }) => {
   /* filtered visible = true sports */
 
   const filterSports =
@@ -20,7 +20,7 @@ const Sports = ({ sports }) => {
   }
 
   return (
-    <>
+    <div style={{display:'flex',flexDirection:'column',gap:'20px'}}>
       {sports && Object.values(sports).length > 0
         ? filterSports
             ?.sort((keyA, keyB) => {
@@ -42,10 +42,10 @@ const Sports = ({ sports }) => {
               return 0;
             })
             .map((key, index) => {
-              return <Card key={index} keys={key} liveSports={sports} />;
+              return <Card key={index} keys={key} liveSports={sports} sportsType={sportsType} />;
             })
         : null}
-    </>
+    </div>
   );
 };
 

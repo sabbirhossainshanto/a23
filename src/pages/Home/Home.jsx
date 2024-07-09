@@ -59,7 +59,7 @@ const Home = () => {
           )}
         </>
       )}
-      {sportsType ? <Sports sports={sports} /> : null}
+      {sportsType ? <Sports sportsType={sportsType} sports={sports} /> : null}
 
       {socialLink?.whatsappFloatIconVisible && socialLink?.whatsapplink && (
         <div onClick={navigateWhatsApp} className="tabbar-item">

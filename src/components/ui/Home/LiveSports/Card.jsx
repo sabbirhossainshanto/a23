@@ -1,93 +1,308 @@
-// import football from "../../../../assets/img/football.svg";
-// import tennis from "../../../../assets/img/tennis.svg";
-// import cricket from "../../../../assets/img/cricket.svg";
 import { useNavigate } from "react-router-dom";
 import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPage";
 
-const Card = ({ liveSports, keys }) => {
-  // const eventTypeImg = {
-  //   1: football,
-  //   2: tennis,
-  //   4: cricket,
-  // };
+const Card = ({ liveSports, keys, sportsType }) => {
   const navigate = useNavigate();
 
   return (
     <>
-      {liveSports?.[keys]?.visible && (
-        // <div
-        //   onClick={() => handleNavigateEventPage(liveSports, keys, navigate)}
-        //   className="live-banner-item"
-        //   style={{fontSize:"12px"}}
-        // >
-        //   <div className="b-top">
-        //     <div className="b-top-icon">
-        //       <div className="liveSports-icon-wrap">
-        //         <img src={eventTypeImg[liveSports[keys]?.eventTypeId]} alt="" />
-        //       </div>
-        //       <p className="name">{liveSports[keys]?.seriesName}</p>
-        //     </div>
-        //     <div className="t-right">
-        //       <p className="status">{liveSports?.[keys]?.timeStatus}</p>
-        //       {/* <div className="live ttu">Live</div> */}
-        //     </div>
-        //   </div>
-        //   <div className="b-match">
-        //     <div className="c-left match-item">
-        //       <div className="c-img">
-        //         <div className="match-icon-wrap">
-        //           <img alt="icon" src={liveSports?.[keys]?.image1} />
-        //         </div>
-        //       </div>
-        //       <p className="c-name">{liveSports[keys]?.player1}</p>
-        //     </div>
-        //     <div className="c-center">
-        //       <p>
-        //         {liveSports[keys]?.score?.total_1} :{" "}
-        //         {liveSports[keys]?.score?.total_2}
-        //       </p>
-        //     </div>
-        //     <div className="c-right match-item">
-        //       <div className="c-img">
-        //         <div className="liveSports-icon-wrap">
-        //           <img src={liveSports[keys]?.image2} alt="" />
-        //         </div>
-        //       </div>
-        //       <p className="c-name">{liveSports[keys]?.player2}</p>
-        //     </div>
-        //   </div>
-        //   <div className="b-markets">
-        //     {liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]?.price && (
-        //       <div className="market-item">
-        //         <span>1</span>
-        //         <span>
-        //           {liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]?.price}
-        //         </span>
-        //       </div>
-        //     )}
+      {liveSports?.[keys]?.visible &&
+      // <div
+      //   onClick={() => handleNavigateEventPage(liveSports, keys, navigate)}
+      //   className="live-banner-item"
+      //   style={{fontSize:"12px"}}
+      // >
+      //   <div className="b-top">
+      //     <div className="b-top-icon">
+      //       <div className="liveSports-icon-wrap">
+      //         <img src={eventTypeImg[liveSports[keys]?.eventTypeId]} alt="" />
+      //       </div>
+      //       <p className="name">{liveSports[keys]?.seriesName}</p>
+      //     </div>
+      //     <div className="t-right">
+      //       <p className="status">{liveSports?.[keys]?.timeStatus}</p>
+      //       {/* <div className="live ttu">Live</div> */}
+      //     </div>
+      //   </div>
+      //   <div className="b-match">
+      //     <div className="c-left match-item">
+      //       <div className="c-img">
+      //         <div className="match-icon-wrap">
+      //           <img alt="icon" src={liveSports?.[keys]?.image1} />
+      //         </div>
+      //       </div>
+      //       <p className="c-name">{liveSports[keys]?.player1}</p>
+      //     </div>
+      //     <div className="c-center">
+      //       <p>
+      //         {liveSports[keys]?.score?.total_1} :{" "}
+      //         {liveSports[keys]?.score?.total_2}
+      //       </p>
+      //     </div>
+      //     <div className="c-right match-item">
+      //       <div className="c-img">
+      //         <div className="liveSports-icon-wrap">
+      //           <img src={liveSports[keys]?.image2} alt="" />
+      //         </div>
+      //       </div>
+      //       <p className="c-name">{liveSports[keys]?.player2}</p>
+      //     </div>
+      //   </div>
+      //   <div className="b-markets">
+      //     {liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]?.price && (
+      //       <div className="market-item">
+      //         <span>1</span>
+      //         <span>
+      //           {liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]?.price}
+      //         </span>
+      //       </div>
+      //     )}
 
-        //     {liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]?.price && (
-        //       <div className="market-item">
-        //         <span>draw </span>
-        //         <span>
-        //           {" "}
-        //           {liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]?.price}
-        //         </span>
-        //       </div>
-        //     )}
-        //     {liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]?.price && (
-        //       <div className="market-item">
-        //         <span>2</span>
-        //         <span>
-        //           {" "}
-        //           {liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]?.price}
-        //         </span>
-        //       </div>
-        //     )}
-        //   </div>
-        // </div>
+      //     {liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]?.price && (
+      //       <div className="market-item">
+      //         <span>draw </span>
+      //         <span>
+      //           {" "}
+      //           {liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]?.price}
+      //         </span>
+      //       </div>
+      //     )}
+      //     {liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]?.price && (
+      //       <div className="market-item">
+      //         <span>2</span>
+      //         <span>
+      //           {" "}
+      //           {liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]?.price}
+      //         </span>
+      //       </div>
+      //     )}
+      //   </div>
+      // </div>
+      sportsType == 4 ? (
+        <div
+          onClick={() => {
+            handleNavigateEventPage(liveSports, keys, navigate);
+          }}
+          className="bt12577 bt12497"
+          data-editor-id="scoreBoardCard"
+        >
+          {/* <div className="bt12580 bt12579">
+            <div className="bt12581">
+              <div className="bt6522" data-editor-id="scoreBoardCategory">
+                {"score?.time" && "eventTypeId" != 1 && (
+                  <div className="bt6523 bt12585 bt12583">
+                    <span className="bt6526 bt12586">{"score?.time"}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div> */}
+          <div className="bt12590 bt12591" data-editor-id="scoreBoardContent">
+            <div className="bt12592">
+              <div className="bt12593">
+                <div className="bt12600">
+                  <div className="bt12602">
+                    <div
+                      className="bt6474"
+                      style={{ width: "40px", height: "40px" }}
+                    >
+                      <img
+                        data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/17.png"
+                        src={liveSports?.[keys]?.image1}
+                        alt=""
+                        height="40"
+                        width="40"
+                        className="bt6475"
+                      />
+                    </div>
+                  </div>
+                  <div className="bt12603">{liveSports?.[keys]?.player1}</div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <div
+                      data-editor-id="tableOutcomePlate"
+                      className="bt6588  "
+                      style={{ flexBasis: "20%" }}
+                    >
+                      <div className={`bt6592 bt12699 odds_back  `}>
+                        <span
+                          className={`mdc-button__label  `}
+                          style={{ verticalAlign: "middle", width: "100%" }}
+                        >
+                          <h4>
+                            {" "}
+                            {
+                              liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]
+                                ?.price
+                            }
+                          </h4>
+                          <p className="odds_volume">
+                            {
+                              liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]
+                                ?.size?.split('.')?.[0]
+                            }
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      data-editor-id="tableOutcomePlate"
+                      className="bt6588  "
+                      style={{ flexBasis: "20%" }}
+                    >
+                      <div className={`bt6592 bt12699 odds_lay  `}>
+                        <span
+                          className={`mdc-button__label  `}
+                          style={{ verticalAlign: "middle", width: "100%" }}
+                        >
+                          <h4>
+                            {" "}
+                            {
+                              liveSports?.[keys]?.[0]?.ex?.availableToLay?.[0]
+                                ?.price
+                            }
+                          </h4>
+                          <p className="odds_volume">
+                            {
+                              liveSports?.[keys]?.[0]?.ex?.availableToLay?.[0]
+                                ?.size?.split('.')?.[0]
+                            }
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bt12593">
+                <div className="bt12613">
+                  <svg
+                    className="bt12614"
+                    data-cy="ic-live-simple"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="#FF4E4E"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      fill: "rgb(255, 78, 78)",
+                      color: "rgb(255, 78, 78)",
+                      width: "auto",
+                      height: "16px",
+                    }}
+                  >
+                    <path d="M12.9628 3.20912C12.6766 2.93029 12.2125 2.93029 11.9263 3.20912C11.6401 3.48794 11.6401 3.94001 11.9263 4.21883C12.436 4.71538 12.8404 5.30487 13.1163 5.95365C13.3921 6.60242 13.5341 7.29777 13.5341 8C13.5341 8.70223 13.3921 9.39758 13.1163 10.0464C12.8404 10.6951 12.436 11.2846 11.9263 11.7812C11.6401 12.06 11.6401 12.5121 11.9263 12.7909C12.2125 13.0697 12.6766 13.0697 12.9628 12.7909C13.6087 12.1617 14.121 11.4148 14.4706 10.5928C14.8201 9.77079 15 8.88975 15 8C15 7.11025 14.8201 6.22921 14.4706 5.40719C14.121 4.58517 13.6087 3.83827 12.9628 3.20912Z"></path>
+                    <path d="M10.0422 5.11529C10.3284 4.83647 10.7925 4.83647 11.0787 5.11529C11.4708 5.49724 11.7818 5.95068 11.994 6.44972C12.2062 6.94876 12.3155 7.48363 12.3155 8.02379C12.3155 8.56395 12.2062 9.09881 11.994 9.59786C11.7818 10.0969 11.4708 10.5503 11.0787 10.9323C10.7925 11.2111 10.3284 11.2111 10.0422 10.9323C9.75595 10.6535 9.75595 10.2014 10.0422 9.92257C10.2982 9.67322 10.5012 9.37719 10.6397 9.0514C10.7783 8.72561 10.8496 8.37642 10.8496 8.02379C10.8496 7.67115 10.7783 7.32197 10.6397 6.99617C10.5012 6.67038 10.2982 6.37436 10.0422 6.12501C9.75595 5.84618 9.75595 5.39412 10.0422 5.11529Z"></path>
+                    <path d="M8.05198 9.51147C8.90891 9.51147 9.60359 8.83477 9.60359 8.00002C9.60359 7.16526 8.90891 6.48856 8.05198 6.48856C7.19504 6.48856 6.50036 7.16526 6.50036 8.00002C6.50036 8.83477 7.19504 9.51147 8.05198 9.51147Z"></path>
+                    <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
+                    <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
+                  </svg>
+                  <div
+                    className="bt6541 bt12616"
+                    data-editor-id="eventCardStatusLabel"
+                  >
+                    {liveSports?.[keys]?.timeStatus}
+                  </div>
+                </div>
+                {/* <div className="bt12617 bt12594">
+                {"score?.team1Score" && (
+                  <div
+                    className="bt12618 bt12619"
+                    data-editor-id="scoreBoardScore"
+                  >
+                    {"score?.team1Score"}
+                  </div>
+                )}
 
-        /* Another card design */
+                {"score?.team1Score" && <div className="bt12620">:</div>}
+
+                {"score?.team2Score" && (
+                  <div
+                    className="bt12618 bt12619"
+                    data-editor-id="scoreBoardScore"
+                  >
+                    {"score?.team2Score"}
+                  </div>
+                )}
+              </div> */}
+              </div>
+              <div className="bt12593">
+                <div className="bt12600 bt12601">
+                  <div className="bt12602">
+                    <div
+                      className="bt6474"
+                      style={{ width: "40px", height: "40px" }}
+                    >
+                      <img
+                        data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/72.png"
+                        src={liveSports?.[keys]?.image2}
+                        alt=""
+                        height="40"
+                        width="40"
+                        className="bt6475"
+                      />
+                    </div>
+                  </div>
+                  <div className="bt12603">{liveSports?.[keys]?.player2?.slice(0,10)}</div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <div
+                      data-editor-id="tableOutcomePlate"
+                      className="bt6588  "
+                      style={{ flexBasis: "20%" }}
+                    >
+                      <div className={`bt6592 bt12699 odds_back  `}>
+                        <span
+                          className={`mdc-button__label  `}
+                          style={{ verticalAlign: "middle", width: "100%" }}
+                        >
+                          <h4>
+                            {" "}
+                            {
+                              liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]
+                                ?.price
+                            }
+                          </h4>
+                          <p className="odds_volume">
+                            {
+                              liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]
+                                ?.size?.split('.')?.[0]
+                            }
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      data-editor-id="tableOutcomePlate"
+                      className="bt6588  "
+                      style={{ flexBasis: "20%" }}
+                    >
+                      <div className={`bt6592 bt12699 odds_lay  `}>
+                        <span
+                          className={`mdc-button__label  `}
+                          style={{ verticalAlign: "middle", width: "100%" }}
+                        >
+                          <h4>
+                            {" "}
+                            {
+                              liveSports?.[keys]?.[1]?.ex?.availableToLay?.[0]
+                                ?.price
+                            }
+                          </h4>
+                          <p className="odds_volume">
+                            {
+                              liveSports?.[keys]?.[1]?.ex?.availableToLay?.[0]
+                                ?.size?.split('.')?.[0]
+                            }
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
         <div
           onClick={() => {
             handleNavigateEventPage(liveSports, keys, navigate);
@@ -161,23 +376,6 @@ const Card = ({ liveSports, keys }) => {
                         )}
                       </span>
                       <span className="bt255 bt258">
-                        {/* Serbia */}
-                        {/* <svg
-                        className="bt256"
-                        data-cy="ic-rounded-arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        style={{
-                          fill: "currentcolor",
-                          color: "inherit",
-                          width: "auto",
-                          height: "8px",
-                        }}
-                      >
-                        <path d="M8.7542 11.1529C8.35634 11.6157 7.64366 11.6157 7.2458 11.1529L4.24545 7.66298C3.68586 7.01207 4.14485 6 4.99964 6L11.0004 6C11.8551 6 12.3141 7.01207 11.7546 7.66298L8.7542 11.1529Z"></path>
-                      </svg> */}
                         {liveSports[keys]?.seriesName}
                       </span>
                     </div>
@@ -333,37 +531,6 @@ const Card = ({ liveSports, keys }) => {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="bt282" style={{ marginBottom: "0px" }}>
-                      <div className="bt286 bt283">
-                        <div
-                          className="bt289 bt288"
-                          style={{ height: "24px", lineHeight: "24px" }}
-                        >
-                          <img
-                            style={{
-                              objectFit: "contain",
-                              height: "24px",
-                              lineHeight: "24px",
-                            }}
-                            src={liveSports?.[keys]?.image2}
-                            alt=""
-                            height="24"
-                            width="24"
-                            className="bt290"
-                          />
-                        </div>
-                        <div
-                          className="bt287"
-                          style={{
-                            height: "24px",
-                            lineHeight: "24px",
-                            textAlign: "start",
-                          }}
-                        >
-                          {liveSports[keys]?.player2}
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                   <div className="bt285">
                     {liveSports?.[keys]?.eventTypeId == 2 ? (
@@ -516,75 +683,6 @@ const Card = ({ liveSports, keys }) => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="bt348">
-                <div data-simplebar="init" className="bt359 bt310">
-                  <div
-                    className="simplebar-wrapper"
-                    style={{ margin: "0px" }}
-                  >
-                    <div className="simplebar-height-auto-observer-wrapper">
-                      <div className="simplebar-height-auto-observer"></div>
-                    </div>
-                    <div className="simplebar-mask">
-                      <div
-                        className="simplebar-offset"
-                        style={{ right: "0px", bottom: "0px" }}
-                      >
-                        <div
-                          className="simplebar-content-wrapper"
-                          role="region"
-                          aria-label="scrollable content"
-                          style={{
-                            height: "auto",
-                            overflow: "hidden",
-                          }}
-                        >
-                          <div
-                            className="simplebar-content"
-                            style={{ padding: "0px" }}
-                          >
-                            <div
-                              className="bt309"
-                              style={{
-                                height: "0px",
-                                overflow: "hidden",
-                                display: "none",
-                                transition: "height 0.3s linear 0s",
-                              }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="simplebar-placeholder"
-                      style={{ width: "396px", height: "0px" }}
-                    ></div>
-                  </div>
-                  <div
-                    className="simplebar-track simplebar-horizontal"
-                    style={{ visibility: "hidden" }}
-                  >
-                    <div
-                      className="simplebar-scrollbar"
-                      style={{ width: "0px", display: "none" }}
-                    ></div>
-                  </div>
-                  <div
-                    className="simplebar-track simplebar-vertical"
-                    style={{ visibility: "hidden" }}
-                  >
-                    <div
-                      className="simplebar-scrollbar"
-                      style={{ height: "0px", display: "none" }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="bt349 bt355 bt353"></div>
-                <div className="bt350 bt356 bt353"></div>
-                <div className="bt351 bt357 bt354"></div>
-                <div className="bt352 bt358 bt354"></div>
-              </div> */}
               </div>
             </div>
           </div>
