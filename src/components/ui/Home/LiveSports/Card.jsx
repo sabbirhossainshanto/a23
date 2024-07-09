@@ -347,7 +347,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
             </div>
             <div
               className="bt12593"
-              style={{ position: "absolute", top: "50px" }}
+              style={{ position: "absolute" }}
             >
               <div className="bt12613">
                 {liveSports?.[keys]?.inPlay == 1 && (

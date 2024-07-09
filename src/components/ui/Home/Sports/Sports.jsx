@@ -20,7 +20,7 @@ const Sports = ({ sports,sportsType }) => {
   }
 
   return (
-    <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
+    <div style={{display:'flex',flexDirection:'column',gap:'15px'}}>
       {sports && Object.values(sports).length > 0
         ? filterSports
             ?.sort((keyA, keyB) => {
