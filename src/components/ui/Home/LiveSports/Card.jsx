@@ -124,7 +124,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                             fill: "currentcolor",
                             color: "inherit",
                             width: "auto",
-                            height: "16px",
+                            height: "13px",
                           }}
                         >
                           <path
@@ -153,7 +153,7 @@ const Card = ({ liveSports, keys, sportsType }) => {
                           </svg>
                         )} */}
                     </span>
-                    <span className="bt255 bt258">
+                    <span style={{fontSize:'10px'}} className="bt255 bt258">
                       {liveSports[keys]?.seriesName}
                     </span>
                   </div>
