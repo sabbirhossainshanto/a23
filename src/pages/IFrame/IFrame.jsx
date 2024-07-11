@@ -4,14 +4,13 @@ import handleEncryptData from "../../utils/handleEncryptData";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API, Settings } from "../../api";
-import useContextState from "../../hooks/useContextState";
 import Loader from "../../components/ui/Loader/Loader";
 
 const IFrame = () => {
   const [loading, setLoading] = useState(false);
   const [iFrame, setIFrame] = useState("");
   const { gameId } = useParams();
-  const { token } = useContextState();
+ const token = localStorage.getItem('token')
 
   /* get iframe url */
   useEffect(() => {
@@ -42,7 +41,7 @@ const IFrame = () => {
       }
     };
     getCasinoVideo();
-  }, [token, gameId]);
+  }, [gameId,token]);
 
   /* handle loading animation */
   if (loading) {
