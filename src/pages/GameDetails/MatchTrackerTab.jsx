@@ -42,12 +42,12 @@ const MatchTrackerTab = ({ score }) => {
 
   return (
     <>
-      {score?.hasVideo || score?.tracker ? (
+      {score &&  score?.hasVideo || score?.tracker ? (
         <div className="bt12499">
           <div className="bt12630 bt12632 bt12631">
             <div className="bt12633" data-editor-id="matchTrackerTabs">
               <div className="bt12634">
-                {score?.hasVideo && (
+                {score  && score?.hasVideo && (
                   <div
                     onClick={() => handleToggle("video")}
                     className="bt12843 bt12848 bt12844 bt12845"
@@ -73,7 +73,7 @@ const MatchTrackerTab = ({ score }) => {
                     <span className="bt12847">Video</span>
                   </div>
                 )}
-                {score?.tracker !== null && (
+                { score && score?.tracker !== null && (
                   <div
                     onClick={() => handleToggle("tracker")}
                     className="bt12843 bt12848 bt12844 bt12845"
@@ -107,7 +107,7 @@ const MatchTrackerTab = ({ score }) => {
               </div>
             </div>
             <div>
-              {score?.tracker && toggle === "tracker" && (
+              {score &&  score?.tracker && toggle === "tracker" && (
                 <div
                   data-editor-id="matchTrackerWidget"
                   className="bt12646 bt12647"
@@ -124,7 +124,7 @@ const MatchTrackerTab = ({ score }) => {
                 </div>
               )}
 
-              {iFrameUrl?.url && toggle === "video" && score?.hasVideo && (
+              {score && iFrameUrl?.url && toggle === "video" && score?.hasVideo && (
                 <div
                   data-editor-id="matchTrackerWidget"
                   style={{

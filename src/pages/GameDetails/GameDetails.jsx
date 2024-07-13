@@ -42,7 +42,7 @@ const GameDetails = () => {
   }, [eventId, eventTypeId]);
 
   useEffect(() => {
-    if (!tokenLoading && !Settings.balanceApiLoop) {
+    if (!tokenLoading && !Settings?.balanceApiLoop) {
       refetchBalance();
     }
   }, []);
@@ -56,7 +56,7 @@ const GameDetails = () => {
       {eventsData?.score && (
         <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
       )}
-      <MatchTrackerTab score={eventsData?.score} match_odds={match_odds} />
+      <MatchTrackerTab score={eventsData?.score}/>
       {eventsData?.sportsbook?.Result && (
         <Odds
         refetchCurrentBets={refetchCurrentBets}

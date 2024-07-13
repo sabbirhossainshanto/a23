@@ -10,13 +10,13 @@ const ScoreCardSlider = () => {
   const navigate = useNavigate();
   const SportsLength =
     sports &&
-    Object.keys(sports)?.filter((key) => {
+    Object?.keys(sports)?.filter((key) => {
       return sports?.[key]?.visible === true;
-    }).length;
+    })?.length;
 
   return (
     <>
-      {SportsLength > 1 && (
+      {sports && SportsLength > 1 && (
         <div className="bt12496">
           <div className="bt12506" data-editor-id="horizontalNavigation">
             <div
@@ -51,16 +51,16 @@ const ScoreCardSlider = () => {
                 <div className="bt6454">
                   <div className="bt6453" style={{ height: "58px" }}>
                     <div className="bt12511">
-                      {sports && Object.values(sports).length > 0
-                        ? Object.keys(sports)
+                      {sports && Object?.values(sports)?.length > 0
+                        ? Object?.keys(sports)
                             ?.filter((key) => {
                               return sports?.[key]?.visible === true;
                             })
                             .sort(
                               (keyA, keyB) =>
-                                sports[keyA].sort - sports[keyB].sort
+                                sports?.[keyA]?.sort - sports?.[keyB]?.sort
                             )
-                            .map((key, index) => {
+                            ?.map((key, index) => {
                               return (
                                 <SwiperSlide
                                   onClick={() => {
