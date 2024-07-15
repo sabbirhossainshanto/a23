@@ -51,5 +51,8 @@ export const Settings = {
   otpless:"",
   paymentIntent:"",
   betFairCashOut:"",
+  logoFormat:"",
+  logoHeight:"",
+  logoWidth:""
 
 };

@@ -63,7 +63,16 @@ const Header = () => {
       >
         <div className="nologin-header-wrap headerBG">
           <Link onClick={() => setSportsType(0)} to="/">
-            <img alt="logo" className="header-logo" src={logo} />
+            <img
+              alt="logo"
+              style={{
+                height: `${Settings.logoHeight}px`,
+                width: `${Settings.logoWidth}px`,
+                objectFit:'contain'
+              }}
+              className="header-logo"
+              src={logo}
+            />
           </Link>
 
           <div className="mobile-nologin-header-wrap">

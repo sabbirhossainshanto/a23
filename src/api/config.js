@@ -56,6 +56,9 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.otpless = data?.result?.settings?.otpless;
         Settings.paymentIntent = data?.result?.settings?.paymentIntent;
         Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
+        Settings.logoFormat = data?.result?.logo?.format;
+        Settings.logoHeight = data?.result?.logo?.height;
+        Settings.logoWidth = data?.result?.logo?.width;
 
         setNoticeLoaded(true);
       }

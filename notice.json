@@ -19,7 +19,11 @@
       "otpless": true,
       "paymentIntent": false,
       "betFairCashOut": true
-     
+    },
+    "logo": {
+      "height": 28,
+      "width": 191,
+      "format": "png"
     },
     "endpoint": {
       "login": "https://api7.live/api/account/diamond/login",
