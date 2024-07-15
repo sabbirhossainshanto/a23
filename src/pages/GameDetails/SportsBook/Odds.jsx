@@ -71,13 +71,13 @@ const Odds = ({
   useEffect(() => {
     const filterMatch_odds = data?.filter(
       (match_odd) =>
-        match_odd.btype === "MATCH_ODDS" && match_odd.visible == true
+        match_odd?.btype === "MATCH_ODDS" && match_odd?.visible == true
     );
     setMatch_odds(filterMatch_odds);
 
     const bookmarkerFilter = data?.filter(
       (bookmarker) =>
-        bookmarker.btype === "BOOKMAKER" && bookmarker.visible == true
+        bookmarker?.btype === "BOOKMAKER" && bookmarker?.visible == true
     );
     setBookmarker(bookmarkerFilter);
 
@@ -89,9 +89,9 @@ const Odds = ({
 
     const normalFilter = data?.filter(
       (normal) =>
-        normal.btype === "FANCY" &&
-        normal.tabGroupName === "Normal" &&
-        normal.visible == true
+        normal?.btype === "FANCY" &&
+        normal?.tabGroupName === "Normal" &&
+        normal?.visible == true
     );
     setNormal(normalFilter);
 

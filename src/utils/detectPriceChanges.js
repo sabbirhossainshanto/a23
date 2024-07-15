@@ -12,7 +12,7 @@ export const detectPriceChanges = (
       const previousRunner = previousData[index]?.runners[runnerIndex];
 
       runner?.back?.forEach((backItem, backIndex) => {
-        const previousBackItem = previousRunner?.back[backIndex];
+        const previousBackItem = previousRunner?.back?.[backIndex];
 
         if (backItem?.price !== previousBackItem?.price) {
           newChangedPrices[`back-${runner?.id}-${backIndex}`] = true;
@@ -26,7 +26,7 @@ export const detectPriceChanges = (
       });
 
       runner?.lay?.forEach((layItem, layIndex) => {
-        const previousLayItem = previousRunner?.lay[layIndex];
+        const previousLayItem = previousRunner?.lay?.[layIndex];
 
         if (layItem?.price !== previousLayItem?.price) {
           newChangedPrices[`lay-${runner?.id}-${layIndex}`] = true;

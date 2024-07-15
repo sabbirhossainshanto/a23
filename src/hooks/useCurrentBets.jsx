@@ -1,17 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { API, Settings } from "../api";
-import useContextState from "./useContextState";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
 const useCurrentBets = (eventId) => {
-  const { token, tokenLoading } = useContextState();
- 
+ const token = localStorage.getItem('token')
   /* Fetch Current Bets */
   const { data: myBets = [], refetch: refetchCurrentBets } = useQuery({
     queryKey: ["currentBets"],
-    /* Enable when  token available */
-    enabled: !tokenLoading,
     queryFn: async () => {
       try {
         const generatedToken = handleRandomToken();

@@ -63,12 +63,11 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
     }
   };
 
- 
   const handleLadder = (marketId) => {
     const generatedToken = handleRandomToken();
     const encryptedData = handleEncryptData({
-      token:generatedToken,
-      site:Settings.siteUrl
+      token: generatedToken,
+      site: Settings.siteUrl,
     });
     fetch(`${API.ladder}/${marketId}`, {
       method: "POST",
@@ -85,12 +84,10 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
       });
   };
 
- 
-
   return (
     <>
       {ladderData?.length > 0 && (
-      <Ladder ladderData={ladderData} setLadderData={setLadderData} />
+        <Ladder ladderData={ladderData} setLadderData={setLadderData} />
       )}
       <div className="bt12687">
         <div className="bt12695">
@@ -107,7 +104,9 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                 <IoMdArrowDropup size={20} />
               )}
             </div>
-            <span style={{fontSize:"9px",color:"#959595"}}> Max: {normal?.[0]?.maxLiabilityPerBet}</span>
+            <span style={{ fontSize: "9px", color: "#959595" }}>
+              Max: {normal?.[0]?.maxLiabilityPerBet}
+            </span>
           </div>
         </div>
 
@@ -244,12 +243,10 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                     >
                       <span className={`mdc-button__label `}>
                         <h4>
-                          {" "}
                           {!isRunnerSuspended(games) &&
                             games?.runners?.[0]?.back?.[0]?.line}
                         </h4>
                         <p className="odds_volume">
-                          {" "}
                           {!isRunnerSuspended(games) &&
                             games?.runners?.[0]?.back[0]?.price}
                         </p>

@@ -94,7 +94,7 @@ const MatchOdds = ({
   };
 
   function onlyOnePositive(arr) {
-    let positiveCount = arr.filter((num) => num > 0).length;
+    let positiveCount = arr?.filter((num) => num > 0).length;
     return positiveCount === 1;
   }
 
@@ -107,7 +107,7 @@ const MatchOdds = ({
     ) {
       match_odds.forEach((game) => {
         const runners = game?.runners || [];
-        if (runners.length === 2) {
+        if (runners?.length === 2) {
           const runner1 = runners[0];
           const runner2 = runners[1];
           const pnl1 = pnlBySelection?.find(
@@ -138,7 +138,7 @@ const MatchOdds = ({
 
   return (
     <>
-      {match_odds?.map((games, i) => {
+      {match_odds && match_odds?.map((games, i) => {
         const teamProfitForGame = teamProfit?.find(
           (profit) =>
             profit?.gameId === games?.id && profit?.isOnePositiveExposure
