@@ -56,7 +56,7 @@ const GameDetails = () => {
       {eventsData?.score && (
         <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
       )}
-      <MatchTrackerTab score={eventsData?.score}/>
+      <MatchTrackerTab eventTypeId={eventTypeId} score={eventsData?.score}/>
       {eventsData?.sportsbook?.Result && (
         <Odds
         refetchCurrentBets={refetchCurrentBets}
