@@ -18,7 +18,7 @@ const Sports = ({ sports, sportsType }) => {
       </div>
     );
   }
-  console.log(sports);
+
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>

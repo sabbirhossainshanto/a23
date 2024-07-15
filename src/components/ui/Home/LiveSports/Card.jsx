@@ -2,7 +2,7 @@ import CardOne from "./CardOne";
 // import CardTwo from "./CardTwo";
 
 const Card = ({ liveSports, keys, sportsType }) => {
-  console.log(sportsType);
+  
   return (
     <>
       {/* {liveSports?.[keys]?.visible && (
