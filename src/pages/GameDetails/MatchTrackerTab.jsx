@@ -39,8 +39,7 @@ const MatchTrackerTab = ({ score }) => {
   }, [eventId, eventTypeId, score, toggle]);
 
   return (
-    <>
-      {eventTypeId != 4 && (
+ 
         <>
           {(score && score?.hasVideo) || score?.tracker ? (
             <div className="bt12499">
@@ -157,8 +156,7 @@ const MatchTrackerTab = ({ score }) => {
             </div>
           ) : null}
         </>
-      )}
-    </>
+   
   );
 };
 
