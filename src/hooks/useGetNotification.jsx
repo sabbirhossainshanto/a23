@@ -6,7 +6,12 @@ import useContextState from "./useContextState";
 
 const useGetNotification = () => {
   const { token } = useContextState();
-  const { data: notification = [], refetch: refetchNotification } = useQuery({
+  const {
+    data: notification = "",
+    refetch: refetchNotification,
+    isFetching: isFetchingNotification,
+    isFetched,
+  } = useQuery({
     queryKey: ["notifications"],
     queryFn: async () => {
       try {
@@ -34,7 +39,13 @@ const useGetNotification = () => {
     gcTime: 0,
     refetchInterval: 60000,
   });
-  return { notification, refetchNotification };
+
+  return {
+    notification,
+    refetchNotification,
+    isFetchingNotification,
+    isFetched,
+  };
 };
 
 export default useGetNotification;

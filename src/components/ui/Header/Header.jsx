@@ -14,15 +14,15 @@ const Header = () => {
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
   const storedWallet = localStorage.getItem("wallet");
   const navigate = useNavigate();
-  /* get balance data */
+  const [showNotification, setShowNotification] = useState(false);
   const { balanceData } = useBalance();
   const { bonusBalanceData } = useBonusBalance();
-  const { notification } = useGetNotification();
+  const { notification, isFetchingNotification, isFetched } =
+    useGetNotification();
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
   const storedNotification = sessionStorage.getItem("notification");
 
   useEffect(() => {
@@ -33,14 +33,18 @@ const Header = () => {
 
   useEffect(() => {
     if (notification?.length > 0 && storedNotification && !showNotification) {
-      setInterval(() => {
-        const apiNotification = JSON.stringify(notification);
-        if (apiNotification != storedNotification) {
-          setShowNotification(true);
-        }
-      }, 60000);
+      const apiNotification = JSON.stringify(notification);
+      if (apiNotification != storedNotification) {
+        setShowNotification(true);
+      }
     }
-  }, [notification, showNotification, storedNotification]);
+  }, [
+    notification,
+    showNotification,
+    storedNotification,
+    isFetched,
+    isFetchingNotification,
+  ]);
 
   const closeNotification = () => {
     setShowNotification(false);
