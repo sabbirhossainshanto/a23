@@ -9,6 +9,7 @@ import AEDRules from "../../modal/AEDRules";
 import useBonusBalance from "../../../hooks/useBonusBalance";
 import Marquee from "react-fast-marquee";
 import { RxCross2 } from "react-icons/rx";
+import useGetNotification from "../../../hooks/useGetNotification";
 const Header = () => {
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
   const storedWallet = localStorage.getItem("wallet");
@@ -16,21 +17,34 @@ const Header = () => {
   /* get balance data */
   const { balanceData } = useBalance();
   const { bonusBalanceData } = useBonusBalance();
+  const { notification } = useGetNotification();
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showMarquee, setShowMarquee] = useState(false);
-  useEffect(() => {
-    const hasMarqueeShown = sessionStorage.getItem("hasMarqueeShown");
-    if (!hasMarqueeShown) {
-      setShowMarquee(true);
-    }
-  }, []);
+  const [showNotification, setShowNotification] = useState(false);
+  const storedNotification = sessionStorage.getItem("notification");
 
-  const closeMarquee = () => {
-    setShowMarquee(false);
-    sessionStorage.setItem("hasMarqueeShown", "true");
+  useEffect(() => {
+    if (!storedNotification) {
+      setShowNotification(true);
+    }
+  }, [storedNotification]);
+
+  useEffect(() => {
+    if (notification && storedNotification && !showNotification) {
+      setTimeout(() => {
+        const apiNotification = JSON.stringify(notification);
+        if (apiNotification != storedNotification) {
+          setShowNotification(true);
+        }
+      }, 60000);
+    }
+  }, [notification, showNotification, storedNotification]);
+
+  const closeNotifation = () => {
+    setShowNotification(false);
+    sessionStorage.setItem("notification", JSON.stringify(notification));
   };
 
   useEffect(() => {
@@ -75,7 +89,7 @@ const Header = () => {
           !location.pathname.includes("/casino") ? "show" : ""
         }`}
       >
-        {showMarquee && (
+        {showNotification && notification && (
           <div
             style={{
               padding: "2px 5px",
@@ -83,16 +97,14 @@ const Header = () => {
               alignItems: "center",
               justifyContent: "space-between",
               gap: "20px",
-              fontSize:'11px'
+              fontSize: "11px",
             }}
           >
             <Marquee>
-              Good news! The premium market is now a 24/7 service in our
-              exchange (P). Our exclusive premium market for (SRL) is now
-              started in our exchange. Dream big, win big!
-              💰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {notification}{" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </Marquee>
-            <RxCross2 onClick={closeMarquee} size={20} cursor="pointer" />
+            <RxCross2 onClick={closeNotifation} size={20} cursor="pointer" />
           </div>
         )}
         <div className="nologin-header-wrap headerBG">

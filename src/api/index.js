@@ -33,7 +33,8 @@ export const API = {
   pg:"",
   pgStatus:"",
   liveCasinoWolf:"",
-  slotsWolf:""
+  slotsWolf:"",
+  notification:""
 };
 
 export const Settings = {

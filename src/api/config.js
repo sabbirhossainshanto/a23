@@ -32,6 +32,7 @@ export const getSetApis = (setNoticeLoaded) => {
         API.homeCasino = data?.result?.endpoint?.homeCasino;
         API.depositBreakdown = data?.result?.endpoint?.depositBreakdown;
         API.withdrawBreakdown = data?.result?.endpoint?.withdrawBreakdown;
+        API.notification = data?.result?.endpoint?.notification;
         API.accessToken = data?.result?.endpoint?.accessToken;
         API.ladder = data?.result?.endpoint?.ladder;
         API.forgotPassword = data?.result?.endpoint?.forgotPassword;
