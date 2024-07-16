@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { AndroidView } from "react-device-detect";
 import AEDRules from "../../modal/AEDRules";
 import useBonusBalance from "../../../hooks/useBonusBalance";
-
+import Marquee from "react-fast-marquee";
+import { RxCross2 } from "react-icons/rx";
 const Header = () => {
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
   const storedWallet = localStorage.getItem("wallet");
@@ -19,6 +20,19 @@ const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showMarquee, setShowMarquee] = useState(false);
+  useEffect(() => {
+    const hasMarqueeShown = sessionStorage.getItem("hasMarqueeShown");
+    if (!hasMarqueeShown) {
+      setShowMarquee(true);
+    }
+  }, []);
+
+  const closeMarquee = () => {
+    setShowMarquee(false);
+    sessionStorage.setItem("hasMarqueeShown", "true");
+  };
+
   useEffect(() => {
     const expiryTime = localStorage.getItem("installPromptExpiryTime");
     const currentTime = new Date().getTime();
@@ -61,6 +75,29 @@ const Header = () => {
           !location.pathname.includes("/casino") ? "show" : ""
         }`}
       >
+        {showMarquee && (
+          <div
+            style={{
+              paddingBottom: "10px",
+              paddingTop: "10px",
+              paddingRight: "5px",
+              paddingLeft: "5px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "20px",
+            }}
+          >
+            <Marquee
+        
+            >
+              Good news! The premium market is now a 24/7 service in our
+              exchange (P). Our exclusive premium market for (SRL) is now
+              started in our exchange. Dream big, win big! 💰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </Marquee>
+            <RxCross2 onClick={closeMarquee} size={20} cursor="pointer" />
+          </div>
+        )}
         <div className="nologin-header-wrap headerBG">
           <Link onClick={() => setSportsType(0)} to="/">
             <img
@@ -68,7 +105,7 @@ const Header = () => {
               style={{
                 height: `${Settings.logoHeight}px`,
                 width: `${Settings.logoWidth}px`,
-                objectFit:'contain'
+                objectFit: "contain",
               }}
               className="header-logo"
               src={logo}
