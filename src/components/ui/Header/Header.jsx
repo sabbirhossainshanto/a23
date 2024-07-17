@@ -89,6 +89,9 @@ const Header = () => {
         <AEDRules setShowModal={setShowModal} casinoInfo={casinoInfo} />
       )}
       <div
+        style={{
+          height: `${showNotification && notification ? "130px" : "110px"}`,
+        }}
         className={`mia0b51 mobile-header ${
           !location.pathname.includes("/casino") ? "show" : ""
         }`}
