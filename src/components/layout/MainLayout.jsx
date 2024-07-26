@@ -35,13 +35,16 @@ const MainLayout = () => {
     if (
       !location.pathname.includes("/casino") &&
       !addBank &&
-      !location.pathname.includes("/1" || "/2" || "/4")
+      !location.pathname.includes("/1") &&
+      !location.pathname.includes("/2") &&
+      !location.pathname.includes("/4")
     ) {
       return true;
     } else {
-      false;
+      return false;
     }
   };
+  
 
   return (
     <div
@@ -61,10 +64,13 @@ const MainLayout = () => {
         <Outlet />
       </div>
       {!location.pathname.includes("/casino") &&
-      !addBank &&
-      !location.pathname.includes("/1" || "/2" || "/4") ? (
-        <Footer />
-      ) : null}
+  !addBank &&
+  !location.pathname.includes("/1") &&
+  !location.pathname.includes("/2") &&
+  !location.pathname.includes("/4") ? (
+    <Footer />
+  ) : null}
+
     </div>
   );
 };

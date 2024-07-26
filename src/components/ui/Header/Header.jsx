@@ -78,6 +78,17 @@ const Header = () => {
     }
   };
 
+  const defineHeight = () => {
+    if (location.pathname.includes("/casino")) {
+      return "3rem";
+    }
+    if (showNotification && notification) {
+      return "130px";
+    } else {
+      return "110px";
+    }
+  };
+
   return (
     <>
       {Settings?.apkLink && isModalOpen && (
@@ -90,7 +101,7 @@ const Header = () => {
       )}
       <div
         style={{
-          height: `${showNotification && notification ? "130px" : "110px"}`,
+          height: defineHeight(),
         }}
         className={`mia0b51 mobile-header ${
           !location.pathname.includes("/casino") ? "show" : ""

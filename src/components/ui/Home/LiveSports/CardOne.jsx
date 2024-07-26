@@ -221,10 +221,10 @@ const CardOne = ({ liveSports, keys }) => {
                     <div>{liveSports[keys]?.score?.games_1}</div>
                     <div>{liveSports[keys]?.score?.games_2}</div>
                     <div className="bt1381">
-                      {liveSports[keys]?.score?.total_1}
+                      {liveSports[keys]?.score?.points_1}
                     </div>
                     <div className="bt1381">
-                      {liveSports[keys]?.score?.total_2}
+                      {liveSports[keys]?.score?.points_2}
                     </div>
                     <div
                       className={`${

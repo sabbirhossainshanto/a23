@@ -87,7 +87,7 @@ const CardTwo = ({ liveSports, keys, sportsType }) => {
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
                       <h4 style={{ fontSize: "10px" }}>
-                        {" "}
+                        
                         {
                           liveSports?.[keys]?.[0]?.ex?.availableToBack?.[0]
                             ?.price
@@ -112,7 +112,7 @@ const CardTwo = ({ liveSports, keys, sportsType }) => {
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
                       <h4 style={{ fontSize: "10px" }}>
-                        {" "}
+                       
                         {
                           liveSports?.[keys]?.[0]?.ex?.availableToLay?.[0]
                             ?.price
@@ -225,7 +225,7 @@ const CardTwo = ({ liveSports, keys, sportsType }) => {
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
                       <h4 style={{ fontSize: "10px" }}>
-                        {" "}
+                  
                         {
                           liveSports?.[keys]?.[1]?.ex?.availableToBack?.[0]
                             ?.price
@@ -250,7 +250,7 @@ const CardTwo = ({ liveSports, keys, sportsType }) => {
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
                       <h4 style={{ fontSize: "10px" }}>
-                        {" "}
+                     
                         {
                           liveSports?.[keys]?.[1]?.ex?.availableToLay?.[0]
                             ?.price
@@ -353,7 +353,7 @@ const CardTwo = ({ liveSports, keys, sportsType }) => {
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
                       <h4 style={{ fontSize: "10px" }}>
-                        {" "}
+                        
                         {
                           liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]
                             ?.price
@@ -378,7 +378,7 @@ const CardTwo = ({ liveSports, keys, sportsType }) => {
                       style={{ verticalAlign: "middle", width: "100%" }}
                     >
                       <h4 style={{ fontSize: "10px" }}>
-                        {" "}
+                        
                         {
                           liveSports?.[keys]?.[2]?.ex?.availableToLay?.[0]
                             ?.price

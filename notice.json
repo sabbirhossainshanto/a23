@@ -6,7 +6,7 @@
   "result": {
     "settings": {
       "siteTitle": "a23money",
-      "siteUrl": "a23money.com",
+      "siteUrl": "gamex247.net",
       "referral": true,
       "balanceApiLoop": false,
       "registration": true,
@@ -21,8 +21,8 @@
       "betFairCashOut": true
     },
     "logo": {
-      "height": 28,
-      "width": 191,
+      "height": 55,
+      "width": 125,
       "format": "png"
     },
     "endpoint": {
