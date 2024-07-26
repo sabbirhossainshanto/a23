@@ -13,7 +13,6 @@ import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-pr
 import profileSettings from "../../../src/assets/img/profile-settings.svg";
 import { useEffect } from "react";
 
-
 const Account = () => {
   const { setGetToken } = useContextState();
   const navigate = useNavigate();
@@ -22,8 +21,6 @@ const Account = () => {
   const loginName = localStorage.getItem("loginName");
   /* get balance data */
   const { balanceData, refetchBalance } = useBalance();
-
-
 
   useEffect(() => {
     const intervalId = setInterval(refetchBalance, 5000);
@@ -50,7 +47,7 @@ const Account = () => {
             <div className="card-profile-page-upper-div-left">
               <span
                 className="card-profile-page-upper-div-left-balance"
-                style={{ color: "#000",fontSize:'14px' }}
+                style={{ color: "#000", fontSize: "14px" }}
               >
                 {" "}
                 ₹{balanceData?.availBalance}{" "}
@@ -66,45 +63,8 @@ const Account = () => {
               >
                 {" "}
                 <span> Main Wallet </span>{" "}
-                {/* <input
-                  onChange={(e) => handleToggleBalance(e, "main")}
-                  style={{ cursor: "pointer" }}
-                  type="checkbox"
-                  checked={!storedWallet && wallet === "main"}
-                  name=""
-                  id=""
-                /> */}
               </span>
             </div>
-            {/* <div className="card-profile-page-upper-div-left">
-              <span
-                className="card-profile-page-upper-div-left-balance"
-                style={{ color: "#000" }}
-              >
-                {" "}
-                ₹{balanceData?.availBalance}{" "}
-              </span>
-              <span
-                className="card-profile-page-upper-div-left-main-wallet"
-                style={{
-                  color: "#000",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "5px",
-                }}
-              >
-                {" "}
-                <span> Bonus Wallet </span>{" "}
-                <input
-                  onChange={(e) => handleToggleBalance(e, "bonus")}
-                  style={{ cursor: "pointer" }}
-                  type="checkbox"
-                  checked={storedWallet == "bonus" && wallet === "bonus"}
-                  name=""
-                  id=""
-                />
-              </span>
-            </div> */}
 
             <div
               style={{ display: "flex", alignItems: "center" }}
@@ -160,6 +120,122 @@ const Account = () => {
               <span className="card-profile-image-lower-div-left-text">
                 <span className="text-left-profile" style={{ color: "#000" }}>
                   Free Money
+                </span>
+                <span className="info-profile-left">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="15"
+                    viewBox="0 0 14 15"
+                    fill="none"
+                  >
+                    <g clipPath="url(#clip0_47_4592)">
+                      <path
+                        d="M7.4375 7.41467C7.4375 7.17306 7.24162 6.97717 7 6.97717C6.75838 6.97717 6.5625 7.17306 6.5625 7.41467V10.9147C6.5625 11.1563 6.75838 11.3522 7 11.3522C7.24162 11.3522 7.4375 11.1563 7.4375 10.9147V7.41467Z"
+                        fill="#D1D5DB"
+                      ></path>
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M6.99984 1.72717C3.53655 1.72717 0.729004 4.53472 0.729004 7.99801C0.729004 11.4613 3.53655 14.2688 6.99984 14.2688C10.4631 14.2688 13.2707 11.4613 13.2707 7.99801C13.2707 4.53472 10.4631 1.72717 6.99984 1.72717ZM1.604 7.99801C1.604 5.01797 4.0198 2.60217 6.99984 2.60217C9.97985 2.60217 12.3957 5.01797 12.3957 7.99801C12.3957 10.978 9.97985 13.3938 6.99984 13.3938C4.0198 13.3938 1.604 10.978 1.604 7.99801Z"
+                        fill="#D1D5DB"
+                      ></path>
+                      <path
+                        d="M7.58317 5.66463C7.58317 5.9868 7.32201 6.24797 6.99984 6.24797C6.67766 6.24797 6.4165 5.9868 6.4165 5.66463C6.4165 5.34247 6.67766 5.0813 6.99984 5.0813C7.32201 5.0813 7.58317 5.34247 7.58317 5.66463Z"
+                        fill="#D1D5DB"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_47_4592">
+                        <rect
+                          width="14"
+                          height="14"
+                          fill="white"
+                          transform="translate(0 0.998047)"
+                        ></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+              </span>
+              <span
+                className="card-profile-image-lower-div-left-amount"
+                style={{ color: "#000" }}
+              >
+                ₹ 0
+              </span>
+            </div>
+            <div className="card-profile-image-lower-div-right">
+              <span
+                className="card-profile-image-lower-div-left-text"
+                style={{ color: "#000" }}
+              >
+                Exposure
+              </span>
+              <span
+                className="card-profile-image-lower-div-left-amount"
+                style={{ color: "#000" }}
+              >
+                ₹ {balanceData?.deductedExposure}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="profile-menu-box">
+        <div className="card-profile-page">
+          <div className="card-profile-page-upper-div">
+            <div className="card-profile-page-upper-div-left">
+              <span
+                className="card-profile-page-upper-div-left-balance"
+                style={{ color: "#000", fontSize: "14px" }}
+              >
+                {" "}
+                ₹{balanceData?.availBalance}{" "}
+              </span>
+              <span
+                className="card-profile-page-upper-div-left-main-wallet"
+                style={{
+                  color: "#000",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                {" "}
+                <span> Bonus Wallet </span>{" "}
+              </span>
+            </div>
+
+            <div
+              style={{ display: "flex", alignItems: "center" }}
+              className="card-profile-page-upper-div-right"
+            >
+              <div className="top-user-name-logoutaction">
+                <div className="button-container-profile-page">
+                  <div className="button-container-profile-page-1 active">
+                    <span className="button-container-profile-page-1-icon">
+                      <img src={withdrawIcon} alt="Withdraw" />
+                    </span>
+                    <span className="button-container-profile-page-1-text">
+                      Claim Bonus
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <img
+                loading="lazy"
+                src={profileCardWallet}
+                alt=""
+                style={{ width: "3.5rem", height: "3.01rem" }}
+              />
+            </div>
+          </div>
+          <div className="card-profile-image-lower-div">
+            <div className="card-profile-image-lower-div-left">
+              <span className="card-profile-image-lower-div-left-text">
+                <span className="text-left-profile" style={{ color: "#000" }}>
+                  Claimable Bonus
                 </span>
                 <span className="info-profile-left">
                   <svg
