@@ -12,33 +12,60 @@ import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-pr
 // import profileAccountStatement from "../../../src/assets/img/profile-account-statement.png";
 import profileSettings from "../../../src/assets/img/profile-settings.svg";
 import { useEffect } from "react";
+import useBonusBalance from "../../hooks/useBonusBalance";
+import handleRandomToken from "../../utils/handleRandomToken";
+import axios from "axios";
+import { API } from "../../api";
+import toast from "react-hot-toast";
 
 const Account = () => {
-  const { setGetToken } = useContextState();
+  const { setGetToken, token, setWallet, wallet } = useContextState();
   const navigate = useNavigate();
-  // const storedWallet = localStorage.getItem("wallet");
   /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
+  // const token1 = localStorage.getItem("token");
+  // const bonusToken1 = localStorage.getItem("bonusToken");
+  // console.log(token1 === bonusToken1);
   /* get balance data */
   const { balanceData, refetchBalance } = useBalance();
+  const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
 
   useEffect(() => {
     const intervalId = setInterval(refetchBalance, 5000);
     return () => clearInterval(intervalId);
   }, [refetchBalance]);
 
-  // const handleToggleBalance = (e, type) => {
-  //   const checked = e.target.checked;
-  //   if (checked && type === "main") {
-  //     localStorage.removeItem("wallet");
-  //     setWallet(type);
-  //   } else if (checked && type === "bonus") {
-  //     localStorage.removeItem("wallet");
-  //     localStorage.setItem("wallet", type);
-  //     setWallet(type);
-  //   }
-  // };
+  const handleToggleBalance = (e) => {
+    const checked = e.target.checked;
+    if (checked) {
+      localStorage.setItem("wallet", "bonus");
+      setWallet("bonus");
+      setGetToken((prev) => !prev);
+    } else {
+      localStorage.removeItem("wallet");
+      setWallet("main");
+      setGetToken((prev) => !prev);
+    }
+  };
 
+  const handleBonusToMainWallet = async () => {
+    const generatedToken = handleRandomToken();
+    const encryptedData = handleRandomToken(generatedToken);
+    const res = await axios.post(API.bonusClaim, encryptedData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = res?.data;
+    console.log(result);
+    if (result?.success) {
+      refetchBalance();
+      bonusRefetchBalance();
+      toast.success(result?.result?.message);
+    } else {
+      toast.error(result?.result?.message);
+    }
+  };
   return (
     <div className="p-1 body-profile-page">
       <div className="profile-menu-box">
@@ -191,7 +218,7 @@ const Account = () => {
                 style={{ color: "#000", fontSize: "14px" }}
               >
                 {" "}
-                ₹{balanceData?.availBalance}{" "}
+                ₹{bonusBalanceData?.availBalance}{" "}
               </span>
               <span
                 className="card-profile-page-upper-div-left-main-wallet"
@@ -204,6 +231,12 @@ const Account = () => {
               >
                 {" "}
                 <span> Bonus Wallet </span>{" "}
+                <input
+                  onChange={(e) => handleToggleBalance(e)}
+                  style={{ cursor: "pointer" }}
+                  type="checkbox"
+                  checked={wallet === "bonus"}
+                />
               </span>
             </div>
 
@@ -212,7 +245,27 @@ const Account = () => {
               className="card-profile-page-upper-div-right"
             >
               <div className="top-user-name-logoutaction">
-                <div className="button-container-profile-page">
+                <button
+                  onClick={handleBonusToMainWallet}
+                  disabled={
+                    bonusBalanceData && bonusBalanceData?.claimBonus < 100
+                      ? true
+                      : false
+                  }
+                  style={{
+                    opacity: `${
+                      bonusBalanceData && bonusBalanceData?.claimBonus < 100
+                        ? "0.5"
+                        : "1"
+                    }`,
+                    cursor: `${
+                      bonusBalanceData && bonusBalanceData?.claimBonus < 100
+                        ? "not-allowed"
+                        : "pointer"
+                    }`,
+                  }}
+                  className="button-container-profile-page"
+                >
                   <div className="button-container-profile-page-1 active">
                     <span className="button-container-profile-page-1-icon">
                       <img src={withdrawIcon} alt="Withdraw" />
@@ -221,7 +274,7 @@ const Account = () => {
                       Claim Bonus
                     </span>
                   </div>
-                </div>
+                </button>
               </div>
               <img
                 loading="lazy"
@@ -278,7 +331,7 @@ const Account = () => {
                 className="card-profile-image-lower-div-left-amount"
                 style={{ color: "#000" }}
               >
-                ₹ 0
+                ₹ {bonusBalanceData?.claimBonus}
               </span>
             </div>
             <div className="card-profile-image-lower-div-right">
@@ -292,7 +345,7 @@ const Account = () => {
                 className="card-profile-image-lower-div-left-amount"
                 style={{ color: "#000" }}
               >
-                ₹ {balanceData?.deductedExposure}
+                ₹ {bonusBalanceData?.deductedExposure}
               </span>
             </div>
           </div>

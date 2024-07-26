@@ -6,18 +6,14 @@ import { handleLogOut } from "../utils/handleLogOut";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 import { useNavigate } from "react-router-dom";
-/* Balance api */
+
 const useBalance = () => {
   const { setTokenLoading, setGetToken, token } = useContextState();
   const navigate = useNavigate();
-  // const token = localStorage.getItem("token");
   const { data: balanceData = {}, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
     enabled: token ? true : false,
     queryFn: async () => {
-      if (!token) {
-        return;
-      }
       /* handle random token  */
       const generatedToken = handleRandomToken();
       /* handle encrypt data */

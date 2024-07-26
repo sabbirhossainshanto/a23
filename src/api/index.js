@@ -34,7 +34,8 @@ export const API = {
   pgStatus:"",
   liveCasinoWolf:"",
   slotsWolf:"",
-  notification:""
+  notification:"",
+  bonusClaim:""
 };
 
 export const Settings = {

@@ -61,7 +61,8 @@
       "pgStatus": "https://api7.live/api/exchange/diamond/pgStatus",
       "liveCasinoWolf": "https://api7.live/api/exchange/diamond/liveCasinoWolf",
       "slotsWolf": "https://api7.live/api/exchange/diamond/slotsWolf",
-      "notification":"https://api7.live/api/exchange/diamond/notification"
+      "notification":"https://api7.live/api/exchange/diamond/notification",
+      "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim"
     }
   },
   "success": true

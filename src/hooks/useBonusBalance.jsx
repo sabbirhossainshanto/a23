@@ -8,12 +8,11 @@ import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
 const useBonusBalance = () => {
-  const { setGetToken, wallet, setTokenLoading } = useContextState();
+  const { setGetToken, setTokenLoading } = useContextState();
   const bonusToken = localStorage.getItem("bonusToken");
   /* Bonus balance api */
-  const { data: bonusBalanceData, refetch: bonusRefetchBalance } = useQuery({
+  const { data: bonusBalanceData ={}, refetch: bonusRefetchBalance } = useQuery({
     queryKey: ["bonusBalance"],
-    enabled: wallet === "bonus",
     queryFn: async () => {
       const generatedToken = handleRandomToken();
       const encryptedData = handleEncryptData(generatedToken);
@@ -28,7 +27,6 @@ const useBonusBalance = () => {
         setTokenLoading(true);
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && bonusToken) {
-   
         const data = res.data?.result;
         return data;
       }

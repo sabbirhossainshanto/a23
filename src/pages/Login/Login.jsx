@@ -26,7 +26,7 @@ const Login = () => {
       password: password,
       token: generatedToken,
       site: Settings.siteUrl,
-      b2c:true
+      b2c: true,
     };
     const encryptedData = handleEncryptData(loginData);
     const res = await fetch(API.login, {
@@ -46,6 +46,7 @@ const Login = () => {
           localStorage.setItem("depositMethod", JSON.stringify(res?.result));
         }
       }
+
       /* Set token to localeStorage */
       localStorage.setItem("token", data.result.token);
       /* Set bonus token in locale storage */
@@ -93,7 +94,7 @@ const Login = () => {
       password: "",
       token: generatedToken,
       site: Settings.siteUrl,
-      b2c:true
+      b2c: true,
     });
     fetch(API.login, {
       method: "POST",
@@ -108,6 +109,8 @@ const Login = () => {
         /* Set token to localeStorage */
         localStorage.setItem("token", data.result.token);
         /* Set login name to locale storage */
+        /* Set bonus token in locale storage */
+        localStorage.setItem("bonusToken", data?.result?.bonusToken);
         localStorage.setItem("loginName", data.result.loginName);
         /* set button value to locale storage */
         const buttonValue = JSON.stringify(data.result.buttonValue.game);
