@@ -8,7 +8,8 @@ import handleEncryptData from "../utils/handleEncryptData";
 import { useNavigate } from "react-router-dom";
 
 const useBalance = () => {
-  const { setTokenLoading, setGetToken, token } = useContextState();
+  const { setTokenLoading, setGetToken } = useContextState();
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { data: balanceData = {}, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
