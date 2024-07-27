@@ -244,7 +244,7 @@ const Account = () => {
               style={{ display: "flex", alignItems: "center" }}
               className="card-profile-page-upper-div-right"
             >
-              <div className="top-user-name-logoutaction">
+              <div className="top-user-name-logoutaction" style={{padding:'0px',flexDirection:'column',gap:'3px'}}>
                 <button
                   onClick={handleBonusToMainWallet}
                   disabled={
@@ -263,6 +263,8 @@ const Account = () => {
                         ? "not-allowed"
                         : "pointer"
                     }`,
+                    gridTemplateColumns:"auto",
+                    gridGap:"0px"
                   }}
                   className="button-container-profile-page"
                 >
@@ -275,13 +277,9 @@ const Account = () => {
                     </span>
                   </div>
                 </button>
+                <p style={{fontSize:'11px'}}>Minimum claimable bonus amount : 100</p>
               </div>
-              <img
-                loading="lazy"
-                src={profileCardWallet}
-                alt=""
-                style={{ width: "3.5rem", height: "3.01rem" }}
-              />
+             
             </div>
           </div>
           <div className="card-profile-image-lower-div">
