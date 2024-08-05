@@ -23,9 +23,7 @@ const Account = () => {
   const navigate = useNavigate();
   /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
-  // const token1 = localStorage.getItem("token");
-  // const bonusToken1 = localStorage.getItem("bonusToken");
-  // console.log(token1 === bonusToken1);
+
   /* get balance data */
   const { balanceData, refetchBalance } = useBalance();
   const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
