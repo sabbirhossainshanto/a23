@@ -10,7 +10,7 @@ const CardOne = ({ liveSports, keys }) => {
       }}
       className="bt228"
     >
-      <div className="bt231">
+      <div className="bt231" style={{height:'165px'}}>
         <div className="bt233" data-editor-id="eventCard">
           {/* <div className="bt240">
             <div className="bt244">
@@ -293,13 +293,13 @@ const CardOne = ({ liveSports, keys }) => {
                 paddingLeft: "0px",
               }}
             >
-              <div className="bt317">{liveSports?.[keys]?.[0]?.teamName}</div>
+              {/* <div className="bt317">{liveSports?.[keys]?.[0]?.teamName}</div> */}
 
               {/* {liveSports?.[keys]?.[2] && (
                 <div style={{textAlign:"center"}} className="bt317">{liveSports?.[keys]?.[2]?.teamName}</div>
               )} */}
 
-              <div
+              {/* <div
                 className="bt317"
                 style={{
                   textAlign: `end`,
@@ -307,7 +307,7 @@ const CardOne = ({ liveSports, keys }) => {
                 }}
               >
                 {liveSports?.[keys]?.[1]?.teamName}
-              </div>
+              </div> */}
             </div>
             <div
               style={{
@@ -315,12 +315,14 @@ const CardOne = ({ liveSports, keys }) => {
                 justifyContent: "space-between",
               }}
             >
-              {/* team 1 */}
-              <div style={{ display: "flex", alignItems: "center" }}>
+                 {/* team 1 */}
+                 <div
+                style={{ display: "flex", alignItems: "center", width: "100%" }}
+              >
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "75px", paddingLeft: "0px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_back  `}>
                     <span
@@ -345,7 +347,7 @@ const CardOne = ({ liveSports, keys }) => {
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "75px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_lay  `}>
                     <span
@@ -369,12 +371,18 @@ const CardOne = ({ liveSports, keys }) => {
                 </div>
               </div>
               {/* draw */}
-              {/* {liveSports?.[keys]?.[2] && (
-                <div style={{ display: "flex", alignItems: "center" }}>
+              {
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
                   <div
                     data-editor-id="tableOutcomePlate"
                     className="bt6588  "
-                    style={{ width: "45px" }}
+                    style={{ width: "100%", padding: "0px 2px" }}
                   >
                     <div className={`bt6592 bt12699 odds_back  `}>
                       <span
@@ -401,7 +409,7 @@ const CardOne = ({ liveSports, keys }) => {
                   <div
                     data-editor-id="tableOutcomePlate"
                     className="bt6588  "
-                    style={{ width: "45px", paddingRight: "0px" }}
+                    style={{ width: "100%", padding: "0px 2px" }}
                   >
                     <div className={`bt6592 bt12699 odds_lay  `}>
                       <span
@@ -426,13 +434,15 @@ const CardOne = ({ liveSports, keys }) => {
                     </div>
                   </div>
                 </div>
-              )} */}
+              }
               {/* team 2 */}
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{ display: "flex", alignItems: "center", width: "100%" }}
+              >
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "75px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_back  `}>
                     <span
@@ -457,7 +467,7 @@ const CardOne = ({ liveSports, keys }) => {
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "75px", paddingRight: "0px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_lay  `}>
                     <span
