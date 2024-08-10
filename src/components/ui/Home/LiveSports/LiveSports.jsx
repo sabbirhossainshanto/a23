@@ -2,15 +2,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Card from "./Card";
 const LiveSports = ({ liveSports }) => {
-
+console.log(liveSports);
   /* filtered sports visible = true and inPlay = true  */
   const filteredSports =
     liveSports &&
     Object.values(liveSports).length > 0 &&
     Object.keys(liveSports)?.filter((key) => {
       return (
-        liveSports?.[key]?.visible === true &&
-        liveSports?.[key]?.inPlay === true
+        liveSports?.[key]?.visible === true 
       );
     });
 
