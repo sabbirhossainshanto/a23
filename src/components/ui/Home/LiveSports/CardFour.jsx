@@ -2,26 +2,26 @@ import { useNavigate } from "react-router-dom";
 import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPage";
 
 const CardFour = ({ liveSports, keys }) => {
-  console.log(liveSports);
   const navigate = useNavigate();
   return (
     <div
       onClick={() => {
         handleNavigateEventPage(liveSports, keys, navigate);
       }}
-      style={{ padding: "0px 0px 10px 0px" }}
+      style={{ padding: "0px 0px 10px 0px", cursor: "pointer" }}
       className="bt228"
     >
-      <div className="bt231" style={{ height: "132px" }}>
+      <div className="bt231" style={{ height: "115px" }}>
         <div className="bt233" data-editor-id="eventCard">
           <a
             className="bt248"
             data-editor-id="eventCardContent"
-            style={{ padding: "8px 0 12px 0px" }}
+            style={{ padding: "8px 0px 0px 0px" }}
           >
             <div className="bt235">
               <div className="bt236">
                 <div
+                  style={{ fontSize: "12px" }}
                   className="bt273 bt276"
                   data-editor-id="eventCardStatusLabel"
                 >
@@ -80,6 +80,7 @@ const CardFour = ({ liveSports, keys }) => {
                         height: "24px",
                         lineHeight: "24px",
                         textAlign: "start",
+                        fontSize: "12px",
                       }}
                     >
                       {liveSports[keys]?.eventName}
@@ -99,11 +100,13 @@ const CardFour = ({ liveSports, keys }) => {
               }}
             >
               {/* team 1 */}
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{ display: "flex", alignItems: "center", width: "100%" }}
+              >
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "60px", paddingLeft: "0px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_back  `}>
                     <span
@@ -128,7 +131,7 @@ const CardFour = ({ liveSports, keys }) => {
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "60px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_lay  `}>
                     <span
@@ -153,11 +156,17 @@ const CardFour = ({ liveSports, keys }) => {
               </div>
               {/* draw */}
               {
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
                   <div
                     data-editor-id="tableOutcomePlate"
                     className="bt6588  "
-                    style={{ width: "60px", paddingLeft: "0px" }}
+                    style={{ width: "100%", padding: "0px 2px" }}
                   >
                     <div className={`bt6592 bt12699 odds_back  `}>
                       <span
@@ -184,7 +193,7 @@ const CardFour = ({ liveSports, keys }) => {
                   <div
                     data-editor-id="tableOutcomePlate"
                     className="bt6588  "
-                    style={{ width: "60px", paddingLeft: "0px" }}
+                    style={{ width: "100%", padding: "0px 2px" }}
                   >
                     <div className={`bt6592 bt12699 odds_lay  `}>
                       <span
@@ -211,11 +220,13 @@ const CardFour = ({ liveSports, keys }) => {
                 </div>
               }
               {/* team 2 */}
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{ display: "flex", alignItems: "center", width: "100%" }}
+              >
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "60px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_back  `}>
                     <span
@@ -240,7 +251,7 @@ const CardFour = ({ liveSports, keys }) => {
                 <div
                   data-editor-id="tableOutcomePlate"
                   className="bt6588  "
-                  style={{ width: "60px", paddingRight: "0px" }}
+                  style={{ width: "100%", padding: "0px 2px" }}
                 >
                   <div className={`bt6592 bt12699 odds_lay  `}>
                     <span
