@@ -1,5 +1,3 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
 import Card from "./Card";
 const LiveSports = ({ liveSports }) => {
 console.log(liveSports);
@@ -16,7 +14,7 @@ console.log(liveSports);
   return (
     <>
       {filteredSports?.length > 0 && (
-        <div className="s1710wl3">
+        <div className="s1710wl3" style={{height:'100%'}}>
           <div className="sports-head">
             <div className="title">
               <svg
@@ -41,11 +39,12 @@ console.log(liveSports);
             className="banner-scroll-wrap"
             style={{
               // height: "14.5rem",
-              height: "215px",
+              // height: "215px",
+              height:'100%'
             }}
           >
-            <div className="live-list-wrap" style={{ height: "100%" }}>
-              <Swiper
+            <div className="live-list-wrap" style={{ height: "100%",flexDirection:'column' }}>
+              {/* <Swiper
                 spaceBetween={10}
                 slidesPerView="auto"
                 pagination={{
@@ -70,7 +69,24 @@ console.log(liveSports);
                       </SwiperSlide>
                     );
                   })}
-              </Swiper>
+              </Swiper> */}
+            
+                {filteredSports
+                  .sort(
+                    (keyA, keyB) =>
+                      liveSports[keyA].sort - liveSports[keyB].sort
+                  )
+                  .map((key, index) => {
+                    return (
+                      <div
+                        style={{ borderRadius: "10px", width: "100%" }}
+                        key={index}
+                      >
+                        <Card keys={key} liveSports={liveSports} />
+                      </div>
+                    );
+                  })}
+        
             </div>
           </div>
         </div>
