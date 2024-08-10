@@ -161,6 +161,11 @@ const CardFour = ({ liveSports, keys }) => {
                     display: "flex",
                     alignItems: "center",
                     width: "100%",
+                    opacity: `${
+                      liveSports?.[keys]?.[2]?.ex?.availableToBack?.[0]?.price
+                        ? 1
+                        : 0.5
+                    }`,
                   }}
                 >
                   <div
