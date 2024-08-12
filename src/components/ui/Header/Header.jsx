@@ -80,7 +80,11 @@ const Header = () => {
 
   const defineHeight = () => {
     if (location.pathname.includes("/casino")) {
-      return "3rem";
+      if (showNotification && notification) {
+        return "5rem";
+      } else {
+        return "3rem";
+      }
     }
     if (showNotification && notification) {
       return "130px";

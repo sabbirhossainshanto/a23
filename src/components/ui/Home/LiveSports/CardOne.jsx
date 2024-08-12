@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPage";
 
 const CardOne = ({ liveSports, keys }) => {
+  console.log(liveSports?.[keys]);
   const navigate = useNavigate();
   return (
     <div
