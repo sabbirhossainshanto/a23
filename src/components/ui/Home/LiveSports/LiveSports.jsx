@@ -1,6 +1,5 @@
 import Card from "./Card";
 const LiveSports = ({ liveSports }) => {
-console.log(liveSports);
   /* filtered sports visible = true and inPlay = true  */
   const filteredSports =
     liveSports &&

@@ -11,6 +11,7 @@ import Marquee from "react-fast-marquee";
 import { RxCross2 } from "react-icons/rx";
 import useGetNotification from "../../../hooks/useGetNotification";
 
+
 const Header = () => {
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
   const storedWallet = localStorage.getItem("wallet");
@@ -216,10 +217,8 @@ const Header = () => {
         </div>
  
         {!location.pathname.includes("/casino") && (
-              
-
-          <div className="mszcttz">
-   
+         
+       <div className="mszcttz">
             <div className="mobile-top-navigate-list">
               <button
                 onClick={() => {
@@ -518,8 +517,8 @@ const Header = () => {
                 <span>Slots</span>
               </button>
             </div>
-        
           </div>
+           
       
 
         )}

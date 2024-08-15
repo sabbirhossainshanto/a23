@@ -30,7 +30,7 @@
       "balance": "https://api7.live/api/account/diamond/balance",
       "groupSportsBook": "https://cache.api7.live/api/exchange/diamond/group/sportsbook",
       "banner": "https://api7.live/api/exchange/diamond/banner",
-      "eventDetails": "https://cache7.live/api/exchange/diamond/odds/event",
+      "eventDetails": "https://cache7.live/api/exchange/encrypted/odds/event",
       "bankAccount": "https://api7.live/api/exchange/diamond/bankAccount",
       "otp": "https://api7.live/api/exchange/diamond/otp",
       "whatsapp": "https://api7.live/api/account/diamond/whatsapp",
