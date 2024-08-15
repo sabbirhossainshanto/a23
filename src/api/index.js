@@ -35,7 +35,8 @@ export const API = {
   liveCasinoWolf:"",
   slotsWolf:"",
   notification:"",
-  bonusClaim:""
+  bonusClaim:"",
+  royalCasino:""
 };
 
 export const Settings = {

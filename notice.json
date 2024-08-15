@@ -62,7 +62,8 @@
       "liveCasinoWolf": "https://api7.live/api/exchange/diamond/liveCasinoWolf",
       "slotsWolf": "https://api7.live/api/exchange/diamond/slotsWolf",
       "notification":"https://api7.live/api/exchange/diamond/notification",
-      "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim"
+      "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim",
+      "royalCasino": "https://api7.live/api/exchange/diamond/royalCasino"
     }
   },
   "success": true

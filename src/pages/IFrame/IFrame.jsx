@@ -10,7 +10,7 @@ const IFrame = () => {
   const [loading, setLoading] = useState(false);
   const [iFrame, setIFrame] = useState("");
   const { gameId } = useParams();
- const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   /* get iframe url */
   useEffect(() => {
@@ -26,7 +26,14 @@ const IFrame = () => {
         site: Settings.siteUrl,
         casinoCurrency: Settings.casinoCurrency,
       });
-
+      console.log({
+        gameId: gameId,
+        token: generatedToken,
+        isHome: false,
+        mobileOnly: true,
+        site: Settings.siteUrl,
+        casinoCurrency: Settings.casinoCurrency,
+      });
 
       try {
         const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
@@ -41,7 +48,7 @@ const IFrame = () => {
       }
     };
     getCasinoVideo();
-  }, [gameId,token]);
+  }, [gameId, token]);
 
   /* handle loading animation */
   if (loading) {

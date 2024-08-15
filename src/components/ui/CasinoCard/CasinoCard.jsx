@@ -37,7 +37,7 @@ const CasinoCard = ({ games, title }) => {
         navigate("/login");
       }
     }
-    if (title === "Indian") {
+    if (title === "Indian" || title === 'Royal') {
       if (wallet === "bonus") {
         setShowWarning(true);
       } else {
