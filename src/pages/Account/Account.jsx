@@ -64,6 +64,8 @@ const Account = () => {
       toast.error(result?.result?.message);
     }
   };
+
+
   return (
     <div className="p-1 body-profile-page">
       <div className="profile-menu-box">
@@ -347,7 +349,9 @@ const Account = () => {
           </div>
         </div>
       </div>
-      <div className="profile-menu-box">
+    {
+      wallet === 'main' && (
+        <div className="profile-menu-box">
         <div className="button-container-profile-page">
           <div
             onClick={() => {
@@ -377,9 +381,13 @@ const Account = () => {
           </div>
         </div>
       </div>
+      )
+    }
       <div className="profile-menu-box">
         <ul className="profile-menu-container active">
-          <li
+          {
+            wallet === 'main' && (
+              <li
             onClick={() => {
               navigate("/deposit-withdraw-report");
             }}
@@ -418,6 +426,8 @@ const Account = () => {
               </div>
             </div>
           </li>
+            )
+          }
           <li
             onClick={() => {
               navigate("/open-bets");
@@ -560,43 +570,45 @@ const Account = () => {
               </div>
             </div>
           </li> */}
-          <li
-            onClick={() => {
-              navigate("/change-password");
-            }}
-            className="profile-menu-items ng-star-inserted"
-          >
-            <div className="routingProfile">
-              <div className="profile-menu-items-left">
-                <span className="profile-menu-icon">
-                  <img
-                    loading="lazy"
-                    alt=""
-                    style={{ height: "24px" }}
-                    src={profileSettings}
-                  />
-                  <div className="skeleton-img ng-star-inserted">
-                    <div className="moving-strip"></div>
-                  </div>
-                </span>
-                <span className="profile-menu-left-text">Change Password</span>
-              </div>
-              <div className="profile-menu-items-right">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path
-                    d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
-                    fill="#617293"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </li>
+     {wallet === 'main' && (
+           <li
+           onClick={() => {
+             navigate("/change-password");
+           }}
+           className="profile-menu-items ng-star-inserted"
+         >
+           <div className="routingProfile">
+             <div className="profile-menu-items-left">
+               <span className="profile-menu-icon">
+                 <img
+                   loading="lazy"
+                   alt=""
+                   style={{ height: "24px" }}
+                   src={profileSettings}
+                 />
+                 <div className="skeleton-img ng-star-inserted">
+                   <div className="moving-strip"></div>
+                 </div>
+               </span>
+               <span className="profile-menu-left-text">Change Password</span>
+             </div>
+             <div className="profile-menu-items-right">
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="20"
+                 height="20"
+                 viewBox="0 0 20 20"
+                 fill="none"
+               >
+                 <path
+                   d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
+                   fill="#617293"
+                 ></path>
+               </svg>
+             </div>
+           </div>
+         </li>
+     )}
 
           <li
             onClick={() => {

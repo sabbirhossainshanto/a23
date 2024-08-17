@@ -163,7 +163,7 @@ const Header = () => {
                     ? balanceData?.availBalance
                     : bonusBalanceData?.availBalance}
                   <br />
-                  Exp :{" "}
+                  Exp:{" "}
                   {!storedWallet && wallet === "main"
                     ? balanceData?.deductedExposure
                     : bonusBalanceData?.deductedExposure}
