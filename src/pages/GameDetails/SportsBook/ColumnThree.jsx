@@ -72,7 +72,7 @@ const ColumnThree = ({
           <div style={{ overflow: "visible" }}>
             <div className="bt12683">
               {item?.Items?.map((column, i) => {
-                // console.log(item);
+      
                 return (
                   <div
                     onClick={() =>

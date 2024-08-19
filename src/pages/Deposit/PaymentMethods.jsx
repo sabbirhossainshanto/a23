@@ -75,7 +75,7 @@ const PaymentMethods = ({
   };
 
   const handleVisibleBankMethod = async (e, method) => {
-    console.log(method);
+
     e.preventDefault();
     setTabs(method?.type);
     setPaymentId(method?.paymentId);
@@ -95,7 +95,7 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
-        console.log(data);
+   
         if (Settings?.paymentIntent) {
           setPgPaymentMethods(data?.result);
           setTime(60 * 20);

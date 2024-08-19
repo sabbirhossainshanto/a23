@@ -110,7 +110,7 @@ const ForgotPassword = () => {
     const encryptedData = handleEncryptData(otpData);
     const res = await axios.post(API.otp, encryptedData);
     const data = res.data;
-    console.log(data);
+    
     if (data?.success) {
       setCountDown(45);
       toast.success(data?.result?.message);

@@ -226,7 +226,7 @@ const MatchOdds = ({
               </div>
             </div>
             {games?.runners?.map((runner) => {
-              // console.log(runner);
+  
               const pnl =
                 pnlBySelection?.filter((pnl) => pnl?.RunnerId === runner?.id) ||
                 [];

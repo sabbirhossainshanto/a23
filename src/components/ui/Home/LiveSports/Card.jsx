@@ -4,6 +4,7 @@ import CardOne from "./CardOne";
 
 const Card = ({ liveSports, keys }) => {
   const { sportsType } = useContextState();
+
   return (
     <>
       {liveSports?.[keys]?.visible && sportsType !== 0 ? (

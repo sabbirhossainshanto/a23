@@ -52,7 +52,7 @@ const Account = () => {
       },
     });
     const result = res?.data;
-    console.log(result);
+  
     if (result?.success) {
       refetchBalance();
       bonusRefetchBalance();

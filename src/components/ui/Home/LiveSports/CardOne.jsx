@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPage";
+import useContextState from "../../../../hooks/useContextState";
 
 const CardOne = ({ liveSports, keys }) => {
-  console.log(liveSports?.[keys]);
   const navigate = useNavigate();
+  const {sportsType} = useContextState()
+
   return (
     <div
       onClick={() => {
@@ -11,7 +13,7 @@ const CardOne = ({ liveSports, keys }) => {
       }}
       className="bt228"
     >
-      <div className="bt231" style={{height:'165px'}}>
+      <div className="bt231" style={{ height: "165px" }}>
         <div className="bt233" data-editor-id="eventCard">
           {/* <div className="bt240">
             <div className="bt244">
@@ -152,7 +154,7 @@ const CardOne = ({ liveSports, keys }) => {
                     <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
                     <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
                   </svg>
-                ):null}
+                ) : null}
               </div>
             </div>
             <div className="bt280 bt234">
@@ -216,7 +218,64 @@ const CardOne = ({ liveSports, keys }) => {
                   </div>
                 </div>
               </div>
-              <div className="bt285">
+              {
+                liveSports?.[keys]?.score && sportsType === 2 && (
+                  <div className="bt285">
+                <div data-editor-id="widgetScore" className="bt1379">
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {liveSports?.[keys]?.score?.set1?.map((item, i) => {
+                      return <div key={i}>{item}</div>;
+                    })}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {liveSports?.[keys]?.score?.set2?.map((item, i) => {
+                      return <div key={i}>{item}</div>;
+                    })}
+                  </div>
+                  <div className="bt1381">
+                    {liveSports?.[keys]?.score?.team1Score}
+                  </div>
+                  <div className="bt1381">
+                    {liveSports?.[keys]?.score?.team2Score}
+                  </div>
+                  <div
+                    className={`${
+                      liveSports?.[keys]?.score?.service == 1 ? "bt1382" : ""
+                    }`}
+                  ></div>
+                  <div
+                    className={`${
+                      liveSports?.[keys]?.score?.service == 2 ? "bt1382" : ""
+                    }`}
+                  ></div>
+                  <div className="bt1384 bt1380 bt1493">
+                    <span className="bt1386">
+                      {liveSports?.[keys]?.score?.totalSet1}
+                    </span>
+                  </div>
+                  <div className="bt1384 bt1380 bt1493">
+                    <span className="bt1386">
+                      {liveSports?.[keys]?.score?.totalSet2}
+                    </span>
+                  </div>
+                </div>
+              </div>
+                )
+              }
+              {/* <div className="bt285">
                 {liveSports?.[keys]?.eventTypeId == 2 ? (
                   <div data-editor-id="widgetScore" className="bt1379">
                     <div>{liveSports[keys]?.score?.games_1}</div>
@@ -254,7 +313,11 @@ const CardOne = ({ liveSports, keys }) => {
                     )}
                   </div>
                 ) : (
-                  <div data-editor-id="widgetScore" className="bt294" style={{placeItems:"normal"}}>
+                  <div
+                    data-editor-id="widgetScore"
+                    className="bt294"
+                    style={{ placeItems: "normal" }}
+                  >
                     {liveSports[keys]?.score?.total_1 && (
                       <div
                         style={{ fontSize: "11px" }}
@@ -278,7 +341,7 @@ const CardOne = ({ liveSports, keys }) => {
                     )}
                   </div>
                 )}
-              </div>
+              </div> */}
             </div>
           </a>
 
@@ -316,8 +379,8 @@ const CardOne = ({ liveSports, keys }) => {
                 justifyContent: "space-between",
               }}
             >
-                 {/* team 1 */}
-                 <div
+              {/* team 1 */}
+              <div
                 style={{ display: "flex", alignItems: "center", width: "100%" }}
               >
                 <div

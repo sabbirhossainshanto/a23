@@ -37,7 +37,7 @@ const Odds = ({
       refetchExposure();
     }
   }, [eventId, refetchExposure]);
-console.log(sportsBook);
+
   const sports =
     sportsBook &&
     sportsBook?.MarketGroups?.filter(

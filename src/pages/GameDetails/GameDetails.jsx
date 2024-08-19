@@ -43,7 +43,7 @@ const GameDetails = () => {
       refetchBalance();
     }
   }, []);
-console.log(eventsData);
+
   return (
     <>
       {showMyBets && (

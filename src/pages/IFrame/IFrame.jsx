@@ -26,14 +26,7 @@ const IFrame = () => {
         site: Settings.siteUrl,
         casinoCurrency: Settings.casinoCurrency,
       });
-      console.log({
-        gameId: gameId,
-        token: generatedToken,
-        isHome: false,
-        mobileOnly: true,
-        site: Settings.siteUrl,
-        casinoCurrency: Settings.casinoCurrency,
-      });
+
 
       try {
         const res = await axios.post(API.liveCasinoIFrame, encryptedData, {

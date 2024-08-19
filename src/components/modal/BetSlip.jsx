@@ -101,7 +101,7 @@ const BetSlip = ({
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
-          console.log(data);
+     
           refetchExposure();
           refetchBalance();
           refetchCurrentBets();
