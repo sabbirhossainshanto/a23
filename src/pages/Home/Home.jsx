@@ -33,7 +33,7 @@ const Home = () => {
     if (!tokenLoading && !Settings.balanceApiLoop) {
       refetchBalance();
     }
-  }, [refetchBalance, tokenLoading]);
+  }, []);
 
   const navigateWhatsApp = () => {
     window.open(socialLink?.whatsapplink, "_blank");

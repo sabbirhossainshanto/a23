@@ -41,7 +41,7 @@ const useBalance = () => {
       }
     },
     /* Refetch based on balanceApiLoop in notice.json */
-    refetchInterval: Settings?.balanceApiLoop ? 6000 : null,
+   refetchInterval:Settings?.balanceApiLoop ? 6000 : ''
   });
 
   return { balanceData, refetchBalance };

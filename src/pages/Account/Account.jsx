@@ -11,7 +11,7 @@ import profileLiveBets from "../../../src/assets/img/profile-live-bets.svg";
 import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-profit-loss.webp";
 // import profileAccountStatement from "../../../src/assets/img/profile-account-statement.png";
 import profileSettings from "../../../src/assets/img/profile-settings.svg";
-import { useEffect } from "react";
+
 import useBonusBalance from "../../hooks/useBonusBalance";
 import handleRandomToken from "../../utils/handleRandomToken";
 import axios from "axios";
@@ -28,10 +28,7 @@ const Account = () => {
   const { balanceData, refetchBalance } = useBalance();
   const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
 
-  useEffect(() => {
-    const intervalId = setInterval(refetchBalance, 5000);
-    return () => clearInterval(intervalId);
-  }, [refetchBalance]);
+
 
   const handleToggleBalance = (e) => {
     const checked = e.target.checked;
