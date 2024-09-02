@@ -2,8 +2,9 @@ import { createContext, useEffect, useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 import { getSetApis } from "../api/config";
-
+import notice from "../../notice.json";
 const StateProvider = ({ children }) => {
+  const baseUrl = notice?.result?.settings?.baseUrl;
   /* Global state this states we are using in full project */
   const [logo, setLogo] = useState("");
   const [navTabs, setNavTabs] = useState("live");
@@ -19,8 +20,8 @@ const StateProvider = ({ children }) => {
   const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
-    getSetApis(setNoticeLoaded);
-  }, [noticeLoaded]);
+    getSetApis(setNoticeLoaded,baseUrl);
+  }, [noticeLoaded,baseUrl]);
 
   /* Get token from locale storage */
   useEffect(() => {

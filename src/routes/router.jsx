@@ -22,99 +22,104 @@ import IFrame from "../pages/IFrame/IFrame";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import RoyalCasino from "../pages/RoyalCasino/RoyalCasino";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <MainLayout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/:eventTypeId/:eventId",
+          element: <GameDetails />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
+        },
+        {
+          path: "/deposit",
+          element: <Deposit />,
+        },
+        {
+          path: "/withdraw",
+          element: <Withdraw />,
+        },
+        {
+          path: "/account",
+          element: <Account />,
+        },
+        {
+          path: "/change-password",
+          element: <ChangePassword />,
+        },
+        {
+          path: "/edit-stake",
+          element: <EditStake />,
+        },
+        {
+          path: "/:route/:name/:gameId",
+          element: <IFrame />,
+        },
+        {
+          path: "/betting-profit-loss",
+          element: <BettingProfitLoss />,
+        },
+        {
+          path: "betting-profit-loss/:marketId",
+          element: <SingleProfitLoss />,
+        },
+        {
+          path: "deposit-withdraw-report",
+          element: <DepositWithdrawReport />,
+        },
+        {
+          path: "deposit-withdraw-report/:id",
+          element: <SingleDWReport />,
+        },
+        {
+          path: "indian-casino",
+          element: <IndianCasino />,
+        },
+        {
+          path: "royal-casino",
+          element: <RoyalCasino />,
+        },
+        {
+          path: "int-casino",
+          element: <InterNationalCasino />,
+        },
+        {
+          path: "slots",
+          element: <Slots />,
+        },
+        {
+          path: "promotion",
+          element: <Promotion />,
+        },
+        {
+          path: "more-page",
+          element: <Promotion />,
+        },
+        {
+          path: "open-bets",
+          element: <OpenBets />,
+        },
+        {
+          path: "forgot-password",
+          element: <ForgotPassword />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <MainLayout />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/:eventTypeId/:eventId",
-        element: <GameDetails />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/deposit",
-        element: <Deposit />,
-      },
-      {
-        path: "/withdraw",
-        element: <Withdraw />,
-      },
-      {
-        path: "/account",
-        element: <Account />,
-      },
-      {
-        path: "/change-password",
-        element: <ChangePassword />,
-      },
-      {
-        path: "/edit-stake",
-        element: <EditStake />,
-      },
-      {
-        path: "/:route/:name/:gameId",
-        element: <IFrame />,
-      },
-      {
-        path: "/betting-profit-loss",
-        element: <BettingProfitLoss />,
-      },
-      {
-        path: "betting-profit-loss/:marketId",
-        element: <SingleProfitLoss />,
-      },
-      {
-        path: "deposit-withdraw-report",
-        element: <DepositWithdrawReport />,
-      },
-      {
-        path: "deposit-withdraw-report/:id",
-        element: <SingleDWReport />,
-      },
-      {
-        path: "indian-casino",
-        element: <IndianCasino />,
-      },
-      {
-        path: "royal-casino",
-        element: <RoyalCasino />,
-      },
-      {
-        path: "int-casino",
-        element: <InterNationalCasino />,
-      },
-      {
-        path: "slots",
-        element: <Slots />,
-      },
-      {
-        path: "promotion",
-        element: <Promotion />,
-      },
-      {
-        path: "more-page",
-        element: <Promotion />,
-      },
-      {
-        path: "open-bets",
-        element: <OpenBets />,
-      },
-      {
-        path: "forgot-password",
-        element: <ForgotPassword />,
-      },
-    ],
-  },
-]);
+    basename: import.meta.env.BASE_URL ?? "/",
+  }
+);

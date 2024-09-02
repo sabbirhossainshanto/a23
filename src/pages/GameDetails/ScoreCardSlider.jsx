@@ -61,7 +61,7 @@ const ScoreCardSlider = () => {
                                 sports?.[keyA]?.sort - sports?.[keyB]?.sort
                             )
                             ?.map((key, index) => {
-                              console.log(sports[key]);
+                          
                               return (
                                 <SwiperSlide
                                   onClick={() => {

@@ -18,7 +18,8 @@
       "chaportAppId": "66011d3c44d81009081c97c5",
       "otpless": true,
       "paymentIntent": false,
-      "betFairCashOut": true
+      "betFairCashOut": true,
+      "baseUrl": "/a23"
     },
     "logo": {
       "height": 55,
@@ -61,7 +62,7 @@
       "pgStatus": "https://api7.live/api/exchange/diamond/pgStatus",
       "liveCasinoWolf": "https://api7.live/api/exchange/diamond/liveCasinoWolf",
       "slotsWolf": "https://api7.live/api/exchange/diamond/slotsWolf",
-      "notification":"https://api7.live/api/exchange/diamond/notification",
+      "notification": "https://api7.live/api/exchange/diamond/notification",
       "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim",
       "royalCasino": "https://api7.live/api/exchange/diamond/royalCasino"
     }

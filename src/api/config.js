@@ -1,9 +1,11 @@
 import axios from "axios";
 import { API, Settings } from "./index";
 
-export const getSetApis = (setNoticeLoaded) => {
+export const getSetApis = (setNoticeLoaded, baseUrl) => {
+  const url = baseUrl ? `${baseUrl}/notice.json` : "/notice.json";
+
   axios
-    .get("/notice.json")
+    .get(url)
     .then((res) => {
       const data = res.data;
       if (data?.result?.endpoint) {
@@ -59,6 +61,7 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.otpless = data?.result?.settings?.otpless;
         Settings.paymentIntent = data?.result?.settings?.paymentIntent;
         Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
+        Settings.baseUrl = data?.result?.settings?.baseUrl;
         Settings.logoFormat = data?.result?.logo?.format;
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;
