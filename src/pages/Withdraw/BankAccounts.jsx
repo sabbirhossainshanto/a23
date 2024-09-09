@@ -21,8 +21,6 @@ const BankAccounts = ({
     setBank(bankData?.[0]);
   }, [bankData, setBank]);
 
-
-
   return (
     <>
       <div className="dep-w-info-bc  ">
@@ -63,7 +61,6 @@ const BankAccounts = ({
             className=" "
           >
             {bankData?.map((data, i) => {
-         
               return (
                 <div
                   onClick={() => setBank(data)}
@@ -75,7 +72,7 @@ const BankAccounts = ({
                   <div className=" bank-logo3">
                     <div className="logo ">
                       <img
-                      style={{maxWidth:'50px',width:'50px'}}
+                        style={{ maxWidth: "50px", width: "50px" }}
                         loading="lazy"
                         alt=""
                         className=""

@@ -24,6 +24,7 @@ const useGetSocialLink = () => {
         },
       });
       const data = res.data;
+      console.log(res);
       if (data?.success) {
         return data?.result;
       }

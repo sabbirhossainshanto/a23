@@ -275,6 +275,29 @@ const CardOne = ({ liveSports, keys }) => {
               </div>
                 )
               }
+                 {
+                liveSports?.[keys]?.score && sportsType === 1 && (
+                  <div className="bt285">
+                <div data-editor-id="widgetScore" className="bt1379">
+            
+
+                
+             
+                
+                  <div className="bt1384 bt1380 bt1493">
+                    <span className="bt1386">
+                      {liveSports?.[keys]?.score?.total_1}
+                    </span>
+                  </div>
+                  <div className="bt1384 bt1380 bt1493">
+                    <span className="bt1386">
+                      {liveSports?.[keys]?.score?.total_2}
+                    </span>
+                  </div>
+                </div>
+              </div>
+                )
+              }
               {/* <div className="bt285">
                 {liveSports?.[keys]?.eventTypeId == 2 ? (
                   <div data-editor-id="widgetScore" className="bt1379">

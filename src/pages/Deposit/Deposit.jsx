@@ -10,7 +10,7 @@ const Deposit = () => {
   const [paymentMethods, setPaymentMethods] = useState(false);
   const [uploadTransaction, setUploadTransaction] = useState(false);
   const [paymentId, setPaymentId] = useState("");
-  
+
   return (
     <>
       {!paymentMethods && !uploadTransaction && (
@@ -20,18 +20,20 @@ const Deposit = () => {
           setShowModal={setShowModal}
         />
       )}
-      {uploadTransaction && <UploadTransaction paymentId={paymentId} amount={amount} />}
+      {uploadTransaction && (
+        <UploadTransaction paymentId={paymentId} amount={amount} />
+      )}
       {paymentMethods && (
-        <PaymentMethods 
-        setUploadTransaction={setUploadTransaction}
-        setPaymentMethods={setPaymentMethods}
-        setPaymentId={setPaymentId}
-        amount={amount}
+        <PaymentMethods
+          setUploadTransaction={setUploadTransaction}
+          setPaymentMethods={setPaymentMethods}
+          setPaymentId={setPaymentId}
+          amount={amount}
         />
       )}
       {showModal && (
         <DepositModal
-        amount={amount}
+          amount={amount}
           setShowModal={setShowModal}
           setPaymentMethods={setPaymentMethods}
         />

@@ -61,7 +61,7 @@ const ScoreCardSlider = () => {
                                 sports?.[keyA]?.sort - sports?.[keyB]?.sort
                             )
                             ?.map((key, index) => {
-                          
+                   
                               return (
                                 <SwiperSlide
                                   onClick={() => {
@@ -142,10 +142,10 @@ const ScoreCardSlider = () => {
                                     <div className="bt12517">
                                       <div className="bt12521">
                                         <div className="bt12522">
-                                          {sports?.[key]?.score?.totalSet1}
+                                          {sports?.[key]?.score?.total_1}
                                         </div>
                                         <div className="bt12522">
-                                          {sports?.[key]?.score?.totalSet2}
+                                          {sports?.[key]?.score?.total_2}
                                         </div>
                                       </div>
                                       <div
