@@ -13,7 +13,12 @@ import useContextState from "../../hooks/useContextState";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [disable, setDisable] = useState(false);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register } = useForm({
+    defaultValues: {
+      username: "8888884000",
+      password: "avinya123",
+    },
+  });
   const navigate = useNavigate();
   const { setGetToken } = useContextState();
 
