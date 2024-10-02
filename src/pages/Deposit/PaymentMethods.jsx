@@ -1,5 +1,4 @@
 import axios from "axios";
-import { depositMethodsPost } from "../../constant/constant";
 import useBankAccount from "../../hooks/useBankAccount";
 import { API, Settings } from "../../api";
 import handleRandomToken from "../../utils/handleRandomToken";
@@ -30,8 +29,10 @@ const PaymentMethods = ({
   amount,
 }) => {
   const { token } = useContextState();
-  const { bankData: depositMethods, refetchBankData } =
-    useBankAccount(depositMethodsPost);
+  const { bankData: depositMethods, refetchBankData } = useBankAccount({
+    type: "depositMethods",
+    amount,
+  });
   const [tabs, setTabs] = useState("");
   const [qrcode, setQrcode] = useState("");
   const [depositData, setDepositData] = useState({});
@@ -75,7 +76,6 @@ const PaymentMethods = ({
   };
 
   const handleVisibleBankMethod = async (e, method) => {
-
     e.preventDefault();
     setTabs(method?.type);
     setPaymentId(method?.paymentId);
@@ -95,7 +95,6 @@ const PaymentMethods = ({
       });
       const data = res?.data;
       if (data?.success) {
-   
         if (Settings?.paymentIntent) {
           setPgPaymentMethods(data?.result);
           setTime(60 * 20);

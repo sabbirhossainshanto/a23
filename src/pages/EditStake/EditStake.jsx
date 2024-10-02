@@ -5,7 +5,7 @@ import { API } from "../../api";
 import toast from "react-hot-toast";
 
 const EditStake = () => {
-  window.scrollTo(0,0)
+  window.scrollTo(0, 0);
   const navigate = useNavigate();
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const { register, handleSubmit } = useForm();
@@ -113,114 +113,114 @@ const EditStake = () => {
   };
   return (
     <div className="e-p-body-bc">
-    <div className="login-page-abc">
-      <div>
-        <div className="login-page">
-          <div className="login-box">
-            <div className="login-card">
-              <div className="login-card-header">
-                <span>Edit Stake</span>
+      <div className="login-page-abc">
+        <div>
+          <div className="login-page">
+            <div className="login-box">
+              <div className="login-card">
+                <div className="login-card-header">
+                  <span>Edit Stake</span>
+                </div>
+
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  style={{ width: "100%" }}
+                  className="animateSignInFormUserId ng-dirty ng-touched ng-invalid"
+                  data-gtm-form-interact-id="2"
+                >
+                  <div className="edit-stakes-input-section">
+                    <input
+                      {...register("buttons0value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[0].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+
+                    <input
+                      {...register("buttons1value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[1].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+
+                    <input
+                      {...register("buttons2value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[2].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+
+                    <input
+                      {...register("buttons3value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[3].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+                  </div>
+
+                  <div className="edit-stakes-input-section">
+                    <input
+                      {...register("buttons4value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[4].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+
+                    <input
+                      {...register("buttons5value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[5].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+
+                    <input
+                      {...register("buttons6value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[6].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+
+                    <input
+                      {...register("buttons7value", {
+                        required: true,
+                      })}
+                      defaultValue={buttonGameValue[7].value}
+                      type="number"
+                      className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                      pattern="\d*"
+                    />
+                  </div>
+
+                  <button type="submit" className="login-btn">
+                    <span>Update</span>
+                  </button>
+                </form>
               </div>
-
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                style={{ width: "100%" }}
-                className="animateSignInFormUserId ng-dirty ng-touched ng-invalid"
-                data-gtm-form-interact-id="2"
-              >
-                <div className="edit-stakes-input-section">
-                  <input
-                    {...register("buttons0value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[0].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-
-                  <input
-                    {...register("buttons1value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[1].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-
-                  <input
-                    {...register("buttons2value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[2].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-
-                  <input
-                    {...register("buttons3value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[3].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-                </div>
-
-                <div className="edit-stakes-input-section">
-                  <input
-                    {...register("buttons4value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[4].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-
-                  <input
-                    {...register("buttons5value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[5].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-
-                  <input
-                    {...register("buttons6value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[6].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-
-                  <input
-                    {...register("buttons7value", {
-                      required: true,
-                    })}
-                    defaultValue={buttonGameValue[7].value}
-                    type="number"
-                    className="edit-stakes-input ng-untouched ng-pristine ng-valid ng-star-inserted"
-                    pattern="\d*"
-                  />
-                </div>
-
-                <button type="submit" className="login-btn">
-                  <span>Update</span>
-                </button>
-              </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
