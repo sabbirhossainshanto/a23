@@ -11,7 +11,6 @@ import Marquee from "react-fast-marquee";
 import { RxCross2 } from "react-icons/rx";
 import useGetNotification from "../../../hooks/useGetNotification";
 
-
 const Header = () => {
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
   const storedWallet = localStorage.getItem("wallet");
@@ -131,7 +130,7 @@ const Header = () => {
             <RxCross2 onClick={closeNotification} size={20} cursor="pointer" />
           </div>
         )}
-      
+
         <div className="nologin-header-wrap headerBG">
           <Link onClick={() => setSportsType(0)} to="/">
             <img
@@ -215,10 +214,9 @@ const Header = () => {
           </div> */}
           </div>
         </div>
- 
+
         {!location.pathname.includes("/casino") && (
-         
-       <div className="mszcttz">
+          <div className="mszcttz">
             <div className="mobile-top-navigate-list">
               <button
                 onClick={() => {
@@ -518,11 +516,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-           
-      
-
         )}
-     
       </div>
     </>
   );
