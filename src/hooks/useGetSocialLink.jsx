@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import useContextState from "./useContextState";
 import { API, Settings } from "../api";
 import axios from "axios";
 import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
 const useGetSocialLink = () => {
-  const { token, tokenLoading } = useContextState();
+  const token = localStorage.getItem("token");
+
   // console.log(token);
   /* get whats app link */
   const { data: socialLink = {} } = useQuery({
     queryKey: ["whatsApp"],
-    enabled: !tokenLoading,
+
     queryFn: async () => {
       /* random token function */
       const generatedToken = handleRandomToken();
