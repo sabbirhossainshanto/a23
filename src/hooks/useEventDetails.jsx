@@ -13,6 +13,7 @@ const useEventDetails = (eventTypeId, eventId) => {
       );
       const data = res.data;
       const decryptionData = await handleDecryptData(JSON.stringify(data));
+
       return decryptionData;
     },
     /* refetching after 2 second */

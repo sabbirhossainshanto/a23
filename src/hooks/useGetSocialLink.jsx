@@ -6,10 +6,12 @@ import handleRandomToken from "../utils/handleRandomToken";
 import handleEncryptData from "../utils/handleEncryptData";
 
 const useGetSocialLink = () => {
-  const { token } = useContextState();
+  const { token, tokenLoading } = useContextState();
+  // console.log(token);
   /* get whats app link */
   const { data: socialLink = {} } = useQuery({
     queryKey: ["whatsApp"],
+    enabled: !tokenLoading,
     queryFn: async () => {
       /* random token function */
       const generatedToken = handleRandomToken();
@@ -20,7 +22,7 @@ const useGetSocialLink = () => {
       });
       const res = await axios.post(API.whatsApp, encryptedData, {
         headers: {
-          Authorization: `bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       const data = res.data;
