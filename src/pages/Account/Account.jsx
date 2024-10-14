@@ -17,8 +17,11 @@ import handleRandomToken from "../../utils/handleRandomToken";
 import axios from "axios";
 import { API } from "../../api";
 import toast from "react-hot-toast";
+import useGetSocialLink from "../../hooks/useGetSocialLink";
+import { images } from "../../assets";
 
 const Account = () => {
+  const { socialLink } = useGetSocialLink();
   const { setGetToken, token, setWallet, wallet } = useContextState();
   const navigate = useNavigate();
   /* get login name from locale storage */
@@ -27,8 +30,6 @@ const Account = () => {
   /* get balance data */
   const { balanceData, refetchBalance } = useBalance();
   const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
-
-
 
   const handleToggleBalance = (e) => {
     const checked = e.target.checked;
@@ -52,7 +53,7 @@ const Account = () => {
       },
     });
     const result = res?.data;
-  
+
     if (result?.success) {
       refetchBalance();
       bonusRefetchBalance();
@@ -62,6 +63,9 @@ const Account = () => {
     }
   };
 
+  const navigateWhatsApp = (link) => {
+    window.open(link, "_blank");
+  };
 
   return (
     <div className="p-1 body-profile-page">
@@ -241,7 +245,10 @@ const Account = () => {
               style={{ display: "flex", alignItems: "center" }}
               className="card-profile-page-upper-div-right"
             >
-              <div className="top-user-name-logoutaction" style={{padding:'0px',flexDirection:'column',gap:'3px'}}>
+              <div
+                className="top-user-name-logoutaction"
+                style={{ padding: "0px", flexDirection: "column", gap: "3px" }}
+              >
                 <button
                   onClick={handleBonusToMainWallet}
                   disabled={
@@ -260,8 +267,8 @@ const Account = () => {
                         ? "not-allowed"
                         : "pointer"
                     }`,
-                    gridTemplateColumns:"auto",
-                    gridGap:"0px"
+                    gridTemplateColumns: "auto",
+                    gridGap: "0px",
                   }}
                   className="button-container-profile-page"
                 >
@@ -274,9 +281,10 @@ const Account = () => {
                     </span>
                   </div>
                 </button>
-                <p style={{fontSize:'11px'}}>Minimum claimable bonus amount : 100</p>
+                <p style={{ fontSize: "11px" }}>
+                  Minimum claimable bonus amount : 100
+                </p>
               </div>
-             
             </div>
           </div>
           <div className="card-profile-image-lower-div">
@@ -346,85 +354,81 @@ const Account = () => {
           </div>
         </div>
       </div>
-    {
-      wallet === 'main' && (
+      {wallet === "main" && (
         <div className="profile-menu-box">
-        <div className="button-container-profile-page">
-          <div
-            onClick={() => {
-              navigate("/withdraw");
-            }}
-            className="button-container-profile-page-1 active"
-          >
-            <span className="button-container-profile-page-1-icon">
-              <img src={withdrawIcon} alt="Withdraw" />
-            </span>
-            <span className="button-container-profile-page-1-text">
-              Withdraw
-            </span>
-          </div>
-          <div
-            onClick={() => {
-              navigate("/deposit");
-            }}
-            className="button-container-profile-page-2 active"
-          >
-            <span className="button-container-profile-page-2-icon">
-              <img src={depositProfileIcon} alt="Deposit" />
-            </span>
-            <span className="button-container-profile-page-2-text">
-              Deposit
-            </span>
+          <div className="button-container-profile-page">
+            <div
+              onClick={() => {
+                navigate("/withdraw");
+              }}
+              className="button-container-profile-page-1 active"
+            >
+              <span className="button-container-profile-page-1-icon">
+                <img src={withdrawIcon} alt="Withdraw" />
+              </span>
+              <span className="button-container-profile-page-1-text">
+                Withdraw
+              </span>
+            </div>
+            <div
+              onClick={() => {
+                navigate("/deposit");
+              }}
+              className="button-container-profile-page-2 active"
+            >
+              <span className="button-container-profile-page-2-icon">
+                <img src={depositProfileIcon} alt="Deposit" />
+              </span>
+              <span className="button-container-profile-page-2-text">
+                Deposit
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      )
-    }
+      )}
       <div className="profile-menu-box">
         <ul className="profile-menu-container active">
-          {
-            wallet === 'main' && (
-              <li
-            onClick={() => {
-              navigate("/deposit-withdraw-report");
-            }}
-            className="profile-menu-items ng-star-inserted"
-          >
-            <div className="routingProfile">
-              <div className="profile-menu-items-left">
-                <span className="profile-menu-icon">
-                  <img
-                    loading="lazy"
-                    alt=""
-                    style={{ height: "24px" }}
-                    src={profileWallet}
-                  />
-                  <div className="skeleton-img ng-star-inserted">
-                    <div className="moving-strip"></div>
-                  </div>
-                </span>
-                <span className="profile-menu-left-text">
-                  Deposit Withdraw Report
-                </span>
+          {wallet === "main" && (
+            <li
+              onClick={() => {
+                navigate("/deposit-withdraw-report");
+              }}
+              className="profile-menu-items ng-star-inserted"
+            >
+              <div className="routingProfile">
+                <div className="profile-menu-items-left">
+                  <span className="profile-menu-icon">
+                    <img
+                      loading="lazy"
+                      alt=""
+                      style={{ height: "24px" }}
+                      src={profileWallet}
+                    />
+                    <div className="skeleton-img ng-star-inserted">
+                      <div className="moving-strip"></div>
+                    </div>
+                  </span>
+                  <span className="profile-menu-left-text">
+                    Deposit Withdraw Report
+                  </span>
+                </div>
+                <div className="profile-menu-items-right">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
+                      fill="#617293"
+                    ></path>
+                  </svg>
+                </div>
               </div>
-              <div className="profile-menu-items-right">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path
-                    d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
-                    fill="#617293"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </li>
-            )
-          }
+            </li>
+          )}
           <li
             onClick={() => {
               navigate("/open-bets");
@@ -567,45 +571,47 @@ const Account = () => {
               </div>
             </div>
           </li> */}
-     {wallet === 'main' && (
-           <li
-           onClick={() => {
-             navigate("/change-password");
-           }}
-           className="profile-menu-items ng-star-inserted"
-         >
-           <div className="routingProfile">
-             <div className="profile-menu-items-left">
-               <span className="profile-menu-icon">
-                 <img
-                   loading="lazy"
-                   alt=""
-                   style={{ height: "24px" }}
-                   src={profileSettings}
-                 />
-                 <div className="skeleton-img ng-star-inserted">
-                   <div className="moving-strip"></div>
-                 </div>
-               </span>
-               <span className="profile-menu-left-text">Change Password</span>
-             </div>
-             <div className="profile-menu-items-right">
-               <svg
-                 xmlns="http://www.w3.org/2000/svg"
-                 width="20"
-                 height="20"
-                 viewBox="0 0 20 20"
-                 fill="none"
-               >
-                 <path
-                   d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
-                   fill="#617293"
-                 ></path>
-               </svg>
-             </div>
-           </div>
-         </li>
-     )}
+          {wallet === "main" && (
+            <li
+              onClick={() => {
+                navigate("/change-password");
+              }}
+              className="profile-menu-items ng-star-inserted"
+            >
+              <div className="routingProfile">
+                <div className="profile-menu-items-left">
+                  <span className="profile-menu-icon">
+                    <img
+                      loading="lazy"
+                      alt=""
+                      style={{ height: "24px" }}
+                      src={profileSettings}
+                    />
+                    <div className="skeleton-img ng-star-inserted">
+                      <div className="moving-strip"></div>
+                    </div>
+                  </span>
+                  <span className="profile-menu-left-text">
+                    Change Password
+                  </span>
+                </div>
+                <div className="profile-menu-items-right">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
+                      fill="#617293"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </li>
+          )}
 
           <li
             onClick={() => {
@@ -644,6 +650,80 @@ const Account = () => {
               </div>
             </div>
           </li>
+          {socialLink?.whatsapplink && (
+            <li
+              onClick={() => navigateWhatsApp(socialLink?.whatsapplink)}
+              className="profile-menu-items ng-star-inserted"
+            >
+              <div className="routingProfile">
+                <div className="profile-menu-items-left">
+                  <span className="profile-menu-icon">
+                    <img
+                      style={{ height: "20px", width: "20px" }}
+                      src={images.whatsapp}
+                      alt=""
+                    />
+                    <div className="skeleton-img ng-star-inserted">
+                      <div className="moving-strip"></div>
+                    </div>
+                  </span>
+                  <span className="profile-menu-left-text">All Support</span>
+                </div>
+                <div className="profile-menu-items-right">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
+                      fill="#617293"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </li>
+          )}
+          {socialLink?.branchWhatsapplink && (
+            <li
+              onClick={() => navigateWhatsApp(socialLink?.branchWhatsapplink)}
+              className="profile-menu-items ng-star-inserted"
+            >
+              <div className="routingProfile">
+                <div className="profile-menu-items-left">
+                  <span className="profile-menu-icon">
+                    <img
+                      style={{ height: "20px", width: "20px" }}
+                      src={images.whatsapp}
+                      alt=""
+                    />
+                    <div className="skeleton-img ng-star-inserted">
+                      <div className="moving-strip"></div>
+                    </div>
+                  </span>
+                  <span className="profile-menu-left-text">
+                    Deposit Support
+                  </span>
+                </div>
+                <div className="profile-menu-items-right">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M6.87866 2.92393L13.75 9.79528L6.87865 16.6666L5.91667 15.6875L11.8088 9.79528L5.91667 3.9031L6.87866 2.92393Z"
+                      fill="#617293"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </li>
+          )}
         </ul>
       </div>
       <div

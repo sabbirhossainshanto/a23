@@ -11,7 +11,7 @@ const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { socialLink } = useGetSocialLink();
-  console.log(socialLink);
+
   const loginName = localStorage.getItem("loginName");
   const { myBets } = useCurrentBets();
   const [showOpenBets, setShowOpenBets] = useState(false);
@@ -63,17 +63,23 @@ const Footer = () => {
     }
   }, [token, loginName]);
 
-  const openChaportOrWhatsapp = () => {
-    if (Settings.chaportAppId) {
-      return window.chaport.on("ready", function () {
-        window.chaport.open();
-      });
-    }
-    if (socialLink?.link) {
-      window.open(socialLink?.link, "_blank");
+  // const openChaportOrWhatsapp = () => {
+  //   if (Settings.chaportAppId) {
+  //     return window.chaport.on("ready", function () {
+  //       window.chaport.open();
+  //     });
+  //   }
+  //   if (socialLink?.link) {
+  //     window.open(socialLink?.link, "_blank");
+  //   }
+  // };
+  const navigateWhatsApp = () => {
+    if (token && socialLink?.branchWhatsapplink) {
+      window.open(socialLink?.branchWhatsapplink, "_blank");
+    } else {
+      window.open(socialLink?.whatsapplink, "_blank");
     }
   };
-
   return (
     <>
       {showOpenBets && (
@@ -220,7 +226,7 @@ const Footer = () => {
           <span>Account</span>
         </div>
         <div
-          onClick={openChaportOrWhatsapp}
+          onClick={navigateWhatsApp}
           style={{ cursor: "pointer" }}
           className="tabbar-item"
         >

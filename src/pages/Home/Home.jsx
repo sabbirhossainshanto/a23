@@ -16,7 +16,7 @@ import useGetSocialLink from "../../hooks/useGetSocialLink";
 import Warning from "../../components/modal/Warning";
 
 const Home = () => {
-  const { sportsType, tokenLoading, showWarning, setShowWarning } =
+  const { sportsType, tokenLoading, showWarning, setShowWarning, token } =
     useContextState();
   const { bannerImage } = useBannerImage();
   const { refetchSports, sports } = useSportsBook(sportsType);
@@ -36,7 +36,11 @@ const Home = () => {
   }, []);
 
   const navigateWhatsApp = () => {
-    window.open(socialLink?.whatsapplink, "_blank");
+    if (token && socialLink?.branchWhatsapplink) {
+      window.open(socialLink?.branchWhatsapplink, "_blank");
+    } else {
+      window.open(socialLink?.whatsapplink, "_blank");
+    }
   };
 
   return (
@@ -61,7 +65,7 @@ const Home = () => {
       )}
       {sportsType ? <Sports sportsType={sportsType} sports={sports} /> : null}
 
-      {socialLink?.whatsappFloatIconVisible && socialLink?.whatsapplink && (
+      {socialLink?.whatsapplink || socialLink?.branchWhatsapplink ? (
         <div onClick={navigateWhatsApp} className="tabbar-item">
           <div className="ob_button" style={{ zIndex: 100, bottom: "13%" }}>
             <div className="bt1043">
@@ -83,7 +87,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
       {showWarning && <Warning setShowModal={setShowWarning} />}
     </>
   );
