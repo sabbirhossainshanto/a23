@@ -19,7 +19,7 @@
       "otpless": true,
       "paymentIntent": false,
       "betFairCashOut": true,
-      "baseUrl": "/a23"
+      "baseUrl": ""
     },
     "logo": {
       "height": 55,
