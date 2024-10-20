@@ -9,7 +9,7 @@ const useGetSocialLink = () => {
 
   // console.log(token);
   /* get whats app link */
-  const { data: socialLink = {} } = useQuery({
+  const { data: socialLink = {}, refetch: refetchSocialLinks } = useQuery({
     queryKey: ["whatsApp"],
 
     queryFn: async () => {
@@ -33,7 +33,7 @@ const useGetSocialLink = () => {
     },
     refetchOnWindowFocus: false,
   });
-  return { socialLink };
+  return { socialLink, refetchSocialLinks };
 };
 
 export default useGetSocialLink;
