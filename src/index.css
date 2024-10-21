@@ -658,3 +658,19 @@ h4 {
 .white-bg {
   background-color: white !important;
 }
+
+.runs {
+  background-color: gray;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 0.6rem;
+  width: clamp(20px, 6vw, 30px);
+  height: clamp(20px, 6vw, 30px);
+}
+.activeRun {
+  background-color: #138807 !important;
+}

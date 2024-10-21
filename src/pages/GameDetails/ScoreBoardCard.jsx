@@ -1,147 +1,142 @@
-const ScoreBoardCard = ({ score, eventTypeId }) => {
+const ScoreBoardCard = ({ score, eventTypeId, match_odds }) => {
   return (
-   
-        <>
-          {eventTypeId == 2 ? (
-            <div
-              className="bt12577 bt12497 tennis"
-              data-editor-id="scoreBoardCard"
-            >
-              
-              <a className="bt248" data-editor-id="eventCardContent">
-                <div className="bt235">
-                  <div className="bt236">
-                    <div
-                      className="bt273 bt276"
-                      data-editor-id="eventCardStatusLabel"
-                    >
-                      {score?.timeStatus}
-                    </div>
-                  </div>
-                  <div className="bt237"></div>
-                  <div className="bt238 bt239">
-                    <svg
-                      data-cy="ic-live-simple"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="#FF4E4E"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style={{
-                        fill: "rgb(255, 78, 78)",
-                        color: "rgb(255, 78, 78)",
-                        width: "auto",
-                        height: "16px",
-                        display: "block",
-                      }}
-                    >
-                      <path d="M12.9628 3.20912C12.6766 2.93029 12.2125 2.93029 11.9263 3.20912C11.6401 3.48794 11.6401 3.94001 11.9263 4.21883C12.436 4.71538 12.8404 5.30487 13.1163 5.95365C13.3921 6.60242 13.5341 7.29777 13.5341 8C13.5341 8.70223 13.3921 9.39758 13.1163 10.0464C12.8404 10.6951 12.436 11.2846 11.9263 11.7812C11.6401 12.06 11.6401 12.5121 11.9263 12.7909C12.2125 13.0697 12.6766 13.0697 12.9628 12.7909C13.6087 12.1617 14.121 11.4148 14.4706 10.5928C14.8201 9.77079 15 8.88975 15 8C15 7.11025 14.8201 6.22921 14.4706 5.40719C14.121 4.58517 13.6087 3.83827 12.9628 3.20912Z"></path>
-                      <path d="M10.0422 5.11529C10.3284 4.83647 10.7925 4.83647 11.0787 5.11529C11.4708 5.49724 11.7818 5.95068 11.994 6.44972C12.2062 6.94876 12.3155 7.48363 12.3155 8.02379C12.3155 8.56395 12.2062 9.09881 11.994 9.59786C11.7818 10.0969 11.4708 10.5503 11.0787 10.9323C10.7925 11.2111 10.3284 11.2111 10.0422 10.9323C9.75595 10.6535 9.75595 10.2014 10.0422 9.92257C10.2982 9.67322 10.5012 9.37719 10.6397 9.0514C10.7783 8.72561 10.8496 8.37642 10.8496 8.02379C10.8496 7.67115 10.7783 7.32197 10.6397 6.99617C10.5012 6.67038 10.2982 6.37436 10.0422 6.12501C9.75595 5.84618 9.75595 5.39412 10.0422 5.11529Z"></path>
-                      <path d="M8.05198 9.51147C8.90891 9.51147 9.60359 8.83477 9.60359 8.00002C9.60359 7.16526 8.90891 6.48856 8.05198 6.48856C7.19504 6.48856 6.50036 7.16526 6.50036 8.00002C6.50036 8.83477 7.19504 9.51147 8.05198 9.51147Z"></path>
-                      <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
-                      <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
-                    </svg>
-                  </div>
+    <>
+      {eventTypeId == 2 ? (
+        <div className="bt12577 bt12497 tennis" data-editor-id="scoreBoardCard">
+          <a className="bt248" data-editor-id="eventCardContent">
+            <div className="bt235">
+              <div className="bt236">
+                <div
+                  className="bt273 bt276"
+                  data-editor-id="eventCardStatusLabel"
+                >
+                  {score?.timeStatus}
                 </div>
-                <div className="bt280 bt234">
-                  <div className="bt281">
-                    <div className="bt282" style={{ marginBottom: "8px" }}>
-                      <div className="bt286 bt283">
-                        <div
-                          className="bt289 bt288"
-                          style={{ width: "24px", height: "24px" }}
-                        >
-                          <img
-                            src={score?.image1}
-                            alt=""
-                            height="24"
-                            width="24"
-                            className="bt290"
-                          />
-                        </div>
-                        <div
-                          className="bt287"
-                          style={{ height: "24px", lineHeight: "24px" }}
-                        >
-                          {score?.player1}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bt282" style={{ marginBottom: "0px" }}>
-                      <div className="bt286 bt283">
-                        <div
-                          className="bt289 bt288"
-                          style={{ height: "24px", lineHeight: "24px" }}
-                        >
-                          <img
-                            src={score?.image2}
-                            alt=""
-                            height="24"
-                            width="24"
-                            className="bt290"
-                          />
-                        </div>
-                        <div
-                          className="bt287"
-                          style={{ height: "24px", lineHeight: "24px" }}
-                        >
-                          {score?.player2}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bt285">
-                    <div data-editor-id="widgetScore" className="bt1379">
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "20px",
-                          marginRight: "10px",
-                        }}
-                      >
-                        {score?.set1?.map((item, i) => {
-                          return <div key={i}>{item}</div>;
-                        })}
-                      </div>
-
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "20px",
-                          marginRight: "10px",
-                        }}
-                      >
-                        {score?.set2?.map((item, i) => {
-                          return <div key={i}>{item}</div>;
-                        })}
-                      </div>
-                      <div className="bt1381">{score?.team1Score}</div>
-                      <div className="bt1381">{score?.team2Score}</div>
-                      <div
-                        className={`${score?.service == 1 ? "bt1382" : ""}`}
-                      ></div>
-                      <div
-                        className={`${score?.service == 2 ? "bt1382" : ""}`}
-                      ></div>
-                      <div className="bt1384 bt1380 bt1493">
-                        <span className="bt1386">{score?.totalSet1}</span>
-                      </div>
-                      <div className="bt1384 bt1380 bt1493">
-                        <span className="bt1386">{score?.totalSet2}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
+              </div>
+              <div className="bt237"></div>
+              <div className="bt238 bt239">
+                <svg
+                  data-cy="ic-live-simple"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="#FF4E4E"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    fill: "rgb(255, 78, 78)",
+                    color: "rgb(255, 78, 78)",
+                    width: "auto",
+                    height: "16px",
+                    display: "block",
+                  }}
+                >
+                  <path d="M12.9628 3.20912C12.6766 2.93029 12.2125 2.93029 11.9263 3.20912C11.6401 3.48794 11.6401 3.94001 11.9263 4.21883C12.436 4.71538 12.8404 5.30487 13.1163 5.95365C13.3921 6.60242 13.5341 7.29777 13.5341 8C13.5341 8.70223 13.3921 9.39758 13.1163 10.0464C12.8404 10.6951 12.436 11.2846 11.9263 11.7812C11.6401 12.06 11.6401 12.5121 11.9263 12.7909C12.2125 13.0697 12.6766 13.0697 12.9628 12.7909C13.6087 12.1617 14.121 11.4148 14.4706 10.5928C14.8201 9.77079 15 8.88975 15 8C15 7.11025 14.8201 6.22921 14.4706 5.40719C14.121 4.58517 13.6087 3.83827 12.9628 3.20912Z"></path>
+                  <path d="M10.0422 5.11529C10.3284 4.83647 10.7925 4.83647 11.0787 5.11529C11.4708 5.49724 11.7818 5.95068 11.994 6.44972C12.2062 6.94876 12.3155 7.48363 12.3155 8.02379C12.3155 8.56395 12.2062 9.09881 11.994 9.59786C11.7818 10.0969 11.4708 10.5503 11.0787 10.9323C10.7925 11.2111 10.3284 11.2111 10.0422 10.9323C9.75595 10.6535 9.75595 10.2014 10.0422 9.92257C10.2982 9.67322 10.5012 9.37719 10.6397 9.0514C10.7783 8.72561 10.8496 8.37642 10.8496 8.02379C10.8496 7.67115 10.7783 7.32197 10.6397 6.99617C10.5012 6.67038 10.2982 6.37436 10.0422 6.12501C9.75595 5.84618 9.75595 5.39412 10.0422 5.11529Z"></path>
+                  <path d="M8.05198 9.51147C8.90891 9.51147 9.60359 8.83477 9.60359 8.00002C9.60359 7.16526 8.90891 6.48856 8.05198 6.48856C7.19504 6.48856 6.50036 7.16526 6.50036 8.00002C6.50036 8.83477 7.19504 9.51147 8.05198 9.51147Z"></path>
+                  <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
+                  <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
+                </svg>
+              </div>
             </div>
-          ) : (
-            <div className="bt12577 bt12497" data-editor-id="scoreBoardCard">
-              <div className="bt12580 bt12579">
-                <div className="bt12581">
-                  <div className="bt6522" data-editor-id="scoreBoardCategory">
-                    {score?.time && eventTypeId != 1 && (
-                      <div className="bt6523 bt12585 bt12583">
-                        {/* <span className="bt6524">
+            <div className="bt280 bt234">
+              <div className="bt281">
+                <div className="bt282" style={{ marginBottom: "8px" }}>
+                  <div className="bt286 bt283">
+                    <div
+                      className="bt289 bt288"
+                      style={{ width: "24px", height: "24px" }}
+                    >
+                      <img
+                        src={score?.image1}
+                        alt=""
+                        height="24"
+                        width="24"
+                        className="bt290"
+                      />
+                    </div>
+                    <div
+                      className="bt287"
+                      style={{ height: "24px", lineHeight: "24px" }}
+                    >
+                      {score?.player1}
+                    </div>
+                  </div>
+                </div>
+                <div className="bt282" style={{ marginBottom: "0px" }}>
+                  <div className="bt286 bt283">
+                    <div
+                      className="bt289 bt288"
+                      style={{ height: "24px", lineHeight: "24px" }}
+                    >
+                      <img
+                        src={score?.image2}
+                        alt=""
+                        height="24"
+                        width="24"
+                        className="bt290"
+                      />
+                    </div>
+                    <div
+                      className="bt287"
+                      style={{ height: "24px", lineHeight: "24px" }}
+                    >
+                      {score?.player2}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bt285">
+                <div data-editor-id="widgetScore" className="bt1379">
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {score?.set1?.map((item, i) => {
+                      return <div key={i}>{item}</div>;
+                    })}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    {score?.set2?.map((item, i) => {
+                      return <div key={i}>{item}</div>;
+                    })}
+                  </div>
+                  <div className="bt1381">{score?.team1Score}</div>
+                  <div className="bt1381">{score?.team2Score}</div>
+                  <div
+                    className={`${score?.service == 1 ? "bt1382" : ""}`}
+                  ></div>
+                  <div
+                    className={`${score?.service == 2 ? "bt1382" : ""}`}
+                  ></div>
+                  <div className="bt1384 bt1380 bt1493">
+                    <span className="bt1386">{score?.totalSet1}</span>
+                  </div>
+                  <div className="bt1384 bt1380 bt1493">
+                    <span className="bt1386">{score?.totalSet2}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      ) : (
+        <div className="bt12577 bt12497" data-editor-id="scoreBoardCard">
+          <div className="bt12580 bt12579">
+            <div className="bt12581">
+              <div className="bt6522" data-editor-id="scoreBoardCategory">
+                {score?.time && eventTypeId != 1 && (
+                  <div className="bt6523 bt12585 bt12583">
+                    {/* <span className="bt6524">
                 {eventTypeId == 2 && (
                   <svg
                     className="bt1336"
@@ -201,9 +196,9 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                   </svg>
                 )}
               </span> */}
-                        <span className="bt6526 bt12586">
-                          {score?.time}
-                          {/* <svg
+                    <span className="bt6526 bt12586">
+                      {score?.time}
+                      {/* <svg
                   className="bt6527"
                   data-cy="ic-rounded-arrow"
                   width="16"
@@ -220,14 +215,14 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                   <path d="M8.7542 11.1529C8.35634 11.6157 7.64366 11.6157 7.2458 11.1529L4.24545 7.66298C3.68586 7.01207 4.14485 6 4.99964 6L11.0004 6C11.8551 6 12.3141 7.01207 11.7546 7.66298L8.7542 11.1529Z"></path>
                 </svg>
                 Premier League */}
-                        </span>
-                      </div>
-                    )}
+                    </span>
                   </div>
-                </div>
-                <div className="bt12582">
-                  <span>
-                    {/* <span className="bt9911 bt12584" role="button">
+                )}
+              </div>
+            </div>
+            <div className="bt12582">
+              <span>
+                {/* <span className="bt9911 bt12584" role="button">
               <svg
                 className="bt9912"
                 data-cy="stat"
@@ -257,34 +252,31 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                 </defs>
               </svg>{" "}
             </span> */}
-                  </span>
-                  <span></span>
-                </div>
-              </div>
-              <div
-                className="bt12590 bt12591"
-                data-editor-id="scoreBoardContent"
-              >
-                <div className="bt12592">
-                  <div className="bt12593">
-                    <div className="bt12600">
-                      <div className="bt12602">
-                        <div
-                          className="bt6474"
-                          style={{ width: "40px", height: "40px" }}
-                        >
-                          <img
-                            data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/17.png"
-                            src={score?.image1}
-                            alt=""
-                            height="40"
-                            width="40"
-                            className="bt6475"
-                          />
-                        </div>
-                      </div>
-                      <div className="bt12603">{score?.player1}</div>
-                      {/* <div className="bt12604">
+              </span>
+              <span></span>
+            </div>
+          </div>
+          <div className="bt12590 bt12591" data-editor-id="scoreBoardContent">
+            <div className="bt12592">
+              <div className="bt12593">
+                <div className="bt12600">
+                  <div className="bt12602">
+                    <div
+                      className="bt6474"
+                      style={{ width: "40px", height: "40px" }}
+                    >
+                      <img
+                        data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/17.png"
+                        src={score?.image1}
+                        alt=""
+                        height="40"
+                        width="40"
+                        className="bt6475"
+                      />
+                    </div>
+                  </div>
+                  <div className="bt12603">{score?.player1}</div>
+                  {/* <div className="bt12604">
                 <div className="bt12605">
                   <span className="bt12606">
                     <svg
@@ -360,79 +352,101 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                   </span>
                 </div>
               </div> */}
-                    </div>
+                </div>
+              </div>
+              <div className="bt12593">
+                <div className="bt12613">
+                  <svg
+                    className="bt12614"
+                    data-cy="ic-live-simple"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="#FF4E4E"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      fill: "rgb(255, 78, 78)",
+                      color: "rgb(255, 78, 78)",
+                      width: "auto",
+                      height: "16px",
+                    }}
+                  >
+                    <path d="M12.9628 3.20912C12.6766 2.93029 12.2125 2.93029 11.9263 3.20912C11.6401 3.48794 11.6401 3.94001 11.9263 4.21883C12.436 4.71538 12.8404 5.30487 13.1163 5.95365C13.3921 6.60242 13.5341 7.29777 13.5341 8C13.5341 8.70223 13.3921 9.39758 13.1163 10.0464C12.8404 10.6951 12.436 11.2846 11.9263 11.7812C11.6401 12.06 11.6401 12.5121 11.9263 12.7909C12.2125 13.0697 12.6766 13.0697 12.9628 12.7909C13.6087 12.1617 14.121 11.4148 14.4706 10.5928C14.8201 9.77079 15 8.88975 15 8C15 7.11025 14.8201 6.22921 14.4706 5.40719C14.121 4.58517 13.6087 3.83827 12.9628 3.20912Z"></path>
+                    <path d="M10.0422 5.11529C10.3284 4.83647 10.7925 4.83647 11.0787 5.11529C11.4708 5.49724 11.7818 5.95068 11.994 6.44972C12.2062 6.94876 12.3155 7.48363 12.3155 8.02379C12.3155 8.56395 12.2062 9.09881 11.994 9.59786C11.7818 10.0969 11.4708 10.5503 11.0787 10.9323C10.7925 11.2111 10.3284 11.2111 10.0422 10.9323C9.75595 10.6535 9.75595 10.2014 10.0422 9.92257C10.2982 9.67322 10.5012 9.37719 10.6397 9.0514C10.7783 8.72561 10.8496 8.37642 10.8496 8.02379C10.8496 7.67115 10.7783 7.32197 10.6397 6.99617C10.5012 6.67038 10.2982 6.37436 10.0422 6.12501C9.75595 5.84618 9.75595 5.39412 10.0422 5.11529Z"></path>
+                    <path d="M8.05198 9.51147C8.90891 9.51147 9.60359 8.83477 9.60359 8.00002C9.60359 7.16526 8.90891 6.48856 8.05198 6.48856C7.19504 6.48856 6.50036 7.16526 6.50036 8.00002C6.50036 8.83477 7.19504 9.51147 8.05198 9.51147Z"></path>
+                    <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
+                    <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
+                  </svg>
+                  <div
+                    className="bt6541 bt12616"
+                    data-editor-id="eventCardStatusLabel"
+                  >
+                    {score?.timeStatus}
                   </div>
-                  <div className="bt12593">
+                </div>
+                <div className="bt12617 bt12594">
+                  {score?.team1Score && (
+                    <div
+                      className="bt12618 bt12619"
+                      data-editor-id="scoreBoardScore"
+                    >
+                      {score?.team1Score}
+                    </div>
+                  )}
+
+                  {score?.team1Score && <div className="bt12620">:</div>}
+
+                  {score?.team2Score && (
+                    <div
+                      className="bt12618 bt12619"
+                      data-editor-id="scoreBoardScore"
+                    >
+                      {score?.team2Score}
+                    </div>
+                  )}
+                </div>
+                {eventTypeId == 4 &&
+                  match_odds?.[0]?.score?.[0]?.recent?.length > 0 && (
                     <div className="bt12613">
-                      <svg
-                        className="bt12614"
-                        data-cy="ic-live-simple"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="#FF4E4E"
-                        xmlns="http://www.w3.org/2000/svg"
-                        style={{
-                          fill: "rgb(255, 78, 78)",
-                          color: "rgb(255, 78, 78)",
-                          width: "auto",
-                          height: "16px",
-                        }}
-                      >
-                        <path d="M12.9628 3.20912C12.6766 2.93029 12.2125 2.93029 11.9263 3.20912C11.6401 3.48794 11.6401 3.94001 11.9263 4.21883C12.436 4.71538 12.8404 5.30487 13.1163 5.95365C13.3921 6.60242 13.5341 7.29777 13.5341 8C13.5341 8.70223 13.3921 9.39758 13.1163 10.0464C12.8404 10.6951 12.436 11.2846 11.9263 11.7812C11.6401 12.06 11.6401 12.5121 11.9263 12.7909C12.2125 13.0697 12.6766 13.0697 12.9628 12.7909C13.6087 12.1617 14.121 11.4148 14.4706 10.5928C14.8201 9.77079 15 8.88975 15 8C15 7.11025 14.8201 6.22921 14.4706 5.40719C14.121 4.58517 13.6087 3.83827 12.9628 3.20912Z"></path>
-                        <path d="M10.0422 5.11529C10.3284 4.83647 10.7925 4.83647 11.0787 5.11529C11.4708 5.49724 11.7818 5.95068 11.994 6.44972C12.2062 6.94876 12.3155 7.48363 12.3155 8.02379C12.3155 8.56395 12.2062 9.09881 11.994 9.59786C11.7818 10.0969 11.4708 10.5503 11.0787 10.9323C10.7925 11.2111 10.3284 11.2111 10.0422 10.9323C9.75595 10.6535 9.75595 10.2014 10.0422 9.92257C10.2982 9.67322 10.5012 9.37719 10.6397 9.0514C10.7783 8.72561 10.8496 8.37642 10.8496 8.02379C10.8496 7.67115 10.7783 7.32197 10.6397 6.99617C10.5012 6.67038 10.2982 6.37436 10.0422 6.12501C9.75595 5.84618 9.75595 5.39412 10.0422 5.11529Z"></path>
-                        <path d="M8.05198 9.51147C8.90891 9.51147 9.60359 8.83477 9.60359 8.00002C9.60359 7.16526 8.90891 6.48856 8.05198 6.48856C7.19504 6.48856 6.50036 7.16526 6.50036 8.00002C6.50036 8.83477 7.19504 9.51147 8.05198 9.51147Z"></path>
-                        <path d="M6.05604 5.11529C5.76981 4.83647 5.30574 4.83647 5.0195 5.11529C4.62741 5.49724 4.31638 5.95068 4.10418 6.44972C3.89198 6.94876 3.78276 7.48363 3.78276 8.02379C3.78276 8.56395 3.89198 9.09881 4.10418 9.59786C4.31638 10.0969 4.62741 10.5503 5.0195 10.9323C5.30574 11.2111 5.76981 11.2111 6.05604 10.9323C6.34228 10.6535 6.34228 10.2014 6.05604 9.92257C5.80007 9.67322 5.59702 9.37719 5.45848 9.0514C5.31995 8.72561 5.24865 8.37642 5.24865 8.02379C5.24865 7.67115 5.31995 7.32197 5.45848 6.99617C5.59702 6.67038 5.80007 6.37436 6.05604 6.12501C6.34228 5.84618 6.34228 5.39412 6.05604 5.11529Z"></path>
-                        <path d="M3.03717 3.20912C3.3234 2.93029 3.78748 2.93029 4.07371 3.20912C4.35994 3.48794 4.35994 3.94001 4.07371 4.21883C3.56397 4.71538 3.15962 5.30487 2.88375 5.95365C2.60788 6.60242 2.46589 7.29777 2.46589 8C2.46589 8.70223 2.60788 9.39758 2.88375 10.0464C3.15962 10.6951 3.56397 11.2846 4.07371 11.7812C4.35994 12.06 4.35994 12.5121 4.07371 12.7909C3.78748 13.0697 3.3234 13.0697 3.03717 12.7909C2.39131 12.1617 1.87898 11.4148 1.52944 10.5928C1.1799 9.77078 1 8.88975 1 8C1 7.11025 1.1799 6.22921 1.52944 5.40719C1.87898 4.58517 2.39131 3.83827 3.03717 3.20912Z"></path>
-                      </svg>
-                      <div
-                        className="bt6541 bt12616"
-                        data-editor-id="eventCardStatusLabel"
-                      >
-                        {score?.timeStatus}
-                      </div>
+                      <p style={{ marginRight: "10px", fontWeight: "bold" }}>
+                        {" "}
+                        Recent Over
+                      </p>
+                      {match_odds?.[0]?.score?.map((team) =>
+                        team?.recent?.map((run, i) => {
+                          return (
+                            <p
+                              key={i}
+                              style={{ marginRight: "3px" }}
+                              className={` runs ${run > 0 ? "activeRun" : ""}`}
+                            >
+                              <span> {run}</span>
+                            </p>
+                          );
+                        })
+                      )}
                     </div>
-                    <div className="bt12617 bt12594">
-                      {score?.team1Score && (
-                        <div
-                          className="bt12618 bt12619"
-                          data-editor-id="scoreBoardScore"
-                        >
-                          {score?.team1Score}
-                        </div>
-                      )}
-
-                      {score?.team1Score && <div className="bt12620">:</div>}
-
-                      {score?.team2Score && (
-                        <div
-                          className="bt12618 bt12619"
-                          data-editor-id="scoreBoardScore"
-                        >
-                          {score?.team2Score}
-                        </div>
-                      )}
+                  )}
+              </div>
+              <div className="bt12593">
+                <div className="bt12600 bt12601">
+                  <div className="bt12602">
+                    <div
+                      className="bt6474"
+                      style={{ width: "40px", height: "40px" }}
+                    >
+                      <img
+                        data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/72.png"
+                        src={score?.image2}
+                        alt=""
+                        height="40"
+                        width="40"
+                        className="bt6475"
+                      />
                     </div>
                   </div>
-                  <div className="bt12593">
-                    <div className="bt12600 bt12601">
-                      <div className="bt12602">
-                        <div
-                          className="bt6474"
-                          style={{ width: "40px", height: "40px" }}
-                        >
-                          <img
-                            data-savepage-src="https://static.sptpub.com/competitors/images/normal/medium/72.png"
-                            src={score?.image2}
-                            alt=""
-                            height="40"
-                            width="40"
-                            className="bt6475"
-                          />
-                        </div>
-                      </div>
-                      <div className="bt12603">{score?.player2}</div>
-                      {/* <div className="bt12604">
+                  <div className="bt12603">{score?.player2}</div>
+                  {/* <div className="bt12604">
                 <div className="bt12605">
                   <span className="bt12606">
                     <svg
@@ -508,14 +522,13 @@ const ScoreBoardCard = ({ score, eventTypeId }) => {
                   </span>
                 </div>
               </div> */}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-          )}
-        </>
-    
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

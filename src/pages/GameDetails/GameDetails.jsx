@@ -51,7 +51,11 @@ const GameDetails = () => {
       )}
       <ScoreCardSlider />
       {eventsData?.score && (
-        <ScoreBoardCard eventTypeId={eventTypeId} score={eventsData?.score} />
+        <ScoreBoardCard
+          eventTypeId={eventTypeId}
+          score={eventsData?.score}
+          match_odds={match_odds}
+        />
       )}
       <MatchTrackerTab eventTypeId={eventTypeId} score={eventsData?.score} />
       {eventsData?.result && (

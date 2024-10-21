@@ -144,7 +144,7 @@ const Bookmaker = ({
         //   (profit) =>
         //     profit?.gameId === games?.id && profit?.isOnePositiveExposure
         // );
-        console.log("bookmaker", games);
+
         return (
           <div key={i} className="bt12687">
             <div className="bt12695">
