@@ -21,6 +21,7 @@ import OpenBets from "../pages/OpenBets/OpenBets";
 import IFrame from "../pages/IFrame/IFrame";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import RoyalCasino from "../pages/RoyalCasino/RoyalCasino";
+import APK from "../pages/APK/APK";
 
 export const router = createBrowserRouter(
   [
@@ -115,6 +116,10 @@ export const router = createBrowserRouter(
         {
           path: "forgot-password",
           element: <ForgotPassword />,
+        },
+        {
+          path: "apk",
+          element: <APK />,
         },
       ],
     },

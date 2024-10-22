@@ -4,7 +4,7 @@ import useBalance from "../../../hooks/useBalance";
 import { Settings } from "../../../api";
 import AppPopup from "./AppPopup";
 import { useEffect, useState } from "react";
-import { AndroidView } from "react-device-detect";
+// import { AndroidView } from "react-device-detect";
 import AEDRules from "../../modal/AEDRules";
 import useBonusBalance from "../../../hooks/useBonusBalance";
 import Marquee from "react-fast-marquee";
@@ -25,6 +25,7 @@ const Header = () => {
   const [casinoInfo, setCasinoInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const storedNotification = sessionStorage.getItem("notification");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (!storedNotification) {
@@ -53,13 +54,34 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const expiryTime = localStorage.getItem("installPromptExpiryTime");
-    const currentTime = new Date().getTime();
-    if (!expiryTime || currentTime > expiryTime) {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const closePopupForForever = localStorage.getItem("closePopupForForever");
+    if (location?.state?.pathname === "/apk" || location.pathname === "/apk") {
+      localStorage.setItem("closePopupForForever", true);
       localStorage.removeItem("installPromptExpiryTime");
-      setIsModalOpen(true);
+    } else {
+      if (!closePopupForForever) {
+        const expiryTime = localStorage.getItem("installPromptExpiryTime");
+        const currentTime = new Date().getTime();
+
+        if (!expiryTime || currentTime > expiryTime) {
+          localStorage.removeItem("installPromptExpiryTime");
+
+          setIsModalOpen(true);
+        }
+      }
     }
-  }, [isModalOpen]);
+  }, [location?.state?.pathname, location.pathname, isModalOpen, windowWidth]);
 
   /* handle navigate aviator */
   const navigateAviatorCasinoVideo = () => {
@@ -96,10 +118,8 @@ const Header = () => {
 
   return (
     <>
-      {Settings?.apkLink && isModalOpen && (
-        <AndroidView>
-          <AppPopup setIsModalOpen={setIsModalOpen} />
-        </AndroidView>
+      {Settings?.apkLink && isModalOpen && windowWidth < 550 && (
+        <AppPopup setIsModalOpen={setIsModalOpen} />
       )}
       {showModal && (
         <AEDRules setShowModal={setShowModal} casinoInfo={casinoInfo} />
