@@ -4,7 +4,7 @@ import useContextState from "../../../../hooks/useContextState";
 
 const CardOne = ({ liveSports, keys }) => {
   const navigate = useNavigate();
-  const {sportsType} = useContextState()
+  const { sportsType } = useContextState();
 
   return (
     <div
@@ -218,86 +218,77 @@ const CardOne = ({ liveSports, keys }) => {
                   </div>
                 </div>
               </div>
-              {
-                liveSports?.[keys]?.score && sportsType === 2 && (
-                  <div className="bt285">
-                <div data-editor-id="widgetScore" className="bt1379">
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "20px",
-                      marginRight: "10px",
-                    }}
-                  >
-                    {liveSports?.[keys]?.score?.set1?.map((item, i) => {
-                      return <div key={i}>{item}</div>;
-                    })}
-                  </div>
+              {liveSports?.[keys]?.score && sportsType === 2 && (
+                <div className="bt285">
+                  <div data-editor-id="widgetScore" className="bt1379">
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "20px",
+                        marginRight: "10px",
+                      }}
+                    >
+                      {liveSports?.[keys]?.score?.set1?.map((item, i) => {
+                        return <div key={i}>{item}</div>;
+                      })}
+                    </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "20px",
-                      marginRight: "10px",
-                    }}
-                  >
-                    {liveSports?.[keys]?.score?.set2?.map((item, i) => {
-                      return <div key={i}>{item}</div>;
-                    })}
-                  </div>
-                  <div className="bt1381">
-                    {liveSports?.[keys]?.score?.team1Score}
-                  </div>
-                  <div className="bt1381">
-                    {liveSports?.[keys]?.score?.team2Score}
-                  </div>
-                  <div
-                    className={`${
-                      liveSports?.[keys]?.score?.service == 1 ? "bt1382" : ""
-                    }`}
-                  ></div>
-                  <div
-                    className={`${
-                      liveSports?.[keys]?.score?.service == 2 ? "bt1382" : ""
-                    }`}
-                  ></div>
-                  <div className="bt1384 bt1380 bt1493">
-                    <span className="bt1386">
-                      {liveSports?.[keys]?.score?.totalSet1}
-                    </span>
-                  </div>
-                  <div className="bt1384 bt1380 bt1493">
-                    <span className="bt1386">
-                      {liveSports?.[keys]?.score?.totalSet2}
-                    </span>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "20px",
+                        marginRight: "10px",
+                      }}
+                    >
+                      {liveSports?.[keys]?.score?.set2?.map((item, i) => {
+                        return <div key={i}>{item}</div>;
+                      })}
+                    </div>
+                    <div className="bt1381">
+                      {liveSports?.[keys]?.score?.team1Score}
+                    </div>
+                    <div className="bt1381">
+                      {liveSports?.[keys]?.score?.team2Score}
+                    </div>
+                    <div
+                      className={`${
+                        liveSports?.[keys]?.score?.service == 1 ? "bt1382" : ""
+                      }`}
+                    ></div>
+                    <div
+                      className={`${
+                        liveSports?.[keys]?.score?.service == 2 ? "bt1382" : ""
+                      }`}
+                    ></div>
+                    <div className="bt1384 bt1380 bt1493">
+                      <span className="bt1386">
+                        {liveSports?.[keys]?.score?.totalSet1}
+                      </span>
+                    </div>
+                    <div className="bt1384 bt1380 bt1493">
+                      <span className="bt1386">
+                        {liveSports?.[keys]?.score?.totalSet2}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-                )
-              }
-                 {
-                liveSports?.[keys]?.score && sportsType === 1 && (
-                  <div className="bt285">
-                <div data-editor-id="widgetScore" className="bt1379">
-            
-
-                
-             
-                
-                  <div className="bt1384 bt1380 bt1493">
-                    <span className="bt1386">
-                      {liveSports?.[keys]?.score?.total_1}
-                    </span>
-                  </div>
-                  <div className="bt1384 bt1380 bt1493">
-                    <span className="bt1386">
-                      {liveSports?.[keys]?.score?.total_2}
-                    </span>
+              )}
+              {liveSports?.[keys]?.score && sportsType === 1 && (
+                <div className="bt285">
+                  <div data-editor-id="widgetScore" className="bt1379">
+                    <div className="bt1384 bt1380 bt1493">
+                      <span className="bt1386">
+                        {liveSports?.[keys]?.score?.total_1}
+                      </span>
+                    </div>
+                    <div className="bt1384 bt1380 bt1493">
+                      <span className="bt1386">
+                        {liveSports?.[keys]?.score?.total_2}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-                )
-              }
+              )}
               {/* <div className="bt285">
                 {liveSports?.[keys]?.eventTypeId == 2 ? (
                   <div data-editor-id="widgetScore" className="bt1379">

@@ -14,6 +14,7 @@ import gpay from "./img/gpay.webp";
 import bhim from "./img/BHIM_WEB.png";
 import checked from "./img/checked.png";
 import whatsapp from "./img/whatsapp.png";
+import kabaddi from "./img/kabbadi.svg";
 
 export const images = {
   star,
@@ -32,5 +33,5 @@ export const images = {
   bhim,
   checked,
   whatsapp,
-
+  kabaddi,
 };

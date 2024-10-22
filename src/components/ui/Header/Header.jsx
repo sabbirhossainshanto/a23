@@ -10,6 +10,7 @@ import useBonusBalance from "../../../hooks/useBonusBalance";
 import Marquee from "react-fast-marquee";
 import { RxCross2 } from "react-icons/rx";
 import useGetNotification from "../../../hooks/useGetNotification";
+import { images } from "../../../assets";
 
 const Header = () => {
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
@@ -377,6 +378,25 @@ const Header = () => {
                   />
                 </svg>
                 <span>Tennis</span>
+              </button>
+              <button
+                onClick={() => {
+                  setSportsType(5);
+                  navigate("/");
+                }}
+                className={`mb-top-navigate-item ${
+                  location.pathname == "/" && sportsType == 5 ? "active" : ""
+                }`}
+              >
+                <img
+                  style={{
+                    height: "18px",
+                    width: "18px",
+                  }}
+                  src={images.kabaddi}
+                  alt=""
+                />
+                <span>Kabbadi</span>
               </button>
               <button
                 onClick={() => {

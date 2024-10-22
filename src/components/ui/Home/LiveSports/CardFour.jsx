@@ -3,6 +3,7 @@ import { handleNavigateEventPage } from "../../../../utils/handleNavigateEventPa
 
 const CardFour = ({ liveSports, keys }) => {
   const navigate = useNavigate();
+
   return (
     <div
       onClick={() => {

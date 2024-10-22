@@ -10,7 +10,9 @@ const useSportsBook = (sportsType) => {
     queryFn: async () => {
       const res = await axios.post(`${API.groupSportsBook}/${sportsType || 0}`);
       const data = res.data;
+
       const decryptionData = await handleDecryptData(JSON.stringify(data));
+
       return decryptionData;
     },
     refetchInterval: 2000,
