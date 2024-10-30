@@ -22,6 +22,7 @@ import IFrame from "../pages/IFrame/IFrame";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import RoyalCasino from "../pages/RoyalCasino/RoyalCasino";
 import APK from "../pages/APK/APK";
+import Mac88 from "../pages/Mac88/Mac88";
 
 export const router = createBrowserRouter(
   [
@@ -116,6 +117,10 @@ export const router = createBrowserRouter(
         {
           path: "forgot-password",
           element: <ForgotPassword />,
+        },
+        {
+          path: "mac88",
+          element: <Mac88 />,
         },
         {
           path: "apk",

@@ -37,6 +37,7 @@ export const API = {
   notification: "",
   bonusClaim: "",
   royalCasino: "",
+  mac88: "",
 };
 
 export const Settings = {
@@ -58,5 +59,6 @@ export const Settings = {
   logoHeight: "",
   logoWidth: "",
   baseUrl: "",
+  mac88: "",
   build: "",
 };

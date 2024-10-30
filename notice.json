@@ -14,12 +14,13 @@
       "otp": true,
       "interval": 700,
       "apkLink": "https://a23money.com/site.apk",
-      "casinoCurrency": "AED",
+      "casinoCurrency": "INR",
       "chaportAppId": "",
       "otpless": true,
       "paymentIntent": false,
       "betFairCashOut": true,
       "baseUrl": "",
+      "mac88": true,
       "build": "production"
     },
     "logo": {
@@ -65,7 +66,8 @@
       "slotsWolf": "https://api7.live/api/exchange/diamond/slotsWolf",
       "notification": "https://api7.live/api/exchange/diamond/notification",
       "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim",
-      "royalCasino": "https://api7.live/api/exchange/diamond/royalCasino"
+      "royalCasino": "https://api7.live/api/exchange/diamond/royalCasino",
+      "mac88": "https://api7.live/api/exchange/diamond/mac88"
     }
   },
   "success": true

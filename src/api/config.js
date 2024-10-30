@@ -11,6 +11,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
       if (data?.result?.endpoint) {
         API.groupSportsBook = data?.result?.endpoint?.groupSportsBook;
         API.banner = data?.result?.endpoint?.banner;
+        API.mac88 = data?.result?.endpoint?.mac88;
         API.eventDetails = data?.result?.endpoint?.eventDetails;
         API.login = data?.result?.endpoint?.login;
         API.bankAccount = data?.result?.endpoint?.bankAccount;
@@ -53,6 +54,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.referral = data?.result?.settings.referral;
         Settings.balanceApiLoop = data?.result?.settings?.balanceApiLoop;
         Settings.register = data?.result?.settings?.registration;
+        Settings.mac88 = data?.result?.settings?.mac88;
         Settings.otp = data?.result?.settings?.otp;
         Settings.disabledDevtool = data?.result?.settings?.disabledDevtool;
         Settings.casinoCurrency = data?.result?.settings?.casinoCurrency;
