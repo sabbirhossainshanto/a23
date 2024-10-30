@@ -20,8 +20,8 @@ const StateProvider = ({ children }) => {
   const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
-    getSetApis(setNoticeLoaded,baseUrl);
-  }, [noticeLoaded,baseUrl]);
+    getSetApis(setNoticeLoaded, baseUrl);
+  }, [noticeLoaded, baseUrl]);
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -53,8 +53,15 @@ const StateProvider = ({ children }) => {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
-      link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
-      document.head.appendChild(link);
+      if (Settings.build === "production") {
+        link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+        document.head.appendChild(link);
+      } else {
+        link.href = `/src/assets/css/theme.css
+        `;
+        document.head.appendChild(link);
+      }
+
       /* Dynamically append  favicon  */
       const FavIconLink = document.createElement("link");
       FavIconLink.rel = "icon";

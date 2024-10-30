@@ -62,6 +62,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.paymentIntent = data?.result?.settings?.paymentIntent;
         Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
         Settings.baseUrl = data?.result?.settings?.baseUrl;
+        Settings.build = data?.result?.settings?.build;
         Settings.logoFormat = data?.result?.logo?.format;
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;

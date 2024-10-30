@@ -23,7 +23,13 @@ const BankAccounts = ({
 
   return (
     <>
-      <div className="dep-w-info-bc  ">
+      <div
+        className="dep-w-info-bc"
+        style={{
+          backgroundColor: "white",
+          padding: "10px",
+        }}
+      >
         <div className="bank-account-section  ">
           <div
             onClick={() => {

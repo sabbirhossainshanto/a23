@@ -687,7 +687,7 @@ const PaymentMethods = ({
               }}
               _ngcontent-kdb-c159=""
               className="makepayment ng-tns-c159-13"
-              style={{ marginTop: "10px" }}
+              style={{ margin: "10px" }}
             >
               <div _ngcontent-kdb-c159="" className="madepay ng-tns-c159-13">
                 <button _ngcontent-kdb-c159="" className="ng-tns-c159-13">
