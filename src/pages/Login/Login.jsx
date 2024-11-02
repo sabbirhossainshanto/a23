@@ -210,21 +210,23 @@ const Login = () => {
                           )}
                         </span>
                       </div>
-                      <div
-                        onClick={() => {
-                          navigate("/forgot-password");
-                        }}
-                        style={{
-                          display: "flex",
-                          alignItems: "flex-end",
-                          width: "100%",
-                          justifyContent: "flex-end",
-                          cursor: "pointer",
-                        }}
-                        className="forgot"
-                      >
-                        <span>Forgot Password?</span>
-                      </div>
+                      {Settings.register && (
+                        <div
+                          onClick={() => {
+                            navigate("/forgot-password");
+                          }}
+                          style={{
+                            display: "flex",
+                            alignItems: "flex-end",
+                            width: "100%",
+                            justifyContent: "flex-end",
+                            cursor: "pointer",
+                          }}
+                          className="forgot"
+                        >
+                          <span>Forgot Password?</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <button
