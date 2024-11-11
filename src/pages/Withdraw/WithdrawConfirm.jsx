@@ -18,9 +18,11 @@ const WithdrawConfirm = ({
 }) => {
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const { token } = useContextState();
+  const [disable, setDisable] = useState(false);
   /* handle withdraw function */
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
+    setDisable(true);
     if (amount?.length > 0 && bank) {
       const generatedToken = handleRandomToken();
       const bankData = {
@@ -28,7 +30,7 @@ const WithdrawConfirm = ({
         amount: amount,
         bankId: bank?.bankId,
         token: generatedToken,
-        site:Settings.siteUrl
+        site: Settings.siteUrl,
       };
       const encryptedData = handleEncryptData(bankData);
       const res = await axios.post(API.bankAccount, encryptedData, {
@@ -155,7 +157,12 @@ const WithdrawConfirm = ({
             </div>
           </div>
         </div>
-        <button onClick={handleCoinSubmit} className="proceed-btn ">
+        <button
+          disabled={disable}
+          onClick={handleCoinSubmit}
+          className="proceed-btn"
+          style={{ cursor: disable ? "not-allowed" : "pointer" }}
+        >
           <span className="">Proceed</span>
         </button>
       </div>

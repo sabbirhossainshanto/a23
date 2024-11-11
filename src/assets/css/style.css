@@ -23883,7 +23883,6 @@ img,
   .left-top-text
   .status
   .status-text {
-  color: #00b2fe;
   font-family: "Inter";
   font-size: 0.5rem;
   font-style: normal;
@@ -23900,7 +23899,13 @@ img,
   .left-top-text
   .status
   .status-text-approved {
-  color: #17c964;
+  color: #17c964 !important;
+}
+.status-text-rejected {
+  color: red !important;
+}
+.status-text-pending {
+  color: yellowgreen !important;
 }
 
 .main-content
@@ -23994,7 +23999,6 @@ img,
     .left-top-text
     .status
     .status-text {
-    color: #00b2fe;
     font-family: "Inter";
     font-size: 0.6rem;
     font-style: normal;
