@@ -537,7 +537,10 @@ const Account = () => {
               </div>
             </div>
           </li>
-          {/* <li className="profile-menu-items ng-star-inserted">
+          <li
+            onClick={() => navigate("/bonus-statement")}
+            className="profile-menu-items ng-star-inserted"
+          >
             <div className="routingProfile">
               <div className="profile-menu-items-left">
                 <span className="profile-menu-icon">
@@ -545,15 +548,13 @@ const Account = () => {
                     loading="lazy"
                     alt=""
                     style={{ height: "24px" }}
-                    src={profileAccountStatement}
+                    src={profileBettingProfitLoss}
                   />
                   <div className="skeleton-img ng-star-inserted">
                     <div className="moving-strip"></div>
                   </div>
                 </span>
-                <span className="profile-menu-left-text">
-                  Account Statement
-                </span>
+                <span className="profile-menu-left-text">Bonus Statement</span>
               </div>
               <div className="profile-menu-items-right">
                 <svg
@@ -570,7 +571,7 @@ const Account = () => {
                 </svg>
               </div>
             </div>
-          </li> */}
+          </li>
           {wallet === "main" && (
             <li
               onClick={() => {

@@ -6,7 +6,7 @@
   "result": {
     "settings": {
       "siteTitle": "a23money",
-      "siteUrl": "a23money.com",
+      "siteUrl": "lotus365.zip",
       "referral": true,
       "balanceApiLoop": false,
       "registration": true,
@@ -67,7 +67,8 @@
       "notification": "https://api7.live/api/exchange/diamond/notification",
       "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim",
       "royalCasino": "https://api7.live/api/exchange/diamond/royalCasino",
-      "mac88": "https://api7.live/api/exchange/diamond/mac88"
+      "mac88": "https://api7.live/api/exchange/diamond/mac88",
+      "bonus": "https://api7.live/api/exchange/diamond/bonus"
     }
   },
   "success": true

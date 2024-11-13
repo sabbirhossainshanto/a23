@@ -23,6 +23,7 @@ import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import RoyalCasino from "../pages/RoyalCasino/RoyalCasino";
 import APK from "../pages/APK/APK";
 import Mac88 from "../pages/Mac88/Mac88";
+import BonusStatement from "../pages/BonusStatement/BonusStatement";
 
 export const router = createBrowserRouter(
   [
@@ -122,6 +123,7 @@ export const router = createBrowserRouter(
           path: "mac88",
           element: <Mac88 />,
         },
+        { path: "bonus-statement", element: <BonusStatement /> },
         {
           path: "apk",
           element: <APK />,

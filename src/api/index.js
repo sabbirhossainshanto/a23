@@ -38,6 +38,7 @@ export const API = {
   bonusClaim: "",
   royalCasino: "",
   mac88: "",
+  bonus: "",
 };
 
 export const Settings = {
