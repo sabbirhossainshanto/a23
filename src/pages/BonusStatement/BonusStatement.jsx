@@ -4,6 +4,7 @@ import handleRandomToken from "../../utils/handleRandomToken";
 import { API } from "../../api";
 import toast from "react-hot-toast";
 import useContextState from "../../hooks/useContextState";
+import moment from "moment/moment";
 
 const BonusStatement = () => {
   const { data, refetch } = useBonusStatement();
@@ -14,6 +15,8 @@ const BonusStatement = () => {
       return <span style={{ color: "green" }}>Bonus Claimed</span>;
     } else if (item?.is_claimed == 2) {
       return <span style={{ color: "orange" }}>Claim Pending</span>;
+    } else if (item?.is_claimed == 3) {
+      return <span style={{ color: "red" }}>Rejected</span>;
     } else if (item?.is_claimed == 0) {
       if (item?.is_wagering_complete == 1) {
         return (
@@ -56,6 +59,13 @@ const BonusStatement = () => {
       toast.success(result?.data?.result);
     } else {
       toast.error(result?.data?.result || "Something went wrong");
+    }
+  };
+
+  const formateDate = (date) => {
+    if (date) {
+      const formateDate = moment(date).format("DD-MM-YYYY, h:mm a");
+      return formateDate;
     }
   };
 
@@ -185,7 +195,10 @@ const BonusStatement = () => {
                     }}
                   >
                     <span>Date Added:</span>
-                    <span style={{ fontWeight: 600 }}>{item.date_added}</span>
+                    <span style={{ fontWeight: 600 }}>
+                      {" "}
+                      {formateDate(item?.date_added)}
+                    </span>
                   </span>
                 </div>
 
@@ -213,7 +226,7 @@ const BonusStatement = () => {
                   >
                     <span>Expiry Date:</span>
                     <span style={{ fontWeight: 600 }}>
-                      {item.expirity_date}
+                      {formateDate(item?.expiry_date)}
                     </span>
                   </span>
                   <span

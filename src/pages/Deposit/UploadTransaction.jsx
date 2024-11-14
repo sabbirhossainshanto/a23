@@ -92,7 +92,18 @@ const UploadTransaction = ({ paymentId, amount }) => {
       }
     }
   };
-
+  const handleUTRChange = (e) => {
+    const value = e.target.value;
+    if (/^[0-9]*$/.test(value)) {
+      console.log(value);
+      setUtr(value);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (!/[0-9]/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete") {
+      e.preventDefault();
+    }
+  };
   return (
     <>
       {!filePath && !loading && (
@@ -241,7 +252,8 @@ const UploadTransaction = ({ paymentId, amount }) => {
             <div className="u-i-p-control-item-holder-bc mb-3 ng-tns-c159-0">
               <div className="utrinput form-control-bc ng-tns-c159-0 ng-pristine ng-invalid ng-touched">
                 <input
-                  onChange={(e) => setUtr(e.target.value)}
+                  onChange={handleUTRChange}
+                  onKeyDown={handleKeyDown}
                   id="utrnumber"
                   name="utrnumber"
                   type="text"
