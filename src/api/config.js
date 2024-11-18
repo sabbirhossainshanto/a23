@@ -10,6 +10,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
       const data = res.data;
       if (data?.result?.endpoint) {
         API.groupSportsBook = data?.result?.endpoint?.groupSportsBook;
+        API.index = data?.result?.endpoint?.index;
         API.bonus = data?.result?.endpoint?.bonus;
         API.banner = data?.result?.endpoint?.banner;
         API.mac88 = data?.result?.endpoint?.mac88;

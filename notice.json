@@ -68,7 +68,8 @@
       "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim",
       "royalCasino": "https://api7.live/api/exchange/diamond/royalCasino",
       "mac88": "https://api7.live/api/exchange/diamond/mac88",
-      "bonus": "https://api7.live/api/exchange/diamond/bonus"
+      "bonus": "https://api7.live/api/exchange/diamond/bonus",
+      "index": "https://api7.live/api/exchange/diamond/index"
     }
   },
   "success": true
