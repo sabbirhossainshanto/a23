@@ -1,3 +1,3 @@
 export const handleNavigateEventPage = (data, key, navigate) => {
-  navigate(`/${data?.[key]?.eventTypeId}/${key}`);
+  navigate(`/game-details/${data?.[key]?.eventTypeId}/${key}`);
 };

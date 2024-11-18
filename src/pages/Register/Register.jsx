@@ -13,6 +13,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
 const Register = () => {
+  const referralCode = localStorage.getItem("referralCode");
   const { refetchSocialLinks } = useGetSocialLink();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -86,7 +87,7 @@ const Register = () => {
       token: generatedToken,
       otp: otpValues.join(""),
       isOtpAvailable: Settings.otp,
-      referralCode: user.referralCode,
+      referralCode: referralCode || user.referralCode,
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
     };
@@ -103,6 +104,7 @@ const Register = () => {
     const data = await res.json();
 
     if (data?.success) {
+      localStorage.removeItem("referralCode");
       if (Settings.deposit) {
         const handleDeposit = handleDepositMethod(data.result.token);
         const res = await handleDeposit();
@@ -337,6 +339,22 @@ const Register = () => {
                             />
                           )}
                         </span>
+                      </div>
+                      <div className="pwd-box">
+                        <span className="pwd-text">Referral Code*</span>
+                        <input
+                          onChange={(e) => {
+                            setUser({
+                              ...user,
+                              referralCode: e.target.value,
+                            });
+                          }}
+                          readOnly={referralCode}
+                          placeholder="Enter Confirm password"
+                          type="text"
+                          className="ng-untouched ng-pristine ng-valid"
+                          defaultValue={referralCode}
+                        />
                       </div>
                     </div>
                     <button type="submit" className="submit-btn">

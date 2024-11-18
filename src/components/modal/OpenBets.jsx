@@ -67,7 +67,9 @@ const OpenBets = ({ setShowOpenBets, myBets }) => {
                     <div
                       onClick={() => {
                         setShowOpenBets(false);
-                        navigate(`/${item?.eventTypeId}/${item?.eventId}`);
+                        navigate(
+                          `/game-details/${item?.eventTypeId}/${item?.eventId}`
+                        );
                       }}
                       style={{ cursor: "pointer" }}
                       key={i}

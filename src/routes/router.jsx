@@ -24,19 +24,21 @@ import RoyalCasino from "../pages/RoyalCasino/RoyalCasino";
 import APK from "../pages/APK/APK";
 import Mac88 from "../pages/Mac88/Mac88";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter(
   [
     {
       path: "/",
       element: <MainLayout />,
+      errorElement: <NotFound />,
       children: [
         {
           index: true,
           element: <Home />,
         },
         {
-          path: "/:eventTypeId/:eventId",
+          path: "/game-details/:eventTypeId/:eventId",
           element: <GameDetails />,
         },
         {
