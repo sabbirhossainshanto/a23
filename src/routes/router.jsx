@@ -25,6 +25,7 @@ import APK from "../pages/APK/APK";
 import Mac88 from "../pages/Mac88/Mac88";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import NotFound from "../pages/NotFound/NotFound";
+import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
 
 export const router = createBrowserRouter(
   [
@@ -126,6 +127,7 @@ export const router = createBrowserRouter(
           element: <Mac88 />,
         },
         { path: "bonus-statement", element: <BonusStatement /> },
+        { path: "referral-statement", element: <ReferralStatement /> },
         {
           path: "apk",
           element: <APK />,
