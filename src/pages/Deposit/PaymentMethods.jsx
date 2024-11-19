@@ -94,6 +94,7 @@ const PaymentMethods = ({
         },
       });
       const data = res?.data;
+
       if (data?.success) {
         if (Settings?.paymentIntent) {
           setPgPaymentMethods(data?.result);
