@@ -11,10 +11,9 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
-import useGetSocialLink from "../../hooks/useGetSocialLink";
+
 const Register = () => {
   const referralCode = localStorage.getItem("referralCode");
-  const { refetchSocialLinks } = useGetSocialLink();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [mobileNo, setMobileNo] = useState("");
@@ -130,7 +129,6 @@ const Register = () => {
         localStorage.getItem("loginName") &&
         data?.result?.changePassword === false
       ) {
-        refetchSocialLinks();
         /* Show success message */
         toast.success("User registration successful!");
         /* Close modal */

@@ -23,7 +23,7 @@ const Home = () => {
   const { refetchBalance } = useBalance();
   const { homeCasino } = useHomeCasino();
   const { casinoGames } = useCasinoGames();
-  const { socialLink } = useGetSocialLink();
+  const { socialLink, refetchSocialLinks } = useGetSocialLink();
 
   useEffect(() => {
     refetchSports();
@@ -34,6 +34,10 @@ const Home = () => {
       refetchBalance();
     }
   }, []);
+
+  useEffect(() => {
+    refetchSocialLinks();
+  }, [token, refetchSocialLinks]);
 
   const navigateWhatsApp = () => {
     if (token && socialLink?.branchWhatsapplink) {

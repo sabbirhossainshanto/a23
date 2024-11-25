@@ -19,6 +19,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     accountName: "",
     ifsc: "",
     accountNumber: "",
+    upiId: "",
   });
 
   /* Handle add bank function */
@@ -30,6 +31,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       accountName: bankDetails.accountName,
       ifsc: bankDetails.ifsc,
       accountNumber: bankDetails.accountNumber,
+      upiId: bankDetails.upiId,
       type: "addBankAccount",
       token: generatedToken,
       site: Settings.siteUrl,
@@ -131,6 +133,17 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                   name=""
                   placeholder="Enter Account Number"
                 />
+              </div>
+              <div
+                onChange={(e) => {
+                  setBankDetails({
+                    ...bankDetails,
+                    upiId: e.target.value,
+                  });
+                }}
+                className="input-box "
+              >
+                <input type="text" placeholder="Enter upi ID (Optional)" />
               </div>
               <div
                 onChange={(e) => {

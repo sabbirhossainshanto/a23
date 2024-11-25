@@ -142,6 +142,19 @@ const BankAccounts = ({
                         </span>
                       </div>
                     </div>
+                    <div className="bank-detail ">
+                      <div
+                        style={{
+                          width: "max-content",
+                          display: "flex",
+                          flexDirection: "row",
+                        }}
+                        className=""
+                      >
+                        <span className="">Upi ID :-</span>
+                        <span className="bank-detail-txt ">{data?.upiId}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );

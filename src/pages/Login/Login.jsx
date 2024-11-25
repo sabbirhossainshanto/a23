@@ -9,10 +9,8 @@ import handleDepositMethod from "../../utils/handleDepositMethod";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useContextState from "../../hooks/useContextState";
-import useGetSocialLink from "../../hooks/useGetSocialLink";
 
 const Login = () => {
-  const { refetchSocialLinks } = useGetSocialLink();
   const [showPassword, setShowPassword] = useState(false);
   const [disable, setDisable] = useState(false);
   const { handleSubmit, register } = useForm({
@@ -77,7 +75,6 @@ const Login = () => {
         localStorage.getItem("loginName") &&
         data?.result?.changePassword === false
       ) {
-        refetchSocialLinks();
         toast.success("Login Successful");
         navigate("/");
       }
