@@ -54,6 +54,7 @@ const Login = () => {
 
       /* Set token to localeStorage */
       localStorage.setItem("token", data.result.token);
+      localStorage.setItem("memberId", data.result.memberId);
       /* Set bonus token in locale storage */
       localStorage.setItem("bonusToken", data?.result?.bonusToken);
       /* Set login name to locale storage */

@@ -12,11 +12,11 @@ import profileBettingProfitLoss from "../../../src/assets/img/profile-betting-pr
 // import profileAccountStatement from "../../../src/assets/img/profile-account-statement.png";
 import profileSettings from "../../../src/assets/img/profile-settings.svg";
 
-import useBonusBalance from "../../hooks/useBonusBalance";
-import handleRandomToken from "../../utils/handleRandomToken";
-import axios from "axios";
-import { API, Settings } from "../../api";
-import toast from "react-hot-toast";
+// import useBonusBalance from "../../hooks/useBonusBalance";
+// import handleRandomToken from "../../utils/handleRandomToken";
+// import axios from "axios";
+import { Settings } from "../../api";
+// import toast from "react-hot-toast";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
 import { images } from "../../assets";
 import { useState } from "react";
@@ -25,46 +25,48 @@ import Referral from "../../components/modal/Referral";
 const Account = () => {
   const [showReferral, setShowReferral] = useState(false);
   const { socialLink } = useGetSocialLink();
-  const { setGetToken, token, setWallet, wallet } = useContextState();
+  // token, setWallet,
+  const { setGetToken, wallet } = useContextState();
   const navigate = useNavigate();
   /* get login name from locale storage */
   const loginName = localStorage.getItem("loginName");
+  const memberId = localStorage.getItem("memberId");
 
   /* get balance data */
-  const { balanceData, refetchBalance } = useBalance();
-  const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
+  const { balanceData } = useBalance();
+  // const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
 
-  const handleToggleBalance = (e) => {
-    const checked = e.target.checked;
-    if (checked) {
-      localStorage.setItem("wallet", "bonus");
-      setWallet("bonus");
-      setGetToken((prev) => !prev);
-    } else {
-      localStorage.removeItem("wallet");
-      setWallet("main");
-      setGetToken((prev) => !prev);
-    }
-  };
+  // const handleToggleBalance = (e) => {
+  //   const checked = e.target.checked;
+  //   if (checked) {
+  //     localStorage.setItem("wallet", "bonus");
+  //     setWallet("bonus");
+  //     setGetToken((prev) => !prev);
+  //   } else {
+  //     localStorage.removeItem("wallet");
+  //     setWallet("main");
+  //     setGetToken((prev) => !prev);
+  //   }
+  // };
 
-  const handleBonusToMainWallet = async () => {
-    const generatedToken = handleRandomToken();
-    const encryptedData = handleRandomToken(generatedToken);
-    const res = await axios.post(API.bonusClaim, encryptedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const result = res?.data;
+  // const handleBonusToMainWallet = async () => {
+  //   const generatedToken = handleRandomToken();
+  //   const encryptedData = handleRandomToken(generatedToken);
+  //   const res = await axios.post(API.bonusClaim, encryptedData, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   const result = res?.data;
 
-    if (result?.success) {
-      refetchBalance();
-      bonusRefetchBalance();
-      toast.success(result?.result?.message);
-    } else {
-      toast.error(result?.result?.message);
-    }
-  };
+  //   if (result?.success) {
+  //     refetchBalance();
+  //     bonusRefetchBalance();
+  //     toast.success(result?.result?.message);
+  //   } else {
+  //     toast.error(result?.result?.message);
+  //   }
+  // };
 
   const navigateWhatsApp = (link) => {
     window.open(link, "_blank");
@@ -80,12 +82,12 @@ const Account = () => {
               <div className="card-profile-page-upper-div-left">
                 <span
                   className="card-profile-page-upper-div-left-balance"
-                  style={{ color: "#000", fontSize: "14px" }}
+                  style={{ color: "#000", fontSize: "14px", fontWeight: "500" }}
                 >
                   {" "}
-                  ₹{balanceData?.availBalance}{" "}
+                  User ID : {memberId}
                 </span>
-                <span
+                {/* <span
                   className="card-profile-page-upper-div-left-main-wallet"
                   style={{
                     color: "#000",
@@ -95,8 +97,8 @@ const Account = () => {
                   }}
                 >
                   {" "}
-                  <span> Main Wallet </span>{" "}
-                </span>
+                  <span> User ID : {memberId}</span>{" "}
+                </span> */}
               </div>
 
               <div
@@ -152,7 +154,7 @@ const Account = () => {
               <div className="card-profile-image-lower-div-left">
                 <span className="card-profile-image-lower-div-left-text">
                   <span className="text-left-profile" style={{ color: "#000" }}>
-                    Free Money
+                    Balance
                   </span>
                   <span className="info-profile-left">
                     <svg
@@ -195,7 +197,7 @@ const Account = () => {
                   className="card-profile-image-lower-div-left-amount"
                   style={{ color: "#000" }}
                 >
-                  ₹ 0
+                  ₹ {balanceData?.availBalance}
                 </span>
               </div>
               <div className="card-profile-image-lower-div-right">
@@ -215,7 +217,7 @@ const Account = () => {
             </div>
           </div>
         </div>
-        <div className="profile-menu-box">
+        {/* <div className="profile-menu-box">
           <div className="card-profile-page">
             <div className="card-profile-page-upper-div">
               <div className="card-profile-page-upper-div-left">
@@ -362,7 +364,7 @@ const Account = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {wallet === "main" && (
           <div className="profile-menu-box">
             <div className="button-container-profile-page">
