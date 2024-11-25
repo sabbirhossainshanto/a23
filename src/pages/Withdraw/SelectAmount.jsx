@@ -55,13 +55,13 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
             </span>
             <div className="wallet-txt ">
               <p className="">Main Wallet</p>
-              <div className="with-any ">
+              {/* <div className="with-any ">
                 <p className="">Can withdraw anytime</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-        <div className="active-bonus-card ">
+        {/* <div className="active-bonus-card ">
           <div className="active-bonus-inner-card ">
             <div className="money-text ">
               <p className="">Free Money</p>
@@ -97,7 +97,7 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="amount-input ">
           <p className="amount-text ">Please enter the amount to withdraw</p>
           <form

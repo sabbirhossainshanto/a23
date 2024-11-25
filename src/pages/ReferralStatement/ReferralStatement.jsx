@@ -56,7 +56,7 @@ const ReferralStatement = () => {
         <button
           onClick={() => setFetchData(true)}
           style={{
-            backgroundColor: "var(--bg-primary)",
+            backgroundColor: "var(--color1)",
             border: "none",
             padding: "10px 20px",
             color: "white",
@@ -64,6 +64,9 @@ const ReferralStatement = () => {
             cursor: "pointer",
             height: "34px",
             marginTop: "auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           Submit
@@ -120,7 +123,9 @@ const ReferralStatement = () => {
                     }}
                   >
                     <span>Total Withdraw</span>
-                    <span>{data?.total_withdraw}</span>
+                    <span style={{ marginRight: "70px" }}>
+                      {data?.total_withdraw}
+                    </span>
                   </p>
                 </li>
               </ul>

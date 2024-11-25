@@ -19,12 +19,16 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     accountName: "",
     ifsc: "",
     accountNumber: "",
+    confirmAccountNumber: "",
     upiId: "",
   });
 
   /* Handle add bank function */
   const handleAddBank = async (e) => {
     e.preventDefault();
+    if (bankDetails.accountNumber !== bankDetails.confirmAccountNumber) {
+      toast.success("Bank account number did not matched!");
+    }
     /* generating random token for post data */
     const generatedToken = handleRandomToken();
     const bankData = {
@@ -96,6 +100,17 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
         <div className="card-body">
           <div className="bank-popup">
             <form onSubmit={handleAddBank}>
+              <div
+                onChange={(e) => {
+                  setBankDetails({
+                    ...bankDetails,
+                    upiId: e.target.value,
+                  });
+                }}
+                className="input-box "
+              >
+                <input type="text" placeholder="Enter UPI ID (Optional)" />
+              </div>
               <div className="input-box ">
                 <input
                   onChange={(e) => {
@@ -117,7 +132,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                       accountNumber: e.target.value,
                     });
                   }}
-                  placeholder="Enter Account Number"
+                  placeholder="Enter Bank Account Number"
                   type="text"
                 />
               </div>
@@ -126,25 +141,15 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                   onChange={(e) => {
                     setBankDetails({
                       ...bankDetails,
-                      accountNumber: e.target.value,
+                      confirmAccountNumber: e.target.value,
                     });
                   }}
                   type="text"
                   name=""
-                  placeholder="Enter Account Number"
+                  placeholder="Re-enter Bank Account Number"
                 />
               </div>
-              <div
-                onChange={(e) => {
-                  setBankDetails({
-                    ...bankDetails,
-                    upiId: e.target.value,
-                  });
-                }}
-                className="input-box "
-              >
-                <input type="text" placeholder="Enter upi ID (Optional)" />
-              </div>
+
               <div
                 onChange={(e) => {
                   setBankDetails({
@@ -154,7 +159,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                 }}
                 className="input-box "
               >
-                <input type="text" placeholder="IFSC0000001" name="" />
+                <input type="text" placeholder="Enter IFSC" name="" />
               </div>
               <div className="btn-box ">
                 <button
