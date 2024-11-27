@@ -39,8 +39,8 @@ const OpenBets = () => {
                     <div className="allbet-odds-stake-wrap">
                       <h3> </h3>
                       <h3></h3>
-                      <h3> {item?.amount}</h3>
                       <h3> {item?.userRate}</h3>
+                      <h3> {item?.amount}</h3>
                     </div>
                   </div>
                 );
