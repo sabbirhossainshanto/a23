@@ -10,30 +10,48 @@ export const handlePlaceBet = (
   navigate
 ) => {
   if (token) {
-    if (item?.status === "OPEN" && runner?.status === "OPEN") {
+    let price;
+    let eventTypeId;
+    if (
+      item?.status === "OPEN" &&
+      (runner?.status === "OPEN" || runner?.status === "ACTIVE")
+    ) {
       const updatedPnl = [];
       item?.runners?.forEach((runner) => {
-        const pnl = pnlBySelection?.find((p) => p?.RunnerId === runner?.id);
+        const pnl = pnlBySelection?.find(
+          (p) => p?.RunnerId === runner?.id || runner?.selectionId
+        );
         if (pnl) {
           updatedPnl.push(pnl?.pnl);
         }
       });
+
+      if (item?.btype) {
+        eventTypeId = item?.eventTypeId;
+        price =
+          betType === "back" ? runner?.back[0].price : runner?.lay[0].price;
+      } else {
+        eventTypeId = item?.marketId;
+        price =
+          betType === "back"
+            ? runner?.ex?.availableToBack?.[0]?.price
+            : runner?.ex?.availableToLay?.[0]?.price;
+      }
       setOpenBetSlip(true);
       setPlaceBetValues({});
       setPlaceBetValues({
-        price:
-          betType === "back" ? runner?.back[0].price : runner?.lay[0].price,
+        price,
         side: betType === "back" ? 0 : 1,
         selectionId: runner?.id,
         btype: item?.btype,
-        eventTypeId: item?.eventTypeId,
+        eventTypeId,
         betDelay: item?.betDelay,
         marketId: item?.id,
         lay: betType === "lay",
         back: betType === "back",
         selectedBetName: runner?.name,
         name: item.runners.map((runner) => runner.name),
-        runnerId: item.runners.map((runner) => runner.id),
+        runnerId: item.runners.map((runner) => runner.id || runner.selectionId),
         isWeak: item?.isWeak,
         maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
         isBettable: item?.isBettable,

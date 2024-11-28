@@ -2,10 +2,11 @@
 import "../../../assets/css/horseGreyhound.css";
 import moment from "moment-timezone";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const HorseGreyhound = ({ data, title }) => {
+const HorseGreyhound = ({ data, title, eventTypeId }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (data) {
       setSelectedCategory(data?.[0]?.childs?.[0]?.countryCode);
@@ -129,6 +130,11 @@ const HorseGreyhound = ({ data, title }) => {
                     {child?.childs?.map((item) => {
                       return (
                         <span
+                          onClick={() =>
+                            navigate(
+                              `/game-details/${eventTypeId}/${item?.eventId}`
+                            )
+                          }
                           key={item?.eventId}
                           _ngcontent-wne-c149=""
                           className="ng-star-inserted"

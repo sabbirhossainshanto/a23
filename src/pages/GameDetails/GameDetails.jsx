@@ -58,12 +58,13 @@ const GameDetails = () => {
         />
       )}
       <MatchTrackerTab eventTypeId={eventTypeId} score={eventsData?.score} />
-      {eventsData?.result && (
+      {eventsData && (
         <Odds
           refetchCurrentBets={refetchCurrentBets}
           match_odds={match_odds}
           setMatch_odds={setMatch_odds}
           data={eventsData?.result}
+          horseGreyhound={eventsData}
           eventTypeId={eventTypeId}
           sportsBook={eventsData?.sportsbook?.Result}
           priceClasses={priceClasses}

@@ -10,6 +10,7 @@ import BetSlip from "../../../components/modal/BetSlip";
 import useContextState from "../../../hooks/useContextState";
 import { useParams } from "react-router-dom";
 import useExposer from "../../../hooks/useExposer";
+import HorseGreyhound from "../GameType/HorseGreyhound";
 const Odds = ({
   sportsBook,
   eventTypeId,
@@ -18,6 +19,7 @@ const Odds = ({
   prevPrices,
   setPrevPrices,
   data,
+  horseGreyhound,
   match_odds,
   setMatch_odds,
   refetchCurrentBets,
@@ -140,7 +142,14 @@ const Odds = ({
             exposer={exposer}
           />
         )}
-
+        {eventTypeId == 7 || eventTypeId == 4339 ? (
+          <HorseGreyhound
+            data={horseGreyhound}
+            setOpenBetSlip={setOpenBetSlip}
+            setPlaceBetValues={setPlaceBetValues}
+            exposer={exposer}
+          />
+        ) : null}
         {openBetSlip && (
           <BetSlip
             refetchCurrentBets={refetchCurrentBets}
