@@ -26,6 +26,8 @@ import Mac88 from "../pages/Mac88/Mac88";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import NotFound from "../pages/NotFound/NotFound";
 import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
+import HorseRacing from "../pages/HorseRacing/HorseRacing";
+import GreyhoundRacing from "../pages/GreyhoundRacing/GreyhoundRacing";
 
 export const router = createBrowserRouter(
   [
@@ -125,6 +127,14 @@ export const router = createBrowserRouter(
         {
           path: "mac88",
           element: <Mac88 />,
+        },
+        {
+          path: "horse-racing",
+          element: <HorseRacing />,
+        },
+        {
+          path: "greyhound-racing",
+          element: <GreyhoundRacing />,
         },
         { path: "bonus-statement", element: <BonusStatement /> },
         { path: "referral-statement", element: <ReferralStatement /> },
