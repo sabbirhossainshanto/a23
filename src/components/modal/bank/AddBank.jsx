@@ -78,7 +78,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     <div className="Modal-Background  ">
       <div className="card-add-bank" ref={addBankRef}>
         <div className="card-header">
-          <h2>Add Bank Account</h2>
+          <h2 style={{ color: "black" }}>Add Bank Account</h2>
           <div className="close-btn">
             <svg
               onClick={() => setAddBank(false)}
