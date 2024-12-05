@@ -398,7 +398,10 @@ const Account = () => {
           </div>
         )}
         <div className="profile-menu-box">
-          <ul className="profile-menu-container active">
+          <ul
+            style={{ paddingLeft: "0px" }}
+            className="profile-menu-container active"
+          >
             {wallet === "main" && (
               <li
                 onClick={() => {

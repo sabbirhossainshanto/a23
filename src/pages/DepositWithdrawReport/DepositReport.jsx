@@ -33,7 +33,7 @@ const DepositReport = () => {
                 {accountStatement
                   ?.filter((item) => item?.date?.split(" ")?.[0] === category)
                   ?.map((data, i) => {
-                    console.log(data);
+                    // console.log(data);
                     return (
                       <div
                         // onClick={() => {

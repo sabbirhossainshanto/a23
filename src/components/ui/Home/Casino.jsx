@@ -83,6 +83,7 @@ const Casino = ({ casino, title }) => {
           {casino?.map((casino, i) => {
             return (
               <a
+                style={{ textDecoration: "none", cursor: "pointer" }}
                 onClick={() => setCategory(casino?.category)}
                 key={i}
                 className={`nav-item ${

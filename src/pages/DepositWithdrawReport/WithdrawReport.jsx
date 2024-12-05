@@ -33,7 +33,7 @@ const WithdrawReport = () => {
                 {withdrawStatement
                   ?.filter((item) => item?.date?.split(" ")?.[0] === category)
                   ?.map((data, i) => {
-                    console.log(data);
+                    // console.log(data);
                     return (
                       <div
                         // onClick={() => {
@@ -63,7 +63,7 @@ const WithdrawReport = () => {
                         <div className="card-content ">
                           <div className="top-content ">
                             <div className="left-top-text ">
-                              <span className="">{data?.remark}</span>
+                              <span className="">{data?.referenceNo}</span>
                               <span className="status  status-aproved">
                                 {data?.status === "APPROVED" && (
                                   <svg
@@ -118,7 +118,7 @@ const WithdrawReport = () => {
                           <div className="bottom-content ">
                             <span className="left-bottom-id ">
                               {" "}
-                              {data?.referenceNo}{" "}
+                              {data?.remark}{" "}
                             </span>
                             {/* <span className="right-bottom-date ">
                               {" "}
