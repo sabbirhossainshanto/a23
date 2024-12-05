@@ -418,7 +418,7 @@ const Header = () => {
                     fill="#864D44"
                   ></path>
                 </svg>
-                <span>Horse Racing</span>
+                <span>Horse</span>
               </button>
               <button
                 onClick={() => {
@@ -440,7 +440,7 @@ const Header = () => {
                     fill="#305765"
                   ></path>
                 </svg>
-                <span>Greyhound Racing</span>
+                <span>Greyhound</span>
               </button>
               {Settings.mac88 && Settings.casinoCurrency === "INR" && (
                 <button
