@@ -63,4 +63,5 @@ export const Settings = {
   baseUrl: "",
   mac88: "",
   build: "",
+  b2c: "",
 };

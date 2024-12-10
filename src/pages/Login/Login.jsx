@@ -31,7 +31,7 @@ const Login = () => {
       password: password,
       token: generatedToken,
       site: Settings.siteUrl,
-      b2c: true,
+      b2c: Settings.b2c,
     };
     const encryptedData = handleEncryptData(loginData);
     const res = await fetch(API.login, {
@@ -100,7 +100,7 @@ const Login = () => {
       password: "",
       token: generatedToken,
       site: Settings.siteUrl,
-      b2c: true,
+      b2c: Settings.b2c,
     });
     fetch(API.login, {
       method: "POST",

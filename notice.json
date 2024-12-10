@@ -21,6 +21,7 @@
       "betFairCashOut": true,
       "baseUrl": "",
       "mac88": true,
+      "b2c": true,
       "build": "production"
     },
     "logo": {
