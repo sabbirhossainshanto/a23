@@ -1,12 +1,34 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useIFrame from "../../hooks/useIFrame";
+import { useSportsVideo } from "../../hooks/useIFrame";
+import handleRandomToken from "../../utils/handleRandomToken";
+import handleEncryptData from "../../utils/handleEncryptData";
+import { Settings } from "../../api";
 
 const MatchTrackerTab = ({ score }) => {
   const [toggle, setToggle] = useState("");
   const { eventId, eventTypeId } = useParams();
-  const { iFrameUrl, refetchIFrameUrl } = useIFrame(eventTypeId, eventId);
-  const [iframeVideo, setIframeVideo] = useState("");
+  const { mutate } = useSportsVideo();
+  const [iFrame, setIframe] = useState("");
+
+  const handleGetSportsVideo = () => {
+    const generatedToken = handleRandomToken();
+    const encryptedVideoData = handleEncryptData({
+      eventTypeId: eventTypeId,
+      eventId: eventId,
+      type: "video",
+      token: generatedToken,
+      site: Settings.siteUrl,
+      casinoCurrency: Settings.casinoCurrency,
+    });
+    mutate(encryptedVideoData, {
+      onSuccess: (data) => {
+        if (data?.success) {
+          setIframe(data?.result?.url);
+        }
+      },
+    });
+  };
 
   const handleToggle = (tab) => {
     if (toggle === tab) {
@@ -18,17 +40,14 @@ const MatchTrackerTab = ({ score }) => {
 
   useEffect(() => {
     if (toggle === "tracker") {
-      setIframeVideo(score?.tracker);
+      setIframe(score?.tracker);
     } else if (toggle === "video") {
-      setIframeVideo(iFrameUrl?.url);
+      handleGetSportsVideo();
     } else {
-      setIframeVideo("");
+      setIframe("");
     }
-  }, [toggle, score, iFrameUrl]);
-
-  useEffect(() => {
-    refetchIFrameUrl();
-  }, [eventId, eventTypeId, refetchIFrameUrl]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toggle, score]);
 
   useEffect(() => {
     if (toggle === "video") {
@@ -114,7 +133,7 @@ const MatchTrackerTab = ({ score }) => {
                   <iframe
                     className="bt12648"
                     referrerPolicy="noreferrer"
-                    src={iframeVideo}
+                    src={iFrame}
                     style={{
                       width: "100%",
                       height: "auto",
@@ -123,34 +142,31 @@ const MatchTrackerTab = ({ score }) => {
                 </div>
               )}
 
-              {score &&
-                iFrameUrl?.url &&
-                toggle === "video" &&
-                score?.hasVideo && (
-                  <div
-                    data-editor-id="matchTrackerWidget"
+              {score && iFrame && toggle === "video" && score?.hasVideo && (
+                <div
+                  data-editor-id="matchTrackerWidget"
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    paddingBottom: toggle ? "56.25%" : "",
+                    overflow: "hidden",
+                  }}
+                >
+                  <iframe
+                    className="bt12648"
+                    referrerPolicy="noreferrer"
+                    src={iFrame}
+                    title="tracker"
                     style={{
-                      position: "relative",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
                       width: "100%",
-                      paddingBottom: toggle ? "56.25%" : "",
-                      overflow: "hidden",
+                      height: "100%",
                     }}
-                  >
-                    <iframe
-                      className="bt12648"
-                      referrerPolicy="noreferrer"
-                      src={iframeVideo}
-                      title="tracker"
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    ></iframe>
-                  </div>
-                )}
+                  ></iframe>
+                </div>
+              )}
             </div>
           </div>
         </div>
