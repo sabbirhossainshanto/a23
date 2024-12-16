@@ -8,9 +8,8 @@ const useEventDetails = (eventTypeId, eventId) => {
   const { data: eventsData, refetch: refetchEventsData } = useQuery({
     queryKey: ["events"],
     queryFn: async () => {
-      const res = await axios.post(
+      const res = await axios.get(
         `${API.eventDetails}/${eventTypeId}/${eventId}`,
-        {},
         {
           headers: {
             "Cache-Control": "public",
