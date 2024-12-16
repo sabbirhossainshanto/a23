@@ -26,7 +26,7 @@ const useDepositStatement = () => {
         type: "DEPOSIT",
         status: "ALL",
         token: generatedToken,
-        site:Settings.siteUrl
+        site: Settings.siteUrl,
       });
       const res = await axios.post(API.accountStatement, encryptedData, {
         headers: {
@@ -39,7 +39,7 @@ const useDepositStatement = () => {
         return data?.result;
       }
     },
-    gcTime:0
+    gcTime: 0,
   });
   return { accountStatement };
 };

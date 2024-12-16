@@ -9,7 +9,14 @@ const useEventDetails = (eventTypeId, eventId) => {
     queryKey: ["events"],
     queryFn: async () => {
       const res = await axios.post(
-        `${API.eventDetails}/${eventTypeId}/${eventId}`
+        `${API.eventDetails}/${eventTypeId}/${eventId}`,
+        {},
+        {
+          headers: {
+            "Cache-Control": "public",
+            "max-age": 1,
+          },
+        }
       );
       const data = res.data;
       const decryptionData = await handleDecryptData(JSON.stringify(data));
