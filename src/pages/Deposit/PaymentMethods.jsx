@@ -29,7 +29,11 @@ const PaymentMethods = ({
   amount,
 }) => {
   const { token } = useContextState();
-  const { bankData: depositMethods, refetchBankData } = useBankAccount({
+  const {
+    bankData: depositMethods,
+    refetchBankData,
+    isFetched,
+  } = useBankAccount({
     type: "depositMethods",
     amount,
   });
@@ -145,7 +149,8 @@ const PaymentMethods = ({
             Payment Methods
           </p>
 
-          {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
+          {Array.isArray(depositMethods) &&
+            depositMethods?.length > 0 &&
             depositMethods?.map((method) => {
               return (
                 <div
@@ -179,8 +184,9 @@ const PaymentMethods = ({
                   </div>
                 </div>
               );
-            })
-          ) : (
+            })}
+
+          {isFetched && depositMethods?.length === 0 && (
             <h2>No payment method available right now.</h2>
           )}
 

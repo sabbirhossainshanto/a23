@@ -7,7 +7,11 @@ import handleEncryptData from "../utils/handleEncryptData";
 
 const useBankAccount = (payload) => {
   const { token, tokenLoading } = useContextState();
-  const { data: bankData, refetch: refetchBankData } = useQuery({
+  const {
+    data: bankData,
+    refetch: refetchBankData,
+    isFetched,
+  } = useQuery({
     queryKey: ["bankAccount"],
     enabled: !tokenLoading,
     queryFn: async () => {
@@ -32,7 +36,7 @@ const useBankAccount = (payload) => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-  return { bankData, refetchBankData };
+  return { bankData, refetchBankData, isFetched };
 };
 
 export default useBankAccount;
