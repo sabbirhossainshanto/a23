@@ -70,7 +70,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.logoFormat = data?.result?.logo?.format;
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;
-        Settings.b2c = data?.result?.b2c;
+        Settings.b2c = data?.result?.settings?.b2c;
 
         setNoticeLoaded(true);
       }

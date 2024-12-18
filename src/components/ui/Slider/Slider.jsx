@@ -7,9 +7,10 @@ const Slider = ({ card }) => {
 
   const handleNavigate = (item) => {
     if (item?.link) {
-      navigate(`/${item?.link}`);
+      navigate(`/game-details/${item?.link}`);
     }
   };
+
   return (
     <div style={{ padding: "10px" }}>
       <div className="swiper swiper-initialized swiper-horizontal swiper-ios mySwiper swiper-backface-hidden">

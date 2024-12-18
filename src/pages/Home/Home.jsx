@@ -25,6 +25,8 @@ const Home = () => {
   const { casinoGames } = useCasinoGames();
   const { socialLink, refetchSocialLinks } = useGetSocialLink();
 
+  console.log(bannerImage);
+
   useEffect(() => {
     refetchSports();
   }, [refetchSports, sportsType]);
