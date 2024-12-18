@@ -47,7 +47,6 @@ const StateProvider = ({ children }) => {
   useEffect(() => {
     if (noticeLoaded) {
       /* Get site logo */
-      console.log(Settings.logoFormat);
       const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
       setLogo(logo);
       /* Theme css */

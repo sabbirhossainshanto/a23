@@ -53,7 +53,6 @@ const BonusStatement = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(result);
     if (result?.data?.success) {
       refetch();
       toast.success(result?.data?.result);

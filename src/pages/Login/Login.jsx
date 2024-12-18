@@ -33,7 +33,7 @@ const Login = () => {
       site: Settings.siteUrl,
       b2c: Settings.b2c,
     };
-    console.log(loginData);
+
     const encryptedData = handleEncryptData(loginData);
     const res = await fetch(API.login, {
       method: "POST",
@@ -43,7 +43,7 @@ const Login = () => {
       body: JSON.stringify(encryptedData),
     });
     const data = await res.json();
-    console.log(data);
+
     if (data.success) {
       setDisable(false);
       if (Settings.deposit) {

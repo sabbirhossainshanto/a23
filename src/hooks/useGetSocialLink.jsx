@@ -7,7 +7,6 @@ import handleEncryptData from "../utils/handleEncryptData";
 const useGetSocialLink = () => {
   const token = localStorage.getItem("token");
 
-  // console.log(token);
   /* get whats app link */
   const { data: socialLink = {}, refetch: refetchSocialLinks } = useQuery({
     queryKey: ["whatsApp"],
