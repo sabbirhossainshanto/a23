@@ -64,4 +64,5 @@ export const Settings = {
   mac88: "",
   build: "",
   b2c: "",
+  bookmakerCashOut: "",
 };

@@ -19,6 +19,7 @@
       "otpless": true,
       "paymentIntent": false,
       "betFairCashOut": true,
+      "bookmakerCashOut": true,
       "baseUrl": "",
       "mac88": true,
       "b2c": true,

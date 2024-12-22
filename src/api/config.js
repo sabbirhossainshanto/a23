@@ -71,6 +71,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;
         Settings.b2c = data?.result?.settings?.b2c;
+        Settings.bookmakerCashOut = data?.result?.settings?.bookmakerCashOut;
 
         setNoticeLoaded(true);
       }
