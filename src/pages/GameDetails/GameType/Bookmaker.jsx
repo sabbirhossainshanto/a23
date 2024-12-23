@@ -220,27 +220,50 @@ const Bookmaker = ({
                     }`,
                   }}
                 >
-                  <span style={{ fontSize: "10px", color: "black" }}>
-                    Cashout
-                  </span>{" "}
-                  <span style={{ display: "flex", alignItems: "center" }}>
-                    {teamProfitForGame?.profit > 0 &&
-                      !isGameSuspended(games) && (
-                        <span style={{ color: "black" }}>
-                          {" "}
-                          :
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      fontSize: "10px",
+                    }}
+                  >
+                    {" "}
+                    <span style={{ fontSize: "10px", color: "black" }}>
+                      Cashout
+                    </span>{" "}
+                    <span
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "10px",
+                      }}
+                    >
+                      {teamProfitForGame?.profit > 0 &&
+                        !isGameSuspended(games) && (
                           <span
                             style={{
-                              fontSize: "10px",
-                              color: `${
-                                teamProfitForGame?.profit > 0 ? "green" : "red"
-                              }`,
+                              color: "black",
+                              display: "flex",
+                              alignItems: "center",
                             }}
                           >
-                            {teamProfitForGame?.profit?.toFixed(2)}
+                            {" "}
+                            :
+                            <span
+                              style={{
+                                fontSize: "10px",
+                                color: `${
+                                  teamProfitForGame?.profit > 0
+                                    ? "green"
+                                    : "red"
+                                }`,
+                              }}
+                            >
+                              {teamProfitForGame?.profit?.toFixed(2)}
+                            </span>
                           </span>
-                        </span>
-                      )}
+                        )}
+                    </span>
                   </span>
                 </button>
               )}
