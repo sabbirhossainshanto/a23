@@ -221,22 +221,23 @@ const Bookmaker = ({
                     Cashout
                   </span>{" "}
                   <span style={{ display: "flex", alignItems: "center" }}>
-                    {teamProfitForGame?.profit && games?.status === "OPEN" && (
-                      <span style={{ color: "black" }}>
-                        {" "}
-                        :
-                        <span
-                          style={{
-                            fontSize: "10px",
-                            color: `${
-                              teamProfitForGame?.profit > 0 ? "green" : "red"
-                            }`,
-                          }}
-                        >
-                          {teamProfitForGame?.profit?.toFixed(2)}
+                    {teamProfitForGame?.profit > 0 &&
+                      games?.status === "OPEN" && (
+                        <span style={{ color: "black" }}>
+                          {" "}
+                          :
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              color: `${
+                                teamProfitForGame?.profit > 0 ? "green" : "red"
+                              }`,
+                            }}
+                          >
+                            {teamProfitForGame?.profit?.toFixed(2)}
+                          </span>
                         </span>
-                      </span>
-                    )}
+                      )}
                   </span>
                 </button>
               )}
