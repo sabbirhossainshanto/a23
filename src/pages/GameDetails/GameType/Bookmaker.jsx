@@ -188,7 +188,11 @@ const Bookmaker = ({
               </div>
               {Settings.bookmakerCashOut && games?.runners?.length !== 3 && (
                 <button
-                  disabled={!teamProfitForGame || isGameSuspended(games)}
+                  disabled={
+                    !teamProfitForGame ||
+                    isGameSuspended(games) ||
+                    teamProfitForGame?.profit === 0
+                  }
                   onClick={() =>
                     handleCashOutPlaceBet(
                       games,
@@ -213,34 +217,44 @@ const Bookmaker = ({
                     paddingLeft: "10px",
 
                     cursor: `${
-                      !teamProfitForGame || isGameSuspended(games)
+                      !teamProfitForGame ||
+                      isGameSuspended(games) ||
+                      teamProfitForGame?.profit === 0
                         ? "not-allowed"
                         : "pointer"
                     }`,
                     opacity: `${
-                      !teamProfitForGame || isGameSuspended(games) ? "0.6" : "1"
+                      !teamProfitForGame ||
+                      isGameSuspended(games) ||
+                      teamProfitForGame?.profit === 0
+                        ? "0.6"
+                        : "1"
                     }`,
                   }}
                 >
                   <span style={{ color: "black", fontSize: "10px" }}>
                     Cashout
                   </span>
-                  {teamProfitForGame?.profit > 0 && !isGameSuspended(games) && (
-                    <span style={{ color: "black", fontSize: "10px" }}>:</span>
-                  )}
+                  {teamProfitForGame?.profit !== 0 &&
+                    !isGameSuspended(games) && (
+                      <span style={{ color: "black", fontSize: "10px" }}>
+                        :
+                      </span>
+                    )}
 
-                  {teamProfitForGame?.profit > 0 && !isGameSuspended(games) && (
-                    <span
-                      style={{
-                        color: `${
-                          teamProfitForGame?.profit > 0 ? "green" : "red"
-                        }`,
-                        fontSize: "10px",
-                      }}
-                    >
-                      {teamProfitForGame?.profit?.toFixed(2)}
-                    </span>
-                  )}
+                  {teamProfitForGame?.profit !== 0 &&
+                    !isGameSuspended(games) && (
+                      <span
+                        style={{
+                          color: `${
+                            teamProfitForGame?.profit > 0 ? "green" : "red"
+                          }`,
+                          fontSize: "10px",
+                        }}
+                      >
+                        {teamProfitForGame?.profit?.toFixed(2)}
+                      </span>
+                    )}
                 </button>
               )}
             </div>
