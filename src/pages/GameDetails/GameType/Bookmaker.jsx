@@ -112,6 +112,11 @@ const Bookmaker = ({
           const runner1 = runners[0];
           const runner2 = runners[1];
 
+          const runner1back = runner1?.back?.[0]?.price;
+          const runner1Lay = runner1?.lay?.[0]?.price;
+          const runner2back = runner2?.back?.[0]?.price;
+          const runner2Lay = runner2?.lay?.[0]?.price;
+
           const pnl1 = pnlBySelection?.find(
             (pnl) => pnl?.RunnerId === runner1?.id
           )?.pnl;
@@ -119,7 +124,16 @@ const Bookmaker = ({
             (pnl) => pnl?.RunnerId === runner2?.id
           )?.pnl;
 
-          if (pnl1 && pnl2 && runner1 && runner2) {
+          if (
+            pnl1 &&
+            pnl2 &&
+            runner1 &&
+            runner2 &&
+            runner1back &&
+            runner1Lay &&
+            runner2back &&
+            runner2Lay
+          ) {
             const result = computeExposureAndStake(
               pnl1,
               pnl2,
@@ -145,7 +159,7 @@ const Bookmaker = ({
           (profit) =>
             profit?.gameId === games?.id && profit?.isOnePositiveExposure
         );
-
+        console.log(games);
         return (
           <div key={i} className="bt12687">
             <div className="bt12695">
@@ -171,7 +185,7 @@ const Bookmaker = ({
               </div>
               {Settings.bookmakerCashOut && games?.runners?.length !== 3 && (
                 <button
-                  disabled={!teamProfitForGame}
+                  disabled={!teamProfitForGame || games?.status === "SUSPENDED"}
                   onClick={() =>
                     handleCashOutPlaceBet(
                       games,
@@ -191,15 +205,23 @@ const Bookmaker = ({
                     backgroundColor: "#c9c9c9",
                     display: "flex",
                     alignItems: "center",
-                    cursor: `${!teamProfitForGame ? "not-allowed" : "pointer"}`,
-                    opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
+                    cursor: `${
+                      !teamProfitForGame || games?.status === "SUSPENDED"
+                        ? "not-allowed"
+                        : "pointer"
+                    }`,
+                    opacity: `${
+                      !teamProfitForGame || games?.status === "SUSPENDED"
+                        ? "0.6"
+                        : "1"
+                    }`,
                   }}
                 >
                   <span style={{ fontSize: "10px", color: "black" }}>
                     Cashout
                   </span>{" "}
                   <span style={{ display: "flex", alignItems: "center" }}>
-                    {teamProfitForGame?.profit && (
+                    {teamProfitForGame?.profit && games?.status === "OPEN" && (
                       <span style={{ color: "black" }}>
                         {" "}
                         :
