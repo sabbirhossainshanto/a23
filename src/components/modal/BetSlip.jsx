@@ -35,7 +35,7 @@ const BetSlip = ({
   /* Set price */
   useEffect(() => {
     setPrice(placeBetValues?.price);
-    setTotalSize(placeBetValues?.totalSize?.toFixed(2))
+    setTotalSize(placeBetValues?.totalSize?.toFixed(2));
   }, [placeBetValues]);
 
   let payload = {};
@@ -101,7 +101,6 @@ const BetSlip = ({
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
-     
           refetchExposure();
           refetchBalance();
           refetchCurrentBets();
@@ -633,7 +632,6 @@ const BetSlip = ({
                             >
                               Range: {placeBetValues?.minLiabilityPerBet} to{" "}
                               {placeBetValues?.maxLiabilityPerBet}
-                              <span>Max Market: 20K</span>
                             </h2>
                           </div>
                         ) : null}
