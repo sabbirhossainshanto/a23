@@ -630,7 +630,7 @@ const BetSlip = ({
                                 fontSize: "10px",
                               }}
                             >
-                              Range: {placeBetValues?.minLiabilityPerBet} to{" "}
+                              Max:
                               {placeBetValues?.maxLiabilityPerBet}
                             </h2>
                           </div>
