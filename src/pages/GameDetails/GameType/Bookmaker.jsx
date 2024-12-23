@@ -55,15 +55,15 @@ const Bookmaker = ({
       // Team A has a larger exposure.
       runner = runner1;
       largerExposure = exposureA;
-      layValue = runner1?.lay?.[0]?.price;
-      oppositeLayValue = runner2?.lay?.[0]?.price;
+      layValue = 1 + Number(runner1?.lay?.[0]?.price) / 100;
+      oppositeLayValue = 1 + Number(runner2?.lay?.[0]?.price) / 100;
       lowerExposure = exposureB;
     } else {
       // Team B has a larger exposure.
       runner = runner2;
       largerExposure = exposureB;
-      layValue = runner2?.lay?.[0]?.price;
-      oppositeLayValue = runner1?.lay?.[0]?.price;
+      layValue = 1 + Number(runner2?.lay?.[0]?.price) / 100;
+      oppositeLayValue = 1 + Number(runner1?.lay?.[0]?.price) / 100;
       lowerExposure = exposureA;
     }
 
@@ -111,6 +111,7 @@ const Bookmaker = ({
         if (runners?.length === 2) {
           const runner1 = runners[0];
           const runner2 = runners[1];
+
           const pnl1 = pnlBySelection?.find(
             (pnl) => pnl?.RunnerId === runner1?.id
           )?.pnl;
