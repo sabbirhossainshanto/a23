@@ -5,7 +5,10 @@ import { handleToggle } from "../../../utils/handleToggle";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 import useContextState from "../../../hooks/useContextState";
 import { useNavigate, useParams } from "react-router-dom";
-import { isRunnerSuspended } from "../../../utils/isRunnerSuspended";
+import {
+  isGameSuspended,
+  isRunnerSuspended,
+} from "../../../utils/isRunnerSuspended";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashOutPlaceBet";
 
@@ -159,7 +162,7 @@ const Bookmaker = ({
           (profit) =>
             profit?.gameId === games?.id && profit?.isOnePositiveExposure
         );
-        console.log(games);
+
         return (
           <div key={i} className="bt12687">
             <div className="bt12695">
@@ -185,7 +188,7 @@ const Bookmaker = ({
               </div>
               {Settings.bookmakerCashOut && games?.runners?.length !== 3 && (
                 <button
-                  disabled={!teamProfitForGame || games?.status === "SUSPENDED"}
+                  disabled={!teamProfitForGame || isGameSuspended(games)}
                   onClick={() =>
                     handleCashOutPlaceBet(
                       games,
@@ -205,15 +208,15 @@ const Bookmaker = ({
                     backgroundColor: "#c9c9c9",
                     display: "flex",
                     alignItems: "center",
+                    paddingRight: "10px",
+                    paddingLeft: "10px",
                     cursor: `${
-                      !teamProfitForGame || games?.status === "SUSPENDED"
+                      !teamProfitForGame || isGameSuspended(games)
                         ? "not-allowed"
                         : "pointer"
                     }`,
                     opacity: `${
-                      !teamProfitForGame || games?.status === "SUSPENDED"
-                        ? "0.6"
-                        : "1"
+                      !teamProfitForGame || isGameSuspended(games) ? "0.6" : "1"
                     }`,
                   }}
                 >
@@ -222,7 +225,7 @@ const Bookmaker = ({
                   </span>{" "}
                   <span style={{ display: "flex", alignItems: "center" }}>
                     {teamProfitForGame?.profit > 0 &&
-                      games?.status === "OPEN" && (
+                      !isGameSuspended(games) && (
                         <span style={{ color: "black" }}>
                           {" "}
                           :
