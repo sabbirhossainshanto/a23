@@ -2,13 +2,13 @@ import { useState } from "react";
 // import logo from "../../../src/assets/img//logo_small_w.webp";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import handleRandomToken from "../../utils/handleRandomToken";
 import handleEncryptData from "../../utils/handleEncryptData";
 import { API, Settings } from "../../api";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useContextState from "../../hooks/useContextState";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,23 +25,14 @@ const Login = () => {
   /* handle login */
   const onSubmit = async ({ username, password }) => {
     setDisable(true);
-    const generatedToken = handleRandomToken();
+
     const loginData = {
       username: username,
       password: password,
-      token: generatedToken,
-      site: Settings.siteUrl,
       b2c: Settings.b2c,
     };
 
-    const encryptedData = handleEncryptData(loginData);
-    const res = await fetch(API.login, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(encryptedData),
-    });
+    const res = await AxiosSecure.post(API.login, loginData);
     const data = await res.json();
 
     if (data.success) {
@@ -92,53 +83,42 @@ const Login = () => {
   };
 
   /* handle login demo user */
-  const loginWithDemo = () => {
+  const loginWithDemo = async () => {
     setDisable(true);
-    /* Random token generator */
-    const generatedToken = handleRandomToken();
-    /* Encrypted the post data */
+
     const loginData = handleEncryptData({
       username: "demo",
       password: "",
-      token: generatedToken,
-      site: Settings.siteUrl,
       b2c: Settings.b2c,
     });
-    fetch(API.login, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    const { data } = await AxiosSecure.post(API.login, loginData);
+    if (data?.success) {
+      setDisable(false);
+      /* Set token to localeStorage */
+      localStorage.setItem("token", data.result.token);
+      /* Set login name to locale storage */
+      /* Set bonus token in locale storage */
+      localStorage.setItem("bonusToken", data?.result?.bonusToken);
+      localStorage.setItem("loginName", data.result.loginName);
+      /* set button value to locale storage */
+      const buttonValue = JSON.stringify(data.result.buttonValue.game);
+      localStorage.setItem("buttonValue", buttonValue);
+      /* if in locale storage token and login name available and  data?.result?.changePassword === false */
+      if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("loginName") &&
+        data?.result?.changePassword === false
+      ) {
+        /* get current token from locale storage */
+        setGetToken((prev) => !prev);
+        navigate("/");
+        toast.success("Login Successful");
+      } else {
+        /* Show error message during login failed */
         setDisable(false);
-        /* Set token to localeStorage */
-        localStorage.setItem("token", data.result.token);
-        /* Set login name to locale storage */
-        /* Set bonus token in locale storage */
-        localStorage.setItem("bonusToken", data?.result?.bonusToken);
-        localStorage.setItem("loginName", data.result.loginName);
-        /* set button value to locale storage */
-        const buttonValue = JSON.stringify(data.result.buttonValue.game);
-        localStorage.setItem("buttonValue", buttonValue);
-        /* if in locale storage token and login name available and  data?.result?.changePassword === false */
-        if (
-          localStorage.getItem("token") &&
-          localStorage.getItem("loginName") &&
-          data?.result?.changePassword === false
-        ) {
-          /* get current token from locale storage */
-          setGetToken((prev) => !prev);
-          navigate("/");
-          toast.success("Login Successful");
-        } else {
-          /* Show error message during login failed */
-          setDisable(false);
-          toast.error(data?.error);
-        }
-      });
+        toast.error(data?.error);
+      }
+    }
   };
   return (
     <div className="e-p-body-bc">

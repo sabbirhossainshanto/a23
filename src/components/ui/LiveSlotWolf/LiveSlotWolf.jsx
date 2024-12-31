@@ -2,12 +2,12 @@
 // import { HiUsers } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Dropdown from "./Dropdown";
 import useContextState from "../../../hooks/useContextState";
 import { Settings } from "../../../api";
 import AEDRules from "../../modal/AEDRules";
 import Warning from "../../modal/Warning";
+import { AxiosInstance } from "../../../lib/AxiosInstance";
 
 const LiveSlotWolf = ({ api }) => {
   const [showLeftDropdown, setShowLeftDropdown] = useState(false);
@@ -27,7 +27,7 @@ const LiveSlotWolf = ({ api }) => {
 
   useEffect(() => {
     const getGames = async () => {
-      const res = await axios.post(api, {
+      const res = await AxiosInstance.post(api, {
         gameList,
         product,
         isHome: false,

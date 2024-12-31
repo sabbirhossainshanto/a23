@@ -1,27 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { API, Settings } from "../api";
-import useContextState from "./useContextState";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useGetIndex = () => {
-  const { token } = useContextState();
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["index"],
-
     queryFn: async () => {
-      const generatedToken = handleRandomToken();
-      const encryptedPostData = handleEncryptData({
-        site: Settings.siteUrl,
-        token: generatedToken,
+      const res = await AxiosSecure.post(API.index, {
         type: "get_referral_code",
-      });
-
-      const res = await axios.post(API.index, encryptedPostData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
       const result = res?.data;
       if (result?.success) {

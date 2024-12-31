@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import useContextState from "../../hooks/useContextState";
 import { useForm } from "react-hook-form";
 import { API } from "../../api";
 import toast from "react-hot-toast";
+import { AxiosInstance } from "../../lib/AxiosInstance";
 
 const EditStake = () => {
   window.scrollTo(0, 0);
   const navigate = useNavigate();
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const { register, handleSubmit } = useForm();
-  const { token } = useContextState();
 
-  const onSubmit = ({
+  const onSubmit = async ({
     buttons0value,
     buttons1value,
     buttons2value,
@@ -21,95 +20,84 @@ const EditStake = () => {
     buttons6value,
     buttons7value,
   }) => {
-    fetch(API.buttonValue, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        game: [
-          {
-            label: 100,
-            value: buttons0value,
-          },
-          {
-            label: 100,
-            value: buttons1value,
-          },
-          {
-            label: 100,
-            value: buttons2value,
-          },
-          {
-            label: 100,
-            value: buttons3value,
-          },
-          {
-            label: 100,
-            value: buttons4value,
-          },
-          {
-            label: 100,
-            value: buttons5value,
-          },
-          {
-            label: 100,
-            value: buttons6value,
-          },
-          {
-            label: 100,
-            value: buttons7value,
-          },
-        ],
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          toast.success(data?.result?.message);
-          localStorage.removeItem("buttonValue");
-          const gameButtonsValues = [
-            {
-              label: 100,
-              value: buttons0value,
-            },
-            {
-              label: 100,
-              value: buttons1value,
-            },
-            {
-              label: 100,
-              value: buttons2value,
-            },
-            {
-              label: 100,
-              value: buttons3value,
-            },
-            {
-              label: 100,
-              value: buttons4value,
-            },
-            {
-              label: 100,
-              value: buttons5value,
-            },
-            {
-              label: 100,
-              value: buttons6value,
-            },
-            {
-              label: 100,
-              value: buttons7value,
-            },
-          ];
-          /* set edited button values */
-          localStorage.setItem(
-            "buttonValue",
-            JSON.stringify(gameButtonsValues)
-          );
-          navigate("/account");
-        }
-      });
+    const { data } = await AxiosInstance.post(API.buttonValue, {
+      game: [
+        {
+          label: 100,
+          value: buttons0value,
+        },
+        {
+          label: 100,
+          value: buttons1value,
+        },
+        {
+          label: 100,
+          value: buttons2value,
+        },
+        {
+          label: 100,
+          value: buttons3value,
+        },
+        {
+          label: 100,
+          value: buttons4value,
+        },
+        {
+          label: 100,
+          value: buttons5value,
+        },
+        {
+          label: 100,
+          value: buttons6value,
+        },
+        {
+          label: 100,
+          value: buttons7value,
+        },
+      ],
+    });
+
+    if (data.success) {
+      toast.success(data?.result?.message);
+      localStorage.removeItem("buttonValue");
+      const gameButtonsValues = [
+        {
+          label: 100,
+          value: buttons0value,
+        },
+        {
+          label: 100,
+          value: buttons1value,
+        },
+        {
+          label: 100,
+          value: buttons2value,
+        },
+        {
+          label: 100,
+          value: buttons3value,
+        },
+        {
+          label: 100,
+          value: buttons4value,
+        },
+        {
+          label: 100,
+          value: buttons5value,
+        },
+        {
+          label: 100,
+          value: buttons6value,
+        },
+        {
+          label: 100,
+          value: buttons7value,
+        },
+      ];
+      /* set edited button values */
+      localStorage.setItem("buttonValue", JSON.stringify(gameButtonsValues));
+      navigate("/account");
+    }
   };
   return (
     <div className="e-p-body-bc">

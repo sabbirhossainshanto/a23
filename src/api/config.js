@@ -11,6 +11,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
       if (data?.result?.endpoint) {
         API.groupSportsBook = data?.result?.endpoint?.groupSportsBook;
         API.index = data?.result?.endpoint?.index;
+        API.language = data?.result?.endpoint?.language;
         API.bonus = data?.result?.endpoint?.bonus;
         API.banner = data?.result?.endpoint?.banner;
         API.mac88 = data?.result?.endpoint?.mac88;
@@ -71,6 +72,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;
         Settings.b2c = data?.result?.settings?.b2c;
+        Settings.language = data?.result?.settings?.language;
         Settings.bookmakerCashOut = data?.result?.settings?.bookmakerCashOut;
 
         setNoticeLoaded(true);

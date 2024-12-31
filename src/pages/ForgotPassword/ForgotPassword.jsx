@@ -4,12 +4,10 @@ import indFlag from "../../../src/assets/img/ind-flag-icon.svg";
 import { images } from "../../assets";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import handleRandomToken from "../../utils/handleRandomToken";
-import { API, Settings } from "../../api";
-import handleEncryptData from "../../utils/handleEncryptData";
+import { API } from "../../api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const ForgotPassword = () => {
   const [showOtp, setShowOtp] = useState(false);
@@ -67,27 +65,21 @@ const ForgotPassword = () => {
     if (user.password !== user.confirmPassword) {
       toast.error("Passwords not matching!");
     }
-    const generatedToken = handleRandomToken();
+
     const forgotPasswordData = {
       username: mobileNo,
       password: user?.password,
       confirmPassword: user?.confirmPassword,
-      site: Settings.siteUrl,
-      token: generatedToken,
       otp: otpValues.join(""),
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
     };
-    const encryptedData = handleEncryptData(forgotPasswordData);
-    const res = await fetch(API.forgotPassword, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(encryptedData),
-    });
 
-    const data = await res.json();
+    const { data } = await AxiosSecure.post(
+      API.forgotPassword,
+      forgotPasswordData
+    );
+
     if (data?.success) {
       toast.success("Password updated successfully");
       setTimeout(() => {
@@ -101,16 +93,13 @@ const ForgotPassword = () => {
   const getOtp = async () => {
     /* Get Otp based on settings*/
 
-    const generatedToken = handleRandomToken();
     const otpData = {
       mobile: mobileNo,
-      token: generatedToken,
-      site: Settings?.siteUrl,
     };
-    const encryptedData = handleEncryptData(otpData);
-    const res = await axios.post(API.otp, encryptedData);
+
+    const res = await AxiosSecure.post(API.otp, otpData);
     const data = res.data;
-    
+
     if (data?.success) {
       setCountDown(45);
       toast.success(data?.result?.message);

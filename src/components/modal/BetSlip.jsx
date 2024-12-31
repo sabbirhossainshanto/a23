@@ -8,6 +8,7 @@ import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { FaSpinner } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import useBalance from "../../hooks/useBalance";
+import useLanguage from "../../hooks/useLanguage";
 
 const BetSlip = ({
   setOpenBetSlip,
@@ -15,6 +16,7 @@ const BetSlip = ({
   refetchExposure,
   refetchCurrentBets,
 }) => {
+  const { language } = useLanguage();
   const { token } = useContextState();
   /* Close modal click outside */
   const betSlipRef = useRef();
@@ -40,6 +42,9 @@ const BetSlip = ({
 
   let payload = {};
   if (price) {
+    if (Settings.language) {
+      payload.language = language;
+    }
     if (placeBetValues?.btype === "SPORTSBOOK") {
       payload = {
         price: price,

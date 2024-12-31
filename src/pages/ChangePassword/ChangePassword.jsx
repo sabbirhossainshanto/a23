@@ -1,16 +1,15 @@
 import toast from "react-hot-toast";
-import { API, Settings } from "../../api";
-import handleRandomToken from "../../utils/handleRandomToken";
-import handleEncryptData from "../../utils/handleEncryptData";
+import { API } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import useContextState from "../../hooks/useContextState";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const ChangePassword = () => {
   window.scrollTo(0, 0);
-  const { token, setGetToken } = useContextState();
+  const { setGetToken } = useContextState();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
 
@@ -22,37 +21,26 @@ const ChangePassword = () => {
   const navigate = useNavigate();
 
   /* Change password function */
-  const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
-    const generatedToken = handleRandomToken();
-    const encryptedData = handleEncryptData({
+  const onSubmit = async ({ password, newPassword, newPasswordConfirm }) => {
+    const payload = {
       oldPassword: password,
       password: newPassword,
       passVerify: newPasswordConfirm,
-      token: generatedToken,
-      site:Settings.siteUrl
-    });
-    fetch(API.changePassword, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(encryptedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          /* After success showing success message */
-          toast.success(data?.result?.message);
-          setTimeout(() => {
-            // handleLogOut();
-            setGetToken((prev) => !prev);
-            navigate("/");
-          }, 1000);
-        } else {
-          /* Showing error message during change password */
-          toast.error(data?.error?.errorMessage);
-        }
-      });
+    };
+    const { data } = await AxiosSecure.post(API.changePassword, payload);
+
+    if (data.success) {
+      /* After success showing success message */
+      toast.success(data?.result?.message);
+      setTimeout(() => {
+        // handleLogOut();
+        setGetToken((prev) => !prev);
+        navigate("/");
+      }, 1000);
+    } else {
+      /* Showing error message during change password */
+      toast.error(data?.error?.errorMessage);
+    }
   };
   return (
     <div className="e-p-body-bc">

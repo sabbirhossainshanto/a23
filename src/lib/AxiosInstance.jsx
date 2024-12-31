@@ -1,14 +1,13 @@
 import axios from "axios";
 import handleRandomToken from "../utils/handleRandomToken";
 import { Settings } from "../api";
-import handleEncryptData from "../utils/handleEncryptData";
 
-export const AxiosSecure = axios.create({
+export const AxiosInstance = axios.create({
   baseURL: "",
 });
 
 // Add a request interceptor
-AxiosSecure.interceptors.request.use(
+AxiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -24,8 +23,8 @@ AxiosSecure.interceptors.request.use(
       if (Settings.language) {
         payload.language = localStorage.getItem("language") || "english";
       }
-      const encryptedData = handleEncryptData(payload);
-      config.data = encryptedData;
+
+      config.data = payload;
     }
     return config;
   },
@@ -37,7 +36,7 @@ AxiosSecure.interceptors.request.use(
 );
 
 // Add a response interceptor
-AxiosSecure.interceptors.response.use(
+AxiosInstance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data

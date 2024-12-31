@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { API, Settings } from "../api";
-import useContextState from "./useContextState";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 /* withdraw api */
 const useWithdrawStatement = () => {
@@ -13,35 +10,24 @@ const useWithdrawStatement = () => {
     .split("T")[0];
   /* current date */
   const toDate = new Date().toISOString().split("T")[0];
-  const { token, tokenLoading } = useContextState();
 
   const { data: withdrawStatement = [] } = useQuery({
     queryKey: ["withdraw-statement"],
-    /* enable when token available */
-    enabled: !tokenLoading,
     queryFn: async () => {
-      const generatedToken = handleRandomToken();
-      /* Encrypt post data */
-      const encryptedData = handleEncryptData({
+      const payload = {
         from: fromDate,
         to: toDate,
         type: "WITHDRAW",
         status: "ALL",
-        token: generatedToken,
-        site:Settings.siteUrl
-      });
-      const res = await axios.post(API.accountStatement, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      };
+      const res = await AxiosSecure.post(API.accountStatement, payload);
       const data = res?.data;
 
       if (data?.success) {
         return data?.result;
       }
     },
-    gcTime:0
+    gcTime: 0,
   });
   return { withdrawStatement };
 };

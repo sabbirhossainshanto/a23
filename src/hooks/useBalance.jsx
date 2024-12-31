@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import useContextState from "./useContextState";
 import { API, Settings } from "../api";
 import { handleLogOut } from "../utils/handleLogOut";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
 import { useNavigate } from "react-router-dom";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useBalance = () => {
   const { setTokenLoading, setGetToken } = useContextState();
@@ -15,18 +13,7 @@ const useBalance = () => {
     queryKey: ["balance"],
     enabled: token ? true : false,
     queryFn: async () => {
-      /* handle random token  */
-      const generatedToken = handleRandomToken();
-      /* handle encrypt data */
-      const encryptedData = handleEncryptData({
-        token: generatedToken,
-        site: Settings.siteUrl,
-      });
-      const res = await axios.post(API.balance, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await AxiosSecure.post(API.balance);
 
       if (res?.data?.success === false && token) {
         /* Logout if success false  */
@@ -41,7 +28,7 @@ const useBalance = () => {
       }
     },
     /* Refetch based on balanceApiLoop in notice.json */
-   refetchInterval:Settings?.balanceApiLoop ? 6000 : ''
+    refetchInterval: Settings?.balanceApiLoop ? 6000 : "",
   });
 
   return { balanceData, refetchBalance };

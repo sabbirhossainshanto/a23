@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import handleRandomToken from "../../utils/handleRandomToken";
-import handleEncryptData from "../../utils/handleEncryptData";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { API, Settings } from "../../api";
 import Loader from "../../components/ui/Loader/Loader";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const IFrame = () => {
   const [loading, setLoading] = useState(false);
@@ -17,21 +15,15 @@ const IFrame = () => {
     window.scrollTo(0, 0);
     const getCasinoVideo = async () => {
       setLoading(true);
-      const generatedToken = handleRandomToken();
-      const encryptedData = handleEncryptData({
+      const payload = {
         gameId: gameId,
-        token: generatedToken,
         isHome: false,
         mobileOnly: true,
-        site: Settings.siteUrl,
         casinoCurrency: Settings.casinoCurrency,
-      });
-
+      };
 
       try {
-        const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await AxiosSecure.post(API.liveCasinoIFrame, payload);
         const data = res?.data;
         setIFrame(data?.gameUrl);
         setLoading(false);

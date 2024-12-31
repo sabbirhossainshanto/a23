@@ -3,14 +3,12 @@ import indFlag from "../../../src/assets/img/ind-flag-icon.svg";
 import { API, Settings } from "../../api";
 import GetOTP from "./GetOTP";
 import { useForm } from "react-hook-form";
-import handleRandomToken from "../../utils/handleRandomToken";
-import handleEncryptData from "../../utils/handleEncryptData";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 import useContextState from "../../hooks/useContextState";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const Register = () => {
   const referralCode = localStorage.getItem("referralCode");
@@ -76,14 +74,12 @@ const Register = () => {
     if (user.password !== user?.confirmPassword) {
       return toast.error("Password did not matched");
     }
-    const generatedToken = handleRandomToken();
+
     const registerData = {
       username: user?.userName,
       password: user?.password,
       confirmPassword: user?.confirmPassword,
       mobile: mobileNo,
-      site: Settings.siteUrl,
-      token: generatedToken,
       otp: otpValues.join(""),
       isOtpAvailable: Settings.otp,
       referralCode: referralCode || user.referralCode,
@@ -91,17 +87,7 @@ const Register = () => {
       otpMethod: orderId.otpMethod,
     };
 
-    const encryptedData = handleEncryptData(registerData);
-    const res = await fetch(API.register, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(encryptedData),
-    });
-
-    const data = await res.json();
-
+    const { data } = await AxiosSecure.post(API.register, registerData);
     if (data?.success) {
       localStorage.removeItem("referralCode");
       if (Settings.deposit) {
@@ -142,15 +128,11 @@ const Register = () => {
   };
 
   const getOtp = async () => {
-    /* Get Otp based on settings*/
-    const generatedToken = handleRandomToken();
     const otpData = {
       mobile: mobileNo,
-      token: generatedToken,
-      site: Settings?.siteUrl,
     };
-    const encryptedData = handleEncryptData(otpData);
-    const res = await axios.post(API.otp, encryptedData);
+
+    const res = await AxiosSecure.post(API.otp, otpData);
     const data = res.data;
     if (data?.success) {
       setCountDown(45);

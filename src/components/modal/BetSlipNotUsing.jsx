@@ -2,17 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import handleRandomToken from "../../utils/handleRandomToken";
 import handleEncryptData from "../../utils/handleEncryptData";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { FaSpinner } from "react-icons/fa";
-import { RxCross2} from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
+import useLanguage from "../../hooks/useLanguage";
 const BetSlip = ({
   setOpenBetSlip,
   placeBetValues,
   refetchExposure,
   refetchCurrentBets,
 }) => {
+  const { language } = useLanguage();
   const { token } = useContextState();
   /* Close modal click outside */
   const betSlipRef = useRef();
@@ -37,6 +39,9 @@ const BetSlip = ({
 
   let payload = {};
   if (price) {
+    if (Settings.language) {
+      payload.language = language;
+    }
     if (placeBetValues?.btype === "SPORTSBOOK") {
       payload = {
         price: price,
@@ -283,7 +288,10 @@ const BetSlip = ({
                   >
                     <div className="modal-header">
                       <h2> Place Bet | {placeBetValues?.marketName}</h2>
-                      <div className="action-btns" style={{top:'-5px',right:'-5px'}}>
+                      <div
+                        className="action-btns"
+                        style={{ top: "-5px", right: "-5px" }}
+                      >
                         <button
                           onClick={() => setOpenBetSlip(false)}
                           className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -297,7 +305,7 @@ const BetSlip = ({
                             aria-hidden="true"
                             data-mat-icon-type="font"
                           >
-                           <RxCross2 size={20}/>
+                            <RxCross2 size={20} />
                           </span>
                           <span className="mdc-button__label"></span>
                           <span className="mat-mdc-focus-indicator"></span>

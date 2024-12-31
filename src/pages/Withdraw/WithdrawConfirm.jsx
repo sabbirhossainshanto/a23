@@ -1,12 +1,9 @@
 import { useState } from "react";
 import WithdrawSuccess from "../../components/modal/WithdrawSuccess";
-import axios from "axios";
-import { API, Settings } from "../../api";
-import handleRandomToken from "../../utils/handleRandomToken";
-import useContextState from "../../hooks/useContextState";
+import { API } from "../../api";
 import toast from "react-hot-toast";
 import { images } from "../../assets";
-import handleEncryptData from "../../utils/handleEncryptData";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const WithdrawConfirm = ({
   bank,
@@ -17,27 +14,19 @@ const WithdrawConfirm = ({
   setConfirmWithdraw,
 }) => {
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
-  const { token } = useContextState();
   const [disable, setDisable] = useState(false);
   /* handle withdraw function */
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
     setDisable(true);
     if (amount?.length > 0 && bank) {
-      const generatedToken = handleRandomToken();
       const bankData = {
         type: "withdrawCoins",
         amount: amount,
         bankId: bank?.bankId,
-        token: generatedToken,
-        site: Settings.siteUrl,
       };
-      const encryptedData = handleEncryptData(bankData);
-      const res = await axios.post(API.bankAccount, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+
+      const res = await AxiosSecure.post(API.bankAccount, bankData);
       const data = res?.data;
 
       if (data?.success) {

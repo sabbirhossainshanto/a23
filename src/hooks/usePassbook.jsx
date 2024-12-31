@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import useContextState from "./useContextState";
-import axios from "axios";
-import { API, Settings } from "../api";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 /* passbook api */
 const usePassbook = () => {
   /* from date 7 days earlier */
@@ -12,25 +9,15 @@ const usePassbook = () => {
     .split("T")[0];
   /* current date */
   const toDate = new Date().toISOString().split("T")[0];
-  const { token, tokenLoading } = useContextState();
   const { data: passbook } = useQuery({
     queryKey: ["passbook"],
-    /* enable when token loading */
-    enabled: !tokenLoading,
     queryFn: async () => {
-      const generatedToken = handleRandomToken();
-      const encryptedData = handleEncryptData({
+      const payload = {
         from: fromDate,
         to: toDate,
         type: "GR",
-        token: generatedToken,
-        site:Settings.siteUrl
-      });
-      const res = await axios.post(API.accountStatement, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      };
+      const res = await AxiosSecure.post(API.accountStatement, payload);
       const data = res.data;
       if (data?.success) {
         return data?.result;

@@ -11,8 +11,14 @@ import Marquee from "react-fast-marquee";
 import { RxCross2 } from "react-icons/rx";
 import useGetNotification from "../../../hooks/useGetNotification";
 import { images } from "../../../assets";
+import useLanguage from "../../../hooks/useLanguage.jsx";
+import Language from "../../modal/Language.jsx";
+import { languageValue } from "../../../utils/language.js";
+import { LanguageKey } from "../../../constant/constant.js";
 
 const Header = () => {
+  const { language, valueByLanguage } = useLanguage();
+  const [showLanguage, setShowLanguage] = useState(false);
   const { setSportsType, token, logo, sportsType, wallet } = useContextState();
   const storedWallet = localStorage.getItem("wallet");
   const navigate = useNavigate();
@@ -125,6 +131,7 @@ const Header = () => {
       {showModal && (
         <AEDRules setShowModal={setShowModal} casinoInfo={casinoInfo} />
       )}
+
       <div
         style={{
           height: defineHeight(),
@@ -167,57 +174,105 @@ const Header = () => {
           </Link>
 
           <div className="mobile-nologin-header-wrap">
-            {token ? (
-              <div className="mobile-nologin-enter">
-                <div
-                  className="headerText"
-                  style={{
-                    marginRight: "20px",
-                    fontSize: "11px",
-                    textAlign: "right",
-                    fontWeight: "500",
-                  }}
-                >
-                  {!storedWallet && wallet === "main" ? "Bal:" : "Bonus:"}{" "}
-                  {!storedWallet && wallet === "main"
-                    ? balanceData?.availBalance
-                    : bonusBalanceData?.availBalance}
-                  <br />
-                  Exp:{" "}
-                  {!storedWallet && wallet === "main"
-                    ? balanceData?.deductedExposure
-                    : bonusBalanceData?.deductedExposure}
-                </div>
+            <div className="mobile-nologin-enter">
+              {token ? (
+                <>
+                  <div
+                    className="headerText"
+                    style={{
+                      marginRight: "20px",
+                      fontSize: "11px",
+                      textAlign: "right",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {!storedWallet && wallet === "main" ? "Bal:" : "Bonus:"}{" "}
+                    {!storedWallet && wallet === "main"
+                      ? balanceData?.availBalance
+                      : bonusBalanceData?.availBalance}
+                    <br />
+                    Exp:{" "}
+                    {!storedWallet && wallet === "main"
+                      ? balanceData?.deductedExposure
+                      : bonusBalanceData?.deductedExposure}
+                  </div>
 
-                <button
-                  onClick={() => {
-                    navigate("/deposit");
-                  }}
-                  className="ui-button button-normal s-conic"
-                >
-                  <div className="button-inner">Deposit</div>
-                </button>
-              </div>
-            ) : (
-              <div className="mobile-nologin-enter">
-                <button
-                  onClick={() => {
-                    navigate("/login");
-                  }}
-                  className="ui-button button-normal signin"
-                >
-                  <div className="button-inner">Login</div>
-                </button>
-                {Settings.register && (
                   <button
-                    onClick={() => navigate("/register")}
+                    onClick={() => {
+                      navigate("/deposit");
+                    }}
                     className="ui-button button-normal s-conic"
                   >
-                    <div className="button-inner">Register</div>
+                    <div className="button-inner">
+                      {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+                    </div>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      navigate("/login");
+                    }}
+                    className="ui-button button-normal signin"
+                  >
+                    <div className="button-inner">
+                      {" "}
+                      {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                    </div>
+                  </button>
+                  {Settings.register && (
+                    <button
+                      onClick={() => navigate("/register")}
+                      className="ui-button button-normal s-conic"
+                    >
+                      <div className="button-inner">
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                      </div>
+                    </button>
+                  )}
+                </>
+              )}
+              <div style={{ position: "relative" }}>
+                {Settings.language && (
+                  <button
+                    onClick={() => setShowLanguage((prev) => !prev)}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "end",
+                      background: "transparent",
+                      border: "none",
+                      marginTop: "14px",
+                    }}
+                  >
+                    <div>
+                      <img
+                        style={{
+                          height: "20px",
+                          width: "20px",
+                        }}
+                        src="/src/assets/img/globe.gif"
+                        alt=""
+                      />
+                      <p
+                        style={{
+                          margin: "0px",
+                          fontSize: "10px",
+                          color: "white",
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        {language || "EN"}
+                      </p>
+                    </div>
                   </button>
                 )}
+                {showLanguage && <Language setShowLanguage={setShowLanguage} />}
               </div>
-            )}
+            </div>
             {/* <div className="l1eoxxw5">
             <div className="lan-header-inner">
               <svg
@@ -269,7 +324,7 @@ const Header = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                <span>Home</span>
+                <span> {languageValue(valueByLanguage, LanguageKey.HOME)}</span>
               </button>
 
               <button
@@ -315,7 +370,10 @@ const Header = () => {
                   />
                   <path d="M6.5,19.1c-2.5,0-4.8-1.2-6.2-3.2L2,14.7c1,1.5,2.7,2.4,4.5,2.4c1.7,0,3.3-0.8,4.4-2.2l1.6,1.2C11.1,18,8.9,19.1,6.5,19.1z" />
                 </svg>
-                <span>Cricket</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.CRICKET)}
+                </span>
               </button>
 
               <button
@@ -346,7 +404,10 @@ const Header = () => {
                     d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm7.1 15.6l1.2 2c-1 1.5-2.5 2.7-4.2 3.5l-.8-1.4h-4.9l-1.1 1.9c-2.4-.7-4.4-2.3-5.7-4.3L5 14.8l-2.5-4.3h-.4c.3-1.7.9-3.2 2-4.6h2.4l1.9-3.2C9.5 2.3 10.7 2 12 2c.9 0 1.7.1 2.5.3l2.1 3.6H20c1.2 1.5 1.9 3.4 2 5.4h-.4l-2.5 4.3zm-9.6-8L7 11.9l2.5 4.3h4.9l2.5-4.3-2.5-4.3H9.5z"
                   />
                 </svg>
-                <span>Football</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
+                </span>
               </button>
 
               <button
@@ -377,7 +438,10 @@ const Header = () => {
                     d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zM2 12c0-2.8 1.1-5.3 3-7.1C6.8 6.7 8 9.2 8 12s-1.2 5.3-3 7.1c-1.9-1.8-3-4.3-3-7.1zm4.6 8.4C8.7 18.2 10 15.3 10 12c0-3.3-1.3-6.2-3.4-8.4C8.1 2.6 10 2 12 2s3.9.6 5.4 1.6C15.3 5.8 14 8.7 14 12c0 3.3 1.3 6.2 3.4 8.4-1.5 1-3.4 1.6-5.4 1.6s-3.9-.6-5.4-1.6zM19 19.1c-1.9-1.8-3-4.3-3-7.1s1.2-5.3 3-7.1c1.8 1.8 3 4.3 3 7.1s-1.1 5.3-3 7.1z"
                   />
                 </svg>
-                <span>Tennis</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.TENNIS)}
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -396,7 +460,10 @@ const Header = () => {
                   src={images.kabaddi}
                   alt=""
                 />
-                <span>Kabbadi</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.KABADDI)}
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -418,7 +485,10 @@ const Header = () => {
                     fill="#864D44"
                   ></path>
                 </svg>
-                <span>Horse</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.HORSE)}
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -440,7 +510,10 @@ const Header = () => {
                     fill="#305765"
                   ></path>
                 </svg>
-                <span>Greyhound</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+                </span>
               </button>
               {Settings.mac88 && Settings.casinoCurrency === "INR" && (
                 <button
@@ -465,7 +538,10 @@ const Header = () => {
                       fill="#65C316"
                     ></path>
                   </svg>
-                  <span>Mac88</span>
+                  <span>
+                    {" "}
+                    {languageValue(valueByLanguage, LanguageKey.MAC88)}
+                  </span>
                 </button>
               )}
 

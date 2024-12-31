@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { API, Settings } from "../api";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
+import { API } from "../api";
 import useContextState from "./useContextState";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useGetVersion = () => {
   const { noticeLoaded } = useContextState();
@@ -11,13 +9,7 @@ const useGetVersion = () => {
     queryKey: ["version"],
     enabled: noticeLoaded,
     queryFn: async () => {
-      const generatedToken = handleRandomToken();
-      const postData = {
-        site: Settings.siteUrl,
-        token: generatedToken,
-      };
-      const encryptedData = handleEncryptData(postData);
-      const res = await axios.post(API.siteSettings, encryptedData);
+      const res = await AxiosSecure.post(API.siteSettings);
       const data = res?.data;
       if (data?.success) {
         return data?.result;

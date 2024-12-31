@@ -1,14 +1,11 @@
-import axios from "axios";
 import useBonusStatement from "../../hooks/useBonusStatement";
-import handleRandomToken from "../../utils/handleRandomToken";
 import { API } from "../../api";
 import toast from "react-hot-toast";
-import useContextState from "../../hooks/useContextState";
 import moment from "moment/moment";
+import { AxiosInstance } from "../../lib/AxiosInstance";
 
 const BonusStatement = () => {
   const { data, refetch } = useBonusStatement();
-  const { token } = useContextState();
 
   const handleShowMessage = (item) => {
     if (item?.is_claimed == 1) {
@@ -41,18 +38,12 @@ const BonusStatement = () => {
   };
 
   const handleClaimBonus = async (item) => {
-    const generatedToken = handleRandomToken();
     const payload = {
       type: "claimBonus",
       bonus_statement_id: item?.bonus_statement_id,
-      token: generatedToken,
     };
 
-    const result = await axios.post(API.bonus, payload, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const result = await AxiosInstance.post(API.bonus, payload);
     if (result?.data?.success) {
       refetch();
       toast.success(result?.data?.result);

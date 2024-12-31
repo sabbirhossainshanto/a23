@@ -40,6 +40,7 @@ export const API = {
   mac88: "",
   bonus: "",
   index: "",
+  language: "",
 };
 
 export const Settings = {
@@ -65,4 +66,5 @@ export const Settings = {
   build: "",
   b2c: "",
   bookmakerCashOut: "",
+  language: "",
 };

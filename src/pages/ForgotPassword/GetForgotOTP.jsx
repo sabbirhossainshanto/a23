@@ -1,23 +1,18 @@
-import axios from "axios";
 import indFlag from "../../../src/assets/img/ind-flag-icon.svg";
 import { API, Settings } from "../../api";
-import handleEncryptData from "../../utils/handleEncryptData";
-import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 const GetForgotOTP = ({ setShowOtp, mobileNo, setMobileNo, setOrderId }) => {
   const getOtp = async (e) => {
     e.preventDefault();
     /* Get Otp based on settings*/
     if (Settings.otp) {
-      const generatedToken = handleRandomToken();
       const otpData = {
         mobile: mobileNo,
-        token: generatedToken,
-        site: Settings?.siteUrl,
       };
-      const encryptedData = handleEncryptData(otpData);
-      const res = await axios.post(API.otp, encryptedData);
+
+      const res = await AxiosSecure.post(API.otp, otpData);
       const data = res.data;
       if (data?.success) {
         setOrderId({

@@ -6,11 +6,14 @@ import handleEncryptData from "./handleEncryptData";
 const handleDepositMethod = (token) => {
   const handleDeposit = async () => {
     const generatedToken = handleRandomToken();
-    const bankData = {
+    let bankData = {
       type: "depositMethods",
       token: generatedToken,
       site: Settings.siteUrl,
     };
+    if (Settings.language) {
+      bankData.language = localStorage.getItem("language") || "english";
+    }
     const encryptedData = handleEncryptData(bankData);
     const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {

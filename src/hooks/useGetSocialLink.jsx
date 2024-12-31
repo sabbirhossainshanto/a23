@@ -1,29 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { API, Settings } from "../api";
-import axios from "axios";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useGetSocialLink = () => {
-  const token = localStorage.getItem("token");
-
   /* get whats app link */
   const { data: socialLink = {}, refetch: refetchSocialLinks } = useQuery({
     queryKey: ["whatsApp"],
 
     queryFn: async () => {
-      /* random token function */
-      const generatedToken = handleRandomToken();
-      /* Encryption post data */
-      const encryptedData = handleEncryptData({
-        site: Settings.siteUrl,
-        token: generatedToken,
-      });
-      const res = await axios.post(API.whatsApp, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await AxiosSecure.post(API.whatsApp);
       const data = res.data;
 
       if (data?.success) {

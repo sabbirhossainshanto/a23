@@ -1,13 +1,11 @@
-import axios from "axios";
 import handLogo from "../../../src/assets/img/hand-logo.webp";
 import indFlag from "../../../src/assets/img/ind-flag-icon.svg";
 import { API, Settings } from "../../api";
-import handleEncryptData from "../../utils/handleEncryptData";
-import handleRandomToken from "../../utils/handleRandomToken";
 import toast from "react-hot-toast";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
 import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 import { images } from "../../assets";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
   /* get social link */
   const { socialLink } = useGetSocialLink();
@@ -15,14 +13,11 @@ const GetOTP = ({ setMobileNo, mobileNo, setShowRegister, setOrderId }) => {
     e.preventDefault();
     /* Get Otp based on settings*/
     if (Settings.otp) {
-      const generatedToken = handleRandomToken();
       const otpData = {
         mobile: mobileNo,
-        token: generatedToken,
-        site: Settings?.siteUrl,
       };
-      const encryptedData = handleEncryptData(otpData);
-      const res = await axios.post(API.otp, encryptedData);
+
+      const res = await AxiosSecure.post(API.otp, otpData);
       const data = res.data;
       if (data?.success) {
         setOrderId({

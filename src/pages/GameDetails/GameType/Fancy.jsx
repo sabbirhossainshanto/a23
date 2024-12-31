@@ -3,10 +3,9 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { detectPriceChanges } from "../../../utils/detectPriceChanges";
 import useContextState from "../../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
-import handleRandomToken from "../../../utils/handleRandomToken";
-import handleEncryptData from "../../../utils/handleEncryptData";
-import { API, Settings } from "../../../api";
+import { API } from "../../../api";
 import Ladder from "../../../components/modal/Ladder";
+import { AxiosSecure } from "../../../lib/AxiosSecure";
 
 const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
   const [previousData, setPreviousData] = useState(normal);
@@ -63,25 +62,11 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
     }
   };
 
-  const handleLadder = (marketId) => {
-    const generatedToken = handleRandomToken();
-    const encryptedData = handleEncryptData({
-      token: generatedToken,
-      site: Settings.siteUrl,
-    });
-    fetch(`${API.ladder}/${marketId}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(encryptedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setLadderData(data.result);
-        }
-      });
+  const handleLadder = async (marketId) => {
+    const { data } = await AxiosSecure.post(`${API.ladder}/${marketId}`);
+    if (data.success) {
+      setLadderData(data.result);
+    }
   };
 
   return (

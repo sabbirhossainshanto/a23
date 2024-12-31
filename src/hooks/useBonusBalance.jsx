@@ -16,7 +16,14 @@ const useBonusBalance = () => {
       queryKey: ["bonusBalance"],
       queryFn: async () => {
         const generatedToken = handleRandomToken();
-        const encryptedData = handleEncryptData(generatedToken);
+        let payload = {
+          token: generatedToken,
+        };
+        if (Settings.language) {
+          payload.language = localStorage.getItem("language") || "english";
+        }
+
+        const encryptedData = handleEncryptData(payload);
         const res = await axios.post(API.balance, encryptedData, {
           headers: {
             Authorization: `Bearer ${bonusToken}`,

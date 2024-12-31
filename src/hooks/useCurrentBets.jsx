@@ -1,32 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { API, Settings } from "../api";
-import handleRandomToken from "../utils/handleRandomToken";
-import handleEncryptData from "../utils/handleEncryptData";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useCurrentBets = (eventId) => {
- const token = localStorage.getItem('token')
   /* Fetch Current Bets */
   const { data: myBets = [], refetch: refetchCurrentBets } = useQuery({
     queryKey: ["currentBets"],
     queryFn: async () => {
       try {
-        const generatedToken = handleRandomToken();
-        const encryptedData = handleEncryptData({
-          token:generatedToken,
-          site:Settings.siteUrl
-        });
-        const response = await fetch(
-          `${API.currentBets}/${eventId || "sports"}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(encryptedData),
-          }
+        const { data } = await AxiosSecure.post(
+          `${API.currentBets}/${eventId || "sports"}`
         );
 
-        const data = await response.json();
         if (data.success) {
           return data.result;
         }
@@ -34,7 +19,7 @@ const useCurrentBets = (eventId) => {
         console.error("Error fetching data:", error);
       }
     },
-    gcTime:0
+    gcTime: 0,
   });
   return { myBets, refetchCurrentBets };
 };

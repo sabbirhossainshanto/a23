@@ -21,8 +21,12 @@ import useGetSocialLink from "../../hooks/useGetSocialLink";
 import { images } from "../../assets";
 import { useState } from "react";
 import Referral from "../../components/modal/Referral";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const Account = () => {
+  const { valueByLanguage } = useLanguage();
   const [showReferral, setShowReferral] = useState(false);
   const { socialLink } = useGetSocialLink();
   // token, setWallet,
@@ -85,7 +89,8 @@ const Account = () => {
                   style={{ color: "#000", fontSize: "14px", fontWeight: "500" }}
                 >
                   {" "}
-                  User ID : {memberId}
+                  {languageValue(valueByLanguage, LanguageKey.USER_ID)} :{" "}
+                  {memberId}
                 </span>
                 {/* <span
                   className="card-profile-page-upper-div-left-main-wallet"
@@ -154,7 +159,7 @@ const Account = () => {
               <div className="card-profile-image-lower-div-left">
                 <span className="card-profile-image-lower-div-left-text">
                   <span className="text-left-profile" style={{ color: "#000" }}>
-                    Balance
+                    {languageValue(valueByLanguage, LanguageKey.BALANCE)}
                   </span>
                   <span className="info-profile-left">
                     <svg
@@ -205,7 +210,7 @@ const Account = () => {
                   className="card-profile-image-lower-div-left-text"
                   style={{ color: "#000" }}
                 >
-                  Exposure
+                  {languageValue(valueByLanguage, LanguageKey.EXPOSURE)}
                 </span>
                 <span
                   className="card-profile-image-lower-div-left-amount"
@@ -378,7 +383,7 @@ const Account = () => {
                   <img src={withdrawIcon} alt="Withdraw" />
                 </span>
                 <span className="button-container-profile-page-1-text">
-                  Withdraw
+                  {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
                 </span>
               </div>
               <div
@@ -391,7 +396,7 @@ const Account = () => {
                   <img src={depositProfileIcon} alt="Deposit" />
                 </span>
                 <span className="button-container-profile-page-2-text">
-                  Deposit
+                  {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
                 </span>
               </div>
             </div>
@@ -569,7 +574,10 @@ const Account = () => {
                     </div>
                   </span>
                   <span className="profile-menu-left-text">
-                    Bonus Statement
+                    {languageValue(
+                      valueByLanguage,
+                      LanguageKey.BONUS_STATEMENT
+                    )}
                   </span>
                 </div>
                 <div className="profile-menu-items-right">
@@ -609,7 +617,10 @@ const Account = () => {
                       </div>
                     </span>
                     <span className="profile-menu-left-text">
-                      Change Password
+                      {languageValue(
+                        valueByLanguage,
+                        LanguageKey.CHANGE_PASSWORD
+                      )}
                     </span>
                   </div>
                   <div className="profile-menu-items-right">
@@ -760,7 +771,9 @@ const Account = () => {
                         <div className="moving-strip"></div>
                       </div>
                     </span>
-                    <span className="profile-menu-left-text">All Support</span>
+                    <span className="profile-menu-left-text">
+                      {languageValue(valueByLanguage, LanguageKey.ALL_SUPPORT)}
+                    </span>
                   </div>
                   <div className="profile-menu-items-right">
                     <svg
@@ -797,7 +810,10 @@ const Account = () => {
                       </div>
                     </span>
                     <span className="profile-menu-left-text">
-                      Deposit Support
+                      {languageValue(
+                        valueByLanguage,
+                        LanguageKey.DEPOSIT_SUPPORT
+                      )}
                     </span>
                   </div>
                   <div className="profile-menu-items-right">
@@ -830,7 +846,9 @@ const Account = () => {
           <div className="download-btn-card">
             <div className="download-card"></div>
             <button className="logout-btn">
-              <span style={{ color: "#000" }}>Log out</span>
+              <span style={{ color: "#000" }}>
+                {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
+              </span>
             </button>
           </div>
         </div>
