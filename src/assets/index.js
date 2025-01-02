@@ -15,6 +15,7 @@ import bhim from "./img/BHIM_WEB.png";
 import checked from "./img/checked.png";
 import whatsapp from "./img/whatsapp.png";
 import kabaddi from "./img/kabbadi.svg";
+import ustd from "./img/usdt.png";
 
 export const images = {
   star,
@@ -34,4 +35,5 @@ export const images = {
   checked,
   whatsapp,
   kabaddi,
+  ustd,
 };

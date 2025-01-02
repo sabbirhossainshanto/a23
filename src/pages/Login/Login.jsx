@@ -13,12 +13,7 @@ import { AxiosSecure } from "../../lib/AxiosSecure";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [disable, setDisable] = useState(false);
-  const { handleSubmit, register } = useForm({
-    defaultValues: {
-      username: "8888884000",
-      password: "avinya123",
-    },
-  });
+  const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
   const { setGetToken } = useContextState();
 
@@ -32,9 +27,8 @@ const Login = () => {
       b2c: Settings.b2c,
     };
 
-    const res = await AxiosSecure.post(API.login, loginData);
-    const data = await res.json();
-
+    const { data } = await AxiosSecure.post(API.login, loginData);
+    console.log(data);
     if (data.success) {
       setDisable(false);
       if (Settings.deposit) {

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api";
-import { AxiosInstance } from "../lib/AxiosInstance";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useBankAccount = (payload) => {
   const {
@@ -11,7 +11,7 @@ const useBankAccount = (payload) => {
     queryKey: ["bankAccount"],
 
     queryFn: async () => {
-      const res = await AxiosInstance.post(API.bankAccount, payload);
+      const res = await AxiosSecure.post(API.bankAccount, payload);
       const data = res?.data;
 
       if (data?.success) {
