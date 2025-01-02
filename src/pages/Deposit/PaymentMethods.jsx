@@ -746,11 +746,11 @@ const PaymentMethods = ({
                           _ngcontent-kdb-c159=""
                           className="accnum account-name ng-tns-c159-13"
                         >
-                          {depositData?.qrDisplayName}
+                          {depositData?.token}
                         </p>
                         <p
                           onClick={() =>
-                            handleCopyToClipBoard(depositData?.qrDisplayName)
+                            handleCopyToClipBoard(depositData?.token)
                           }
                           style={{ cursor: "pointer" }}
                           _ngcontent-kdb-c159=""
@@ -797,7 +797,7 @@ const PaymentMethods = ({
                           _ngcontent-kdb-c159=""
                           className="accnum account-name ng-tns-c159-13"
                         >
-                          {depositData?.depositAmount}
+                          USDT {depositData?.depositAmount}
                         </p>
                         <p
                           onClick={() =>
