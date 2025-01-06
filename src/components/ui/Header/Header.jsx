@@ -7,14 +7,12 @@ import { Settings } from "../../../api/index.js";
 // import { AndroidView } from "react-device-detect";
 import AEDRules from "../../modal/AEDRules";
 import useBonusBalance from "../../../hooks/useBonusBalance";
-import Marquee from "react-fast-marquee";
-import { RxCross2 } from "react-icons/rx";
-import useGetNotification from "../../../hooks/useGetNotification";
 import { images } from "../../../assets";
 import useLanguage from "../../../hooks/useLanguage.jsx";
 import Language from "../../modal/Language.jsx";
 import { languageValue } from "../../../utils/language.js";
 import { LanguageKey } from "../../../constant/constant.js";
+import Notification from "./Notification.jsx";
 
 const Header = () => {
   const { language, valueByLanguage } = useLanguage();
@@ -23,42 +21,14 @@ const Header = () => {
   const storedWallet = localStorage.getItem("wallet");
   const navigate = useNavigate();
   const [showNotification, setShowNotification] = useState(false);
+  const [filteredNotification, setFilteredNotification] = useState([]);
   const { balanceData } = useBalance();
   const { bonusBalanceData } = useBonusBalance();
-  const { notification, isFetchingNotification, isFetched } =
-    useGetNotification();
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [casinoInfo, setCasinoInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const storedNotification = sessionStorage.getItem("notification");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    if (!storedNotification) {
-      setShowNotification(true);
-    }
-  }, [storedNotification]);
-
-  useEffect(() => {
-    if (notification?.length > 0 && storedNotification && !showNotification) {
-      const apiNotification = JSON.stringify(notification);
-      if (apiNotification != storedNotification) {
-        setShowNotification(true);
-      }
-    }
-  }, [
-    notification,
-    showNotification,
-    storedNotification,
-    isFetched,
-    isFetchingNotification,
-  ]);
-
-  const closeNotification = () => {
-    setShowNotification(false);
-    sessionStorage.setItem("notification", JSON.stringify(notification));
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -110,13 +80,13 @@ const Header = () => {
 
   const defineHeight = () => {
     if (location.pathname.includes("/casino")) {
-      if (showNotification && notification) {
+      if (showNotification && filteredNotification?.length > 0) {
         return "5rem";
       } else {
         return "3rem";
       }
     }
-    if (showNotification && notification) {
+    if (showNotification && filteredNotification?.length > 0) {
       return "130px";
     } else {
       return "110px";
@@ -140,24 +110,12 @@ const Header = () => {
           !location.pathname.includes("/casino") ? "show" : ""
         }`}
       >
-        {showNotification && notification && (
-          <div
-            style={{
-              padding: "2px 5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "20px",
-              fontSize: "11px",
-            }}
-          >
-            <Marquee>
-              {notification}{" "}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </Marquee>
-            <RxCross2 onClick={closeNotification} size={20} cursor="pointer" />
-          </div>
-        )}
+        <Notification
+          filteredNotification={filteredNotification}
+          setFilteredNotification={setFilteredNotification}
+          showNotification={showNotification}
+          setShowNotification={setShowNotification}
+        />
 
         <div className="nologin-header-wrap headerBG">
           <Link onClick={() => setSportsType(0)} to="/">
