@@ -42,7 +42,14 @@ const Notification = ({
         setShowNotification(true);
       }
     }
-  }, [notification, showNotification, isFetched, isFetchingNotification]);
+  }, [
+    notification,
+    showNotification,
+    isFetched,
+    isFetchingNotification,
+    setFilteredNotification,
+    setShowNotification,
+  ]);
 
   const closeNotification = () => {
     const notificationIds =
