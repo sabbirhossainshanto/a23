@@ -16,6 +16,7 @@ AxiosSecure.interceptors.request.use(
     }
     if (config?.method === "post") {
       const generatedToken = handleRandomToken();
+
       let payload = {
         ...config.data,
         token: generatedToken,

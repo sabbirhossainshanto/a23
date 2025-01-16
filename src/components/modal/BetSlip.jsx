@@ -9,6 +9,7 @@ import { FaSpinner } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import useBalance from "../../hooks/useBalance";
 import useLanguage from "../../hooks/useLanguage";
+import { v4 as uuidv4 } from "uuid";
 
 const BetSlip = ({
   setOpenBetSlip,
@@ -27,6 +28,7 @@ const BetSlip = ({
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const [totalSize, setTotalSize] = useState("");
   const [loader, setLoader] = useState(false);
+  const [betDelay, setBetDelay] = useState("");
   const { refetchBalance } = useBalance();
   const [stakeErr, setStakeErr] = useState("");
   const [price, setPrice] = useState(null);
@@ -92,37 +94,43 @@ const BetSlip = ({
         ...payload,
         token: generatedToken,
         site: Settings.siteUrl,
+        nounce: uuidv4(),
+        isbetDelay: Settings.betDelay,
       },
     ]);
+    setBetDelay(placeBetValues?.betDelay);
+    const delay = Settings.betDelay ? placeBetValues?.betDelay * 1000 : 0;
 
     setLoader(true);
-    fetch(API.order, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(encryptedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.success) {
-          refetchExposure();
-          refetchBalance();
-          refetchCurrentBets();
-          setLoader(false);
-          setOpenBetSlip(false);
-          toast.success(data?.result?.result?.placed?.[0]?.message);
-        } else {
-          toast.error(
-            data?.error?.status?.[0]?.description || data?.error?.errorMessage
-          );
-          setLoader(false);
-          setOpenBetSlip(false);
-          refetchExposure();
-          refetchBalance();
-          refetchCurrentBets();
-        }
-      });
+    setTimeout(() => {
+      fetch(API.order, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(encryptedData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.success) {
+            refetchExposure();
+            refetchBalance();
+            refetchCurrentBets();
+            setLoader(false);
+            setOpenBetSlip(false);
+            toast.success(data?.result?.result?.placed?.[0]?.message);
+          } else {
+            toast.error(
+              data?.error?.status?.[0]?.description || data?.error?.errorMessage
+            );
+            setLoader(false);
+            setOpenBetSlip(false);
+            refetchExposure();
+            refetchBalance();
+            refetchCurrentBets();
+          }
+        });
+    }, delay);
   };
 
   /* Increase price bets */
@@ -255,6 +263,16 @@ const BetSlip = ({
     updateElementClass("oddTwo");
     updateElementClass("oddThree");
   }, [oddStake, oddStakeLay1, oddStakeLay2]);
+
+  useEffect(() => {
+    if (betDelay > 0) {
+      setTimeout(() => {
+        setBetDelay((prev) => prev - 1);
+      }, 1000);
+    } else {
+      setBetDelay(null);
+    }
+  }, [setBetDelay, betDelay]);
   return (
     <div className="cdk-overlay-container">
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
@@ -326,10 +344,36 @@ const BetSlip = ({
                         }`}
                       >
                         {loader && (
-                          <div id="loader-section">
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "5px",
+                            }}
+                            id="loader-section"
+                          >
                             <div id="load-inner">
-                              <FaSpinner size={20} />
+                              <FaSpinner size={25} />
+                              <span
+                                style={{
+                                  position: "absolute",
+                                  right: "9px",
+                                  top: "4px",
+                                }}
+                              >
+                                {betDelay > 0 && betDelay}
+                              </span>
                             </div>
+
+                            <span style={{ fontWeight: "500" }}>
+                              Your bet is being processed...
+                            </span>
+                            <span
+                              style={{ fontWeight: "500" }}
+                              className="font-semibold"
+                            >
+                              Please Wait...
+                            </span>
                           </div>
                         )}
                         <div className="betslip-toprow">

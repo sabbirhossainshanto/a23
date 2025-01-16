@@ -14,7 +14,6 @@ const handleRandomToken = () => {
   const now = new Date();
   const istTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000); // Adjust UTC to IST
   const indianTimestamp = Math.floor(istTime.getTime() / 1000);
-
   // Generate token
   const multipliedTimestamp = indianTimestamp * 247;
   const randomSixDigitNumber = Math.floor(100000 + Math.random() * 900000);
