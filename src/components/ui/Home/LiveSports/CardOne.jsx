@@ -5,7 +5,7 @@ import useContextState from "../../../../hooks/useContextState";
 const CardOne = ({ liveSports, keys }) => {
   const navigate = useNavigate();
   const { sportsType } = useContextState();
-
+  // console.log(liveSports?.[keys]?.score);
   return (
     <div
       onClick={() => {
@@ -273,7 +273,7 @@ const CardOne = ({ liveSports, keys }) => {
                   </div>
                 </div>
               )}
-              {liveSports?.[keys]?.score && sportsType === 1 && (
+              {liveSports?.[keys]?.score && sportsType !== 2 ? (
                 <div className="bt285">
                   <div data-editor-id="widgetScore" className="bt1379">
                     <div className="bt1384 bt1380 bt1493">
@@ -288,7 +288,7 @@ const CardOne = ({ liveSports, keys }) => {
                     </div>
                   </div>
                 </div>
-              )}
+              ) : null}
               {/* <div className="bt285">
                 {liveSports?.[keys]?.eventTypeId == 2 ? (
                   <div data-editor-id="widgetScore" className="bt1379">
