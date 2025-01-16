@@ -344,36 +344,30 @@ const BetSlip = ({
                         }`}
                       >
                         {loader && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: "5px",
-                            }}
-                            id="loader-section"
-                          >
+                          <div id="loader-section">
                             <div id="load-inner">
-                              <FaSpinner size={25} />
+                              <span style={{ position: "relative" }}>
+                                <FaSpinner size={25} />
+                                <span
+                                  style={{
+                                    position: "absolute",
+                                    right: "9px",
+                                    top: "4px",
+                                  }}
+                                >
+                                  {betDelay > 0 && betDelay}
+                                </span>
+                              </span>
+                              <span style={{ fontWeight: "500" }}>
+                                Your bet is being processed...
+                              </span>
                               <span
-                                style={{
-                                  position: "absolute",
-                                  right: "9px",
-                                  top: "4px",
-                                }}
+                                style={{ fontWeight: "500" }}
+                                className="font-semibold"
                               >
-                                {betDelay > 0 && betDelay}
+                                Please Wait...
                               </span>
                             </div>
-
-                            <span style={{ fontWeight: "500" }}>
-                              Your bet is being processed...
-                            </span>
-                            <span
-                              style={{ fontWeight: "500" }}
-                              className="font-semibold"
-                            >
-                              Please Wait...
-                            </span>
                           </div>
                         )}
                         <div className="betslip-toprow">
