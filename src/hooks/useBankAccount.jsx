@@ -8,7 +8,7 @@ const useBankAccount = (payload) => {
     refetch: refetchBankData,
     isFetched,
   } = useQuery({
-    queryKey: ["bankAccount"],
+    queryKey: ["bankAccount", payload],
 
     queryFn: async () => {
       const res = await AxiosSecure.post(API.bankAccount, payload);
@@ -20,6 +20,7 @@ const useBankAccount = (payload) => {
     },
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    gcTime: 0,
   });
   return { bankData, refetchBankData, isFetched };
 };

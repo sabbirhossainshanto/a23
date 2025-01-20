@@ -28,6 +28,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
 import HorseRacing from "../pages/HorseRacing/HorseRacing";
 import GreyhoundRacing from "../pages/GreyhoundRacing/GreyhoundRacing";
+import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 
 export const router = createBrowserRouter(
   [
@@ -135,6 +136,10 @@ export const router = createBrowserRouter(
         {
           path: "greyhound-racing",
           element: <GreyhoundRacing />,
+        },
+        {
+          path: "/my-bank-details",
+          element: <MyBankDetails />,
         },
         { path: "bonus-statement", element: <BonusStatement /> },
         { path: "referral-statement", element: <ReferralStatement /> },
