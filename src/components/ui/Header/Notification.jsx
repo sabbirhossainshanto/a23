@@ -76,17 +76,26 @@ const Notification = ({
             justifyContent: "space-between",
             gap: "20px",
             fontSize: "11px",
+            backgroundColor: "#353535",
           }}
         >
           <Marquee>
             {filteredNotification?.map((item) => (
-              <p key={item?.id} style={{ marginRight: "100vw" }}>
+              <p
+                key={item?.id}
+                style={{ marginRight: "100vw", color: "white" }}
+              >
                 {item?.text}
               </p>
             ))}
           </Marquee>
 
-          <RxCross2 onClick={closeNotification} size={20} cursor="pointer" />
+          <RxCross2
+            color="#fff"
+            onClick={closeNotification}
+            size={20}
+            cursor="pointer"
+          />
         </div>
       )}
     </div>
