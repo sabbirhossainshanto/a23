@@ -33,7 +33,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       return toast.error("Bank account number did not matched!");
     }
 
-    if (!bankDetails.otp) {
+    if (mobile && !bankDetails.otp) {
       return toast.error("Please enter otp to add new account");
     }
 
@@ -71,7 +71,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     const isaccountNameFilled = bankDetails.accountName.trim() !== "";
     const isaccountNumberFilled = bankDetails.accountNumber.trim() !== "";
     const isIfscFilled = bankDetails.ifsc.trim() !== "";
-    const isOTPFilled = bankDetails.otp.trim() !== "";
+    const isOTPFilled = mobile ? bankDetails.otp.trim() !== "" : true;
     const isFormValid =
       isaccountNameFilled &&
       isIfscFilled &&
