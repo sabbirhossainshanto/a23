@@ -6,6 +6,8 @@ import { AxiosSecure } from "../../../lib/AxiosSecure";
 
 const AddBank = ({ setAddBank, refetchBankData }) => {
   /* Handle close modal click outside */
+
+  const branchMobile = localStorage.getItem("branchMobile");
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
     setAddBank(false);
@@ -17,6 +19,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     accountNumber: "",
     confirmAccountNumber: "",
     upiId: "",
+    otp: "",
   });
 
   /* Handle add bank function */
@@ -31,6 +34,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
       ifsc: bankDetails.ifsc,
       accountNumber: bankDetails.accountNumber,
       upiId: bankDetails.upiId,
+      otp: bankDetails.otp,
       type: "addBankAccount",
     };
 
@@ -63,6 +67,21 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
   useEffect(() => {
     validateForm(bankDetails);
   }, [bankDetails]);
+
+  const getOtp = async () => {
+    const otpData = {
+      mobile: branchMobile,
+    };
+
+    const res = await AxiosSecure.post(API.otp, otpData);
+    const data = res.data;
+    if (data?.success) {
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
+
   return (
     <div className="Modal-Background  ">
       <div className="card-add-bank" ref={addBankRef}>
@@ -150,6 +169,44 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
               >
                 <input type="text" placeholder="Enter IFSC" name="" />
               </div>
+              {branchMobile && (
+                <div style={{ position: "relative" }} className="input-box ">
+                  <input
+                    readOnly
+                    type="text"
+                    placeholder="Phone Number"
+                    value={branchMobile}
+                  />
+                  <button
+                    onClick={getOtp}
+                    style={{
+                      backgroundColor: "var(--color1)",
+                      borderRadius: "4px",
+                      padding: "6px 0px",
+                      width: "80px",
+                      color: "white",
+                      fontSize: "11px",
+                    }}
+                    type="button"
+                  >
+                    Get OTP
+                  </button>
+                </div>
+              )}
+              {branchMobile && (
+                <div
+                  onChange={(e) => {
+                    setBankDetails({
+                      ...bankDetails,
+                      otp: e.target.value,
+                    });
+                  }}
+                  className="input-box "
+                >
+                  <input type="text" placeholder="Enter OTP" name="" />
+                </div>
+              )}
+
               <div className="btn-box ">
                 <button
                   onClick={() => setAddBank(false)}
