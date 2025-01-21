@@ -10,6 +10,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
   const [mobile, setMobile] = useState(null);
   const token = localStorage.getItem("token");
   const [orderId, setOrderId] = useState(null);
+  const [timer, setTimer] = useState(null);
 
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
@@ -91,6 +92,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     const res = await AxiosSecure.post(API.otp, otpData);
     const data = res.data;
     if (data?.success) {
+      setTimer(60);
       setOrderId(data?.result?.orderId);
       toast.success(data?.result?.message);
     } else {
@@ -107,6 +109,16 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     };
     getMobile();
   }, [token]);
+
+  useEffect(() => {
+    if (timer > 0) {
+      setTimeout(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+    } else {
+      setTimer(null);
+    }
+  }, [timer]);
 
   return (
     <div className="Modal-Background  ">
@@ -203,20 +215,38 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                     placeholder="Phone Number"
                     value={mobile}
                   />
-                  <button
-                    onClick={getOtp}
-                    style={{
-                      backgroundColor: "var(--color1)",
-                      borderRadius: "4px",
-                      padding: "6px 0px",
-                      width: "80px",
-                      color: "white",
-                      fontSize: "11px",
-                    }}
-                    type="button"
-                  >
-                    Get OTP
-                  </button>
+                  {timer ? (
+                    <div
+                      style={{
+                        backgroundColor: "var(--color1)",
+                        borderRadius: "4px",
+                        padding: "6px 0px",
+                        width: "80px",
+                        color: "white",
+                        fontSize: "11px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      Retry in {timer}
+                    </div>
+                  ) : (
+                    <button
+                      onClick={getOtp}
+                      style={{
+                        backgroundColor: "var(--color1)",
+                        borderRadius: "4px",
+                        padding: "6px 0px",
+                        width: "80px",
+                        color: "white",
+                        fontSize: "11px",
+                      }}
+                      type="button"
+                    >
+                      Get OTP
+                    </button>
+                  )}
                 </div>
               )}
               {mobile && (
