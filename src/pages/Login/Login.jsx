@@ -40,7 +40,7 @@ const Login = () => {
       }
 
       /* Set token to localeStorage */
-      localStorage.setItem("branchMobile", data.result.branchMobile);
+      localStorage.setItem("mobile", data.result.mobile);
       localStorage.setItem("token", data.result.token);
       localStorage.setItem("memberId", data.result.memberId);
       /* Set bonus token in locale storage */

@@ -321,7 +321,7 @@ const Register = () => {
                         </span>
                       </div>
                       <div className="pwd-box">
-                        <span className="pwd-text">Referral Code*</span>
+                        <span className="pwd-text">Referral Code</span>
                         <input
                           onChange={(e) => {
                             setUser({
@@ -330,7 +330,7 @@ const Register = () => {
                             });
                           }}
                           readOnly={referralCode}
-                          placeholder="Enter Confirm password"
+                          placeholder="Enter Referral Code"
                           type="text"
                           className="ng-untouched ng-pristine ng-valid"
                           defaultValue={referralCode}
@@ -338,7 +338,7 @@ const Register = () => {
                       </div>
                     </div>
                     <button type="submit" className="submit-btn">
-                      <span>Submit</span>
+                      <span>Register</span>
                     </button>
                   </form>
                 </div>

@@ -3,11 +3,14 @@ import { API } from "../../../api";
 import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import { AxiosSecure } from "../../../lib/AxiosSecure";
+import { jwtDecode } from "jwt-decode";
 
 const AddBank = ({ setAddBank, refetchBankData }) => {
   /* Handle close modal click outside */
+  const [mobile, setMobile] = useState(null);
+  const token = localStorage.getItem("token");
+  const [orderId, setOrderId] = useState(null);
 
-  const branchMobile = localStorage.getItem("branchMobile");
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
     setAddBank(false);
@@ -26,17 +29,25 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
   const handleAddBank = async (e) => {
     e.preventDefault();
     if (bankDetails.accountNumber !== bankDetails.confirmAccountNumber) {
-      toast.success("Bank account number did not matched!");
+      return toast.error("Bank account number did not matched!");
     }
 
-    const bankData = {
+    if (!bankDetails.otp) {
+      return toast.error("Please enter otp to add new account");
+    }
+
+    let bankData = {
       accountName: bankDetails.accountName,
       ifsc: bankDetails.ifsc,
       accountNumber: bankDetails.accountNumber,
       upiId: bankDetails.upiId,
-      otp: bankDetails.otp,
       type: "addBankAccount",
     };
+    if (mobile) {
+      bankData.mobile = mobile;
+      bankData.otp = bankDetails.otp;
+      bankData.orderId = orderId;
+    }
 
     const res = await AxiosSecure.post(API.bankAccount, bankData);
     const data = res?.data;
@@ -59,8 +70,12 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
     const isaccountNameFilled = bankDetails.accountName.trim() !== "";
     const isaccountNumberFilled = bankDetails.accountNumber.trim() !== "";
     const isIfscFilled = bankDetails.ifsc.trim() !== "";
+    const isOTPFilled = bankDetails.otp.trim() !== "";
     const isFormValid =
-      isaccountNameFilled && isIfscFilled && isaccountNumberFilled;
+      isaccountNameFilled &&
+      isIfscFilled &&
+      isaccountNumberFilled &&
+      isOTPFilled;
     setIsFormValid(isFormValid);
   };
 
@@ -70,17 +85,28 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
 
   const getOtp = async () => {
     const otpData = {
-      mobile: branchMobile,
+      mobile: "branchMobile",
     };
 
     const res = await AxiosSecure.post(API.otp, otpData);
     const data = res.data;
     if (data?.success) {
+      setOrderId(data?.result?.orderId);
       toast.success(data?.result?.message);
     } else {
       toast.error(data?.error?.errorMessage);
     }
   };
+
+  useEffect(() => {
+    const getMobile = () => {
+      const decode = jwtDecode(token);
+      if (decode?.mobile) {
+        setMobile(decode?.mobile);
+      }
+    };
+    getMobile();
+  }, [token]);
 
   return (
     <div className="Modal-Background  ">
@@ -169,13 +195,13 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
               >
                 <input type="text" placeholder="Enter IFSC" name="" />
               </div>
-              {branchMobile && (
+              {mobile && (
                 <div style={{ position: "relative" }} className="input-box ">
                   <input
                     readOnly
                     type="text"
                     placeholder="Phone Number"
-                    value={branchMobile}
+                    value={mobile}
                   />
                   <button
                     onClick={getOtp}
@@ -193,7 +219,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
                   </button>
                 </div>
               )}
-              {branchMobile && (
+              {mobile && (
                 <div
                   onChange={(e) => {
                     setBankDetails({
