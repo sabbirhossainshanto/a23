@@ -85,7 +85,7 @@ const AddBank = ({ setAddBank, refetchBankData }) => {
 
   const getOtp = async () => {
     const otpData = {
-      mobile: "branchMobile",
+      mobile,
     };
 
     const res = await AxiosSecure.post(API.otp, otpData);
