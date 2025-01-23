@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSportsVideo } from "../../hooks/useIFrame";
-import handleRandomToken from "../../utils/handleRandomToken";
-import handleEncryptData from "../../utils/handleEncryptData";
 import { Settings } from "../../api";
 
 const MatchTrackerTab = ({ score }) => {
@@ -12,16 +10,13 @@ const MatchTrackerTab = ({ score }) => {
   const [iFrame, setIframe] = useState("");
 
   const handleGetSportsVideo = () => {
-    const generatedToken = handleRandomToken();
-    const encryptedVideoData = handleEncryptData({
+    const payload = {
       eventTypeId: eventTypeId,
       eventId: eventId,
       type: "video",
-      token: generatedToken,
-      site: Settings.siteUrl,
       casinoCurrency: Settings.casinoCurrency,
-    });
-    mutate(encryptedVideoData, {
+    };
+    mutate(payload, {
       onSuccess: (data) => {
         if (data?.success) {
           setIframe(data?.result?.url);

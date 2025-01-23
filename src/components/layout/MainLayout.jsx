@@ -6,12 +6,27 @@ import { Settings } from "../../api";
 import { useEffect } from "react";
 import disableDevtool from "disable-devtool";
 import { handleLogOut } from "../../utils/handleLogOut";
+import handleDecryptData from "../../utils/handleDecryptData";
 
 const MainLayout = () => {
   const location = useLocation();
   const { addBank, setTokenLoading } = useContextState();
   const disabledDevtool = Settings.disabledDevtool;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const encryption = async () => {
+      const encryptedData = {
+        ct: "tjYBZM4vIQTporsepkVitUfoR5m6fGtEVbSbs5qnY0FaJXFQcW/IsWGUbQeVmp5vLA/tbA7aqmFENHPgXUoFojLiTwZUwOkBLZ6X8XwgN2WC0GcJGfT+//mYduzlt0MpgZyyQPqL5dkAvdXbMpVOzrZdZwHpYjmlLihKgkvgklvBsi9w0WgTv8XqDGdzABeCoPWzFlgoQVV5Oo4vkdXBz1s7FzKK+2CJX4GvbiT6M2KKRmC/2mEz0+egGSpeIIw3BtHhYFj/fYmYHFaMXi+VnSIExuK0wgb3w1A/KWlRNFo1imCthMvF8lDixglNvQ9+/N/qExaeMpsrEmJQs1te7EDmQ/AnS2ZLzXxjr4OnAfJOmLGuMlUCL4qMV+WmeTnF+Yoz3sarWr644ZhH5bwyMAWLa1NnwUnwYWFOpjMQNJsBdtjn/RcCJZHtM0Jj2ER4jdWQJZg/nqEI1SP72Lf8xQ==",
+        iv: "09a74d9096600dc5dbc2c30e647b0533",
+        s: "1ae93330947714ab",
+      };
+      const decryptedData = handleDecryptData(JSON.stringify(encryptedData));
+
+      console.log(decryptedData);
+    };
+    encryption();
+  }, []);
 
   /* Disable devtool */
   useEffect(() => {

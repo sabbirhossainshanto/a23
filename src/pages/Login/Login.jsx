@@ -2,7 +2,6 @@ import { useState } from "react";
 // import logo from "../../../src/assets/img//logo_small_w.webp";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import handleEncryptData from "../../utils/handleEncryptData";
 import { API, Settings } from "../../api";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 import { useNavigate } from "react-router-dom";
@@ -81,11 +80,11 @@ const Login = () => {
   const loginWithDemo = async () => {
     setDisable(true);
 
-    const loginData = handleEncryptData({
+    const loginData = {
       username: "demo",
       password: "",
       // b2c: Settings.b2c,
-    });
+    };
     const { data } = await AxiosSecure.post(API.login, loginData);
     console.log(data);
     if (data?.success) {
