@@ -84,9 +84,10 @@ const Login = () => {
     const loginData = handleEncryptData({
       username: "demo",
       password: "",
-      b2c: Settings.b2c,
+      // b2c: Settings.b2c,
     });
     const { data } = await AxiosSecure.post(API.login, loginData);
+    console.log(data);
     if (data?.success) {
       setDisable(false);
       /* Set token to localeStorage */

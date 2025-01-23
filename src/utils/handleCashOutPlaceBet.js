@@ -25,7 +25,9 @@ export const handleCashOutPlaceBet = (
       setPlaceBetValues({});
       setPlaceBetValues({
         price:
-          betType === "back" ? team?.runner?.back[0].price : team?.runner?.lay[0].price,
+          betType === "back"
+            ? team?.runner?.back[0].price
+            : team?.runner?.lay[0].price,
         side: betType === "back" ? 0 : 1,
         selectionId: team?.runner?.id,
         btype: games?.btype,
@@ -45,6 +47,7 @@ export const handleCashOutPlaceBet = (
         marketName: games?.name,
         eventId: games?.eventId,
         totalSize: team?.newStakeValue,
+        cashout: true,
       });
     }
   } else {

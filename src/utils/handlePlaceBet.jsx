@@ -59,6 +59,7 @@ export const handlePlaceBet = (
         pnl: updatedPnl,
         marketName: item?.name,
         eventId: item?.eventId,
+        cashout: false,
       });
     }
   } else {

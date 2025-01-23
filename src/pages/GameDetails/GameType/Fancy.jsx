@@ -43,6 +43,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
           isBettable: item?.isBettable,
           maxLiabilityPerBet: item?.maxLiabilityPerBet,
           eventId: item?.eventId,
+          cashout: false,
         });
       }
     } else {
