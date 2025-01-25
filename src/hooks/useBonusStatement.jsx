@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api";
-import { AxiosInstance } from "../lib/AxiosInstance";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useBonusStatement = () => {
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["bonus-statement"],
     queryFn: async () => {
-      const res = await AxiosInstance.post(API.bonus, {
+      const res = await AxiosSecure.post(API.bonus, {
         type: "viewStatement",
       });
       const result = res?.data;

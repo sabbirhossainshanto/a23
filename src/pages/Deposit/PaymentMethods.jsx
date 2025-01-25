@@ -16,7 +16,6 @@ import { isDesktop, isAndroid } from "react-device-detect";
 import { ProgressBar } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import useGetPGStatus from "../../hooks/useGetPGStatus";
-import { AxiosInstance } from "../../lib/AxiosInstance";
 import { AxiosSecure } from "../../lib/AxiosSecure";
 
 /* eslint-disable react/no-unknown-property */
@@ -86,7 +85,7 @@ const PaymentMethods = ({
         paymentId: method?.paymentId,
         amount,
       };
-      const res = await AxiosInstance.post(API.pg, depositDetailForPg);
+      const res = await AxiosSecure.post(API.pg, depositDetailForPg);
       const data = res?.data;
 
       if (data?.success) {

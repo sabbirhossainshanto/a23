@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { API } from "../../api";
 import toast from "react-hot-toast";
-import { AxiosInstance } from "../../lib/AxiosInstance";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const EditStake = () => {
   window.scrollTo(0, 0);
@@ -20,7 +20,7 @@ const EditStake = () => {
     buttons6value,
     buttons7value,
   }) => {
-    const { data } = await AxiosInstance.post(API.buttonValue, {
+    const { data } = await AxiosSecure.post(API.buttonValue, {
       game: [
         {
           label: 100,

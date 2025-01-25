@@ -2,7 +2,7 @@ import useBonusStatement from "../../hooks/useBonusStatement";
 import { API } from "../../api";
 import toast from "react-hot-toast";
 import moment from "moment/moment";
-import { AxiosInstance } from "../../lib/AxiosInstance";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const BonusStatement = () => {
   const { data, refetch } = useBonusStatement();
@@ -43,7 +43,7 @@ const BonusStatement = () => {
       bonus_statement_id: item?.bonus_statement_id,
     };
 
-    const result = await AxiosInstance.post(API.bonus, payload);
+    const result = await AxiosSecure.post(API.bonus, payload);
     if (result?.data?.success) {
       refetch();
       toast.success(result?.data?.result);
