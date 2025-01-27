@@ -5,15 +5,13 @@ const LiveSports = ({ liveSports }) => {
     liveSports &&
     Object.values(liveSports).length > 0 &&
     Object.keys(liveSports)?.filter((key) => {
-      return (
-        liveSports?.[key]?.visible === true 
-      );
+      return liveSports?.[key]?.visible === true;
     });
 
   return (
     <>
       {filteredSports?.length > 0 && (
-        <div className="s1710wl3" style={{height:'100%'}}>
+        <div className="s1710wl3" style={{ height: "100%" }}>
           <div className="sports-head">
             <div className="title">
               <svg
@@ -39,10 +37,13 @@ const LiveSports = ({ liveSports }) => {
             style={{
               // height: "14.5rem",
               // height: "215px",
-              height:'100%'
+              height: "100%",
             }}
           >
-            <div className="live-list-wrap" style={{ height: "100%",flexDirection:'column' }}>
+            <div
+              className="live-list-wrap"
+              style={{ height: "100%", flexDirection: "column" }}
+            >
               {/* <Swiper
                 spaceBetween={10}
                 slidesPerView="auto"
@@ -69,23 +70,21 @@ const LiveSports = ({ liveSports }) => {
                     );
                   })}
               </Swiper> */}
-            
-                {filteredSports
-                  .sort(
-                    (keyA, keyB) =>
-                      liveSports[keyA].sort - liveSports[keyB].sort
-                  )
-                  .map((key, index) => {
-                    return (
-                      <div
-                        style={{ borderRadius: "10px", width: "100%" }}
-                        key={index}
-                      >
-                        <Card keys={key} liveSports={liveSports} />
-                      </div>
-                    );
-                  })}
-        
+
+              {filteredSports
+                .sort(
+                  (keyA, keyB) => liveSports[keyA].sort - liveSports[keyB].sort
+                )
+                .map((key, index) => {
+                  return (
+                    <div
+                      style={{ borderRadius: "10px", width: "100%" }}
+                      key={index}
+                    >
+                      <Card keys={key} liveSports={liveSports} />
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

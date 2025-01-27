@@ -9,44 +9,39 @@ const MatchTrackerTab = ({ score }) => {
   const { mutate } = useSportsVideo();
   const [iFrame, setIframe] = useState("");
 
-  const handleGetSportsVideo = () => {
-    const payload = {
-      eventTypeId: eventTypeId,
-      eventId: eventId,
-      type: "video",
-      casinoCurrency: Settings.casinoCurrency,
-    };
-    mutate(payload, {
-      onSuccess: (data) => {
-        if (data?.success) {
-          setIframe(data?.result?.url);
-        }
-      },
-    });
-  };
-
-  const handleToggle = (tab) => {
+  const handleGetSportsVideo = (tab) => {
     if (toggle === tab) {
-      setToggle("");
-    } else {
-      setToggle(tab);
+      return setToggle("");
+    }
+    setToggle(tab);
+    if (tab === "video") {
+      const payload = {
+        eventTypeId: eventTypeId,
+        eventId: eventId,
+        type: "video",
+        casinoCurrency: Settings.casinoCurrency,
+      };
+      mutate(payload, {
+        onSuccess: (data) => {
+          if (data?.success) {
+            setIframe(data?.result?.url);
+          }
+        },
+      });
+    }
+    if (tab === "tracker") {
+      setIframe(score?.tracker);
     }
   };
-
-  useEffect(() => {
-    if (toggle === "tracker") {
-      setIframe(score?.tracker);
-    } else if (toggle === "video") {
-      handleGetSportsVideo();
-    } else {
-      setIframe("");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toggle, score]);
 
   useEffect(() => {
     if (toggle === "video") {
       if (!score?.hasVideo) {
+        setToggle("");
+      }
+    }
+    if (toggle === "tracker") {
+      if (!score?.tracker) {
         setToggle("");
       }
     }
@@ -61,7 +56,9 @@ const MatchTrackerTab = ({ score }) => {
               <div className="bt12634">
                 {score && score?.hasVideo && (
                   <div
-                    onClick={() => handleToggle("video")}
+                    onClick={() => {
+                      handleGetSportsVideo("video");
+                    }}
                     className="bt12843 bt12848 bt12844 bt12845"
                     data-editor-id="matchTrackerTab"
                   >
@@ -87,7 +84,9 @@ const MatchTrackerTab = ({ score }) => {
                 )}
                 {score && score?.tracker !== null && (
                   <div
-                    onClick={() => handleToggle("tracker")}
+                    onClick={() => {
+                      handleGetSportsVideo("tracker");
+                    }}
                     className="bt12843 bt12848 bt12844 bt12845"
                     data-editor-id="matchTrackerTab"
                   >
