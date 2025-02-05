@@ -155,6 +155,7 @@ const UploadTransaction = ({ paymentId, amount }) => {
                           type="file"
                           accept="image/*"
                           id="fileInput"
+                          capture="environment"
                           className="file-input ng-tns-c159-0"
                           style={{ display: "none" }}
                         />
