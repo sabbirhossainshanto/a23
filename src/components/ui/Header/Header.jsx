@@ -95,12 +95,6 @@ const Header = () => {
 
   return (
     <>
-      <input
-        type="file"
-        accept="image/*"
-        capture="environment" // Opens the rear camera, use "user" for the front camera
-        onChange={(e) => console.log(e.target.files[0])}
-      />
       {Settings?.apkLink && isModalOpen && windowWidth < 550 && (
         <AppPopup setIsModalOpen={setIsModalOpen} />
       )}
